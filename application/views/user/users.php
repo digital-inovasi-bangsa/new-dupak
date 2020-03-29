@@ -34,10 +34,13 @@
                   <table class="table table-hover">
                     <tr>
                       <th>Id</th>
-                      <th>Name</th>
+                      <th>NIP</th>
+                      <th>Nama</th>
                       <th>Email</th>
-                      <th>Mobile</th>
+                      <th>Nomer Handphone</th>
                       <th>Role</th>
+                      <th>Foto Profile</th>
+                      <th>Divisi</th>
                       <th>Actions</th>
                     </tr>
                     <?php
@@ -49,9 +52,12 @@
                     <tr>
                       <td><?php echo $record->userId ?></td>
                       <td><?php echo $record->name ?></td>
+                      <td><?php echo $record->nip ?></td>
                       <td><?php echo $record->email ?></td>
                       <td><?php echo $record->mobile ?></td>
                       <td><?php echo $record->role ?></td>
+                      <td><?php echo $record->fotoProfil ?></td>
+                      <td><?php echo $record->idDivisi ?></td>
                       <td>
                           <a href="<?php echo base_url().'editOld/'.$record->userId; ?>"><i class="fa fa-pencil"></i>&nbsp;&nbsp;&nbsp;</a>
                           <a href="#" data-userid="<?php echo $record->userId; ?>" class="deleteUser"><i class="fa fa-trash"></i>&nbsp;&nbsp;&nbsp;</a>

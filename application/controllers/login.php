@@ -59,7 +59,7 @@ class Login extends CI_Controller
             $ecryptPassword = md5($password);
             
             $result = $this->login_model->loginMe($email, $ecryptPassword);
-            
+                    
             if(count($result) > 0)
             {
                 foreach ($result as $res)

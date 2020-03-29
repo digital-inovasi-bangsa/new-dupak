@@ -12,6 +12,7 @@ class User_model extends CI_Model
         $this->db->select('BaseTbl.userId, BaseTbl.email, BaseTbl.name, BaseTbl.mobile, Role.role');
         $this->db->from('tbl_users as BaseTbl');
         $this->db->join('tbl_roles as Role', 'Role.roleId = BaseTbl.roleId','left');
+        $this->db->join('tbl_divisi as Divisi', 'Divisi.idDivisi = BaseTbl.idDivisi','full');
         if(!empty($searchText)) { $this->db->or_like('BaseTbl.email', $searchText); $this->db->or_like('BaseTbl.name', $searchText); $this->db->or_like('BaseTbl.mobile', $searchText); }
         $this->db->where('BaseTbl.isDeleted', 0);
         $this->db->where('BaseTbl.roleId !=', 1);
@@ -32,6 +33,7 @@ class User_model extends CI_Model
         $this->db->select('*');
         $this->db->from('tbl_users as BaseTbl');
         $this->db->join('tbl_roles as Role', 'Role.roleId = BaseTbl.roleId','full');
+        $this->db->join('tbl_divisi as Divisi', 'Divisi.idDivisi = BaseTbl.idDivisi','full');
         if(!empty($searchText)) { $this->db->or_like('BaseTbl.email', $searchText); $this->db->or_like('BaseTbl.name', $searchText); $this->db->or_like('BaseTbl.mobile', $searchText); }
         $this->db->where('BaseTbl.isDeleted', 0);
         $this->db->where('BaseTbl.roleId !=', 1);
@@ -50,6 +52,19 @@ class User_model extends CI_Model
         $this->db->select('roleId, role');
         $this->db->from('tbl_roles');
         $this->db->where('roleId !=', 1);
+        $query = $this->db->get();
+        
+        return $query->result();
+    }
+
+    /**
+     * This function is used to get the user roles information
+     * @return array $result : This is result of the query
+     */
+    function getUserDivisi()
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_divisi');
         $query = $this->db->get();
         
         return $query->result();
