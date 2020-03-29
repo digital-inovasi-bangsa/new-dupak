@@ -1,18 +1,14 @@
 <?php
 
-$idJabatan = '';
-$namaJabatan = '';
-$idPangkat = '';
-$namaPangkat = '';
+$idDivisi = '';
+$namaDivisi = '';
 
-if(!empty($jabatanInfo))
+if(!empty($divisiInfo))
 {
-    foreach ($jabatanInfo as $uf)
+    foreach ($divisiInfo as $uf)
     {
-        $idJabatan = $uf->idJabatan;
-        $namaJabatan = $uf->namaJabatan;
-        $idPangkat = $uf->tbl_pangkat_idPangkat;
-        $namaPangkat = $uf->namaPangkat;
+        $idDivisi = $uf->idDivisi;
+        $namaDivisi = $uf->namaDivisi;
     }
 }
 
@@ -23,7 +19,7 @@ if(!empty($jabatanInfo))
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Jabatan Management
+            Divisi Management
             <small>Add / Edit User</small>
         </h1>
     </section>
@@ -36,38 +32,20 @@ if(!empty($jabatanInfo))
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header">
-                        <h3 class="box-title">Enter Jabatan Details</h3>
+                        <h3 class="box-title">Enter Divisi Details</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
-
-                    <form role="form" action="<?php echo base_url() ?>jabatan/editJabatan" method="post"
-                        id="editJabatan" role="form">
+                    <form role="form" action="<?php echo base_url() ?>divisi/editDivisi" method="post"
+                        id="editDivisi" role="form">
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="fname">Pangkat Lengkap</label>
-                                        <input type="text" class="form-control" id="fjabatan"
-                                            placeholder="Jabatan Lengkap" name="fjabatan"
-                                            value="<?php echo $namaJabatan; ?>" maxlength="128">
-                                        <input type="hidden" value="<?php echo $idJabatan; ?>" name="idJabatan" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="role">Select Pangkat</label>
-                                        <select class="form-control" id="idPangkat" name="idPangkat">
-                                            <option value="0">Select Pangkat</option>
-                                            <?php
-                                            if(!empty($pangkat))
-                                            {
-                                                foreach ($pangkat as $rl)
-                                                {
-                                                    ?>
-                                                    <option value="<?php echo $rl->idPangkat; ?>" <?php if($rl->idPangkat == $idPangkat) {echo "selected=selected";} ?>><?php echo $rl->namaPangkat ?></option>
-                                                    <?php
-                                                }
-                                            }
-                                            ?>
-                                        </select>
+                                        <label for="fname">Divisi Lengkap</label>
+                                        <input type="text" class="form-control" id="fdivisi"
+                                            placeholder="Divisi Lengkap" name="fdivisi"
+                                            value="<?php echo $namaDivisi; ?>" maxlength="128">
+                                        <input type="hidden" value="<?php echo $idDivisi; ?>" name="idDivisi" />
                                     </div>
                                 </div> 
                                 </div>

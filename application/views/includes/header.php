@@ -96,9 +96,9 @@
               </a>
             </li>
             <li class="treeview">
-              <a href="#" >
+              <a href="<?php echo base_url(); ?>divisi/divisiListing" >
                 <i class="fa fa-plane"></i>
-                <span>All Task</span>
+                <span>Divisi</span>
               </a>
             </li>
             <li class="treeview">
