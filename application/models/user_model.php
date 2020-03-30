@@ -30,11 +30,19 @@ class User_model extends CI_Model
      */
     function userListing($searchText = '', $page, $segment)
     {
-        $this->db->select('*');
+        $this->db->select('BaseTbl.*,Divisi.*, Jabatan.*, Pangkat.*, Role.*');
         $this->db->from('tbl_users as BaseTbl');
-        $this->db->join('tbl_roles as Role', 'Role.roleId = BaseTbl.roleId','full');
-        $this->db->join('tbl_divisi as Divisi', 'Divisi.idDivisi = BaseTbl.tbl_divisi_idDivisi','full');
-        if(!empty($searchText)) { $this->db->or_like('BaseTbl.email', $searchText); $this->db->or_like('BaseTbl.name', $searchText); $this->db->or_like('BaseTbl.mobile', $searchText); }
+        $this->db->join('tbl_roles as Role', 'Role.roleId = BaseTbl.roleId','left');
+        $this->db->join('tbl_divisi as Divisi', 'Divisi.idDivisi = BaseTbl.tbl_divisi_idDivisi','left');
+        $this->db->join('tbl_jabatan as Jabatan', 'Jabatan.idJabatan = BaseTbl.tbl_jabatan_idJabatan','left');
+        $this->db->join('tbl_pangkat as Pangkat', 'Pangkat.idPangkat = Jabatan.tbl_pangkat_idPangkat','left');
+        if(!empty($searchText)) { $this->db->or_like('BaseTbl.email', $searchText); 
+        $this->db->or_like('BaseTbl.name', $searchText); 
+        $this->db->or_like('BaseTbl.mobile', $searchText);
+        $this->db->or_like('Role.role', $searchText); 
+        $this->db->or_like('Jabatan.namaJabatan', $searchText); 
+        $this->db->or_like('Pangkat.namaPangkat', $searchText); 
+        $this->db->or_like('Divisi.namaDivisi', $searchText);}
         $this->db->where('BaseTbl.isDeleted', 0);
         $this->db->where('BaseTbl.roleId !=', 1);
         $this->db->limit($page, $segment);
@@ -52,6 +60,15 @@ class User_model extends CI_Model
         $this->db->select('roleId, role');
         $this->db->from('tbl_roles');
         $this->db->where('roleId !=', 1);
+        $query = $this->db->get();
+        
+        return $query->result();
+    }
+
+    function getUserJabatan()
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_jabatan');
         $query = $this->db->get();
         
         return $query->result();

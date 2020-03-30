@@ -8,6 +8,7 @@ $roleId = '';
 $idDivisi = '';
 $namaDivisi = '';
 $nip = '';
+$idJabatan = '';
 
 if(!empty($userInfo))
 {
@@ -21,6 +22,7 @@ if(!empty($userInfo))
         $idDivisi = $uf->tbl_divisi_idDivisi;
         $fotoProfil = $uf->fotoProfil;
         $nip = $uf->nip;
+        $idJabatan = $uf->tbl_jabatan_idJabatan;
     }
 }
 
@@ -42,16 +44,13 @@ if(!empty($userInfo))
             <!-- left column -->
             <div class="col-md-8">
                 <!-- general form elements -->
-
-
-
                 <div class="box box-primary">
                     <div class="box-header">
                         <h3 class="box-title">Enter User Details</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
-
-                    <form role="form" action="<?php echo base_url() ?>editUser" method="post" id="editUser" role="form" enctype="multipart/form-data">
+                    <form role="form" action="<?php echo base_url() ?>editUser" method="post" id="editUser" role="form"
+                        enctype="multipart/form-data">
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-6">
@@ -153,13 +152,35 @@ if(!empty($userInfo))
                                         <div><?php if($fotoProfil!=null){ ?>
                                             <img width="100px"
                                                 src="<?php echo base_url()."/upload/images/".$fotoProfil?>"></img>
-                                            <input type="file" id="image" name="user_img_upload" style="margin-top: 8px">
+                                            <input type="file" id="image" name="user_img_upload"
+                                                style="margin-top: 8px">
                                         </div><?php  } ?>
                                         <div><?php if($fotoProfil==null){ ?>
                                             <label for="text">Foto Profil</label>
                                             <input type="file" id="image" name="user_img_upload">
                                         </div><?php  } ?>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="divisi">Jabatan</label>
+                                    <select class="form-control required" id="jabatan" name="jabatan">
+                                        <option value="0">Pilih Jabatan</option>
+                                        <?php
+                                            if(!empty($jabatan))
+                                            {
+                                                foreach ($jabatan as $rl)
+                                                {
+                                                    ?>
+                                        <option value="<?php echo $rl->idJabatan; ?>"
+                                            <?php if($rl->idJabatan == $idJabatan) {echo "selected=selected";} ?>>
+                                            <?php echo $rl->namaJabatan ?></option>
+                                        <?php
+                                                }
+                                            }
+                                            ?>
+                                    </select>
                                 </div>
                             </div>
                         </div><!-- /.box-body -->

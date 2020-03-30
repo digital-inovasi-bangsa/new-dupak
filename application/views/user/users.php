@@ -48,12 +48,14 @@ $user = '';
           <div class="box-body table-responsive no-padding">
             <table class="table table-hover">
               <tr>
-                <th>Id</th>
+                <th>No</th>
                 <th>NIP</th>
                 <th>Nama</th>
                 <th>Email</th>
                 <th>Nomer Handphone</th>
                 <th>Role</th>
+                <th>Jabatan</th>
+                <th>Pangkat</th>
                 <th>Foto Profile</th>
                 <th>Divisi</th>
                 <th>Actions</th>
@@ -61,16 +63,19 @@ $user = '';
               <?php
                     if(!empty($userRecords))
                     {
+                        $no = 1; 
                         foreach($userRecords as $record)
                         {
                     ?>
               <tr>
-                <td><?php echo $record->userId ?></td>
+                <td><?php echo $no++ ?></td>
                 <td><?php echo $record->nip ?></td>
                 <td><?php echo $record->name ?></td>
                 <td><?php echo $record->email ?></td>
                 <td><?php echo $record->mobile ?></td>
                 <td><?php echo $record->role ?></td>
+                <td><?php echo $record->namaJabatan ?></td>
+                <td><?php echo $record->namaPangkat ?></td>
                 <td>
                   <img src="<?php echo base_url('upload/images/'.$record->fotoProfil);?>" 
                   width="32" />

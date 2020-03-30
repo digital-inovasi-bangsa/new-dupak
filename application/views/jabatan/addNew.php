@@ -22,13 +22,13 @@
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     
-                    <form role="form" id="addUser" action="<?php echo base_url() ?>pangkat/addNewPangkat" method="post" role="form">
+                    <form role="form" id="addUser" action="<?php echo base_url() ?>jabatan/addNewJabatan" method="post" role="form">
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-12">                                
                                     <div class="form-group">
                                         <label for="fname">Nama Jabatan</label>
-                                        <input type="text" class="form-control required" id="fpangkat" name="fpangkat" maxlength="128">
+                                        <input type="text" class="form-control required" id="fjabatan" name="fjabatan" maxlength="128">
                                     </div>
                                 </div>
                                 <div class="col-md-12">                                

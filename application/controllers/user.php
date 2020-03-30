@@ -148,7 +148,7 @@ class User extends CI_Controller
             $segment = $this->uri->segment(2);
             
             $data['userRecords'] = $this->user_model->userListing($searchText, $page, $segment);
-            //print_r($data['userRecords']);die;            
+            // echo '<pre>',print_r($data),'</pre>';die;            
             $this->global['pageTitle'] = 'Dupak : User Listing';
             $this->load->view('includes/header', $this->global);
             $this->load->view('user/users', $data);
@@ -170,7 +170,8 @@ class User extends CI_Controller
             $this->load->model('user_model');
             $data['roles'] = $this->user_model->getUserRoles();
             $data['divisi'] = $this->user_model->getUserDivisi();
-            $this->global['pageTitle'] = 'CodeInsect : Add New User';
+            $data['jabatan'] = $this->user_model->getUserJabatan();
+            $this->global['pageTitle'] = 'Dupak : Add New User';
             $this->load->view('includes/header', $this->global);
             $this->load->view('user/addNew', $data);
             $this->load->view('includes/footer');
@@ -212,6 +213,7 @@ class User extends CI_Controller
                 $idDivisi = $this->input->post('divisi');
                 $nip = $this->input->post('nip');
                 $mobile = $this->input->post('mobile');
+                $idJabatan = $this->input->post('jabatan');
                 
                 if (!empty($_FILES['user_img_upload']['tmp_name'])) {
                     $fotoProfile = $this->_upload_foto($nip);
@@ -228,7 +230,8 @@ class User extends CI_Controller
                     'mobile'=>$mobile, 
                     'createdBy'=>$this->vendorId,
                     'createdDtm'=>date('Y-m-d H:i:sa'),
-                    'fotoProfil'=> $fotoProfile
+                    'fotoProfil'=> $fotoProfile,
+                    'tbl_jabatan_idJabatan'=> $idJabatan
                 );
                 if($this->user_model->addNewUser($userInfo))
                 {
@@ -277,9 +280,11 @@ class User extends CI_Controller
             
             $data['roles'] = $this->user_model->getUserRoles();
             $data['divisi'] = $this->user_model->getUserDivisi();
+            $data['jabatan'] = $this->user_model->getUserJabatan();
+            $data['ok'] = $this->user_model->getUserJabatan();
             $data['userInfo'] = $this->user_model->getUserInfo($userId);   
             $this->global['pageTitle'] = 'Dupak : Edit User';
-            // /print_r($data);die;
+            // print_r($data['userInfo']);die;
             $this->load->view('includes/header', $this->global);
             $this->load->view('user/editOld', $data);
             $this->load->view('includes/footer');
@@ -322,6 +327,7 @@ class User extends CI_Controller
                 $idDivisi = $this->input->post('divisi');
                 $nip = $this->input->post('nip');
                 $mobile = $this->input->post('mobile');
+                $idJabatan = $this->input->post('jabatan');
                 if (!empty($_FILES['user_img_upload']['tmp_name'])) {
                     $fotoProfile = $this->_upload_foto($nip);
                 } else {
@@ -335,13 +341,13 @@ class User extends CI_Controller
                 {
                     $userInfo = array('email'=>$email, 'roleId'=>$roleId, 'name'=>$name,'tbl_divisi_idDivisi'=>$idDivisi, 'nip'=>$nip,
                                     'mobile'=>$mobile, 'updatedBy'=>$this->vendorId, 'updatedDtm'=>date('Y-m-d H:i:sa'),
-                                    'fotoProfil'=> $fotoProfile);
+                                    'fotoProfil'=> $fotoProfile, 'tbl_jabatan_idJabatan' => $idJabatan);
                 }
                 else
                 {
                     $userInfo = array('email'=>$email,'password'=>md5($password), 'roleId'=>$roleId, 'name'=>$name,'tbl_divisi_idDivisi'=>$idDivisi, 'nip'=>$nip,
                                     'mobile'=>$mobile, 'updatedBy'=>$this->vendorId, 'updatedDtm'=>date('Y-m-d H:i:sa'),
-                                    'fotoProfil'=> $fotoProfile);
+                                    'fotoProfil'=> $fotoProfile, 'tbl_jabatan_idJabatan'=>$idJabatan);
                 }
                 
                 $result = $this->user_model->editUser($userInfo, $userId);

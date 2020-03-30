@@ -114,6 +114,25 @@
                                         <input type="file" id="image" name="user_img_upload">
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="divisi">Jabatan</label>
+                                        <select class="form-control required" id="jabatan" name="jabatan">
+                                            <option value="0">Pilih Jabatan</option>
+                                            <?php
+                                            if(!empty($jabatan))
+                                            {
+                                                foreach ($jabatan as $rl)
+                                                {
+                                                    ?>
+                                                    <option value="<?php echo $rl->idJabatan ?>"><?php echo $rl->namaJabatan ?></option>
+                                                    <?php
+                                                }
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div> 
                             </div>
                         </div><!-- /.box-body -->
     
