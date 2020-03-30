@@ -12,7 +12,7 @@ class User_model extends CI_Model
         $this->db->select('BaseTbl.userId, BaseTbl.email, BaseTbl.name, BaseTbl.mobile, Role.role');
         $this->db->from('tbl_users as BaseTbl');
         $this->db->join('tbl_roles as Role', 'Role.roleId = BaseTbl.roleId','left');
-        $this->db->join('tbl_divisi as Divisi', 'Divisi.idDivisi = BaseTbl.idDivisi','full');
+        $this->db->join('tbl_divisi as Divisi', 'Divisi.idDivisi = BaseTbl.tbl_divisi_idDivisi','full');
         if(!empty($searchText)) { $this->db->or_like('BaseTbl.email', $searchText); $this->db->or_like('BaseTbl.name', $searchText); $this->db->or_like('BaseTbl.mobile', $searchText); }
         $this->db->where('BaseTbl.isDeleted', 0);
         $this->db->where('BaseTbl.roleId !=', 1);
@@ -33,7 +33,7 @@ class User_model extends CI_Model
         $this->db->select('*');
         $this->db->from('tbl_users as BaseTbl');
         $this->db->join('tbl_roles as Role', 'Role.roleId = BaseTbl.roleId','full');
-        $this->db->join('tbl_divisi as Divisi', 'Divisi.idDivisi = BaseTbl.idDivisi','full');
+        $this->db->join('tbl_divisi as Divisi', 'Divisi.idDivisi = BaseTbl.tbl_divisi_idDivisi','full');
         if(!empty($searchText)) { $this->db->or_like('BaseTbl.email', $searchText); $this->db->or_like('BaseTbl.name', $searchText); $this->db->or_like('BaseTbl.mobile', $searchText); }
         $this->db->where('BaseTbl.isDeleted', 0);
         $this->db->where('BaseTbl.roleId !=', 1);
@@ -94,7 +94,7 @@ class User_model extends CI_Model
      */
     function getUserInfo($userId)
     {
-        $this->db->select('userId, name, email, mobile, roleId');
+        $this->db->select('*');
         $this->db->from('tbl_users');
         $this->db->where('isDeleted', 0);
 		$this->db->where('roleId !=', 1);
@@ -162,6 +162,27 @@ class User_model extends CI_Model
         
         return $this->db->affected_rows();
     }
+
+    private function _uploadImage()
+{
+    $config['upload_path']          = './upload/product/';
+    $config['allowed_types']        = 'gif|jpg|png';
+    $config['file_name']            = '123';
+    $config['overwrite']			= true;
+    $config['max_size']             = 1024; // 1MB
+    // $config['max_width']            = 1024;
+    // $config['max_height']           = 768;
+
+    $this->load->library('upload', $config);
+
+    if ($this->upload->do_upload('image')) {
+        return $this->upload->data("file_name");
+    }
+    
+    return "default.jpg";
+}
+
+
 }
 
   

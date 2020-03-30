@@ -5,6 +5,9 @@ $name = '';
 $email = '';
 $mobile = '';
 $roleId = '';
+$idDivisi = '';
+$namaDivisi = '';
+$nip = '';
 
 if(!empty($userInfo))
 {
@@ -15,6 +18,9 @@ if(!empty($userInfo))
         $email = $uf->email;
         $mobile = $uf->mobile;
         $roleId = $uf->roleId;
+        $idDivisi = $uf->tbl_divisi_idDivisi;
+        $fotoProfil = $uf->fotoProfil;
+        $nip = $uf->nip;
     }
 }
 
@@ -24,42 +30,44 @@ if(!empty($userInfo))
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
-        User Management
-        <small>Add / Edit User</small>
-      </h1>
+        <h1>
+            User Management
+            <small>Add / Edit User</small>
+        </h1>
     </section>
-    
+
     <section class="content">
-    
+
         <div class="row">
             <!-- left column -->
             <div class="col-md-8">
-              <!-- general form elements -->
-                
-                
-                
+                <!-- general form elements -->
+
+
+
                 <div class="box box-primary">
                     <div class="box-header">
                         <h3 class="box-title">Enter User Details</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    
-                    <form role="form" action="<?php echo base_url() ?>editUser" method="post" id="editUser" role="form">
+
+                    <form role="form" action="<?php echo base_url() ?>editUser" method="post" id="editUser" role="form" enctype="multipart/form-data">
                         <div class="box-body">
                             <div class="row">
-                                <div class="col-md-6">                                
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="fname">Full Name</label>
-                                        <input type="text" class="form-control" id="fname" placeholder="Full Name" name="fname" value="<?php echo $name; ?>" maxlength="128">
-                                        <input type="hidden" value="<?php echo $userId; ?>" name="userId" />    
+                                        <input type="text" class="form-control" id="fname" placeholder="Full Name"
+                                            name="fname" value="<?php echo $name; ?>" maxlength="128">
+                                        <input type="hidden" value="<?php echo $userId; ?>" name="userId" />
                                     </div>
-                                    
+
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="email">Email address</label>
-                                        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" value="<?php echo $email; ?>" maxlength="128">
+                                        <input type="email" class="form-control" id="email" placeholder="Enter email"
+                                            name="email" value="<?php echo $email; ?>" maxlength="128">
                                     </div>
                                 </div>
                             </div>
@@ -67,13 +75,15 @@ if(!empty($userInfo))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="password">Password</label>
-                                        <input type="password" class="form-control" id="password" placeholder="Password" name="password" maxlength="10">
+                                        <input type="password" class="form-control" id="password" placeholder="Password"
+                                            name="password" maxlength="10">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="cpassword">Confirm Password</label>
-                                        <input type="password" class="form-control" id="cpassword" placeholder="Confirm Password" name="cpassword" maxlength="10">
+                                        <input type="password" class="form-control" id="cpassword"
+                                            placeholder="Confirm Password" name="cpassword" maxlength="10">
                                     </div>
                                 </div>
                             </div>
@@ -81,7 +91,8 @@ if(!empty($userInfo))
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="mobile">Mobile Number</label>
-                                        <input type="text" class="form-control" id="mobile" placeholder="Mobile Number" name="mobile" value="<?php echo $mobile; ?>" maxlength="10">
+                                        <input type="text" class="form-control" id="mobile" placeholder="Mobile Number"
+                                            name="mobile" value="<?php echo $mobile; ?>" maxlength="10">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -95,17 +106,64 @@ if(!empty($userInfo))
                                                 foreach ($roles as $rl)
                                                 {
                                                     ?>
-                                                    <option value="<?php echo $rl->roleId; ?>" <?php if($rl->roleId == $roleId) {echo "selected=selected";} ?>><?php echo $rl->role ?></option>
-                                                    <?php
+                                            <option value="<?php echo $rl->roleId; ?>"
+                                                <?php if($rl->roleId == $roleId) {echo "selected=selected";} ?>>
+                                                <?php echo $rl->role ?></option>
+                                            <?php
                                                 }
                                             }
                                             ?>
                                         </select>
                                     </div>
-                                </div>    
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="nip">NIP</label>
+                                        <input type="text" class="form-control required digits" id="nip" name="nip"
+                                            maxlength="10" value="<?php echo $nip; ?>">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="divisi">Divisi</label>
+                                        <select class="form-control required" id="divisi" name="divisi">
+                                            <option value="0">Pilih Divisi</option>
+                                            <?php
+                                            if(!empty($divisi))
+                                            {
+                                                foreach ($divisi as $rl)
+                                                {
+                                                    ?>
+                                            <option value="<?php echo $rl->idDivisi; ?>"
+                                                <?php if($rl->idDivisi == $idDivisi) {echo "selected=selected";} ?>>
+                                                <?php echo $rl->namaDivisi ?></option>
+                                            <?php
+                                                }
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div><?php if($fotoProfil!=null){ ?>
+                                            <img width="100px"
+                                                src="<?php echo base_url()."/upload/images/".$fotoProfil?>"></img>
+                                            <input type="file" id="image" name="user_img_upload" style="margin-top: 8px">
+                                        </div><?php  } ?>
+                                        <div><?php if($fotoProfil==null){ ?>
+                                            <label for="text">Foto Profil</label>
+                                            <input type="file" id="image" name="user_img_upload">
+                                        </div><?php  } ?>
+                                    </div>
+                                </div>
                             </div>
                         </div><!-- /.box-body -->
-    
+
                         <div class="box-footer">
                             <input type="submit" class="btn btn-primary" value="Submit" />
                             <input type="reset" class="btn btn-default" value="Reset" />
@@ -122,7 +180,7 @@ if(!empty($userInfo))
                 ?>
                 <div class="alert alert-danger alert-dismissable">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <?php echo $this->session->flashdata('error'); ?>                    
+                    <?php echo $this->session->flashdata('error'); ?>
                 </div>
                 <?php } ?>
                 <?php  
@@ -135,14 +193,14 @@ if(!empty($userInfo))
                     <?php echo $this->session->flashdata('success'); ?>
                 </div>
                 <?php } ?>
-                
+
                 <div class="row">
                     <div class="col-md-12">
                         <?php echo validation_errors('<div class="alert alert-danger alert-dismissable">', ' <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>'); ?>
                     </div>
                 </div>
             </div>
-        </div>    
+        </div>
     </section>
 </div>
 

@@ -16,6 +16,7 @@ class User extends CI_Controller
     {
         parent::__construct();
         $this->load->model('user_model');
+        $this->load->library('tupload');
         $this->isLoggedIn();   
     }
     
@@ -168,7 +169,7 @@ class User extends CI_Controller
         {
             $this->load->model('user_model');
             $data['roles'] = $this->user_model->getUserRoles();
-            
+            $data['divisi'] = $this->user_model->getUserDivisi();
             $this->global['pageTitle'] = 'CodeInsect : Add New User';
             $this->load->view('includes/header', $this->global);
             $this->load->view('user/addNew', $data);
@@ -194,6 +195,8 @@ class User extends CI_Controller
             $this->form_validation->set_rules('password','Password','required|max_length[20]');
             $this->form_validation->set_rules('cpassword','Confirm Password','trim|required|matches[password]|max_length[20]');
             $this->form_validation->set_rules('role','Role','trim|required|numeric');
+            $this->form_validation->set_rules('divisi','Divisi','trim|required|numeric');
+            $this->form_validation->set_rules('nip','NIP','trim|required|numeric');
             $this->form_validation->set_rules('mobile','Mobile Number','required|min_length[10]|xss_clean');
             
             if($this->form_validation->run() == FALSE)
@@ -206,15 +209,28 @@ class User extends CI_Controller
                 $email = $this->input->post('email');
                 $password = $this->input->post('password');
                 $roleId = $this->input->post('role');
+                $idDivisi = $this->input->post('divisi');
+                $nip = $this->input->post('nip');
                 $mobile = $this->input->post('mobile');
                 
-                $userInfo = array('email'=>$email, 'password'=>md5($password), 'roleId'=>$roleId, 'name'=> $name,
-                                    'mobile'=>$mobile, 'createdBy'=>$this->vendorId, 'createdDtm'=>date('Y-m-d H:i:sa'));
-                
-                $this->load->model('user_model');
-                $result = $this->user_model->addNewUser($userInfo);
-                
-                if($result > 0)
+                if (!empty($_FILES['user_img_upload']['tmp_name'])) {
+                    $fotoProfile = $this->_upload_foto($nip);
+                } else {
+                    $fotoProfile = 'default.jpg';
+                }
+                $userInfo = array( 
+                    'email'=>$email, 
+                    'password'=>md5($password), 
+                    'roleId'=>$roleId, 
+                    'name'=> $name,
+                    'tbl_divisi_idDivisi'=>$idDivisi,
+                    'nip'=>$nip,
+                    'mobile'=>$mobile, 
+                    'createdBy'=>$this->vendorId,
+                    'createdDtm'=>date('Y-m-d H:i:sa'),
+                    'fotoProfil'=> $fotoProfile
+                );
+                if($this->user_model->addNewUser($userInfo))
                 {
                     $this->session->set_flashdata('success', 'New User created successfully');
                 }
@@ -222,13 +238,26 @@ class User extends CI_Controller
                 {
                     $this->session->set_flashdata('error', 'User creation failed');
                 }
-                
                 redirect('user/addNew');
             }
         }
     }
 
-    
+    public function _upload_foto($user_id){
+        
+		$config['upload_path'] = './upload/images/';
+        $config['allowed_types'] = 'gif|jpg|jpeg|png';
+        $config['file_name'] = $user_id . '_' . date('Ymdhis');
+        // --
+        $this->tupload->initialize($config);
+        // process upload images
+        if ($this->tupload->do_upload_image('user_img_upload', 128, false)) {
+        // --
+            $data = $this->tupload->data();
+        // --
+            return $data['file_name'];
+	}
+}
     /**
      * This function is used load user edit information
      * @param number $userId : Optional : This is user id
@@ -247,9 +276,10 @@ class User extends CI_Controller
             }
             
             $data['roles'] = $this->user_model->getUserRoles();
-            $data['userInfo'] = $this->user_model->getUserInfo($userId);
-            
-            $this->global['pageTitle'] = 'CodeInsect : Edit User';
+            $data['divisi'] = $this->user_model->getUserDivisi();
+            $data['userInfo'] = $this->user_model->getUserInfo($userId);   
+            $this->global['pageTitle'] = 'Dupak : Edit User';
+            // /print_r($data);die;
             $this->load->view('includes/header', $this->global);
             $this->load->view('user/editOld', $data);
             $this->load->view('includes/footer');
@@ -289,19 +319,29 @@ class User extends CI_Controller
                 $email = $this->input->post('email');
                 $password = $this->input->post('password');
                 $roleId = $this->input->post('role');
+                $idDivisi = $this->input->post('divisi');
+                $nip = $this->input->post('nip');
                 $mobile = $this->input->post('mobile');
+                if (!empty($_FILES['user_img_upload']['tmp_name'])) {
+                    $fotoProfile = $this->_upload_foto($nip);
+                } else {
+                    $fotoProfile = 'default.jpg';
+                }
+                
                 
                 $userInfo = array();
                 
                 if(empty($password))
                 {
-                    $userInfo = array('email'=>$email, 'roleId'=>$roleId, 'name'=>$name,
-                                    'mobile'=>$mobile, 'updatedBy'=>$this->vendorId, 'updatedDtm'=>date('Y-m-d H:i:sa'));
+                    $userInfo = array('email'=>$email, 'roleId'=>$roleId, 'name'=>$name,'tbl_divisi_idDivisi'=>$idDivisi, 'nip'=>$nip,
+                                    'mobile'=>$mobile, 'updatedBy'=>$this->vendorId, 'updatedDtm'=>date('Y-m-d H:i:sa'),
+                                    'fotoProfil'=> $fotoProfile);
                 }
                 else
                 {
-                    $userInfo = array('email'=>$email, 'password'=>md5($password), 'roleId'=>$roleId, 'name'=>ucwords($name),
-                                    'mobile'=>$mobile, 'updatedBy'=>$this->vendorId, 'updatedDtm'=>date('Y-m-d H:i:sa'));
+                    $userInfo = array('email'=>$email,'password'=>md5($password), 'roleId'=>$roleId, 'name'=>$name,'tbl_divisi_idDivisi'=>$idDivisi, 'nip'=>$nip,
+                                    'mobile'=>$mobile, 'updatedBy'=>$this->vendorId, 'updatedDtm'=>date('Y-m-d H:i:sa'),
+                                    'fotoProfil'=> $fotoProfile);
                 }
                 
                 $result = $this->user_model->editUser($userInfo, $userId);

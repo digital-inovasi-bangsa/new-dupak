@@ -22,7 +22,7 @@
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     
-                    <form role="form" id="addUser" action="<?php echo base_url() ?>addNewUser" method="post" role="form">
+                    <form role="form" id="addUser" action="<?php echo base_url() ?>addNewUser" method="post" role="form" enctype="multipart/form-data">
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-6">                                
@@ -64,7 +64,7 @@
                                     <div class="form-group">
                                         <label for="role">Role</label>
                                         <select class="form-control required" id="role" name="role">
-                                            <option value="0">Select Role</option>
+                                            <option value="0">Pilih Role</option>
                                             <?php
                                             if(!empty($roles))
                                             {
@@ -79,6 +79,41 @@
                                         </select>
                                     </div>
                                 </div>    
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="nip">NIP</label>
+                                        <input type="text" class="form-control required digits" id="nip" name="nip" maxlength="10">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="divisi">Divisi</label>
+                                        <select class="form-control required" id="divisi" name="divisi">
+                                            <option value="0">Pilih Divisi</option>
+                                            <?php
+                                            if(!empty($divisi))
+                                            {
+                                                foreach ($divisi as $rl)
+                                                {
+                                                    ?>
+                                                    <option value="<?php echo $rl->idDivisi ?>"><?php echo $rl->namaDivisi ?></option>
+                                                    <?php
+                                                }
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>    
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="image">Foto Profil</label>
+                                        <input type="file" id="image" name="user_img_upload">
+                                    </div>
+                                </div>
                             </div>
                         </div><!-- /.box-body -->
     
