@@ -199,7 +199,7 @@ class Divisi extends CI_Controller
                     $this->session->set_flashdata('error', 'Divisi creation failed');
                 }
                 
-                redirect('divisi/addNew');
+                redirect('divisi/divisiListing');
             }
         }
     }

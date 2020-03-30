@@ -28,68 +28,41 @@ if(!empty($divisiInfo))
 
         <div class="row">
             <!-- left column -->
-            <div class="col-md-8">
+            <div class="col-md-6">
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header">
-                        <h3 class="box-title">Enter Divisi Details</h3>
+                        <h3 class="box-title">Edit Data Divisi</h3>
                     </div><!-- /.box-header -->
-                    <!-- form start -->
-                    <form role="form" action="<?php echo base_url() ?>divisi/editDivisi" method="post"
-                        id="editDivisi" role="form">
-                        <div class="box-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="fname">Divisi Lengkap</label>
-                                        <input type="text" class="form-control" id="fdivisi"
-                                            placeholder="Divisi Lengkap" name="fdivisi"
-                                            value="<?php echo $namaDivisi; ?>" maxlength="128">
-                                        <input type="hidden" value="<?php echo $idDivisi; ?>" name="idDivisi" />
+                    <div class="box-body">
+                        <!-- form start -->
+                        <form role="form" action="<?php echo base_url() ?>divisi/editDivisi" method="post"
+                            id="editDivisi" role="form">
+                            <div class="box-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="fname">Divisi Lengkap</label>
+                                            <input type="text" class="form-control" id="fdivisi"
+                                                placeholder="Divisi Lengkap" name="fdivisi"
+                                                value="<?php echo $namaDivisi; ?>" maxlength="128">
+                                            <input type="hidden" value="<?php echo $idDivisi; ?>" name="idDivisi" />
+                                        </div>
                                     </div>
-                                </div> 
                                 </div>
                             </div>
-                        </div><!-- /.box-body -->
-
-                        <div class="box-footer">
-                            <input type="submit" class="btn btn-primary" value="Submit" />
-                            <input type="reset" class="btn btn-default" value="Reset" />
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <?php
-                    $this->load->helper('form');
-                    $error = $this->session->flashdata('error');
-                    if($error)
-                    {
-                ?>
-                <div class="alert alert-danger alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <?php echo $this->session->flashdata('error'); ?>
-                </div>
-                <?php } ?>
-                <?php  
-                    $success = $this->session->flashdata('success');
-                    if($success)
-                    {
-                ?>
-                <div class="alert alert-success alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <?php echo $this->session->flashdata('success'); ?>
-                </div>
-                <?php } ?>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <?php echo validation_errors('<div class="alert alert-danger alert-dismissable">', ' <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>'); ?>
+                    </div><!-- /.box-body -->
+                    <div class="box-footer">
+                        <input type="submit" class="btn btn-primary pull-right" value="Submit" />
+                        <input type="reset" class="btn btn-default" value="Reset" />
                     </div>
                 </div>
+
+                </form>
             </div>
         </div>
-    </section>
+</div>
+</section>
 </div>
 
 
