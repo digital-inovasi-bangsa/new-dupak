@@ -68,13 +68,14 @@ class Login extends CI_Controller
                                             'role'=>$res->roleId,
                                             'roleText'=>$res->role,
                                             'name'=>$res->name,
+                                            'fotoProfil'=>$res->fotoProfil,
                                             'isLoggedIn' => TRUE
                                     );
                                     
                     $this->session->set_userdata($sessionArray);
-                    
                     redirect('/dashboard');
                 }
+                
             }
             else
             {
