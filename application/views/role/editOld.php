@@ -18,40 +18,36 @@ if(!empty($roleInfo))
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
-        Role Management
-        <small>Add / Edit User</small>
-      </h1>
+        <h1>
+            Master Role
+            <small>Tambah, Ubah, Hapus</small>
+        </h1>
     </section>
-    
     <section class="content">
-    
         <div class="row">
             <!-- left column -->
             <div class="col-md-8">
-              <!-- general form elements -->
-                
-                
-                
+                <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header">
-                        <h3 class="box-title">Enter Role Details</h3>
+                        <h3 class="box-title">Ubah Data Role</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    
-                    <form role="form" action="<?php echo base_url() ?>role/editRole" method="post" id="editRole" role="form">
+                    <form role="form" action="<?php echo base_url() ?>role/editRole" method="post" id="editRole"
+                        role="form">
                         <div class="box-body">
                             <div class="row">
-                                <div class="col-md-12">                                
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="fname">Role Lengkap</label>
-                                        <input type="text" class="form-control" id="frole" placeholder="Role Lengkap" name="frole" value="<?php echo $role; ?>" maxlength="128">
-                                        <input type="hidden" value="<?php echo $roleId; ?>" name="roleId" />    
-                                    </div>  
+                                        <input type="text" class="form-control" id="frole" placeholder="Role Lengkap"
+                                            name="frole" value="<?php echo $role; ?>" maxlength="128">
+                                        <input type="hidden" value="<?php echo $roleId; ?>" name="roleId" />
+                                    </div>
                                 </div>
                             </div>
                         </div><!-- /.box-body -->
-    
+
                         <div class="box-footer">
                             <input type="submit" class="btn btn-primary" value="Submit" />
                             <input type="reset" class="btn btn-default" value="Reset" />
@@ -68,7 +64,7 @@ if(!empty($roleInfo))
                 ?>
                 <div class="alert alert-danger alert-dismissable">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <?php echo $this->session->flashdata('error'); ?>                    
+                    <?php echo $this->session->flashdata('error'); ?>
                 </div>
                 <?php } ?>
                 <?php  
@@ -81,14 +77,14 @@ if(!empty($roleInfo))
                     <?php echo $this->session->flashdata('success'); ?>
                 </div>
                 <?php } ?>
-                
+
                 <div class="row">
                     <div class="col-md-12">
                         <?php echo validation_errors('<div class="alert alert-danger alert-dismissable">', ' <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>'); ?>
                     </div>
                 </div>
             </div>
-        </div>    
+        </div>
     </section>
 </div>
 

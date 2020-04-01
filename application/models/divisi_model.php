@@ -7,11 +7,10 @@ class Divisi_model extends CI_Model
      * @param string $searchText : This is optional search text
      * @return number $count : This is row count
      */
-    function DivisiListingCount($searchText = '')
+    function DivisiListingCount()
     {
         $this->db->select('*');
         $this->db->from('tbl_divisi as a');
-        if(!empty($searchText)) { $this->db->or_like('a.idDivisi', $searchText); $this->db->or_like('a.namaJabatan', $searchText); $this->db->or_like('b.namaDivisi', $searchText);}
         $query = $this->db->get();
         
         return count($query->result());
@@ -24,12 +23,10 @@ class Divisi_model extends CI_Model
      * @param number $segment : This is pagination limit
      * @return array $result : This is result
      */
-    function divisiListing($searchText = '', $page, $segment)
+    function divisiListing()
     {
         $this->db->select('*');
         $this->db->from('tbl_divisi as a');
-        if(!empty($searchText)) { $this->db->or_like('a.idDivisi', $searchText); $this->db->or_like('a.namaJabatan', $searchText); $this->db->or_like('b.namaDivisi', $searchText);}
-        $this->db->limit($page, $segment);
         $query = $this->db->get();
         
         return $query->result();

@@ -2,18 +2,12 @@
 
 class User_model extends CI_Model
 {
-    /**
-     * This function is used to get the user listing count
-     * @param string $searchText : This is optional search text
-     * @return number $count : This is row count
-     */
-    function userListingCount($searchText = '')
+    function userListingCount()
     {
         $this->db->select('BaseTbl.userId, BaseTbl.email, BaseTbl.name, BaseTbl.mobile, Role.role');
         $this->db->from('tbl_users as BaseTbl');
         $this->db->join('tbl_roles as Role', 'Role.roleId = BaseTbl.roleId','left');
         $this->db->join('tbl_divisi as Divisi', 'Divisi.idDivisi = BaseTbl.tbl_divisi_idDivisi','full');
-        if(!empty($searchText)) { $this->db->or_like('BaseTbl.email', $searchText); $this->db->or_like('BaseTbl.name', $searchText); $this->db->or_like('BaseTbl.mobile', $searchText); }
         $this->db->where('BaseTbl.isDeleted', 0);
         $this->db->where('BaseTbl.roleId !=', 1);
         $query = $this->db->get();
@@ -21,14 +15,7 @@ class User_model extends CI_Model
         return count($query->result());
     }
     
-    /**
-     * This function is used to get the user listing count
-     * @param string $searchText : This is optional search text
-     * @param number $page : This is pagination offset
-     * @param number $segment : This is pagination limit
-     * @return array $result : This is result
-     */
-    function userListing($searchText = '', $page, $segment)
+    function userListing()
     {
         $this->db->select('BaseTbl.*,Divisi.*, Jabatan.*, Pangkat.*, Role.*');
         $this->db->from('tbl_users as BaseTbl');
@@ -36,25 +23,13 @@ class User_model extends CI_Model
         $this->db->join('tbl_divisi as Divisi', 'Divisi.idDivisi = BaseTbl.tbl_divisi_idDivisi','left');
         $this->db->join('tbl_jabatan as Jabatan', 'Jabatan.idJabatan = BaseTbl.tbl_jabatan_idJabatan','left');
         $this->db->join('tbl_pangkat as Pangkat', 'Pangkat.idPangkat = Jabatan.tbl_pangkat_idPangkat','left');
-        if(!empty($searchText)) { $this->db->or_like('BaseTbl.email', $searchText); 
-        $this->db->or_like('BaseTbl.name', $searchText); 
-        $this->db->or_like('BaseTbl.mobile', $searchText);
-        $this->db->or_like('Role.role', $searchText); 
-        $this->db->or_like('Jabatan.namaJabatan', $searchText); 
-        $this->db->or_like('Pangkat.namaPangkat', $searchText); 
-        $this->db->or_like('Divisi.namaDivisi', $searchText);}
         $this->db->where('BaseTbl.isDeleted', 0);
         $this->db->where('BaseTbl.roleId !=', 1);
-        $this->db->limit($page, $segment);
         $query = $this->db->get();
         
         return $query->result();
     }
-    
-    /**
-     * This function is used to get the user roles information
-     * @return array $result : This is result of the query
-     */
+
     function getUserRoles()
     {
         $this->db->select('roleId, role');
@@ -74,10 +49,6 @@ class User_model extends CI_Model
         return $query->result();
     }
 
-    /**
-     * This function is used to get the user roles information
-     * @return array $result : This is result of the query
-     */
     function getUserDivisi()
     {
         $this->db->select('*');
@@ -87,11 +58,6 @@ class User_model extends CI_Model
         return $query->result();
     }
     
-    
-    /**
-     * This function is used to add new user to system
-     * @return number $insert_id : This is last inserted id
-     */
     function addNewUser($userInfo)
     {
         $this->db->trans_start();
@@ -104,11 +70,6 @@ class User_model extends CI_Model
         return $insert_id;
     }
     
-    /**
-     * This function used to get user information by id
-     * @param number $userId : This is user id
-     * @return array $result : This is user information
-     */
     function getUserInfo($userId)
     {
         $this->db->select('*');
@@ -121,12 +82,6 @@ class User_model extends CI_Model
         return $query->result();
     }
     
-    
-    /**
-     * This function is used to update the user information
-     * @param array $userInfo : This is users updated information
-     * @param number $userId : This is user id
-     */
     function editUser($userInfo, $userId)
     {
         $this->db->where('userId', $userId);
@@ -135,13 +90,6 @@ class User_model extends CI_Model
         return TRUE;
     }
     
-    
-    
-    /**
-     * This function is used to delete the user information
-     * @param number $userId : This is user id
-     * @return boolean $result : TRUE / FALSE
-     */
     function deleteUser($userId, $userInfo)
     {
         $this->db->where('userId', $userId);
@@ -150,11 +98,6 @@ class User_model extends CI_Model
         return $this->db->affected_rows();
     }
 
-
-    /**
-     * This function is used to match users password for change password
-     * @param number $userId : This is user id
-     */
     function matchOldPassword($userId, $oldPassword)
     {
         $this->db->select('userId');
@@ -166,11 +109,6 @@ class User_model extends CI_Model
         return $query->result();
     }
     
-    /**
-     * This function is used to change users password
-     * @param number $userId : This is user id
-     * @param array $userInfo : This is user updation info
-     */
     function changePassword($userId, $userInfo)
     {
         $this->db->where('userId', $userId);
@@ -187,9 +125,6 @@ class User_model extends CI_Model
     $config['file_name']            = '123';
     $config['overwrite']			= true;
     $config['max_size']             = 1024; // 1MB
-    // $config['max_width']            = 1024;
-    // $config['max_height']           = 768;
-
     $this->load->library('upload', $config);
 
     if ($this->upload->do_upload('image')) {
@@ -197,9 +132,7 @@ class User_model extends CI_Model
     }
     
     return "default.jpg";
-}
-
-
+    }
 }
 
   

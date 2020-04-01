@@ -12,60 +12,53 @@
       <?php $this->load->view('includes/_flash'); ?>
     </div>
 
-    <div class="row">
-      <div class="col-xs-6">
+    <div class="row" style="width:70%">
+      <div class="col-xs-12">
         <div class="box">
           <div class="box-header">
-            <!-- Button -->
-            <div class="box-title">
-              
-                <a class="btn btn-primary btn-sm" href="<?php echo base_url(); ?>divisi/addNew">Tambah Data</a>
-              
-            </div>
-            <!-- Search Box -->
-            <div class="box-tools">
-              <form action="<?php echo base_url() ?>divisi/divisiListing" method="POST" id="searchList">
-                <div class="input-group">
-                  <input type="text" name="searchText" value="<?php echo $searchText; ?>"
-                    class="form-control input-sm pull-right" style="width: 150px;" placeholder="Cari Data" />
-                  <div class="input-group-btn">
-                    <button class="btn btn-sm btn-default searchList"><i class="fa fa-search"></i></button>
-                  </div>
-                </div>
-              </form>
-            </div>
+            <h3 class="box-title" style="margin-left: 12px">List Divisi</h3>
           </div><!-- /.box-header -->
-          <div class="box-body table-responsive">
-            <table class="table table-bordered table-striped">
-              <tr>
-                <th>Id Divisi</th>
-                <th>Nama Divisi</th>
-                <th>Edit</th>
-              </tr>
-              <?php
+          <div class="card">
+            <div class="form-group" style="margin-left: 20px;margin-bottom: -50px;">
+              <a class="btn btn-primary" href="<?php echo base_url(); ?>divisi/addNew">Add New</a>
+            </div>
+            <div class="box-body table-responsive no-padding">
+              <div class="card-body" style="padding: 20px;">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Nama Divisi</th>
+                      <th>Edit</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
                     if(!empty($divisiRecords))
                     {
+                        $no = 1;
                         foreach($divisiRecords as $record)
                         {
                     ?>
-              <tr>
-                <td><?php echo $record->idDivisi ?></td>
-                <td><?php echo $record->namaDivisi ?></td>
-                <td>
-                  <a href="<?php echo base_url().'divisi/editOld/'.$record->idDivisi; ?>"><i
-                      class="fa fa-pencil"></i>&nbsp;&nbsp;&nbsp;</a>
-                  <a href="#" data-iddivisi="<?php echo $record->idDivisi; ?>" class="deleteDivisi"><i
-                      class="fa fa-trash"></i>&nbsp;&nbsp;&nbsp;</a>
-                </td>
-              </tr>
-              <?php
+                    <tr>
+                      <td><?php echo $no++ ?></td>
+                      <td><?php echo $record->namaDivisi ?></td>
+                      <td>
+                        <a href="<?php echo base_url().'divisi/editOld/'.$record->idDivisi; ?>"><i
+                            class="fa fa-pencil"></i>&nbsp;&nbsp;&nbsp;</a>
+                        <a href="#" data-iddivisi="<?php echo $record->idDivisi; ?>" class="deleteDivisi"><i
+                            class="fa fa-trash"></i>&nbsp;&nbsp;&nbsp;</a>
+                      </td>
+                    </tr>
+                    <?php
                         }
                     }
                     ?>
-            </table>
-          </div><!-- /.box-body -->
-          <div class="box-footer clearfix">
-            <?php echo $this->pagination->create_links(); ?>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div><!-- /.box-body -->
           </div>
         </div><!-- /.box -->
       </div>
@@ -73,16 +66,26 @@
   </section>
 </div>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/deleteDivisi.js" charset="utf-8"></script>
-<!--
-<script type="text/javascript">
-    jQuery(document).ready(function(){
-        jQuery('ul.pagination li a').click(function (e) {
-            e.preventDefault();            
-            var link = jQuery(this).get(0).href;            
-            var value = link.substring(link.lastIndexOf('/') + 1);
-            jQuery("#searchList").attr("action", baseURL + "divisi/DivisiListing/" + value);
-            jQuery("#searchList").submit();
-        });
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "columns": [{
+          "width": "5%"
+        },
+        {
+          "width": "30%"
+        },
+        {
+          "width": "10%"
+        }
+      ],
+      "paging": true,
+      "lengthChange": false,
+      "searching": true,
+      "ordering": true,
+      "info": false,
+      "autoWidth": false,
+      "pageLength": 5
     });
+  });
 </script>
--->

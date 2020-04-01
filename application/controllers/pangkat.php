@@ -79,7 +79,7 @@ class Pangkat extends CI_Controller
      */
     function loadThis()
     {
-        $this->global['pageTitle'] = 'CodeInsect : Access Denied';
+        $this->global['pageTitle'] = 'Dupak : Access Denied';
         
         $this->load->view('includes/header', $this->global);
         $this->load->view('access');
@@ -105,46 +105,9 @@ class Pangkat extends CI_Controller
         }
         else
         {
-            $this->load->model('pangkat_model');
-        
-            $searchText = $this->input->post('searchText');
-            $data['searchText'] = $searchText;
-            
-            $this->load->library('pagination');
-            
-            $count = $this->pangkat_model->pangkatListingCount($searchText);
-            
-            $config['base_url'] = base_url().'userListing/';
-            $config['total_rows'] = $count;
-            $config['uri_segment'] = 2;
-            $config['per_page'] = 5;
-            $config['num_links'] = 5;
-            $config['full_tag_open'] = '<nav><ul class="pagination">';
-            $config['full_tag_close'] = '</ul></nav>';
-            $config['first_tag_open'] = '<li class="arrow">';
-            $config['first_link'] =  'First';
-            $config['first_tag_close'] = '</li>';
-            $config['prev_link'] = 'Previous';
-            $config['prev_tag_open'] = '<li class="arrow">';
-            $config['prev_tag_close'] = '</li>';
-            $config['next_link'] = 'Next';
-            $config['next_tag_open'] = '<li class="arrow">';
-            $config['next_tag_close'] = '</li>';
-            $config['cur_tag_open'] = '<li class="active"><a href="#">';
-            $config['cur_tag_close'] = '</a></li>';
-            $config['num_tag_open'] = '<li>';
-            $config['num_tag_close'] = '</li>';        
-            $config['last_tag_open'] = '<li class="arrow">';
-            $config['last_link'] = 'Last';
-            $config['last_tag_close'] = '</li>';
-            
-            $this->pagination->initialize($config);
-            $page = $config['per_page'];
-            $segment = $this->uri->segment(2);
-            
-            $data['userRecords'] = $this->pangkat_model->pangkatListing($searchText, $page, $segment);
-            // print_r($data['userRecords']);die;            
-            $this->global['pageTitle'] = 'Dupak : User Listing';
+            $this->load->model('pangkat_model');                        
+            $data['pangkatRecords'] = $this->pangkat_model->pangkatListing();
+            $this->global['pageTitle'] = 'Dupak : Pangkat Listing';
             $this->load->view('includes/header', $this->global);
             $this->load->view('pangkat/pangkat', $data);
             $this->load->view('includes/footer');

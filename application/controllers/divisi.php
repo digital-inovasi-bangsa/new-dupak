@@ -106,41 +106,9 @@ class Divisi extends CI_Controller
         else
         {        
             $searchText = $this->input->post('searchText');
-            $data['searchText'] = $searchText;
-            
-            $this->load->library('pagination');
-            
-            $count = $this->divisi_model->divisiListingCount($searchText);
-            
-            $config['base_url'] = base_url().'divisi/divisiListing';
-            $config['total_rows'] = $count;
-            $config['uri_segment'] = 2;
-            $config['per_page'] = 5;
-            $config['num_links'] = 5;
-            $config['full_tag_open'] = '<nav><ul class="pagination">';
-            $config['full_tag_close'] = '</ul></nav>';
-            $config['first_tag_open'] = '<li class="arrow">';
-            $config['first_link'] =  'First';
-            $config['first_tag_close'] = '</li>';
-            $config['prev_link'] = 'Previous';
-            $config['prev_tag_open'] = '<li class="arrow">';
-            $config['prev_tag_close'] = '</li>';
-            $config['next_link'] = 'Next';
-            $config['next_tag_open'] = '<li class="arrow">';
-            $config['next_tag_close'] = '</li>';
-            $config['cur_tag_open'] = '<li class="active"><a href="#">';
-            $config['cur_tag_close'] = '</a></li>';
-            $config['num_tag_open'] = '<li>';
-            $config['num_tag_close'] = '</li>';        
-            $config['last_tag_open'] = '<li class="arrow">';
-            $config['last_link'] = 'Last';
-            $config['last_tag_close'] = '</li>';
-            
-            $this->pagination->initialize($config);
-            $page = $config['per_page'];
-            $segment = $this->uri->segment(2);
-            
-            $data['divisiRecords'] = $this->divisi_model->divisiListing($searchText, $page, $segment);
+            $data['searchText'] = $searchText;            
+            $count = $this->divisi_model->divisiListingCount();            
+            $data['divisiRecords'] = $this->divisi_model->divisiListing();
             // print_r($data['userRecords']);die;            
             $this->global['pageTitle'] = 'Dupak : Divisi Listing';
             $this->load->view('includes/header', $this->global);

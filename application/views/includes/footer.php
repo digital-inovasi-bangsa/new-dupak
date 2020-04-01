@@ -15,6 +15,8 @@
     <script src="<?php echo base_url(); ?>assets/dist/js/app.min.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>assets/js/jquery.validate.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>assets/js/validation.js" type="text/javascript"></script>
+    <script src="https://adminlte.io/themes/dev/AdminLTE/plugins/datatables/jquery.dataTables.js"></script>
+    <script src="https://adminlte.io/themes/dev/AdminLTE/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
     <script type="text/javascript">
         var windowURL = window.location.href;
         pageURL = windowURL.substring(0, windowURL.lastIndexOf('/'));

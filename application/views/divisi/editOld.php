@@ -16,11 +16,10 @@ if(!empty($divisiInfo))
 ?>
 
 <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Divisi Management
-            <small>Add / Edit User</small>
+            Master Divisi
+            <small>Tambah, Ubah, Hapus</small>
         </h1>
     </section>
 

@@ -60,6 +60,7 @@ $route['loadChangePass'] = "user/loadChangePass";
 $route['changePassword'] = "user/changePassword";
 
 $route['deletePangkat'] = "pangkat/deletePangkat";
+$route['divisi/(:num)'] = 'divisi/divisiListing';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
