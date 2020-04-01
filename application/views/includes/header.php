@@ -99,6 +99,10 @@
               <i class="fa fa-dashboard"></i> <span>Dashboard</span></i>
             </a>
           </li>
+          <?php
+            if($role == ROLE_ADMIN || $role == ROLE_MANAGER)
+            {
+            ?>
           <li class="treeview" style="height:auto;">
             <a href="#">
               <i class="fa fa-laptop"></i>
@@ -121,10 +125,6 @@
                   <span>Pangkat</span>
                 </a>
               </li>
-              <?php
-            if($role == ROLE_ADMIN || $role == ROLE_MANAGER)
-            {
-            ?>
               <li>
                 <a href="<?php echo base_url(); ?>role/roleListing">
                   <i class="fa fa-thumb-tack"></i>
@@ -137,11 +137,7 @@
                   <span>Jabatan</span>
                 </a>
               </li>
-              <?php
-            }
-            if($role == ROLE_ADMIN)
-            {
-            ?>
+             
               <li>
                 <a href="<?php echo base_url(); ?>userListing">
                   <i class="fa fa-users"></i>

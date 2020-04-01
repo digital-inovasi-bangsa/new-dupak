@@ -189,10 +189,17 @@ class Divisi extends CI_Controller
             
             $result = $this->divisi_model->deleteDivisi($data, $divisiInfo);
 
-            //print_r($result);die;
+            // print_r($result);die;
             
-            if ($result > 0) { echo(json_encode(array('status'=>TRUE))); }
-            else { echo(json_encode(array('status'=>FALSE))); }
+            if ($result) { 
+                $this->session->set_flashdata('success', 'Divisi deleted successfully');
+                echo(json_encode(array('status'=>TRUE))); 
+            }
+            else 
+            { 
+                $this->session->set_flashdata('error', 'Divisi deleted failed');
+                echo(json_encode(array('status'=>FALSE))); 
+            }
         }
     }
 
