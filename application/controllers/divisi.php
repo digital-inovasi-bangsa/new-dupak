@@ -188,8 +188,6 @@ class Divisi extends CI_Controller
             $data = array('idDivisi' => $idDivisi);
             
             $result = $this->divisi_model->deleteDivisi($data, $divisiInfo);
-
-            // print_r($result);die;
             
             if ($result) { 
                 $this->session->set_flashdata('success', 'Divisi deleted successfully');

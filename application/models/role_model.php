@@ -6,6 +6,7 @@ class Role_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('tbl_roles as a');
+        $this->db->where('a.roleId !=', 1);
         $query = $this->db->get();
         
         return count($query->result());
@@ -15,6 +16,7 @@ class Role_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('tbl_roles as a');
+        $this->db->where('a.roleId !=', 1);
         $query = $this->db->get();
         
         return $query->result();
@@ -64,6 +66,7 @@ class Role_model extends CI_Model
         $this->db->select('roleId, role');
         $this->db->from('tbl_roles');
         $this->db->where('roleId', $roleId);
+        $this->db->where('a.roleId !=', 1);
         $query = $this->db->get();
         
         return $query->result();

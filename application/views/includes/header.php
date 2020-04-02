@@ -13,9 +13,12 @@
   <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
   <!-- Theme style -->
   <link href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
-  <link rel="stylesheet" href="https://adminlte.io/themes/dev/AdminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins 
-         folder instead of downloading all of them to reduce the load. -->
+  <link href="<?php echo base_url(); ?>assets/css/kegiatan.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet"
+    href="https://adminlte.io/themes/dev/AdminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+    
+  <link rel="stylesheet" href="https://adminlte.io/themes/AdminLTE/bower_components/fullcalendar/dist/fullcalendar.min.css">
+  <link rel="stylesheet" href="https://adminlte.io/themes/AdminLTE/bower_components/fullcalendar/dist/fullcalendar.print.min.css">
   <link href="<?php echo base_url(); ?>assets/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
   <style>
     .error {
@@ -59,13 +62,15 @@
             <!-- User Account: style can be found in dropdown.less -->
             <li class="dropdown user user-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img src="<?php echo base_url(); ?>upload/images/<?php echo $fotoProfil ?>" class="user-image" alt="User Image" />
+                <img src="<?php echo base_url(); ?>upload/images/<?php echo $fotoProfil ?>" class="user-image"
+                  alt="User Image" />
                 <span class="hidden-xs"><?php echo $name; ?></span>
               </a>
               <ul class="dropdown-menu">
                 <!-- User image -->
                 <li class="user-header">
-                  <img src="<?php echo base_url(); ?>upload/images/<?php echo $fotoProfil ?>" class="img-circle" alt="User Image" />
+                  <img src="<?php echo base_url(); ?>upload/images/<?php echo $fotoProfil ?>" class="img-circle"
+                    alt="User Image" />
                   <p>
                     <?php echo $name; ?>
                     <small><?php echo $role_text; ?></small>
@@ -137,16 +142,34 @@
                   <span>Jabatan</span>
                 </a>
               </li>
-             
+
               <li>
                 <a href="<?php echo base_url(); ?>userListing">
                   <i class="fa fa-users"></i>
                   <span>Pegawai</span>
                 </a>
               </li>
-              <?php
+            </ul>
+          </li>
+          <?php
             }
             ?>
+          <li class="treeview" style="height:auto;">
+            <a href="#">
+              <i class="fa fa-line-chart"></i>
+              <span>Kegiatan</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <!-- Child -->
+              <li>
+                <a href="<?php echo base_url(); ?>kegiatan">
+                  <i class="fa fa-book"></i>
+                  <span>Kegiatan Harian</span>
+                </a>
+              </li>
             </ul>
           </li>
         </ul>
