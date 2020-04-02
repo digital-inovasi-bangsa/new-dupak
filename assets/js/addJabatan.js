@@ -19,7 +19,7 @@ $(document).ready(function(){
 			pangkat : { required : true, selected : true}
 		},
 		messages:{
-			fname :{ required : "This field is required" },
+			fjabatan :{ required : "This field is required" },
 			role : { required : "This field is required", selected : "Please select atleast one option" }			
 		}
 	});

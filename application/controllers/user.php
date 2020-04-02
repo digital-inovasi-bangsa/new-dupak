@@ -158,13 +158,14 @@ class User extends CI_Controller
             $this->load->library('form_validation');
             
             $this->form_validation->set_rules('fname','Full Name','trim|required|max_length[128]|xss_clean');
-            $this->form_validation->set_rules('email','Email','trim|required|valid_email|xss_clean|max_length[128]');
+            $this->form_validation->set_rules('email','Email','trim|required|valid_email|xss_clean|max_length[128]|is_unique[tbl_users.email]');
             $this->form_validation->set_rules('password','Password','required|max_length[20]');
             $this->form_validation->set_rules('cpassword','Confirm Password','trim|required|matches[password]|max_length[20]');
             $this->form_validation->set_rules('role','Role','trim|required|numeric');
-            $this->form_validation->set_rules('divisi','Divisi','trim|required|numeric');
-            $this->form_validation->set_rules('nip','NIP','trim|required|numeric');
-            $this->form_validation->set_rules('mobile','Mobile Number','required|min_length[10]|xss_clean');
+            $this->form_validation->set_rules('divisi','Divisi','trim|required');
+            $this->form_validation->set_rules('nip','NIP','trim|required|numeric|min_length[11]|xss_clean');
+            $this->form_validation->set_rules('mobile','Mobile Number','required|numeric|min_length[11]|xss_clean');
+            $this->form_validation->set_rules('jabatan','Jabatan','trim|required');
             
             if($this->form_validation->run() == FALSE)
             {
@@ -199,7 +200,8 @@ class User extends CI_Controller
                     'fotoProfil'=> $fotoProfile,
                     'tbl_jabatan_idJabatan'=> $idJabatan
                 );
-                if($this->user_model->addNewUser($userInfo))
+                $result = $this->user_model->addNewUser($userInfo);
+                if($result == true)
                 {
                     $this->session->set_flashdata('success', 'New User created successfully');
                 }
@@ -318,14 +320,20 @@ class User extends CI_Controller
                 
                 $result = $this->user_model->editUser($userInfo, $userId);
                 
-                if($result == true)
-                {
+                if($this->db->error()){
+                    $this->session->set_flashdata('error', 'User updation failed');
+                } else {
                     $this->session->set_flashdata('success', 'User updated successfully');
                 }
-                else
-                {
-                    $this->session->set_flashdata('error', 'User updation failed');
-                }
+                
+                // if($result)
+                // {
+                //     $this->session->set_flashdata('success', 'User updated successfully');
+                // }
+                // else
+                // {
+                //     $this->session->set_flashdata('error', 'User updation failed');
+                // }
                 
                 redirect('user/userListing');
             }

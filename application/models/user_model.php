@@ -32,7 +32,7 @@ class User_model extends CI_Model
 
     function getUserRoles()
     {
-        $this->db->select('roleId, role');
+        $this->db->select('*');
         $this->db->from('tbl_roles');
         $this->db->where('roleId !=', 1);
         $query = $this->db->get();
