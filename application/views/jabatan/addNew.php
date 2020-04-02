@@ -17,7 +17,7 @@
                     </div><!-- /.box-header -->
                     <!-- form start -->
 
-                    <form role="form" id="addUser" action="<?php echo base_url() ?>jabatan/addNewJabatan" method="post"
+                    <form role="form" id="addJabatan" action="<?php echo base_url() ?>jabatan/addNewJabatan" method="post"
                         role="form">
                         <div class="box-body">
                             <div class="row">
@@ -91,4 +91,4 @@
     </section>
 
 </div>
-<script src="<?php echo base_url(); ?>assets/js/addUser.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/addJabatan.js" type="text/javascript"></script>

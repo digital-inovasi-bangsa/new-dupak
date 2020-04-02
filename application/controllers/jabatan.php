@@ -145,6 +145,7 @@ class Jabatan extends CI_Controller
             $this->load->library('form_validation');
             
             $this->form_validation->set_rules('fjabatan','Jabatan','trim|required|max_length[128]|xss_clean');
+            $this->form_validation->set_rules('pangkat','pangkat','trim|required|numeric');
             
             if($this->form_validation->run() == FALSE)
             {
