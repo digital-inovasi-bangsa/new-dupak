@@ -136,7 +136,7 @@ class User extends CI_Controller
             $this->load->model('user_model');
             $data['roles'] = $this->user_model->getUserRoles();
             $data['divisi'] = $this->user_model->getUserDivisi();
-            $data['jabatan'] = $this->user_model->getUserJabatan();
+            $data['pangkat'] = $this->user_model->getUserPangkat();
             $this->global['pageTitle'] = 'Dupak : Add New User';
             $this->load->view('includes/header', $this->global);
             $this->load->view('user/addNew', $data);
@@ -248,17 +248,22 @@ class User extends CI_Controller
             
             $data['roles'] = $this->user_model->getUserRoles();
             $data['divisi'] = $this->user_model->getUserDivisi();
-            $data['jabatan'] = $this->user_model->getUserJabatan();
-            $data['ok'] = $this->user_model->getUserJabatan();
+            $data['jabatan'] = $this->user_model->getUserJabatanInfo();
+            $data['pangkat'] = $this->user_model->getUserPangkat();
             $data['userInfo'] = $this->user_model->getUserInfo($userId);   
             $this->global['pageTitle'] = 'Dupak : Edit User';
-            // print_r($data['userInfo']);die;
             $this->load->view('includes/header', $this->global);
             $this->load->view('user/editOld', $data);
             $this->load->view('includes/footer');
         }
     }
     
+    function callJabatan(){
+        $id=$this->input->post('idPangkat');
+        $data=$this->user_model->getUserJabatan($id);
+        echo json_encode($data);
+        
+    }
     
     /**
      * This function is used to edit the user information
@@ -288,6 +293,7 @@ class User extends CI_Controller
             }
             else
             {
+                $userId = $this->input->post('userId');
                 $name = ucwords(strtolower($this->input->post('fname')));
                 $email = $this->input->post('email');
                 $password = $this->input->post('password');
@@ -299,7 +305,8 @@ class User extends CI_Controller
                 if (!empty($_FILES['user_img_upload']['tmp_name'])) {
                     $fotoProfile = $this->_upload_foto($nip);
                 } else {
-                    $fotoProfile = 'default.jpg';
+                    $data = $this->user_model->getUserInfo($userId);
+                    $fotoProfile = $data[0]->fotoProfil;
                 }
                 
                 
@@ -311,8 +318,12 @@ class User extends CI_Controller
                                     'mobile'=>$mobile, 'updatedBy'=>$this->vendorId, 'updatedDtm'=>date('Y-m-d H:i:sa'),
                                     'fotoProfil'=> $fotoProfile, 'tbl_jabatan_idJabatan' => $idJabatan);
                 }
-                else
+                else if(empty($password) && empty($_FILES['user_img_upload']['tmp_name']))
                 {
+                    $userInfo = array('email'=>$email,'password'=>md5($password), 'roleId'=>$roleId, 'name'=>$name,'tbl_divisi_idDivisi'=>$idDivisi, 'nip'=>$nip,
+                                    'mobile'=>$mobile, 'updatedBy'=>$this->vendorId, 'updatedDtm'=>date('Y-m-d H:i:sa'),
+                                    'tbl_jabatan_idJabatan'=>$idJabatan);
+                } else {
                     $userInfo = array('email'=>$email,'password'=>md5($password), 'roleId'=>$roleId, 'name'=>$name,'tbl_divisi_idDivisi'=>$idDivisi, 'nip'=>$nip,
                                     'mobile'=>$mobile, 'updatedBy'=>$this->vendorId, 'updatedDtm'=>date('Y-m-d H:i:sa'),
                                     'fotoProfil'=> $fotoProfile, 'tbl_jabatan_idJabatan'=>$idJabatan);
@@ -320,20 +331,20 @@ class User extends CI_Controller
                 
                 $result = $this->user_model->editUser($userInfo, $userId);
                 
-                if($this->db->error()){
-                    $this->session->set_flashdata('error', 'User updation failed');
-                } else {
-                    $this->session->set_flashdata('success', 'User updated successfully');
-                }
-                
-                // if($result)
-                // {
+                // if($this->db->error()){
+                //     $this->session->set_flashdata('error', 'User updation failed');
+                // } else {
                 //     $this->session->set_flashdata('success', 'User updated successfully');
                 // }
-                // else
-                // {
-                //     $this->session->set_flashdata('error', 'User updation failed');
-                // }
+                
+                if($result)
+                {
+                    $this->session->set_flashdata('success', 'User updated successfully');
+                }
+                else
+                {
+                    $this->session->set_flashdata('error', 'User updation failed');
+                }
                 
                 redirect('user/userListing');
             }

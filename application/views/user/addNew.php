@@ -109,10 +109,24 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                            <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="image">Foto Profil</label>
-                                        <input type="file" id="image" name="user_img_upload">
+                                        <label for="divisi">Pangkat</label>
+                                        <select class="form-control required" id="pangkat" name="pangkat">
+                                            <option value="0">Pilih Pangkat</option>
+                                            <?php
+                                            if(!empty($pangkat))
+                                            {
+                                                foreach ($pangkat as $rl)
+                                                {
+                                                    ?>
+                                            <option value="<?php echo $rl->idPangkat ?>"><?php echo $rl->namaPangkat ?>
+                                            </option>
+                                            <?php
+                                                }
+                                            }
+                                            ?>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -120,19 +134,15 @@
                                         <label for="divisi">Jabatan</label>
                                         <select class="form-control required" id="jabatan" name="jabatan">
                                             <option value="0">Pilih Jabatan</option>
-                                            <?php
-                                            if(!empty($jabatan))
-                                            {
-                                                foreach ($jabatan as $rl)
-                                                {
-                                                    ?>
-                                            <option value="<?php echo $rl->idJabatan ?>"><?php echo $rl->namaJabatan ?>
-                                            </option>
-                                            <?php
-                                                }
-                                            }
-                                            ?>
                                         </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                            <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="image">Foto Profil</label>
+                                        <input type="file" id="image" name="user_img_upload">
                                     </div>
                                 </div>
                             </div>
@@ -179,3 +189,27 @@
 
 </div>
 <script src="<?php echo base_url(); ?>assets/js/addUser.js" type="text/javascript"></script>
+<script src="https://adminlte.io/themes/AdminLTE/bower_components/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+<script>
+$( document ).ready(function() {
+        $('#pangkat').change(function(){
+            var idPangkat=$(this).val();
+            $.ajax({
+                url : "<?php echo base_url();?>user/callJabatan",
+                method : "POST",
+                data : {idPangkat: idPangkat},
+                async : false,
+                dataType : 'json',
+                success: function(data){
+                    var html = '';
+                    var i;
+                    for(i=0; i<data.length; i++){
+                        html += '<option value="'+data[i].idJabatan+'">'+data[i].namaJabatan+'</option>';
+                    }
+                    $('#jabatan').html(html);
+                     
+                }
+            });
+        });
+});
+</script>
