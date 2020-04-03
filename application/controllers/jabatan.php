@@ -172,7 +172,7 @@ class Jabatan extends CI_Controller
                     $this->session->set_flashdata('error', 'Jabatan creation failed');
                 }
                 
-                redirect('jabatan/addNew');
+                redirect('jabatan/jabatanListing');
             }
         }
     }
