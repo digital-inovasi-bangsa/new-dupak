@@ -57,7 +57,7 @@
                                     <div class="form-group">
                                         <label for="mobile">Nomer Telepon</label>
                                         <input type="text" class="form-control required digits" id="mobile"
-                                            name="mobile" maxlength="12">
+                                            name="mobile">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -84,8 +84,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="nip">NIP</label>
-                                        <input type="text" class="form-control required digits" id="nip" name="nip"
-                                            maxlength="12">
+                                        <input type="text" class="form-control required digits" id="nip" name="nip">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
