@@ -111,9 +111,9 @@
                             <div class="row">
                             <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="divisi">Pangkat</label>
+                                        <label for="divisi">Jabatan</label>
                                         <select class="form-control required" id="pangkat" name="pangkat">
-                                            <option value="0">Pilih Pangkat</option>
+                                            <option value="0">Pilih Jabatan</option>
                                             <?php
                                             if(!empty($pangkat))
                                             {
@@ -131,9 +131,9 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="divisi">Jabatan</label>
+                                        <label for="divisi">Pangkat</label>
                                         <select class="form-control required" id="jabatan" name="jabatan">
-                                            <option value="0">Pilih Jabatan</option>
+                                            <option value="0">Pilih Pangkat</option>
                                         </select>
                                     </div>
                                 </div>

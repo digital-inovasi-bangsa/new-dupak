@@ -2,7 +2,7 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Master Pangkat
+      Master Jabatan
       <small>Tambah, Ubah, Hapus</small>
     </h1>
   </section>
@@ -16,7 +16,7 @@
       <div class="col-xs-12">
         <div class="box">
           <div class="box-header">
-            <h3 class="box-title" style="margin-left: 12px">List Pangkat</h3>
+            <h3 class="box-title" style="margin-left: 12px">List Jabatan</h3>
           </div><!-- /.box-header -->
           <div class="card">
             <div class="form-group" style="margin-left: 20px;margin-bottom: -50px;">
@@ -28,7 +28,7 @@
                   <thead>
                     <tr>
                       <th>No</th>
-                      <th>Nama Pangkat</th>
+                      <th>Nama Jabatan</th>
                       <th>Edit</th>
                     </tr>
                   </thead>

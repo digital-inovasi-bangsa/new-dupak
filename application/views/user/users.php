@@ -33,8 +33,8 @@
                       <th>Email</th>
                       <th>Nomer Handphone</th>
                       <th>Role</th>
-                      <th>Jabatan</th>
                       <th>Pangkat</th>
+                      <th>Jabatan</th>
                       <th>Foto Profile</th>
                       <th>Divisi</th>
                       <th>Actions</th>

@@ -22,7 +22,7 @@ if(!empty($jabatanInfo))
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            Master Jabatan
+            Master Pangkat
             <small>Tambah, Ubah, Hapus</small>
         </h1>
     </section>
@@ -35,7 +35,7 @@ if(!empty($jabatanInfo))
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header">
-                        <h3 class="box-title">Ubah Data Jabatan</h3>
+                        <h3 class="box-title">Ubah Data Pangkat</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
 
@@ -47,14 +47,14 @@ if(!empty($jabatanInfo))
                                     <div class="form-group">
                                         <label for="fname">Pangkat Lengkap</label>
                                         <input type="text" class="form-control" id="fjabatan"
-                                            placeholder="Jabatan Lengkap" name="fjabatan"
+                                            placeholder="Pangkat Lengkap" name="fjabatan"
                                             value="<?php echo $namaJabatan; ?>" maxlength="128">
                                         <input type="hidden" value="<?php echo $idJabatan; ?>" name="idJabatan" />
                                     </div>
                                     <div class="form-group">
-                                        <label for="role">Select Pangkat</label>
+                                        <label for="role">Pilih Jabatan</label>
                                         <select class="form-control" id="idPangkat" name="idPangkat">
-                                            <option value="0">Select Pangkat</option>
+                                            <option value="0">Pilih Jabatan</option>
                                             <?php
                                             if(!empty($pangkat))
                                             {

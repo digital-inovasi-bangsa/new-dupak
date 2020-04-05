@@ -127,7 +127,7 @@
               <li>
                 <a href="<?php echo base_url(); ?>pangkat/pangkatListing">
                   <i class="fa fa-ticket"></i>
-                  <span>Pangkat</span>
+                  <span>Jabatan</span>
                 </a>
               </li>
               <li>
@@ -139,7 +139,7 @@
               <li>
                 <a href="<?php echo base_url(); ?>jabatan/jabatanListing">
                   <i class="fa fa-upload"></i>
-                  <span>Jabatan</span>
+                  <span>Pangkat</span>
                 </a>
               </li>
 

@@ -1,7 +1,7 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            Master Jabatan
+            Master Pangkat
             <small>Tambah, Ubah, Hapus</small>
         </h1>
     </section>
@@ -13,7 +13,7 @@
             <div class="col-md-8">
                 <div class="box box-primary">
                     <div class="box-header">
-                        <h3 class="box-title">Tambahkan Data Jabatan</h3>
+                        <h3 class="box-title">Tambahkan Data Pangkat</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
 
@@ -23,16 +23,16 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="fname">Nama Jabatan</label>
+                                        <label for="fname">Nama Pangkat</label>
                                         <input type="text" class="form-control required" id="fjabatan" name="fjabatan"
                                             maxlength="128">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="role">Pilih pangkat</label>
+                                        <label for="role">Pilih Jabatan</label>
                                         <select class="form-control required" id="pangkat" name="pangkat">
-                                            <option value="0">Pilih pangkat</option>
+                                            <option value="0">Pilih Jabatan</option>
                                             <?php
                                             if(!empty($pangkat))
                                             {

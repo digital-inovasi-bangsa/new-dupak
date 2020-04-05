@@ -18,7 +18,7 @@ if(!empty($pangkatInfo))
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            Master Pangkat
+            Master Jabatan
             <small>Tambah, Ubah, Hapus</small>
         </h1>
     </section>
@@ -31,7 +31,7 @@ if(!empty($pangkatInfo))
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header">
-                        <h3 class="box-title">Ubah Data Pangkat</h3>
+                        <h3 class="box-title">Ubah Data Jabatan</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     <form role="form" action="<?php echo base_url() ?>pangkat/editPangkat" method="post"
@@ -40,7 +40,7 @@ if(!empty($pangkatInfo))
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="fname">Pangkat Lengkap</label>
+                                        <label for="fname">Jabatan Lengkap</label>
                                         <input type="text" class="form-control" id="fpangkat"
                                             placeholder="Pangkat Lengkap" name="fpangkat"
                                             value="<?php echo $namaPangkat; ?>" maxlength="128">

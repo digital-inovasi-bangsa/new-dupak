@@ -168,11 +168,11 @@ class Pangkat extends CI_Controller
                 
                 if($result > 0)
                 {
-                    $this->session->set_flashdata('success', 'New Pangkat created successfully');
+                    $this->session->set_flashdata('success', 'New Jabatan created successfully');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Pangkat creation failed');
+                    $this->session->set_flashdata('error', 'Jabatan creation failed');
                 }
                 
                 redirect('pangkat/pangkatListing');
@@ -239,11 +239,11 @@ class Pangkat extends CI_Controller
                 
                 if($result == true)
                 {
-                    $this->session->set_flashdata('success', 'Pangkat updated successfully');
+                    $this->session->set_flashdata('success', 'Jabatan updated successfully');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Pangkat updation failed');
+                    $this->session->set_flashdata('error', 'Jabatan updation failed');
                 }
                 
                 redirect('pangkat/pangkatListing');

@@ -165,11 +165,11 @@ class Jabatan extends CI_Controller
                 
                 if($result > 0)
                 {
-                    $this->session->set_flashdata('success', 'New Jabatan created successfully');
+                    $this->session->set_flashdata('success', 'New Pangkat created successfully');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Jabatan creation failed');
+                    $this->session->set_flashdata('error', 'Pangkat creation failed');
                 }
                 
                 redirect('jabatan/jabatanListing');
@@ -236,7 +236,7 @@ class Jabatan extends CI_Controller
             
             $idJabatan = $this->input->post('idJabatan');
             
-            $this->form_validation->set_rules('fjabatan','Jabatan Lengkap','trim|required|max_length[128]|xss_clean');
+            $this->form_validation->set_rules('fjabatan','Pangkat Lengkap','trim|required|max_length[128]|xss_clean');
     
             if($this->form_validation->run() == FALSE)
             {
