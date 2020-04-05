@@ -175,7 +175,7 @@ class Pangkat extends CI_Controller
                     $this->session->set_flashdata('error', 'Pangkat creation failed');
                 }
                 
-                redirect('pangkat/addNew');
+                redirect('pangkat/pangkatListing');
             }
         }
     }

@@ -168,7 +168,7 @@ class Role extends CI_Controller
                     $this->session->set_flashdata('error', 'Jabatan creation failed');
                 }
                 
-                redirect('role/addNew');
+                redirect('role/roleListing');
             }
         }
     }

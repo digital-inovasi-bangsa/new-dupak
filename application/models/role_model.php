@@ -66,7 +66,7 @@ class Role_model extends CI_Model
         $this->db->select('roleId, role');
         $this->db->from('tbl_roles');
         $this->db->where('roleId', $roleId);
-        $this->db->where('a.roleId !=', 1);
+        $this->db->where('roleId !=', 1);
         $query = $this->db->get();
         
         return $query->result();

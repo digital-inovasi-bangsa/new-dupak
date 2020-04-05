@@ -209,7 +209,7 @@ class User extends CI_Controller
                 {
                     $this->session->set_flashdata('error', 'User creation failed');
                 }
-                redirect('user/addNew');
+                redirect('user/userListing');
             }
         }
     }
@@ -307,6 +307,7 @@ class User extends CI_Controller
                 } else {
                     $data = $this->user_model->getUserInfo($userId);
                     $fotoProfile = $data[0]->fotoProfil;
+
                 }
                 
                 
@@ -330,12 +331,6 @@ class User extends CI_Controller
                 }
                 
                 $result = $this->user_model->editUser($userInfo, $userId);
-                
-                // if($this->db->error()){
-                //     $this->session->set_flashdata('error', 'User updation failed');
-                // } else {
-                //     $this->session->set_flashdata('success', 'User updated successfully');
-                // }
                 
                 if($result)
                 {

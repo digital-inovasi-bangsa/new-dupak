@@ -92,7 +92,7 @@ if(!empty($userInfo))
                                     <div class="form-group">
                                         <label for="mobile">Nomor Telepon</label>
                                         <input type="text" class="form-control" id="mobile" placeholder="Mobile Number"
-                                            name="mobile" value="<?php echo $mobile; ?>" maxlength="10">
+                                            name="mobile" value="<?php echo $mobile; ?>">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -122,7 +122,7 @@ if(!empty($userInfo))
                                     <div class="form-group">
                                         <label for="nip">NIP</label>
                                         <input type="text" class="form-control required digits" id="nip" name="nip"
-                                            maxlength="10" value="<?php echo $nip; ?>">
+                                            value="<?php echo $nip; ?>">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
