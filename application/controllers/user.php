@@ -163,8 +163,8 @@ class User extends CI_Controller
             $this->form_validation->set_rules('cpassword','Confirm Password','trim|required|matches[password]|max_length[20]');
             $this->form_validation->set_rules('role','Role','trim|required|numeric');
             $this->form_validation->set_rules('divisi','Divisi','trim|required');
-            $this->form_validation->set_rules('nip','NIP','trim|required|numeric|xss_clean');
-            $this->form_validation->set_rules('mobile','Mobile Number','required|numeric|xss_clean');
+            $this->form_validation->set_rules('nip','NIP','trim|required|numeric|xss_clean|is_unique[tbl_users.nip]');
+            $this->form_validation->set_rules('mobile','Mobile Number','required|numeric|xss_clean|is_unique[tbl_users.mobile]');
             $this->form_validation->set_rules('jabatan','Jabatan','trim|required');
             
             if($this->form_validation->run() == FALSE)
