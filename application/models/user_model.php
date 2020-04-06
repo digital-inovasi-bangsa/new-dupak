@@ -10,6 +10,7 @@ class User_model extends CI_Model
         $this->db->join('tbl_divisi as Divisi', 'Divisi.idDivisi = BaseTbl.tbl_divisi_idDivisi','full');
         $this->db->where('BaseTbl.isDeleted', 0);
         $this->db->where('BaseTbl.roleId !=', 1);
+        $this->db->order_by('createdDtm', 'ASC');
         $query = $this->db->get();
         
         return count($query->result());
@@ -25,6 +26,7 @@ class User_model extends CI_Model
         $this->db->join('tbl_pangkat as Pangkat', 'Pangkat.idPangkat = Jabatan.tbl_pangkat_idPangkat','left');
         $this->db->where('BaseTbl.isDeleted', 0);
         $this->db->where('BaseTbl.roleId !=', 1);
+        $this->db->order_by('createdDtm', 'ASC');
         $query = $this->db->get();
         
         return $query->result();

@@ -39,14 +39,14 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="password">Kata sandi</label>
+                                        <label for="password">Kata sandi <small>(Maks.10 Karakter)</small></label>
                                         <input type="password" class="form-control required" id="password"
                                             name="password" maxlength="10">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="cpassword">Konfirmasi kata sandi</label>
+                                        <label for="cpassword">Konfirmasi kata sandi <small>(Maks.10 Karakter)</small></label>
                                         <input type="password" class="form-control required equalTo" id="cpassword"
                                             name="cpassword" maxlength="10">
                                     </div>

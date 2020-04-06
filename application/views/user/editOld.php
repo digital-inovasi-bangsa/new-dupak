@@ -74,14 +74,14 @@ if(!empty($userInfo))
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="password">Kata sandi</label>
+                                        <label for="password">Kata sandi <small>(Maks.8 Karakter)</small></label>
                                         <input type="password" class="form-control" id="password" placeholder="Password"
                                             name="password" maxlength="10">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="cpassword">Konfirmasi kata sandi</label>
+                                        <label for="cpassword">Konfirmasi kata sandi <small>(Maks.8 Karakter)</small></label>
                                         <input type="password" class="form-control" id="cpassword"
                                             placeholder="Confirm Password" name="cpassword" maxlength="10">
                                     </div>

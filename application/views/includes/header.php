@@ -100,14 +100,14 @@
         <ul class="sidebar-menu">
           <li class="header">Sidebar Menu</li>
           <li class="treeview">
-            <a href="<?php echo base_url(); ?>dashboard">
-              <i class="fa fa-dashboard"></i> <span>Dashboard</span></i>
-            </a>
-          </li>
           <?php
             if($role == ROLE_ADMIN || $role == ROLE_MANAGER)
             {
             ?>
+            <a href="<?php echo base_url(); ?>dashboard">
+              <i class="fa fa-dashboard"></i> <span>Dashboard</span></i>
+            </a>
+          </li>
           <li class="treeview" style="height:auto;">
             <a href="#">
               <i class="fa fa-laptop"></i>

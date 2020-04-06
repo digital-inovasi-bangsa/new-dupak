@@ -27,9 +27,14 @@ class User extends CI_Controller
     public function index()
     {
         $this->global['pageTitle'] = 'Dupak : Dashboard';
+
+        $data['jumlahUser'] = $this->user_model->userListingCount();
+        //$data['roles'] = $this->user_model->getUserRoles();
+
+        //print_r($data);die;
         
         $this->load->view('includes/header', $this->global);
-        $this->load->view('dashboard');
+        $this->load->view('dashboard', $data);
         $this->load->view('includes/footer');
     }
     

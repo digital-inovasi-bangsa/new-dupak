@@ -19,9 +19,7 @@
             <h3 class="box-title" style="margin-left: 12px">List Pegawai</h3>
           </div><!-- /.box-header -->
           <div class="card">
-            <div class="form-group" style="margin-left: 20px;margin-bottom: -50px;">
-              <a class="btn btn-primary" href="<?php echo base_url(); ?>user/addNew">Add New</a>
-            </div>
+              <a class="btn btn-primary" style="margin-left: 20px;margin-bottom: -10px;" href="<?php echo base_url(); ?>user/addNew">Add New</a>
             <div class="box-body table-responsive no-padding">
               <div class="card-body" style="padding: 20px;">
                 <table id="example1" class="table table-bordered table-striped">
@@ -83,7 +81,7 @@
     </div>
   </section>
 </div>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/deleteRole.js" charset="utf-8"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/common.js" charset="utf-8"></script>
 <script>
   $(function () {
     $("#example1").DataTable({
