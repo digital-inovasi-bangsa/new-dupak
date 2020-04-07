@@ -87,6 +87,3 @@
   });
 </script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/deletePangkat.js" charset="utf-8"></script>
-<script src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="https://adminlte.io/themes/AdminLTE/dist/js/adminlte.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/dist/js/app.min.js" type="text/javascript"></script>
