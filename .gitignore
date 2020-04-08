@@ -204,7 +204,6 @@ tramp
 
 # cask packages
 .cask/
-dist/
 
 # Flycheck
 flycheck_*.el
@@ -460,3 +459,7 @@ composer.lock
 *.css.map
 *.sass.map
 *.scss.map
+
+
+##### env
+.env
