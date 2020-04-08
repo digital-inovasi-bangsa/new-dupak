@@ -108,7 +108,7 @@
             if($role == ROLE_ADMIN || $role == ROLE_MANAGER)
             {
             ?>
-            <a href="<?php echo base_url(); ?>test">
+            <a href="<?php echo base_url(); ?>">
               <i class="fa fa-dashboard"></i> <span>Dashboard</span></i>
             </a>
           </li>
