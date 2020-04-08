@@ -1,6 +1,6 @@
 <?php if(!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Unsur_model extends CI_Model
+class Kegiatan_model extends CI_Model
 {
     function unsurListingCount()
     {
@@ -75,6 +75,30 @@ class Unsur_model extends CI_Model
         $this->db->order_by('idKegiatanHarian');
         $this->db->join('tbl_butir as butir', 'harian.idButir = butir.idButir','left');
         return $this->db->get('tbl_kegiatan_harian as harian');
+    }
+
+    function getTelahDiajukan($id){
+        $this->db->select('*');
+        $this->db->from('tbl_kegiatan_harian');
+        $this->db->where('userId', $id);
+        $this->db->where('status', 'Belum Upload Bukti');
+        $query = $this->db->get();
+        
+        $row=$query->row();
+
+        return $row;
+    }
+
+    function addNewBuktiKegiatan($kegiatanInfo)
+    {
+        $this->db->trans_start();
+        $this->db->insert('tbl_dokumen_kegiatan', $kegiatanInfo);
+        
+        $insert_id = $this->db->insert_id();
+        
+        $this->db->trans_complete();
+        
+        return $insert_id;
     }
     
 }
