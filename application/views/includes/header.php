@@ -174,6 +174,12 @@
                   <span>Kegiatan Harian</span>
                 </a>
               </li>
+              <li>
+                <a href="<?php echo base_url(); ?>kegiatan/approvalKegiatan">
+                  <i class="fa fa-check"></i>
+                  <span>Approval Kegiatan Harian</span>
+                </a>
+              </li>
             </ul>
           </li>
         </ul>
