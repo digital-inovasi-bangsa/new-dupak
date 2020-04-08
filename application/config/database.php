@@ -66,10 +66,10 @@ $active_record = TRUE;
 // $db['default']['stricton'] = FALSE;
 
 // server DIB
-$db['default']['hostname'] = '18.141.99.130:3306';
-$db['default']['username'] = 'dup4k';
-$db['default']['password'] = 'Bjlg7~93';
-$db['default']['database'] = 'admin_dupak_basarnas';
+$db['default']['hostname'] = getenv('DB_HOSTNAME');
+$db['default']['username'] = getenv('DB_USERNAME');
+$db['default']['password'] = getenv('DB_PASSWORD');
+$db['default']['database'] = getenv('DB_DATABASE');
 $db['default']['dbdriver'] = 'mysqli';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

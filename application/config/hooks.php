@@ -9,7 +9,10 @@
 |	http://codeigniter.com/user_guide/general/hooks.html
 |
 */
+require_once __DIR__.'/../../vendor/autoload.php';
 
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'/../../');
+$dotenv->load();
 
 
 /* End of file hooks.php */
