@@ -8,17 +8,18 @@ class Kegiatan extends CI_Controller
         parent::__construct();
         $this->load->model('user_model');
         $this->load->model('pangkat_model');
-        $this->load->model('unsur_model');
+        $this->load->model('kegiatan_model');
+        $this->load->helper(array('form', 'url'));
         $this->isLoggedIn();   
     }
     
     public function index()
     {
         $this->global['pageTitle'] = 'Dupak : Kegiatan';
-        // print_r($this->loadCalendar());die;
-        
+        $userId = $this->session->userdata('userId');
+        $data['kegiatan'] = $this->kegiatan_model->getTelahDiajukan($userId);
         $this->load->view('includes/header', $this->global);
-        $this->load->view('kegiatan/kegiatan');
+        $this->load->view('kegiatan/kegiatan', $data);
         $this->load->view('includes/footer');
     }
     
@@ -84,7 +85,7 @@ class Kegiatan extends CI_Controller
 
     function loadCalendar()
     {
-        $event_data = $this->unsur_model->fetch_all_event();
+        $event_data = $this->kegiatan_model->fetch_all_event();
         foreach($event_data->result_array() as $row){
             $date = $row['tanggalSelesai'];
             $date1 = str_replace('-', '/', $date);
@@ -124,7 +125,7 @@ class Kegiatan extends CI_Controller
             $idJabatan = $this->global['idJabatan'];
             $data['roles'] = $this->pangkat_model->getUserRoles();
             $data['pangkat'] = $this->user_model->getUserPangkat();
-            $data['unsur'] = $this->unsur_model->unsurListing();
+            $data['unsur'] = $this->kegiatan_model->unsurListing();
             $data['jenjang'] = $this->getJenjang($idJabatan);
             $this->global['pageTitle'] = 'Dupak : Add New Kegiatan';
             $this->load->view('includes/header', $this->global);
@@ -135,25 +136,25 @@ class Kegiatan extends CI_Controller
 
     function getSubunsur(){
         $id=$this->input->post('idUnsur');
-        $data=$this->unsur_model->getSubunsur($id);
+        $data=$this->kegiatan_model->getSubunsur($id);
         echo json_encode($data);
         
     }
 
     function getButir(){
         $id=$this->input->post('idSubunsur');
-        $data=$this->unsur_model->getButir($id);
+        $data=$this->kegiatan_model->getButir($id);
         echo json_encode($data);    
     }
 
     function getButirKegiatan(){
         $id=$this->input->post('idButir');
-        $data=$this->unsur_model->getButirKegiatan($id);
+        $data=$this->kegiatan_model->getButirKegiatan($id);
         echo json_encode($data);    
     }
 
     function getJenjang($id){
-        $data=$this->unsur_model->getJenjang($id);
+        $data=$this->kegiatan_model->getJenjang($id);
         return $data; 
     }
 
@@ -202,7 +203,7 @@ class Kegiatan extends CI_Controller
                     'status' => $status
                 );
                 
-                $result = $this->unsur_model->addNewKegiatan($kegiatanInfo);
+                $result = $this->kegiatan_model->addNewKegiatan($kegiatanInfo);
                 
                 if($result > 0)
                 {
@@ -216,6 +217,105 @@ class Kegiatan extends CI_Controller
                 redirect('kegiatan');
             }
         }
+    }
+
+    function uploadBukti(){
+        //$idKegiatanHarian = $this->uri->segment(3);
+        //$this->session->set_userdata($idKegiatanHarian);
+        $this->global['pageTitle'] = 'Dupak : Upload Bukti Kegiatan';
+        $userId = $this->session->userdata('userId');
+        $data['kegiatan'] = $this->kegiatan_model->getTelahDiajukan($userId);
+        $this->load->view('includes/header', $this->global);
+        $this->load->view('kegiatan/uploadBukti', $data);
+        $this->load->view('includes/footer');
+    }
+
+    public function uploadSuratPerintah($user_id, $file_id){
+        $config['max_size']    = 10024;
+        $config['upload_path'] = './upload/dokumentasi/';
+        $config['allowed_types'] = 'gif|jpg|jpeg|png|pdf|doc|docx|xls|xlsx';
+        $config['file_name'] = 'SP' . $user_id . '_' . date('Ymdhis');
+ 
+		$this->load->library('upload', $config);
+ 
+		if ( ! $this->upload->do_upload($file_id)){
+			$error = array('error' => $this->upload->display_errors());
+		}else{
+			$data = array('upload_data' => $this->upload->data());
+			return $data['upload_data']['file_name'];
+		}
+    }
+    public function uploadDokumentasi($user_id, $file_id){
+        $config['max_size']    = 10024;
+        $config['upload_path'] = './upload/dokumentasi/';
+        $config['allowed_types'] = 'gif|jpg|jpeg|png|pdf|doc|docx|xls|xlsx';
+        $config['file_name'] = 'DK' . $user_id . '_' . date('Ymdhis');
+ 
+		$this->load->library('upload', $config);
+ 
+		if ( ! $this->upload->do_upload($file_id)){
+			$error = array('error' => $this->upload->display_errors());
+		}else{
+			$data = array('upload_data' => $this->upload->data());
+			return $data['upload_data']['file_name'];
+		}
+    }
+
+    public function uploadLaporan($user_id, $file_id){
+        $config['max_size']    = 10024;
+        $config['upload_path'] = './upload/dokumentasi/';
+        $config['allowed_types'] = 'gif|jpg|jpeg|png|pdf|doc|docx|xls|xlsx';
+        $config['file_name'] = 'LP' . $user_id . '_' . date('Ymdhis');
+ 
+		$this->load->library('upload', $config);
+ 
+		if ( ! $this->upload->do_upload($file_id)){
+			$error = array('error' => $this->upload->display_errors());
+		}else{
+			$data = array('upload_data' => $this->upload->data());
+			return $data['upload_data']['file_name'];
+		}
+    }
+    
+    public function addNewBuktiKegiatan(){
+        $userId = $this->session->userdata('userId');
+        $data['kegiatan'] = $this->kegiatan_model->getTelahDiajukan($userId);
+        $idKegiatanHarian = $data['kegiatan']->idKegiatanHarian;
+        $nip = $this->session->userdata('nip');
+        $suratPerintah = $this->uploadSuratPerintah($nip,'surat_perintah');
+        $dokumentasi = $this->uploadDokumentasi($nip,'dokumentasi');
+        $laporanKegiatan = $this->uploadLaporan($nip,'laporan_data');
+        $buktiInfo = array( 
+            'idKegiatanHarian'=>$idKegiatanHarian, 
+            'path_surat_kegiatan'=>$suratPerintah,
+            'path_laporan_kegiatan'=>$laporanKegiatan,
+            'path_dokumentasi'=>$dokumentasi,
+        );
+        $result = $this->kegiatan_model->addNewBuktiKegiatan($buktiInfo);
+                
+        if($result > 0)
+        {
+            $statusInfo = array( 
+                'status'=>'Diajukan', 
+            );
+            $status = $this->kegiatan_model->updateStatusKegiatan($statusInfo, $idKegiatanHarian);
+            $this->session->set_flashdata('success', 'New Dokumentasi Kegiatan created successfully');
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'Dokumentasi Kegiatan creation failed');
+        }
+                
+        redirect('kegiatan');
+    }
+
+    function approvalKegiatan(){
+        $this->global['pageTitle'] = 'Dupak : Approval Kegiatan';
+        $userId = $this->session->userdata('userId');
+        $data['kegiatan'] = $this->kegiatan_model->getKegiatanDiajukan();
+        $this->load->view('includes/header', $this->global);
+        $this->load->view('kegiatan/approvalKegiatan', $data);
+        $this->load->view('includes/footer');
     }
 
 }
