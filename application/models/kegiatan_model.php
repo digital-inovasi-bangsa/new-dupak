@@ -100,5 +100,13 @@ class Kegiatan_model extends CI_Model
         
         return $insert_id;
     }
+
+    function UpdateStatusKegiatan($kegiatanInfo, $idKegiatanHarian)
+    {
+        $this->db->where('idKegiatanHarian', $idKegiatanHarian);
+        $this->db->update('tbl_kegiatan_harian', $kegiatanInfo);
+        
+        return TRUE;
+    }
     
 }

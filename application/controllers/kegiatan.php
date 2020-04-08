@@ -295,11 +295,15 @@ class Kegiatan extends CI_Controller
                 
         if($result > 0)
         {
-            $this->session->set_flashdata('success', 'New Kegiatan created successfully');
+            $statusInfo = array( 
+                'status'=>'Diajukan', 
+            );
+            $status = $this->kegiatan_model->UpdateStatusKegiatan($statusInfo, $idKegiatanHarian);
+            $this->session->set_flashdata('success', 'New Dokumentasi Kegiatan created successfully');
         }
         else
         {
-            $this->session->set_flashdata('error', 'Kegiatan creation failed');
+            $this->session->set_flashdata('error', 'Dokumentasi Kegiatan creation failed');
         }
                 
         redirect('kegiatan');
