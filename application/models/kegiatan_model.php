@@ -101,12 +101,28 @@ class Kegiatan_model extends CI_Model
         return $insert_id;
     }
 
-    function UpdateStatusKegiatan($kegiatanInfo, $idKegiatanHarian)
+    function updateStatusKegiatan($kegiatanInfo, $idKegiatanHarian)
     {
         $this->db->where('idKegiatanHarian', $idKegiatanHarian);
         $this->db->update('tbl_kegiatan_harian', $kegiatanInfo);
         
         return TRUE;
+    }
+
+    function getKegiatanDiajukan(){
+        $this->db->select('bt.namaButir,tkh.tanggalMulai,tkh.tanggalSelesai, tkh.tanggalSelesai ,
+        us.nip ,us.name, jj.namaJenjang , jb.namaJabatan , pk.namaPangkat,tkh.idKegiatanHarian, 
+        dk.path_dokumentasi, dk.path_surat_kegiatan, dk.path_laporan_kegiatan');
+        $this->db->from('tbl_kegiatan_harian as tkh');
+        $this->db->join('tbl_butir as bt', 'tkh.idButir = bt.idButir','left');
+        $this->db->join('tbl_users as us', 'us.userId = tkh.userId','left');
+        $this->db->join('tbl_jenjang as jj', 'jj.idJenjang = tkh.idJenjang','left');
+        $this->db->join('tbl_jabatan as jb', 'jb.idJabatan = jj.idJabatan','left');
+        $this->db->join('tbl_pangkat as pk', 'pk.idPangkat = jb.tbl_pangkat_idPangkat','left');
+        $this->db->join('tbl_dokumen_kegiatan as dk', 'dk.idKegiatanHarian = tkh.idKegiatanHarian','full');
+        $this->db->where('status', 'Diajukan');
+        $query = $this->db->get();        
+        return $query->result();
     }
     
 }

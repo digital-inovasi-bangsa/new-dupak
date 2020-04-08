@@ -298,7 +298,7 @@ class Kegiatan extends CI_Controller
             $statusInfo = array( 
                 'status'=>'Diajukan', 
             );
-            $status = $this->kegiatan_model->UpdateStatusKegiatan($statusInfo, $idKegiatanHarian);
+            $status = $this->kegiatan_model->updateStatusKegiatan($statusInfo, $idKegiatanHarian);
             $this->session->set_flashdata('success', 'New Dokumentasi Kegiatan created successfully');
         }
         else
@@ -307,6 +307,15 @@ class Kegiatan extends CI_Controller
         }
                 
         redirect('kegiatan');
+    }
+
+    function approvalKegiatan(){
+        $this->global['pageTitle'] = 'Dupak : Approval Kegiatan';
+        $userId = $this->session->userdata('userId');
+        $data['kegiatan'] = $this->kegiatan_model->getKegiatanDiajukan();
+        $this->load->view('includes/header', $this->global);
+        $this->load->view('kegiatan/approvalKegiatan', $data);
+        $this->load->view('includes/footer');
     }
 
 }
