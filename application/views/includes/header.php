@@ -16,11 +16,13 @@
   <link href="<?php echo base_url(); ?>assets/css/kegiatan.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet"
     href="https://adminlte.io/themes/dev/AdminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
-    
+
   <!-- <link rel="stylesheet" href="https://adminlte.io/themes/AdminLTE/bower_components/fullcalendar/dist/fullcalendar.min.css">
   <link rel="stylesheet" href="https://adminlte.io/themes/AdminLTE/bower_components/fullcalendar/dist/fullcalendar.print.min.css"> -->
-  <link rel="stylesheet" href="https://adminlte.io/themes/AdminLTE/bower_components/bootstrap-daterangepicker/daterangepicker.css">
-  <link rel="stylesheet" href="https://adminlte.io/themes/AdminLTE/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
+  <link rel="stylesheet"
+    href="https://adminlte.io/themes/AdminLTE/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+  <link rel="stylesheet"
+    href="https://adminlte.io/themes/AdminLTE/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
   <link rel="stylesheet" href="https://adminlte.io/themes/AdminLTE/plugins/timepicker/bootstrap-timepicker.min.css">
   <link rel="stylesheet" href="https://adminlte.io/themes/AdminLTE/plugins/timepicker/bootstrap-timepicker.min.css">
   <link href="<?php echo base_url(); ?>assets/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
@@ -32,6 +34,7 @@
   </style>
   <!-- jQuery 2.1.4 -->
   <script src="<?php echo base_url(); ?>assets/js/jQuery-2.1.4.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script type="text/javascript">
     var baseURL = "<?php echo base_url(); ?>";
   </script>
@@ -104,7 +107,7 @@
         <ul class="sidebar-menu">
           <li class="header">Sidebar Menu</li>
           <li class="treeview">
-          <?php
+            <?php
             if($role == ROLE_ADMIN || $role == ROLE_MANAGER)
             {
             ?>
@@ -174,12 +177,19 @@
                   <span>Kegiatan Harian</span>
                 </a>
               </li>
+              <?php
+            if($role == ROLE_ADMIN || $role == ROLE_MANAGER)
+            {
+            ?>
               <li>
                 <a href="<?php echo base_url(); ?>kegiatan/approvalKegiatan">
                   <i class="fa fa-check"></i>
                   <span>Approval Kegiatan Harian</span>
                 </a>
               </li>
+              <?php
+            }
+            ?>
             </ul>
           </li>
         </ul>

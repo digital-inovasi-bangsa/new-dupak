@@ -43,9 +43,7 @@ class Kegiatan_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('tbl_jenjang');
-        $this->db->where('idJabatan', $id);
         $query = $this->db->get();
-        
         return $query->result();
     }
 
@@ -117,12 +115,35 @@ class Kegiatan_model extends CI_Model
         $this->db->join('tbl_butir as bt', 'tkh.idButir = bt.idButir','left');
         $this->db->join('tbl_users as us', 'us.userId = tkh.userId','left');
         $this->db->join('tbl_jenjang as jj', 'jj.idJenjang = tkh.idJenjang','left');
-        $this->db->join('tbl_jabatan as jb', 'jb.idJabatan = jj.idJabatan','left');
+        $this->db->join('tbl_jabatan as jb', 'jb.idJabatan = us.tbl_jabatan_idJabatan','left');
         $this->db->join('tbl_pangkat as pk', 'pk.idPangkat = jb.tbl_pangkat_idPangkat','left');
         $this->db->join('tbl_dokumen_kegiatan as dk', 'dk.idKegiatanHarian = tkh.idKegiatanHarian','full');
         $this->db->where('status', 'Diajukan');
         $query = $this->db->get();        
         return $query->result();
+    }
+
+    function getKegiatanDiajukanCount(){
+        $this->db->select('bt.namaButir,tkh.tanggalMulai,tkh.tanggalSelesai, tkh.tanggalSelesai ,
+        us.nip ,us.name, jj.namaJenjang , jb.namaJabatan , pk.namaPangkat,tkh.idKegiatanHarian, 
+        dk.path_dokumentasi, dk.path_surat_kegiatan, dk.path_laporan_kegiatan');
+        $this->db->from('tbl_kegiatan_harian as tkh');
+        $this->db->join('tbl_butir as bt', 'tkh.idButir = bt.idButir','left');
+        $this->db->join('tbl_users as us', 'us.userId = tkh.userId','left');
+        $this->db->join('tbl_jenjang as jj', 'jj.idJenjang = tkh.idJenjang','left');
+        $this->db->join('tbl_jabatan as jb', 'jb.idJabatan = us.tbl_jabatan_idJabatan','left');
+        $this->db->join('tbl_pangkat as pk', 'pk.idPangkat = jb.tbl_pangkat_idPangkat','left');
+        $this->db->join('tbl_dokumen_kegiatan as dk', 'dk.idKegiatanHarian = tkh.idKegiatanHarian','full');
+        $this->db->where('status', 'Diajukan');
+        $query = $this->db->get();        
+        return count($query->result());
+    }
+
+    function editStatus($where,$data,$table){
+        $this->db->where($where);
+        $this->db->update($table,$data);
+        
+        return TRUE;
     }
     
 }

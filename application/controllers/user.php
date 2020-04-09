@@ -17,6 +17,7 @@ class User extends CI_Controller
     {
         parent::__construct();
         $this->load->model('user_model');
+        $this->load->model('kegiatan_model');
         $this->load->library('tupload');
         $this->isLoggedIn();   
     }
@@ -27,12 +28,8 @@ class User extends CI_Controller
     public function index()
     {
         $this->global['pageTitle'] = 'Dupak : Dashboard';
-
         $data['jumlahUser'] = $this->user_model->userListingCount();
-        //$data['roles'] = $this->user_model->getUserRoles();
-
-        //print_r($data);die;
-        
+        $data['jumlahKegiatan'] = $this->kegiatan_model->getKegiatanDiajukanCount();
         $this->load->view('includes/header', $this->global);
         $this->load->view('dashboard', $data);
         $this->load->view('includes/footer');
