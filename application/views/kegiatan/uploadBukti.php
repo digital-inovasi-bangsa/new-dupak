@@ -27,7 +27,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="image">Surat Perintah</label>
-                                        <input type="file" id="surat_perintah" name="surat_perintah">
+                                        <input type="file" accept="application/pdf" id="surat_perintah" name="surat_perintah">
                                     </div>
                                 </div>
                             </div>
@@ -35,7 +35,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="image">Dokumentasi</label>
-                                        <input type="file" id="dokumentasi" name="dokumentasi">
+                                        <input type="file" accept="image/*" id="dokumentasi" name="dokumentasi">
                                     </div>
                                 </div>
                             </div>
@@ -43,7 +43,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="image">Laporan Data</label>
-                                        <input type="file" id="laporan_data" name="laporan_data">
+                                        <input type="file" accept="application/pdf" id="laporan_data" name="laporan_data">
                                     </div>
                                 </div>
                             </div>

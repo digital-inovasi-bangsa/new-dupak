@@ -324,6 +324,17 @@ class Kegiatan extends CI_Controller
         $this->load->view('includes/footer');
     }
 
+    public function riwayatKegiatanHarian()
+    {
+        $this->global['pageTitle'] = 'Dupak : Riwayat Kegiatan Harian';
+        $userId = $this->session->userdata('userId');
+        $data['kegiatan'] = $this->kegiatan_model->getRiwayatKegiatanHarian();
+        // print_r($data['kegiatan']);die;
+        $this->load->view('includes/header', $this->global);
+        $this->load->view('kegiatan/riwayatKegiatanHarian', $data);
+        $this->load->view('includes/footer');
+    }
+
     public function getDokumenKegiatan(){
         $id = $this->input->post('idDokumenKegiatan');
         $data = $this->kegiatan_model->getKegiatan($id);

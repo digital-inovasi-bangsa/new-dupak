@@ -38,25 +38,26 @@
       </div>
       <!-- /.col -->
       <div class="col-md-9">
-        <div class="box box-primary">
-          <div class="box-body no-padding">
-            <?php
+        <?php
                     if(!empty($kegiatan))
                     {
                         $no = 1;
                         foreach($kegiatan as $record)
                         {
                     ?>
-            <div class="alert alert-warning alert-dismissible">
-              <a class="close" href="<?php echo base_url(); ?>kegiatan/uploadBukti/<?php echo $record->idKegiatanHarian?>">
-                <i class="fa fa-upload"></i>
-              </a>
-              <h4><i class="icon fa fa-warning"></i> <?php echo $record->status ?></h4>
-              Kegiatan : <?php echo $record->namaButir ?> <br>
-              Tanggal Kegiatan : <?php echo $record->tanggalMulai ?> - <?php echo $record->tanggalSelesai ?>
-            </div>
-            <?php } 
+        <div class="alert alert-warning alert-dismissible">
+          <a class="close" href="<?php echo base_url(); ?>kegiatan/uploadBukti/<?php echo $record->idKegiatanHarian?>">
+            <i class="fa fa-upload"></i>
+          </a>
+          <h4><i class="icon fa fa-warning"></i> <?php echo $record->status ?></h4>
+          Kegiatan : <?php echo $record->namaButir ?> <br>
+          Tanggal Kegiatan : <?php echo $record->tanggalMulai ?> - <?php echo $record->tanggalSelesai ?>
+        </div>
+        <?php } 
                         }?>
+
+        <div class="box box-primary">
+          <div class="box-body no-padding">
             <div id="calendar"></div>
           </div>
           <!-- /.box-body -->

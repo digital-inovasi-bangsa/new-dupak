@@ -190,6 +190,12 @@
               <?php
             }
             ?>
+            <li>
+                <a href="<?php echo base_url(); ?>kegiatan/riwayatKegiatanHarian">
+                  <i class="fa fa-history"></i>
+                  <span>Riwayat Kegiatan Harian</span>
+                </a>
+              </li>
             </ul>
           </li>
         </ul>
