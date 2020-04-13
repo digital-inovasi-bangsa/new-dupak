@@ -320,4 +320,10 @@ class Kegiatan extends CI_Controller
         $this->load->view('includes/footer');
     }
 
+    public function getDokumenKegiatan(){
+        $id = $this->input->post('idDokumenKegiatan');
+        $data = $this->kegiatan_model->getKegiatan($id);
+        echo json_encode($data);        
+    }
+
 }

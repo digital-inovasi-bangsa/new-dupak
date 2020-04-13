@@ -145,5 +145,16 @@ class Kegiatan_model extends CI_Model
         
         return TRUE;
     }
+
+    function getKegiatan($id){
+        $this->db->select('*');
+        $this->db->from('tbl_dokumen_kegiatan');
+        $this->db->where('idKegiatanHarian', $id);
+        $query = $this->db->get();
+        
+        $row=$query->row();
+
+        return $row;        
+    }
     
 }
