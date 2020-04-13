@@ -204,10 +204,14 @@ class Kegiatan extends CI_Controller
 
     public function uploadBukti()
     {
-        //$idKegiatanHarian = $this->uri->segment(3);
-        //$this->session->set_userdata($idKegiatanHarian);
         $this->global['pageTitle'] = 'Dupak : Upload Bukti Kegiatan';
         $userId = $this->session->userdata('userId');
+        $idKegiatanHarian = $this->uri->segment(3);
+        $session = array(
+            'idKegiatanHarian'  => $idKegiatanHarian,
+        );
+        $this->session->set_userdata($session);
+        $idKegiatanHarian = $this->session->userdata('userId');
         $data['kegiatan'] = $this->kegiatan_model->getTelahDiajukan($userId);
         $this->load->view('includes/header', $this->global);
         $this->load->view('kegiatan/uploadBukti', $data);
@@ -268,7 +272,7 @@ class Kegiatan extends CI_Controller
     {
         $userId = $this->session->userdata('userId');
         $data['kegiatan'] = $this->kegiatan_model->getTelahDiajukan($userId);
-        $idKegiatanHarian = $data['kegiatan']->idKegiatanHarian;
+        $idKegiatanHarian = $this->session->userdata('idKegiatanHarian');
         $nip = $this->session->userdata('nip');
         $suratPerintah = $this->uploadSuratPerintah($nip, 'surat_perintah');
         $dokumentasi = $this->uploadDokumentasi($nip, 'dokumentasi');

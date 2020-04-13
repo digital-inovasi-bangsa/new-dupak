@@ -76,15 +76,19 @@ class Kegiatan_model extends CI_Model
     }
 
     function getTelahDiajukan($id){
-        $this->db->select('*');
-        $this->db->from('tbl_kegiatan_harian');
-        $this->db->where('userId', $id);
-        $this->db->where('status', 'Belum Upload Bukti');
+        $this->db->select('bt.namaButir,tkh.*,
+        us.nip ,us.name, jj.namaJenjang , jb.namaJabatan , pk.namaPangkat,tkh.idKegiatanHarian,');
+        $this->db->from('tbl_kegiatan_harian as tkh');
+        $this->db->join('tbl_butir as bt', 'tkh.idButir = bt.idButir','left');
+        $this->db->join('tbl_users as us', 'us.userId = tkh.userId','left');
+        $this->db->join('tbl_jenjang as jj', 'jj.idJenjang = tkh.idJenjang','left');
+        $this->db->join('tbl_jabatan as jb', 'jb.idJabatan = us.tbl_jabatan_idJabatan','left');
+        $this->db->join('tbl_pangkat as pk', 'pk.idPangkat = jb.tbl_pangkat_idPangkat','left');
+        $this->db->where('tkh.userId', $id);
+        $this->db->where('tkh.status', 'Belum Upload Bukti');
         $query = $this->db->get();
         
-        $row=$query->row();
-
-        return $row;
+        return $query->result();
     }
 
     function addNewBuktiKegiatan($kegiatanInfo)
