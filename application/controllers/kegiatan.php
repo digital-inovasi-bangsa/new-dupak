@@ -176,6 +176,7 @@ class Kegiatan extends CI_Controller
                 $NewTanggalSelesai = date("Y-m-d", strtotime($tanggalSelesai));
                 $userId = $this->session->userdata('userId');
                 $status = 'Belum Upload Bukti';
+                $rstButirKegiatan = str_replace('"', '', json_encode($butirKegiatan));
 
                 $kegiatanInfo = array(
                     'userId' => $userId,
@@ -183,7 +184,7 @@ class Kegiatan extends CI_Controller
                     'idUnsur' => $idUnsur,
                     'idSubUnsur' => $idSubUnsur,
                     'idButir' => $idButir,
-                    'butirKegiatan' => json_encode($butirKegiatan),
+                    'butirKegiatan' => $rstButirKegiatan,
                     'tanggalMulai' => $NewTanggalMulai,
                     'tanggalSelesai' => $NewTanggalSelesai,
                     'status' => $status,
@@ -208,7 +209,7 @@ class Kegiatan extends CI_Controller
         $userId = $this->session->userdata('userId');
         $idKegiatanHarian = $this->uri->segment(3);
         $session = array(
-            'idKegiatanHarian'  => $idKegiatanHarian,
+            'idKegiatanHarian' => $idKegiatanHarian,
         );
         $this->session->set_userdata($session);
         $idKegiatanHarian = $this->session->userdata('userId');
@@ -307,7 +308,7 @@ class Kegiatan extends CI_Controller
         );
         $status = $this->kegiatan_model->updateStatusKegiatan($statusInfo, $id);
         //$this->session->set_flashdata('success', 'Data berhasil diupdate');
-        if($status){
+        if ($status) {
             echo "true";
         } else {
             echo "false";
@@ -329,16 +330,119 @@ class Kegiatan extends CI_Controller
         $this->global['pageTitle'] = 'Dupak : Riwayat Kegiatan Harian';
         $userId = $this->session->userdata('userId');
         $data['kegiatan'] = $this->kegiatan_model->getRiwayatKegiatanHarian();
-        // print_r($data['kegiatan']);die;
         $this->load->view('includes/header', $this->global);
         $this->load->view('kegiatan/riwayatKegiatanHarian', $data);
         $this->load->view('includes/footer');
     }
 
-    public function getDokumenKegiatan(){
+    public function getDokumenKegiatan()
+    {
         $id = $this->input->post('idDokumenKegiatan');
         $data = $this->kegiatan_model->getKegiatan($id);
-        echo json_encode($data);        
+        echo json_encode($data);
+    }
+
+    public function spmk()
+    {
+        $this->global['pageTitle'] = 'Dupak : Riwayat Kegiatan Harian';
+        $userId = $this->session->userdata('userId');
+        $data['tahun'] = date('Y');
+        $data['bulan'] = date('m');
+        $bulan = date('m');
+        $tahun = date('Y');
+        if ($bulan == '' && $tahun == '') {
+            if ($data['bulan'] >= 01 && $data['bulan'] <= 06) {
+                $data['spmk'] = $this->kegiatan_model->getSpmk($userId, $data['tahun'], 01, 06);
+            } else {
+                $data['spmk'] = $this->kegiatan_model->getSpmk($userId, $data['tahun'], 07, 12);
+            }
+        } else {
+            if ($bulan >= 01 && $bulan <= 06) {
+                $data['spmk'] = $this->kegiatan_model->getSpmk($userId, $tahun, 01, 06);
+            } else {
+                $data['spmk'] = $this->kegiatan_model->getSpmk($userId, $tahun, 07, 12);
+            }
+        }
+        $this->load->view('includes/header', $this->global);
+        $this->load->view('kegiatan/spmk', $data);
+        $this->load->view('includes/footer');
+    }
+
+    public function cariSpmk()
+    {
+        $this->global['pageTitle'] = 'Dupak : Riwayat Kegiatan Harian';
+        $userId = $this->session->userdata('userId');
+        $bulan = $this->input->post('bulan');
+        $tahun = $this->input->post('tahun');
+        $data['tahun'] = $tahun;
+        $data['bulan'] = $bulan;
+        if ($bulan == '' && $tahun == '') {
+            if ($data['bulan'] >= 01 && $data['bulan'] <= 06) {
+                $data['spmk'] = $this->kegiatan_model->getSpmk($userId, $data['tahun'], 01, 06);
+            } else {
+                $data['spmk'] = $this->kegiatan_model->getSpmk($userId, $data['tahun'], 07, 12);
+            }
+        } else {
+            if ($bulan >= 01 && $bulan <= 06) {
+                $data['spmk'] = $this->kegiatan_model->getSpmk($userId, $tahun, 01, 06);
+            } else {
+                $data['spmk'] = $this->kegiatan_model->getSpmk($userId, $tahun, 07, 12);
+            }
+        }
+        $this->load->view('includes/header', $this->global);
+        $this->load->view('kegiatan/cariSpmk', $data);
+        $this->load->view('includes/footer');
+    }
+
+    public function detailSpmk()
+    {
+        $userId = $this->session->userdata('userId');
+        $data['atasan'] = $this->kegiatan_model->getAtasan();
+        $data['user'] = $this->kegiatan_model->getUser($userId);
+        $tahun = $this->uri->segment(4);
+        $bulan = $this->uri->segment(5);
+        $sessionArray = array(
+            'tahunSpmk' => $tahun,
+            'bulanSpmk' => $bulan
+        );
+        $this->session->set_userdata($sessionArray);
+        if ($bulan >= 01 && $bulan <= 06) {
+            $bulanAwal = 01;
+            $bulanAkhir = 06;
+            $data['periode'] = "Jan-Jun " . $tahun;
+        } else {
+            $bulanAwal = 07;
+            $bulanAkhir = 12;
+            $data['periode'] = "Jul-Des " . $tahun;
+        }
+        $data['kegiatan'] = $this->kegiatan_model->getTabelKegiatanSpmk($userId, $tahun, $bulanAwal, $bulanAkhir);
+        $data['total'] = $this->kegiatan_model->getTabelKegiatanSpmkTotal($userId, $tahun, $bulanAwal, $bulanAkhir);
+        $this->global['pageTitle'] = 'Dupak : Detail Spmk';
+        $this->load->view('includes/header', $this->global);
+        $this->load->view('kegiatan/detailSpmk', $data);
+        $this->load->view('includes/footer');
+    }
+
+    public function printSpmk()
+    {
+        $userId = $this->session->userdata('userId');
+        $data['atasan'] = $this->kegiatan_model->getAtasan();
+        $data['user'] = $this->kegiatan_model->getUser($userId);
+        $tahun = $this->session->userdata('tahunSpmk');
+        $bulan = $this->session->userdata('bulanSpmk');
+        if ($bulan >= 01 && $bulan <= 06) {
+            $bulanAwal = 01;
+            $bulanAkhir = 06;
+            $data['periode'] = "Jan-Jun " . $tahun;
+        } else {
+            $bulanAwal = 07;
+            $bulanAkhir = 12;
+            $data['periode'] = "Jul-Des " . $tahun;
+        }
+        $data['kegiatan'] = $this->kegiatan_model->getTabelKegiatanSpmk($userId, $tahun, $bulanAwal, $bulanAkhir);
+        $data['total'] = $this->kegiatan_model->getTabelKegiatanSpmkTotal($userId, $tahun, $bulanAwal, $bulanAkhir);
+        $this->global['pageTitle'] = 'Dupak : Detail Spmk';
+        $this->load->view('kegiatan/printSpmk', $data);
     }
 
 }
