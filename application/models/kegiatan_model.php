@@ -232,16 +232,16 @@ class Kegiatan_model extends CI_Model
 
     public function getTabelKegiatanSpmkTotal($userId, $tahun, $bulanAwal, $bulanAkhir)
     {
-        $sql = "SELECT SUM(bk.`point`) as point from 
-        tbl_kegiatan_harian tkh 
-        JOIN tbl_unsur un ON un.idUnsur = tkh.idUnsur 
-        JOIN tbl_subunsur sus On sus.idSubunsur = un.idUnsur 
-        JOIN tbl_butir_kegiatan bk ON 
-        JSON_CONTAINS(tkh.butirKegiatan , CAST(bk.idButirKegiatan as JSON), '$')
-        WHERE tkh.userId = $userId AND tkh.tanggalSelesai BETWEEN '$tahun-$bulanAwal-01' AND '$tahun-$bulanAkhir-01' AND tkh.status ='Diterima'
-        GROUP BY tkh.idSubunsur 
-        ORDER BY tkh.tanggalMulai;
-        ";
+        $sql = "SELECT SUM(rst.jumlahVolume) as volume, SUM(rst.point) as poin from (
+            SELECT SUM(bk.`point`) as point, COUNT(bk.idButirKegiatan) as jumlahVolume from 
+            tbl_kegiatan_harian tkh
+            JOIN tbl_unsur un ON un.idUnsur = tkh.idUnsur 
+            JOIN tbl_subunsur sus On sus.idSubunsur = un.idUnsur 
+            JOIN tbl_butir_kegiatan bk ON 
+            JSON_CONTAINS(tkh.butirKegiatan , CAST(bk.idButirKegiatan as JSON), '$')
+            WHERE tkh.userId = $userId AND tkh.tanggalSelesai BETWEEN '$tahun-$bulanAwal-01' AND '$tahun-$bulanAkhir-01' AND tkh.status = 'Diterima'
+            GROUP BY tkh.idKegiatanHarian
+            ORDER BY tkh.tanggalMulai) as rst;";
         //execute query
         $query = $this->db->query($sql);
         if ($query->num_rows() > 0) {

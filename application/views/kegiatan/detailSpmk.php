@@ -110,8 +110,8 @@
                     ?>
             <tr>
               <td colspan="4" class="text-right">Total</td>
-              <td><?php echo $total[0]->point ?></td>
-              <td><?php echo $total[0]->point ?></td>
+              <td><?php echo $total[0]->volume ?></td>
+              <td><?php echo $total[0]->poin ?></td>
             </tr>
             </tbody>
           </table>
@@ -146,3 +146,4 @@
         </div>
       </div>
     </section>
+    </div>
