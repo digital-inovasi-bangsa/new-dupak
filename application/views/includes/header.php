@@ -202,6 +202,13 @@
                   <span>SPMK</span>
                 </a>
               </li>
+
+              <li>
+                <a href="<?php echo base_url(); ?>kegiatan/dupak">
+                  <i class="fa fa-calendar"></i>
+                  <span>Dupak</span>
+                </a>
+              </li>
             </ul>
           </li>
         </ul>

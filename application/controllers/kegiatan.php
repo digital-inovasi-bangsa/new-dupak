@@ -370,7 +370,7 @@ class Kegiatan extends CI_Controller
 
     public function cariSpmk()
     {
-        $this->global['pageTitle'] = 'Dupak : Riwayat Kegiatan Harian';
+        $this->global['pageTitle'] = 'Dupak : Cari SPMK';
         $userId = $this->session->userdata('userId');
         $bulan = $this->input->post('bulan');
         $tahun = $this->input->post('tahun');
@@ -403,7 +403,7 @@ class Kegiatan extends CI_Controller
         $bulan = $this->uri->segment(5);
         $sessionArray = array(
             'tahunSpmk' => $tahun,
-            'bulanSpmk' => $bulan
+            'bulanSpmk' => $bulan,
         );
         $this->session->set_userdata($sessionArray);
         if ($bulan >= 01 && $bulan <= 06) {
@@ -443,6 +443,511 @@ class Kegiatan extends CI_Controller
         $data['total'] = $this->kegiatan_model->getTabelKegiatanSpmkTotal($userId, $tahun, $bulanAwal, $bulanAkhir);
         $this->global['pageTitle'] = 'Dupak : Detail Spmk';
         $this->load->view('kegiatan/printSpmk', $data);
+    }
+
+    public function dupak()
+    {
+        $this->global['pageTitle'] = 'Dupak : Dupak';
+        $userId = $this->session->userdata('userId');
+        $data['user'] = $this->kegiatan_model->getUser($userId);
+        $array['unsur'] = $this->kegiatan_model->UnsurListing();
+        $countUnsur = $this->kegiatan_model->UnsurListingCount();
+        $data['atasan'] = $this->kegiatan_model->getAtasan();
+        $data['tahun'] = date('Y');
+        $data['bulan'] = date('m');
+        $bulan = date('m');
+        $tahun = date('Y');
+        if ($bulan == '' && $tahun == '') {
+            if ($data['bulan'] >= 01 && $data['bulan'] <= 06) {
+                $data['periode'] = "Jan-Jun " . $tahun;
+                $data['total'] = $this->kegiatan_model->getTabelKegiatanSpmkTotal($userId, $data['tahun'], 01, 06);
+                $subunsur = [];
+                $butir = [];
+                foreach ($array['unsur'] as $row) {
+                    $temp = [
+                        'idunsur' => $row->idUnsur,
+                        'namaUnsur' => $row->namaUnsur,
+                        'subunsur' => [],
+                    ];
+                    $temp2 = $this->kegiatan_model->getSubunsur($row->idUnsur);
+                    foreach ($temp2 as $row2) {
+                        $rst = [
+                            'idSubunsur' => $row2->idSubunsur,
+                            'namaSubunsur' => $row2->namaSubunsur,
+                            'butir' => [],
+                        ];
+                        $temp3 = $this->kegiatan_model->getButir($row2->idSubunsur);
+                        // echo '<pre>',print_r($temp3),'</pre>';die();
+                        foreach ($temp3 as $row3) {
+                            $nilaiInstansiBaru = $this->kegiatan_model->getPointButir($userId, $tahun, 01, 06, $row3->idButir);
+                            if ($nilaiInstansiBaru) {
+                                foreach ($nilaiInstansiBaru as $nilaiBaru) {
+                                    $rst2 = [
+                                        'idButir' => $row3->idButir,
+                                        'namaButir' => $row3->namaButir,
+                                        'nilaiInstansiLama' => 0,
+                                        'nilaiInstansiBaru' => $nilaiBaru->point,
+                                        'nilaiInstansiJumlah' => $nilaiBaru->point,
+                                        'nilaiPenilaiLama' => '',
+                                        'nilaiPenilaiBaru' => '',
+                                        'nilaiPenilaiJumlah' => '',
+                                    ];
+                                }
+                            } else {
+                                $rst2 = [
+                                    'idButir' => $row3->idButir,
+                                    'namaButir' => $row3->namaButir,
+                                    'nilaiInstansiLama' => 0,
+                                    'nilaiInstansiBaru' => 0,
+                                    'nilaiInstansiJumlah' => 0,
+                                    'nilaiPenilaiLama' => '',
+                                    'nilaiPenilaiBaru' => '',
+                                    'nilaiPenilaiJumlah' => '',
+                                ];
+                            }
+                            array_push($rst['butir'], $rst2);
+                        }
+                        array_push($temp['subunsur'], $rst);
+                        //echo '<pre>',print_r($rst),'</pre>';die();
+                    }
+                    //$temp['subunsur'] = $rst;
+                    array_push($subunsur, $temp);
+                }
+            } else {
+                $data['periode'] = "Jul-Des " . $tahun;
+                $data['total'] = $this->kegiatan_model->getTabelKegiatanSpmkTotal($userId, $data['tahun'], 07, 12);
+                $subunsur = [];
+                $butir = [];
+                foreach ($array['unsur'] as $row) {
+                    $temp = [
+                        'idunsur' => $row->idUnsur,
+                        'namaUnsur' => $row->namaUnsur,
+                        'subunsur' => [],
+                    ];
+                    $temp2 = $this->kegiatan_model->getSubunsur($row->idUnsur);
+                    foreach ($temp2 as $row2) {
+                        $rst = [
+                            'idSubunsur' => $row2->idSubunsur,
+                            'namaSubunsur' => $row2->namaSubunsur,
+                            'butir' => [],
+                        ];
+                        $temp3 = $this->kegiatan_model->getButir($row2->idSubunsur);
+                        // echo '<pre>',print_r($temp3),'</pre>';die();
+                        foreach ($temp3 as $row3) {
+                            $nilaiInstansiBaru = $this->kegiatan_model->getPointButir($userId, $tahun, 07, 12, $row3->idButir);
+                            if ($nilaiInstansiBaru) {
+                                foreach ($nilaiInstansiBaru as $nilaiBaru) {
+                                    $rst2 = [
+                                        'idButir' => $row3->idButir,
+                                        'namaButir' => $row3->namaButir,
+                                        'nilaiInstansiLama' => 0,
+                                        'nilaiInstansiBaru' => $nilaiBaru->point,
+                                        'nilaiInstansiJumlah' => $nilaiBaru->point,
+                                        'nilaiPenilaiLama' => '',
+                                        'nilaiPenilaiBaru' => '',
+                                        'nilaiPenilaiJumlah' => '',
+                                    ];
+                                }
+                            } else {
+                                $rst2 = [
+                                    'idButir' => $row3->idButir,
+                                    'namaButir' => $row3->namaButir,
+                                    'nilaiInstansiLama' => 0,
+                                    'nilaiInstansiBaru' => 0,
+                                    'nilaiInstansiJumlah' => 0,
+                                    'nilaiPenilaiLama' => '',
+                                    'nilaiPenilaiBaru' => '',
+                                    'nilaiPenilaiJumlah' => '',
+                                ];
+                            }
+                            array_push($rst['butir'], $rst2);
+                        }
+                        array_push($temp['subunsur'], $rst);
+                        //echo '<pre>',print_r($rst),'</pre>';die();
+                    }
+                    //$temp['subunsur'] = $rst;
+                    array_push($subunsur, $temp);
+                }
+            }
+        } else {
+            if ($bulan >= 01 && $bulan <= 06) {
+                $data['periode'] = "Jan-Jun " . $tahun;
+                $data['total'] = $this->kegiatan_model->getTabelKegiatanSpmkTotal($userId, $data['tahun'], 01, 06);
+                $subunsur = [];
+                $butir = [];
+                foreach ($array['unsur'] as $row) {
+                    $temp = [
+                        'idunsur' => $row->idUnsur,
+                        'namaUnsur' => $row->namaUnsur,
+                        'subunsur' => [],
+                    ];
+                    $temp2 = $this->kegiatan_model->getSubunsur($row->idUnsur);
+                    foreach ($temp2 as $row2) {
+                        $rst = [
+                            'idSubunsur' => $row2->idSubunsur,
+                            'namaSubunsur' => $row2->namaSubunsur,
+                            'butir' => [],
+                        ];
+                        $temp3 = $this->kegiatan_model->getButir($row2->idSubunsur);
+                        // echo '<pre>',print_r($temp3),'</pre>';die();
+                        foreach ($temp3 as $row3) {
+                            $nilaiInstansiBaru = $this->kegiatan_model->getPointButir($userId, $tahun, 01, 06, $row3->idButir);
+                            if ($nilaiInstansiBaru) {
+                                foreach ($nilaiInstansiBaru as $nilaiBaru) {
+                                    $rst2 = [
+                                        'idButir' => $row3->idButir,
+                                        'namaButir' => $row3->namaButir,
+                                        'nilaiInstansiLama' => 0,
+                                        'nilaiInstansiBaru' => $nilaiBaru->point,
+                                        'nilaiInstansiJumlah' => $nilaiBaru->point,
+                                        'nilaiPenilaiLama' => '',
+                                        'nilaiPenilaiBaru' => '',
+                                        'nilaiPenilaiJumlah' => '',
+                                    ];
+                                }
+                            } else {
+                                $rst2 = [
+                                    'idButir' => $row3->idButir,
+                                    'namaButir' => $row3->namaButir,
+                                    'nilaiInstansiLama' => 0,
+                                    'nilaiInstansiBaru' => 0,
+                                    'nilaiInstansiJumlah' => 0,
+                                    'nilaiPenilaiLama' => '',
+                                    'nilaiPenilaiBaru' => '',
+                                    'nilaiPenilaiJumlah' => '',
+                                ];
+                            }
+                            array_push($rst['butir'], $rst2);
+                        }
+                        array_push($temp['subunsur'], $rst);
+                        //echo '<pre>',print_r($rst),'</pre>';die();
+                    }
+                    //$temp['subunsur'] = $rst;
+                    array_push($subunsur, $temp);
+                }
+            } else {
+                $data['periode'] = "Jul-Des " . $tahun;
+                $data['total'] = $this->kegiatan_model->getTabelKegiatanSpmkTotal($userId, $data['tahun'], 07, 12);
+                $subunsur = [];
+                $butir = [];
+                foreach ($array['unsur'] as $row) {
+                    $temp = [
+                        'idunsur' => $row->idUnsur,
+                        'namaUnsur' => $row->namaUnsur,
+                        'subunsur' => [],
+                    ];
+                    $temp2 = $this->kegiatan_model->getSubunsur($row->idUnsur);
+                    foreach ($temp2 as $row2) {
+                        $rst = [
+                            'idSubunsur' => $row2->idSubunsur,
+                            'namaSubunsur' => $row2->namaSubunsur,
+                            'butir' => [],
+                        ];
+                        $temp3 = $this->kegiatan_model->getButir($row2->idSubunsur);
+                        // echo '<pre>',print_r($temp3),'</pre>';die();
+                        foreach ($temp3 as $row3) {
+                            $nilaiInstansiBaru = $this->kegiatan_model->getPointButir($userId, $tahun, 07, 12, $row3->idButir);
+                            if ($nilaiInstansiBaru) {
+                                foreach ($nilaiInstansiBaru as $nilaiBaru) {
+                                    $rst2 = [
+                                        'idButir' => $row3->idButir,
+                                        'namaButir' => $row3->namaButir,
+                                        'nilaiInstansiLama' => 0,
+                                        'nilaiInstansiBaru' => $nilaiBaru->point,
+                                        'nilaiInstansiJumlah' => $nilaiBaru->point,
+                                        'nilaiPenilaiLama' => '',
+                                        'nilaiPenilaiBaru' => '',
+                                        'nilaiPenilaiJumlah' => '',
+                                    ];
+                                }
+                            } else {
+                                $rst2 = [
+                                    'idButir' => $row3->idButir,
+                                    'namaButir' => $row3->namaButir,
+                                    'nilaiInstansiLama' => 0,
+                                    'nilaiInstansiBaru' => 0,
+                                    'nilaiInstansiJumlah' => 0,
+                                    'nilaiPenilaiLama' => '',
+                                    'nilaiPenilaiBaru' => '',
+                                    'nilaiPenilaiJumlah' => '',
+                                ];
+                            }
+                            array_push($rst['butir'], $rst2);
+                        }
+                        array_push($temp['subunsur'], $rst);
+                        //echo '<pre>',print_r($rst),'</pre>';die();
+                    }
+                    //$temp['subunsur'] = $rst;
+                    array_push($subunsur, $temp);
+                }
+            }
+        }
+        //echo '<pre>',print_r($subunsur),'</pre>';die();
+        $tanggalSekarang = date('Y-m-d');
+        $mulaiKerja = $data['user']->mulaiKerja;
+        $lamaKerja = $this->datediff($mulaiKerja, $tanggalSekarang);
+        $data['lamaKerja'] = $lamaKerja;
+        $data['unsur'] = $subunsur;
+        $this->load->view('includes/header', $this->global);
+        $this->load->view('kegiatan/dupak', $data);
+        $this->load->view('includes/footer');
+    }
+
+    public function cariDupak(){
+        $this->global['pageTitle'] = 'Dupak : Cari Dupak';
+        $userId = $this->session->userdata('userId');
+        $bulan = $this->input->post('bulan');
+        $tahun = $this->input->post('tahun');
+        $data['tahun'] = $tahun;
+        $data['bulan'] = $bulan;
+        $data['user'] = $this->kegiatan_model->getUser($userId);
+        $array['unsur'] = $this->kegiatan_model->UnsurListing();
+        $countUnsur = $this->kegiatan_model->UnsurListingCount();
+        $data['atasan'] = $this->kegiatan_model->getAtasan();
+        if ($bulan == '' && $tahun == '') {
+            if ($data['bulan'] >= 01 && $data['bulan'] <= 06) {
+                $data['periode'] = "Jan-Jun " . $tahun;
+                $data['total'] = $this->kegiatan_model->getTabelKegiatanSpmkTotal($userId, $data['tahun'], 01, 06);
+                $subunsur = [];
+                $butir = [];
+                foreach ($array['unsur'] as $row) {
+                    $temp = [
+                        'idunsur' => $row->idUnsur,
+                        'namaUnsur' => $row->namaUnsur,
+                        'subunsur' => [],
+                    ];
+                    $temp2 = $this->kegiatan_model->getSubunsur($row->idUnsur);
+                    foreach ($temp2 as $row2) {
+                        $rst = [
+                            'idSubunsur' => $row2->idSubunsur,
+                            'namaSubunsur' => $row2->namaSubunsur,
+                            'butir' => [],
+                        ];
+                        $temp3 = $this->kegiatan_model->getButir($row2->idSubunsur);
+                        // echo '<pre>',print_r($temp3),'</pre>';die();
+                        foreach ($temp3 as $row3) {
+                            $nilaiInstansiBaru = $this->kegiatan_model->getPointButir($userId, $tahun, 01, 06, $row3->idButir);
+                            if ($nilaiInstansiBaru) {
+                                foreach ($nilaiInstansiBaru as $nilaiBaru) {
+                                    $rst2 = [
+                                        'idButir' => $row3->idButir,
+                                        'namaButir' => $row3->namaButir,
+                                        'nilaiInstansiLama' => 0,
+                                        'nilaiInstansiBaru' => $nilaiBaru->point,
+                                        'nilaiInstansiJumlah' => $nilaiBaru->point,
+                                        'nilaiPenilaiLama' => '',
+                                        'nilaiPenilaiBaru' => '',
+                                        'nilaiPenilaiJumlah' => '',
+                                    ];
+                                }
+                            } else {
+                                $rst2 = [
+                                    'idButir' => $row3->idButir,
+                                    'namaButir' => $row3->namaButir,
+                                    'nilaiInstansiLama' => 0,
+                                    'nilaiInstansiBaru' => 0,
+                                    'nilaiInstansiJumlah' => 0,
+                                    'nilaiPenilaiLama' => '',
+                                    'nilaiPenilaiBaru' => '',
+                                    'nilaiPenilaiJumlah' => '',
+                                ];
+                            }
+                            array_push($rst['butir'], $rst2);
+                        }
+                        array_push($temp['subunsur'], $rst);
+                        //echo '<pre>',print_r($rst),'</pre>';die();
+                    }
+                    //$temp['subunsur'] = $rst;
+                    array_push($subunsur, $temp);
+                }
+            } else {
+                $data['periode'] = "Jul-Des " . $tahun;
+                $data['total'] = $this->kegiatan_model->getTabelKegiatanSpmkTotal($userId, $data['tahun'], 07, 12);
+                $subunsur = [];
+                $butir = [];
+                foreach ($array['unsur'] as $row) {
+                    $temp = [
+                        'idunsur' => $row->idUnsur,
+                        'namaUnsur' => $row->namaUnsur,
+                        'subunsur' => [],
+                    ];
+                    $temp2 = $this->kegiatan_model->getSubunsur($row->idUnsur);
+                    foreach ($temp2 as $row2) {
+                        $rst = [
+                            'idSubunsur' => $row2->idSubunsur,
+                            'namaSubunsur' => $row2->namaSubunsur,
+                            'butir' => [],
+                        ];
+                        $temp3 = $this->kegiatan_model->getButir($row2->idSubunsur);
+                        // echo '<pre>',print_r($temp3),'</pre>';die();
+                        foreach ($temp3 as $row3) {
+                            $nilaiInstansiBaru = $this->kegiatan_model->getPointButir($userId, $tahun, 07, 12, $row3->idButir);
+                            if ($nilaiInstansiBaru) {
+                                foreach ($nilaiInstansiBaru as $nilaiBaru) {
+                                    $rst2 = [
+                                        'idButir' => $row3->idButir,
+                                        'namaButir' => $row3->namaButir,
+                                        'nilaiInstansiLama' => 0,
+                                        'nilaiInstansiBaru' => $nilaiBaru->point,
+                                        'nilaiInstansiJumlah' => $nilaiBaru->point,
+                                        'nilaiPenilaiLama' => '',
+                                        'nilaiPenilaiBaru' => '',
+                                        'nilaiPenilaiJumlah' => '',
+                                    ];
+                                }
+                            } else {
+                                $rst2 = [
+                                    'idButir' => $row3->idButir,
+                                    'namaButir' => $row3->namaButir,
+                                    'nilaiInstansiLama' => 0,
+                                    'nilaiInstansiBaru' => 0,
+                                    'nilaiInstansiJumlah' => 0,
+                                    'nilaiPenilaiLama' => '',
+                                    'nilaiPenilaiBaru' => '',
+                                    'nilaiPenilaiJumlah' => '',
+                                ];
+                            }
+                            array_push($rst['butir'], $rst2);
+                        }
+                        array_push($temp['subunsur'], $rst);
+                        //echo '<pre>',print_r($rst),'</pre>';die();
+                    }
+                    //$temp['subunsur'] = $rst;
+                    array_push($subunsur, $temp);
+                }
+            }
+        } else {
+            if ($bulan >= 01 && $bulan <= 06) {
+                $data['periode'] = "Jan-Jun " . $tahun;
+                $data['total'] = $this->kegiatan_model->getTabelKegiatanSpmkTotal($userId, $data['tahun'], 01, 06);
+                $subunsur = [];
+                $butir = [];
+                foreach ($array['unsur'] as $row) {
+                    $temp = [
+                        'idunsur' => $row->idUnsur,
+                        'namaUnsur' => $row->namaUnsur,
+                        'subunsur' => [],
+                    ];
+                    $temp2 = $this->kegiatan_model->getSubunsur($row->idUnsur);
+                    foreach ($temp2 as $row2) {
+                        $rst = [
+                            'idSubunsur' => $row2->idSubunsur,
+                            'namaSubunsur' => $row2->namaSubunsur,
+                            'butir' => [],
+                        ];
+                        $temp3 = $this->kegiatan_model->getButir($row2->idSubunsur);
+                        // echo '<pre>',print_r($temp3),'</pre>';die();
+                        foreach ($temp3 as $row3) {
+                            $nilaiInstansiBaru = $this->kegiatan_model->getPointButir($userId, $tahun, 01, 06, $row3->idButir);
+                            if ($nilaiInstansiBaru) {
+                                foreach ($nilaiInstansiBaru as $nilaiBaru) {
+                                    $rst2 = [
+                                        'idButir' => $row3->idButir,
+                                        'namaButir' => $row3->namaButir,
+                                        'nilaiInstansiLama' => 0,
+                                        'nilaiInstansiBaru' => $nilaiBaru->point,
+                                        'nilaiInstansiJumlah' => $nilaiBaru->point,
+                                        'nilaiPenilaiLama' => '',
+                                        'nilaiPenilaiBaru' => '',
+                                        'nilaiPenilaiJumlah' => '',
+                                    ];
+                                }
+                            } else {
+                                $rst2 = [
+                                    'idButir' => $row3->idButir,
+                                    'namaButir' => $row3->namaButir,
+                                    'nilaiInstansiLama' => 0,
+                                    'nilaiInstansiBaru' => 0,
+                                    'nilaiInstansiJumlah' => 0,
+                                    'nilaiPenilaiLama' => '',
+                                    'nilaiPenilaiBaru' => '',
+                                    'nilaiPenilaiJumlah' => '',
+                                ];
+                            }
+                            array_push($rst['butir'], $rst2);
+                        }
+                        array_push($temp['subunsur'], $rst);
+                        //echo '<pre>',print_r($rst),'</pre>';die();
+                    }
+                    //$temp['subunsur'] = $rst;
+                    array_push($subunsur, $temp);
+                }
+            } else {
+                $data['periode'] = "Jul-Des " . $tahun;
+                $data['total'] = $this->kegiatan_model->getTabelKegiatanSpmkTotal($userId, $data['tahun'], 07, 12);
+                $subunsur = [];
+                $butir = [];
+                foreach ($array['unsur'] as $row) {
+                    $temp = [
+                        'idunsur' => $row->idUnsur,
+                        'namaUnsur' => $row->namaUnsur,
+                        'subunsur' => [],
+                    ];
+                    $temp2 = $this->kegiatan_model->getSubunsur($row->idUnsur);
+                    foreach ($temp2 as $row2) {
+                        $rst = [
+                            'idSubunsur' => $row2->idSubunsur,
+                            'namaSubunsur' => $row2->namaSubunsur,
+                            'butir' => [],
+                        ];
+                        $temp3 = $this->kegiatan_model->getButir($row2->idSubunsur);
+                        // echo '<pre>',print_r($temp3),'</pre>';die();
+                        foreach ($temp3 as $row3) {
+                            $nilaiInstansiBaru = $this->kegiatan_model->getPointButir($userId, $tahun, 07, 12, $row3->idButir);
+                            if ($nilaiInstansiBaru) {
+                                foreach ($nilaiInstansiBaru as $nilaiBaru) {
+                                    $rst2 = [
+                                        'idButir' => $row3->idButir,
+                                        'namaButir' => $row3->namaButir,
+                                        'nilaiInstansiLama' => 0,
+                                        'nilaiInstansiBaru' => $nilaiBaru->point,
+                                        'nilaiInstansiJumlah' => $nilaiBaru->point,
+                                        'nilaiPenilaiLama' => '',
+                                        'nilaiPenilaiBaru' => '',
+                                        'nilaiPenilaiJumlah' => '',
+                                    ];
+                                }
+                            } else {
+                                $rst2 = [
+                                    'idButir' => $row3->idButir,
+                                    'namaButir' => $row3->namaButir,
+                                    'nilaiInstansiLama' => 0,
+                                    'nilaiInstansiBaru' => 0,
+                                    'nilaiInstansiJumlah' => 0,
+                                    'nilaiPenilaiLama' => '',
+                                    'nilaiPenilaiBaru' => '',
+                                    'nilaiPenilaiJumlah' => '',
+                                ];
+                            }
+                            array_push($rst['butir'], $rst2);
+                        }
+                        array_push($temp['subunsur'], $rst);
+                        //echo '<pre>',print_r($rst),'</pre>';die();
+                    }
+                    //$temp['subunsur'] = $rst;
+                    array_push($subunsur, $temp);
+                }
+            }
+        }
+        //echo '<pre>',print_r($subunsur),'</pre>';die();
+        $tanggalSekarang = date('Y-m-d');
+        $mulaiKerja = $data['user']->mulaiKerja;
+        $lamaKerja = $this->datediff($mulaiKerja, $tanggalSekarang);
+        $data['lamaKerja'] = $lamaKerja;
+        $data['unsur'] = $subunsur;
+        $this->load->view('includes/header', $this->global);
+        $this->load->view('kegiatan/dupak', $data);
+        $this->load->view('includes/footer');
+    }
+
+    public function datediff($date1, $date2)
+    {
+        $diff = abs(strtotime($date2) - strtotime($date1));
+        $years = floor($diff / (365 * 60 * 60 * 24));
+        $months = floor(($diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
+        $days = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
+        $result = $years . " Tahun " . $months . " Bulan";
+        return $result;
     }
 
 }

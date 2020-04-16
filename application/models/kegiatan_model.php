@@ -253,6 +253,25 @@ class Kegiatan_model extends CI_Model
         }
     }
 
+    public function getPointButir($userId, $tahun, $bulanAwal, $bulanAkhir, $idButir)
+    {
+        $sql = "SELECT tkh.idButir,bt.namaButir, sum(`point`) as point FROM tbl_kegiatan_harian tkh
+        LEFT JOIN tbl_butir bt ON bt.idButir = tkh.idButir 
+        LEFT JOIN tbl_butir_kegiatan bk ON 
+        JSON_CONTAINS(tkh.butirKegiatan , CAST(bk.idButirKegiatan as JSON), '$')
+        WHERE tkh.userId = $userId AND tkh.idButir = $idButir AND tkh.tanggalSelesai BETWEEN '$tahun-$bulanAwal-01' AND '$tahun-$bulanAkhir-01' AND tkh.status ='Diterima'
+        GROUP BY tkh.idButir";
+        //execute query
+        $query = $this->db->query($sql);
+        if ($query->num_rows() > 0) {
+            $result = $query->result();
+            $query->free_result();
+            return $result;
+        } else {
+            return array();
+        }
+    }
+
     public function getAtasan()
     {
         $this->db->select('tu.name,tu.nip, jb.namaJabatan , dv.namaDivisi, pn.namaPangkat');
@@ -269,7 +288,7 @@ class Kegiatan_model extends CI_Model
     }
 
     public function getUser($id){
-        $this->db->select('tu.name,tu.nip, jb.namaJabatan , dv.namaDivisi, pn.namaPangkat');
+        $this->db->select('tu.*, jb.namaJabatan , dv.namaDivisi, pn.namaPangkat');
         $this->db->from('tbl_users tu');
         $this->db->join('tbl_divisi dv', 'tu.tbl_divisi_idDivisi = dv.idDivisi ', 'left');
         $this->db->join('tbl_jabatan jb', 'tu.tbl_jabatan_idJabatan = jb.idJabatan ', 'left');
