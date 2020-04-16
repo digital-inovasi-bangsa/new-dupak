@@ -53,7 +53,7 @@
                                 </div>
                                 <div class="col-md-1">
                                     <label></label>
-                                    <input type="submit" class="btn btn-primary" value="Submit" />
+                                    <input style="margin-top: 23px" type="submit" class="btn btn-primary" value="Cari"> </input>
                                 </div>
                             </form>
                         </div>

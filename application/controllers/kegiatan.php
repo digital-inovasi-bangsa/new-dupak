@@ -390,7 +390,7 @@ class Kegiatan extends CI_Controller
             }
         }
         $this->load->view('includes/header', $this->global);
-        $this->load->view('kegiatan/cariSpmk', $data);
+        $this->load->view('kegiatan/spmk', $data);
         $this->load->view('includes/footer');
     }
 
