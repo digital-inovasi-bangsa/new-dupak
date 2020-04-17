@@ -234,7 +234,7 @@
                                                     PENUNJANG</label></td>
                                             <td class="text-center">0</td>
                                             <td class="text-center">
-                                            <?php
+                                                <?php
                                                 if($total[0]->poin){ 
                                                     echo $total[0]->poin;
                                                 }else{
@@ -243,7 +243,7 @@
                                             ?>
                                             </td>
                                             <td class="text-center">
-                                            <?php
+                                                <?php
                                                 if($total[0]->poin){ 
                                                     echo $total[0]->poin;
                                                 }else{
@@ -358,6 +358,13 @@
                                 </table>
                             </div>
                             <!-- /.col -->
+                        </div>
+                        <div class="row no-print">
+                            <div class="col-xs-12">
+                                <a href="<?php echo base_url() . 'kegiatan/printDupak/' . $user->userId. '/'. $bulan. '/' .$tahun; ?>"
+                                    target="_blank" class="btn btn-primary pull-right" style="margin-right: 5px;"><i
+                                        class="fa fa-print"></i> Print</a>
+                            </div>
                         </div>
                     </div><!-- /.box-header -->
                 </div>
