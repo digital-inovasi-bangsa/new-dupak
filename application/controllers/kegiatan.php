@@ -454,8 +454,8 @@ class Kegiatan extends CI_Controller
         $data['atasan'] = $this->kegiatan_model->getAtasan();
         $data['tahun'] = $this->uri->segment(5);
         $data['bulan'] = $this->uri->segment(4);
-        $bulan = $this->uri->segment(5);
-        $tahun = $this->uri->segment(4);
+        $bulan = $this->uri->segment(4);
+        $tahun = $this->uri->segment(5);
         if ($bulan == '' && $tahun == '') {
             if ($data['bulan'] >= 01 && $data['bulan'] <= 06) {
                 $data['periode'] = "Jan-Jun " . $tahun;

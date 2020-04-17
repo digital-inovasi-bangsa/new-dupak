@@ -103,7 +103,7 @@
                                 <p>: <?php echo $user->tempatLahir ?>, <?php echo $user->tanggalLahir ?></p>
                                 <p>: <?php echo $user->jenisKelamin ?></p>
                                 <p>: <?php echo $user->pendidikan ?></p>
-                                <p>: <?php echo $user->namaJabatan ?></p>
+                                <p>: <?php echo $user->namaPangkat ?></p>
                                 <p>: <?php echo $lamaKerja ?></p>
                                 <p>: KANTOR PENCARIAN DAN PERTOLONGAN YOGYAKARTA</p>
                             </div>
@@ -289,7 +289,7 @@
                                                 <p>4. dan seterusnya</p>
                                             </td>
                                             <td class="text-center">
-                                                <p><?php echo $user->namaJabatan ?></p><br><br><br>
+                                                <p><?php echo $user->namaPangkat ?></p><br><br><br>
                                                 <p><?php echo $user->name ?></p>
                                                 <p><?php echo $user->nip ?></p>
                                             </td>
@@ -307,7 +307,7 @@
                                                 <p>4. dan seterusnya</p>
                                             </td>
                                             <td class="text-center">
-                                                <p><?php echo $user->namaJabatan ?></p><br><br><br>
+                                                <p><?php echo $user->namaPangkat ?></p><br><br><br>
                                                 <p><?php echo $atasan->name ?></p>
                                                 <p><?php echo $user->nip ?></p>
                                             </td>

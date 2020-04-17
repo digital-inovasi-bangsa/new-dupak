@@ -64,7 +64,7 @@
 
                             <div class="row invoice-info">
                                 <div class="col-sm-5 invoice-col">
-                                    <p> </p>
+                                    <p>Periode</p>
                                     <p>Nama</p>
                                     <p>Nomer Seri Kartu Pegawai</p>
                                     <p>Tempat, Tanggal Lahir</p>
@@ -75,20 +75,20 @@
                                 </div>
                                 <!-- /.col -->
                                 <div class="col-sm-7 invoice-col">
-                                    <p>Periode : <?php echo $periode ?> </p>
+                                    <p>: <?php echo $periode ?> </p>
                                     <p>: <?php echo $user->name ?></p>
                                     <p>: <?php echo $user->nomorSeriKartuPegawai ?></p>
                                     <p>: <?php echo $user->tempatLahir ?>, <?php echo $user->tanggalLahir ?></p>
                                     <p>: <?php echo $user->jenisKelamin ?></p>
                                     <p>: <?php echo $user->pendidikan ?></p>
-                                    <p>: <?php echo $user->namaJabatan ?></p>
+                                    <p>: <?php echo $user->namaPangkat ?></p>
                                     <p>: <?php echo $lamaKerja ?></p>
                                 </div>
                             </div>
                             <!-- /.row -->
 
                             <!-- Table row -->
-                            <div class="row">
+                            <div class="row page">
                                 <div class="col-xs-12 table-responsive">
                                     <table id='table-dupak' class="table table-bordered" class="table table-bordered">
                                         <thead>
@@ -255,12 +255,12 @@
                                 <div class="col-xs-12 table-responsive">
                                     <table id='table_bawah' class="table table-bordered" class="table table-bordered">
                                         <thead>
+                                        </thead>
+                                        <tbody class="page">
                                             <tr>
                                                 <td>II</td>
                                                 <td colspan="2">LAMPIRAN PENDUKUNG DUPAK :</td>
                                             </tr>
-                                        </thead>
-                                        <tbody>
                                             <tr>
                                                 <td></td>
                                                 <td width="600">
@@ -270,12 +270,12 @@
                                                     <p>4. dan seterusnya</p>
                                                 </td>
                                                 <td class="text-center">
-                                                    <p><?php echo $user->namaJabatan ?></p><br><br><br>
+                                                    <p><?php echo $user->namaPangkat ?></p><br><br><br>
                                                     <p><?php echo $user->name ?></p>
                                                     <p><?php echo $user->nip ?></p>
                                                 </td>
                                             </tr>
-                                            <tr>
+                                            <tr class="page">
                                                 <td>III</td>
                                                 <td colspan="2">Catatan Pejabat Pengusul :</td>
                                             </tr>
@@ -288,7 +288,7 @@
                                                     <p>4. dan seterusnya</p>
                                                 </td>
                                                 <td class="text-center">
-                                                    <p><?php echo $user->namaJabatan ?></p><br><br><br>
+                                                    <p><?php echo $user->namaPangkat ?></p><br><br><br>
                                                     <p><?php echo $atasan->name ?></p>
                                                     <p><?php echo $user->nip ?></p>
                                                 </td>
@@ -314,7 +314,7 @@
                                                     <p>NIP:</p>
                                                 </td>
                                             </tr>
-                                            <tr>
+                                            <tr class="page">
                                                 <td>IV</td>
                                                 <td colspan="2">Catatan Ketua Tim Penilai</td>
                                             </tr>
