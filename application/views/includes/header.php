@@ -156,6 +156,18 @@
                   <span>Pegawai</span>
                 </a>
               </li>
+              <li>
+                <a href="<?php echo base_url(); ?>butir/butirListing">
+                  <i class="fa fa-folder"></i>
+                  <span>Butir</span>
+                </a>
+              </li>
+              <li>
+                <a href="<?php echo base_url(); ?>kegiatan/dupak">
+                  <i class="fa fa-external-link"></i>
+                  <span>Butir Kegiatan</span>
+                </a>
+              </li>
             </ul>
           </li>
           <?php
