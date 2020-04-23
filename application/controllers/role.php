@@ -161,11 +161,11 @@ class Role extends CI_Controller
                 
                 if($result > 0)
                 {
-                    $this->session->set_flashdata('success', 'New Jabatan created successfully');
+                    $this->session->set_flashdata('success', 'Hak Akses Berhasil Ditambahkan');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Jabatan creation failed');
+                    $this->session->set_flashdata('error', 'Hak Akses Gagal Ditambahkan');
                 }
                 
                 redirect('role/roleListing');
@@ -252,11 +252,11 @@ class Role extends CI_Controller
                 
                 if($result == true)
                 {
-                    $this->session->set_flashdata('success', 'Role updated successfully');
+                    $this->session->set_flashdata('success', 'Hak Akses Berhasil Diperbaharui');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Role updation failed');
+                    $this->session->set_flashdata('error', 'Hak Akses Gagal Diperbaharui');
                 }
                 
                 redirect('role/roleListing');

@@ -163,11 +163,11 @@ class Jenjang extends CI_Controller
                 
                 if($result > 0)
                 {
-                    $this->session->set_flashdata('success', 'New Jenjang created successfully');
+                    $this->session->set_flashdata('success', 'Jenjang Berhasil Ditambahkan');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Jenjang creation failed');
+                    $this->session->set_flashdata('error', 'Jenjang Gagal Ditambahkan');
                 }
                 
                 redirect('jenjang/jenjangListing');
@@ -254,11 +254,11 @@ class Jenjang extends CI_Controller
                 
                 if($result == true)
                 {
-                    $this->session->set_flashdata('success', 'Jenjang updated successfully');
+                    $this->session->set_flashdata('success', 'Jenjang Berhasil Diperbaharui');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Jenjang updation failed');
+                    $this->session->set_flashdata('error', 'Jenjang Gagal Diperbaharui');
                 }
                 
                 redirect('jenjang/jenjangListing');

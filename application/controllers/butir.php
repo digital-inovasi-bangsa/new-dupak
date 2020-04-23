@@ -165,11 +165,11 @@ class Butir extends CI_Controller
                 
                 if($result > 0)
                 {
-                    $this->session->set_flashdata('success', 'New Butir created successfully');
+                    $this->session->set_flashdata('success', 'Butir Berhasil Ditambahkan');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Butir creation failed');
+                    $this->session->set_flashdata('error', 'Butir Gagal Ditambahkan');
                 }
                 
                 redirect('butir/butirListing');
@@ -257,11 +257,11 @@ class Butir extends CI_Controller
                 
                 if($result == true)
                 {
-                    $this->session->set_flashdata('success', 'Butir updated successfully');
+                    $this->session->set_flashdata('success', 'Butir Berhasil Diperbaharui');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Butir updation failed');
+                    $this->session->set_flashdata('error', 'Butir Gagal Diperbaharui');
                 }
                 
                 redirect('butir/butirListing');

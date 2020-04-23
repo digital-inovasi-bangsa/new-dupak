@@ -29,7 +29,7 @@ class User extends CI_Controller
      */
     public function index()
     {
-        $this->global['pageTitle'] = 'Dupak : Dashboard';
+        $this->global['pageTitle'] = 'Dashboard';
         $data['jumlahUser'] = $this->user_model->userListingCount();
         $data['jumlahKegiatan'] = $this->kegiatan_model->getKegiatanDiajukanCount();
         $this->load->view('includes/header', $this->global);
@@ -65,7 +65,11 @@ class User extends CI_Controller
      */
     public function isAdmin()
     {
-        if ($this->role != ROLE_ADMIN) {return true;} else {return false;}
+        if ($this->role != ROLE_ADMIN) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -73,8 +77,11 @@ class User extends CI_Controller
      */
     public function isTicketter()
     {
-        if ($this->role != ROLE_ADMIN || $this->role != ROLE_MANAGER) {return true;} else {return false;}
-
+        if ($this->role != ROLE_ADMIN || $this->role != ROLE_MANAGER) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -95,7 +102,7 @@ class User extends CI_Controller
     public function logout()
     {
         $this->session->sess_destroy();
-
+        $this->session->set_flashdata('success', 'Anda Berhasil Keluar Sistem');
         redirect('/login');
     }
 
@@ -204,9 +211,9 @@ class User extends CI_Controller
                 );
                 $result = $this->user_model->addNewUser($userInfo);
                 if ($result == true) {
-                    $this->session->set_flashdata('success', 'New User created successfully');
+                    $this->session->set_flashdata('success', 'User berhasil ditambahkan');
                 } else {
-                    $this->session->set_flashdata('error', 'User creation failed');
+                    $this->session->set_flashdata('error', 'User gagal ditambahkan');
                 }
                 redirect('user/userListing');
             }
@@ -259,7 +266,6 @@ class User extends CI_Controller
         $id = $this->input->post('idPangkat');
         $data = $this->user_model->getUserJabatan($id);
         echo json_encode($data);
-
     }
 
     /**
@@ -312,46 +318,51 @@ class User extends CI_Controller
                 } else {
                     $data = $this->user_model->getUserInfo($userId);
                     $fotoProfile = $data[0]->fotoProfil;
-
                 }
 
                 $userInfo = array();
 
                 if (empty($password)) {
-                    $userInfo = array('email' => $email, 'roleId' => $roleId, 'name' => $name, 'tbl_divisi_idDivisi' => $idDivisi, 'nip' => $nip,
+                    $userInfo = array(
+                        'email' => $email, 'roleId' => $roleId, 'name' => $name, 'tbl_divisi_idDivisi' => $idDivisi, 'nip' => $nip,
                         'mobile' => $mobile, 'updatedBy' => $this->vendorId, 'updatedDtm' => date('Y-m-d H:i:sa'),
                         'fotoProfil' => $fotoProfile, 'tbl_jabatan_idJabatan' => $idJabatan, 'nomorSeriKartuPegawai' => $nomorSeriKartuPegawai,
                         'tanggalLahir' => $tanggalLahir,
                         'tempatLahir' => $tempatLahir,
                         'jenisKelamin' => $jenisKelamin,
                         'pendidikan' => $pendidikan,
-                        'mulaiKerja' => $mulaiKerja);
+                        'mulaiKerja' => $mulaiKerja
+                    );
                 } else if (empty($password) && empty($_FILES['user_img_upload']['tmp_name'])) {
-                    $userInfo = array('email' => $email, 'password' => md5($password), 'roleId' => $roleId, 'name' => $name, 'tbl_divisi_idDivisi' => $idDivisi, 'nip' => $nip,
+                    $userInfo = array(
+                        'email' => $email, 'password' => md5($password), 'roleId' => $roleId, 'name' => $name, 'tbl_divisi_idDivisi' => $idDivisi, 'nip' => $nip,
                         'mobile' => $mobile, 'updatedBy' => $this->vendorId, 'updatedDtm' => date('Y-m-d H:i:sa'),
                         'tbl_jabatan_idJabatan' => $idJabatan, 'nomorSeriKartuPegawai' => $nomorSeriKartuPegawai,
                         'tanggalLahir' => $tanggalLahir,
                         'tempatLahir' => $tempatLahir,
                         'jenisKelamin' => $jenisKelamin,
                         'pendidikan' => $pendidikan,
-                        'mulaiKerja' => $mulaiKerja);
+                        'mulaiKerja' => $mulaiKerja
+                    );
                 } else {
-                    $userInfo = array('email' => $email, 'password' => md5($password), 'roleId' => $roleId, 'name' => $name, 'tbl_divisi_idDivisi' => $idDivisi, 'nip' => $nip,
+                    $userInfo = array(
+                        'email' => $email, 'password' => md5($password), 'roleId' => $roleId, 'name' => $name, 'tbl_divisi_idDivisi' => $idDivisi, 'nip' => $nip,
                         'mobile' => $mobile, 'updatedBy' => $this->vendorId, 'updatedDtm' => date('Y-m-d H:i:sa'),
                         'fotoProfil' => $fotoProfile, 'tbl_jabatan_idJabatan' => $idJabatan, 'nomorSeriKartuPegawai' => $nomorSeriKartuPegawai,
                         'tanggalLahir' => $tanggalLahir,
                         'tempatLahir' => $tempatLahir,
                         'jenisKelamin' => $jenisKelamin,
                         'pendidikan' => $pendidikan,
-                        'mulaiKerja' => $mulaiKerja);
+                        'mulaiKerja' => $mulaiKerja
+                    );
                 }
 
                 $result = $this->user_model->editUser($userInfo, $userId);
 
                 if ($result) {
-                    $this->session->set_flashdata('success', 'User updated successfully');
+                    $this->session->set_flashdata('success', 'User berhasil diperbaharui');
                 } else {
-                    $this->session->set_flashdata('error', 'User updation failed');
+                    $this->session->set_flashdata('error', 'User gagal diperbaharui');
                 }
 
                 redirect('user/userListing');
@@ -373,7 +384,11 @@ class User extends CI_Controller
 
             $result = $this->user_model->deleteUser($userId, $userInfo);
 
-            if ($result > 0) {echo (json_encode(array('status' => true)));} else {echo (json_encode(array('status' => false)));}
+            if ($result > 0) {
+                echo (json_encode(array('status' => true)));
+            } else {
+                echo (json_encode(array('status' => false)));
+            }
         }
     }
 
@@ -382,7 +397,7 @@ class User extends CI_Controller
      */
     public function loadChangePass()
     {
-        $this->global['pageTitle'] = 'Dupak : Change Password';
+        $this->global['pageTitle'] = 'Ubah Kata Sandi';
 
         $this->load->view('includes/header', $this->global);
         $this->load->view('user/changePassword');
@@ -409,16 +424,20 @@ class User extends CI_Controller
             $resultPas = $this->user_model->matchOldPassword($this->vendorId, md5($oldPassword));
 
             if (empty($resultPas)) {
-                $this->session->set_flashdata('nomatch', 'Your old password not correct');
+                $this->session->set_flashdata('error', 'Password lama tidak sesuai');
                 redirect('loadChangePass');
             } else {
                 $usersData = array('password' => md5($newPassword), 'updatedBy' => $this->vendorId, 'updatedDtm' => date('Y-m-d H:i:sa'));
 
                 $result = $this->user_model->changePassword($this->vendorId, $usersData);
 
-                if ($result > 0) {$this->session->set_flashdata('success', 'Password updation successful');} else { $this->session->set_flashdata('error', 'Password updation failed');}
+                if ($result > 0) {
+                    $this->session->set_flashdata('success', 'Password berhasil diperbaharui');
+                } else {
+                    $this->session->set_flashdata('error', 'Password gagal diperbaharui');
+                }
 
-                redirect('loadChangePass');
+                redirect('logout');
             }
         }
     }

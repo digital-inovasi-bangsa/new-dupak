@@ -2,7 +2,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Master Divisi
+            <?= $pageTitle; ?>
             <small>Tambah, Ubah, Hapus</small>
         </h1>
     </section>
@@ -17,7 +17,7 @@
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header">
-                        <h3 class="box-title">Tambahkan Data Divisi</h3>
+                        <h3 class="box-title"><?= $pageTitle; ?></h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
 

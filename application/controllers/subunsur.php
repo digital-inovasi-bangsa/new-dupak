@@ -167,11 +167,11 @@ class Subunsur extends CI_Controller
                 
                 if($result > 0)
                 {
-                    $this->session->set_flashdata('success', 'New Unsur created successfully');
+                    $this->session->set_flashdata('success', 'Sub Unsur Berhasil Ditambahkan');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Unsur creation failed');
+                    $this->session->set_flashdata('error', 'Sub Unsur Gagal Ditambahkan');
                 }
                 
                 redirect('subunsur/subunsurListing');
@@ -260,11 +260,11 @@ class Subunsur extends CI_Controller
                 
                 if($result == true)
                 {
-                    $this->session->set_flashdata('success', 'Unsur updated successfully');
+                    $this->session->set_flashdata('success', 'Sub Unsur Berhasil Diperbaharui');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Unsur updation failed');
+                    $this->session->set_flashdata('error', 'Sub Unsur Gagal Diperbaharui');
                 }
                 
                 redirect('subunsur/subunsurListing');

@@ -163,11 +163,11 @@ class Unsur extends CI_Controller
                 
                 if($result > 0)
                 {
-                    $this->session->set_flashdata('success', 'New Unsur created successfully');
+                    $this->session->set_flashdata('success', 'Unsur Berhasil Ditambahkan');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Unsur creation failed');
+                    $this->session->set_flashdata('error', 'Unsur Gagal Ditambahkan');
                 }
                 
                 redirect('unsur/unsurListing');
@@ -254,11 +254,11 @@ class Unsur extends CI_Controller
                 
                 if($result == true)
                 {
-                    $this->session->set_flashdata('success', 'Unsur updated successfully');
+                    $this->session->set_flashdata('success', 'Unsur Berhasil Diperbaharui');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Unsur updation failed');
+                    $this->session->set_flashdata('error', 'Unsur Gagal Diperbaharui');
                 }
                 
                 redirect('unsur/unsurListing');

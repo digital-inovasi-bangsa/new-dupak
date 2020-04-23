@@ -167,11 +167,11 @@ class Butir_Kegiatan extends CI_Controller
                 
                 if($result > 0)
                 {
-                    $this->session->set_flashdata('success', 'New Butir Kegiatan created successfully');
+                    $this->session->set_flashdata('success', 'Butir Kegiatan Berhasil Ditambahkan');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Butir Kegiatan creation failed');
+                    $this->session->set_flashdata('error', 'Butir Kegiatan Gagal Ditambahkan');
                 }
                 
                 redirect('butir_kegiatan/butirKegiatanListing');
@@ -264,11 +264,11 @@ class Butir_Kegiatan extends CI_Controller
                 
                 if($result == true)
                 {
-                    $this->session->set_flashdata('success', 'Butir Kegiatan updated successfully');
+                    $this->session->set_flashdata('success', 'Butir Kegiatan Berhasil Diperbaharui');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Butir Kegiatan updation failed');
+                    $this->session->set_flashdata('error', 'Butir Kegiatan Gagal Diperbaharui');
                 }
                 
                 redirect('butir_kegiatan/butirKegiatanListing');

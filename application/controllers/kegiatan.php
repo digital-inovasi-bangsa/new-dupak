@@ -193,9 +193,9 @@ class Kegiatan extends CI_Controller
                 $result = $this->kegiatan_model->addNewKegiatan($kegiatanInfo);
 
                 if ($result > 0) {
-                    $this->session->set_flashdata('success', 'New Kegiatan created successfully');
+                    $this->session->set_flashdata('success', 'Kegiatan Berhasil Ditambahkan');
                 } else {
-                    $this->session->set_flashdata('error', 'Kegiatan creation failed');
+                    $this->session->set_flashdata('error', 'Kegiatan Gagal Ditambahkan');
                 }
 
                 redirect('kegiatan');
@@ -291,9 +291,9 @@ class Kegiatan extends CI_Controller
                 'status' => 'Diajukan',
             );
             $status = $this->kegiatan_model->updateStatusKegiatan($statusInfo, $idKegiatanHarian);
-            $this->session->set_flashdata('success', 'New Dokumentasi Kegiatan created successfully');
+            $this->session->set_flashdata('success', 'Dokumen Kegiatan Berhasil Ditambahkan');
         } else {
-            $this->session->set_flashdata('error', 'Dokumentasi Kegiatan creation failed');
+            $this->session->set_flashdata('error', 'Dokumen Kegiatan Gagal Ditambahkan');
         }
 
         redirect('kegiatan');
@@ -307,7 +307,7 @@ class Kegiatan extends CI_Controller
             'status' => $status,
         );
         $status = $this->kegiatan_model->updateStatusKegiatan($statusInfo, $id);
-        //$this->session->set_flashdata('success', 'Data berhasil diupdate');
+        
         if ($status) {
             echo "true";
         } else {
