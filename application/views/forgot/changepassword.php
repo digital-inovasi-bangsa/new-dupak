@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Dupak | Admin System Log in</title>
+    <title>Dupak | Reset Password</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <link href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -18,12 +18,11 @@
   <body class="login-page">
     <div class="login-box">
       <div class="login-logo">
-        <a href="#"><b>Dupak</b><br>Admin System</a>
+        <a href="#"><b>Dupak</b><br>Basarnas Jogja</a>
       </div><!-- /.login-logo -->
       <div class="login-box-body">
-        <p class="login-box-msg">Sign In</p>
+        <p class="login-box-msg">Reset Password</p>
         <?php $this->load->helper('form'); ?>
-        <?= $this->session->flashdata('message'); ?>
         <div class="row">
             <div class="col-md-12">
                 <?php echo validation_errors('<div class="alert alert-danger alert-dismissable">', ' <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>'); ?>
@@ -41,14 +40,14 @@
             </div>
         <?php } ?>
         
-        <form action="<?php echo base_url(); ?>loginMe" method="post">
+        <form action="<?php echo base_url(); ?>login/changepassword" method="post">
           <div class="form-group has-feedback">
-            <input type="email" class="form-control" placeholder="Email" name="email" required />
+            <input type="password" class="form-control" placeholder="New Password" name="password1" required />
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
-            <input type="password" class="form-control" placeholder="Password" name="password" required />
-            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            <input type="password" class="form-control" placeholder="Confirm Password" name="password2" required />
+            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
           </div>
           <div class="row">
             <div class="col-xs-8">    
@@ -59,13 +58,10 @@
               </div>  -->                       
             </div><!-- /.col -->
             <div class="col-xs-4">
-              <input type="submit" class="btn btn-primary btn-block btn-flat" value="Sign In" />
+              <input type="submit" class="btn btn-primary btn-block btn-flat" value="Submit" />
             </div><!-- /.col -->
           </div>
-        </form>
-
-        <a href="<?= base_url() ?>login/forgotpassword">Forgot Password</a><br>
-        
+        </form>        
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->
 
