@@ -163,7 +163,7 @@
                 </a>
               </li>
               <li>
-                <a href="<?php echo base_url(); ?>kegiatan/dupak">
+                <a href="<?php echo base_url(); ?>butir_kegiatan/butirKegiatanListing">
                   <i class="fa fa-external-link"></i>
                   <span>Butir Kegiatan</span>
                 </a>
