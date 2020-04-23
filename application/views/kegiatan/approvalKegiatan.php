@@ -167,72 +167,74 @@
     });
   });
 </script>
+
 <script>
   jQuery(document).ready(function () {
-    jQuery(document).on("click", ".edit", function () {
-      var id = $(this).data("id");
-      $("#status").hide();
-      $.ajax({
+  jQuery(document).on("click", ".edit", function () {
+    var id = $(this).data("id");
+    $("#status").hide();
+    $.ajax({
         url: "<?php echo base_url()?>kegiatan/getDokumenKegiatan",
         type: "post",
         data: {
-          idDokumenKegiatan: id
+          idDokumenKegiatan: id,
+          '<?php echo $this->security->get_csrf_token_name(); ?>': '<?php echo $this->security->get_csrf_hash(); ?>'
+      },
+      success: function (response) {
+        if (response) {
+          $("#status").show();
+          $("#loading_surat_kegiatan").hide();
+          $("#loading_laporan_kegiatan").hide();
+          $("#loading_dokumentasi").hide();
+          $("#loading_select").hide();
+          $("#label_surat").hide();
+          $("#label_laporan_kegiatan").hide();
+          $("#label_dokumentasi").hide();
+          $('<label>Surat Kegiatan</label>').appendTo('#surat_kegiatan');
+          $('<iframe src="<?php echo base_url() ?>upload/dokumentasi/' + JSON.parse(response)
+            .path_surat_kegiatan + '" width="100%" height="100%"></iframe>').appendTo(
+            '#surat_kegiatan');
+          $('<label>Laporan Kegiatan</label>').appendTo('#surat_kegiatan');
+          $('<iframe src="<?php echo base_url() ?>upload/dokumentasi/' + JSON.parse(response)
+            .path_laporan_kegiatan + '" width="100%" height="100%"></iframe>').appendTo(
+            '#surat_kegiatan');
+          $('<label>Dokumentasi</label>').appendTo('#surat_kegiatan');
+          $('<iframe src="<?php echo base_url() ?>upload/dokumentasi/' + JSON.parse(response)
+            .path_dokumentasi + '" width="100%" height="100%"></iframe>').appendTo('#surat_kegiatan');
+        }
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        console.log(textStatus, errorThrown);
+      }
+    }); $("#btnSubmit").button().click(function () {
+      var value = $("#status").val();
+      $.ajax({
+          url: "<?php echo base_url()?>kegiatan/updateStatusKegiatan",
+          type: "post",
+          data: {
+            status: value,
+            id: id,
+            '<?php echo $this->security->get_csrf_token_name(); ?>': '<?php echo $this->security->get_csrf_hash(); ?>',
         },
         success: function (response) {
-          if (response) {
-            $("#status").show();
-            $("#loading_surat_kegiatan").hide();
-            $("#loading_laporan_kegiatan").hide();
-            $("#loading_dokumentasi").hide();
-            $("#loading_select").hide();
-            $("#label_surat").hide();
-            $("#label_laporan_kegiatan").hide();
-            $("#label_dokumentasi").hide();
-            $('<label>Surat Kegiatan</label>').appendTo('#surat_kegiatan');
-            $('<iframe src="<?php echo base_url() ?>upload/dokumentasi/' + JSON.parse(response)
-              .path_surat_kegiatan + '" width="100%" height="100%"></iframe>').appendTo(
-              '#surat_kegiatan');
-            $('<label>Laporan Kegiatan</label>').appendTo('#surat_kegiatan');
-            $('<iframe src="<?php echo base_url() ?>upload/dokumentasi/' + JSON.parse(response)
-              .path_laporan_kegiatan + '" width="100%" height="100%"></iframe>').appendTo(
-              '#surat_kegiatan');
-            $('<label>Dokumentasi</label>').appendTo('#surat_kegiatan');
-            $('<iframe src="<?php echo base_url() ?>upload/dokumentasi/' + JSON.parse(response)
-              .path_dokumentasi + '" width="100%" height="100%"></iframe>').appendTo('#surat_kegiatan');
+          if (response === "true") {
+            $('.edit').modal('hide'); //or  $('#IDModal').modal('hide');
+            swal("Sukses!", "Data Berhasil diUpdate!", "success").then(function () {
+              location.reload();
+            })
+          } else {
+            swal("Gagal!", "Data Gagal diUpdate!", "danger").then(function () {
+              location.reload();
+            })
           }
+          //location.reload();
         },
         error: function (jqXHR, textStatus, errorThrown) {
           console.log(textStatus, errorThrown);
         }
       });
-      $("#btnSubmit").button().click(function () {
-        var value = $("#status").val();
-        $.ajax({
-          url: "<?php echo base_url()?>kegiatan/updateStatusKegiatan",
-          type: "post",
-          data: {
-            status: value,
-            id: id
-          },
-          success: function (response) {
-            if (response === "true") {
-              $('.edit').modal('hide'); //or  $('#IDModal').modal('hide');
-              swal("Sukses!", "Data Berhasil diUpdate!", "success").then(function () {
-                location.reload();
-              })
-            } else {
-              swal("Gagal!", "Data Gagal diUpdate!", "danger").then(function () {
-                location.reload();
-              })
-            }
-            //location.reload();
-          },
-          error: function (jqXHR, textStatus, errorThrown) {
-            console.log(textStatus, errorThrown);
-          }
-        });
-      });
+  });
 
-    });
+  });
   });
 </script>

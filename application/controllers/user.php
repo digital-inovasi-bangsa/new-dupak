@@ -30,8 +30,11 @@ class User extends CI_Controller
     public function index()
     {
         $this->global['pageTitle'] = 'Dupak : Dashboard';
+        $userId = $this->session->userdata('userId');
         $data['jumlahUser'] = $this->user_model->userListingCount();
         $data['jumlahKegiatan'] = $this->kegiatan_model->getKegiatanDiajukanCount();
+        $data['kegiatanPegawaiDiterima'] = $this->user_model->getPoint($userId, 'diterima');
+        $data['kegiatanPegawaiDitolak'] = $this->user_model->getPoint($userId, 'ditolak');
         $this->load->view('includes/header', $this->global);
         $this->load->view('dashboard', $data);
         $this->load->view('includes/footer');
