@@ -92,11 +92,7 @@
                                 <div class="col-md-12">
                                     <label for="butir_kegiatan">Butir Kegiatan</label>
                                     <div class="form-group">
-                                        <div class="checkbox">
-                                            <label name="checkbox-butir" id="checkbox-butir">
-                                                <!-- <input type="checkbox"> -->
-                                                <!-- <label for="vehicle1">I have a bike</label><br> -->
-                                            </label>
+                                        <div class="checkbox" style="margin-left: 20px" id="checkbox-butir">
                                         </div>
                                     </div>
                                 </div>
@@ -196,7 +192,7 @@
                     for (i = 0; i < data.length; i++) {
                         html += '<input type="checkbox" name="businessType[]" value="' +
                             data[i].idButirKegiatan + '">' + data[i]
-                            .keterangan + '<br>';
+                            .keterangan  + '</input>' + ' ' + '<span class="label" style="background-color:green">' + '+' +data[i].point +'</span>' + '<br>';
                     }
                     $('#checkbox-butir').html(html);
                     $("#butir-kegiatan").show();

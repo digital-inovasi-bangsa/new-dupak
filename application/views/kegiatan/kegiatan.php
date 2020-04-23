@@ -16,12 +16,8 @@
       <div class="col-md-3">
         <a class="btn btn-primary btn-sm btn-block" style="margin-bottom: 20px;"
           href="<?php echo base_url(); ?>kegiatan/addNew">
-          <i class="fa fa-plus"></i>  Tambah Kegiatan
-        </a><?php if($kegiatan){ ?>
-        <a class="btn btn-success btn-sm btn-block" style="margin-bottom: 20px;background-color: purple"
-          href="<?php echo base_url(); ?>kegiatan/uploadBukti/<?php echo $kegiatan->idKegiatanHarian?>">
-          <i class="fa fa-upload"></i>  Upload Bukti
-        </a><?php } ?>
+          <i class="fa fa-plus"></i> Tambah Kegiatan
+        </a>
         <div class="box box-solid">
           <div class="box-header with-border">
             <h4 class="box-title">Keterangan</h4>
@@ -42,6 +38,24 @@
       </div>
       <!-- /.col -->
       <div class="col-md-9">
+        <?php
+                    if(!empty($kegiatan))
+                    {
+                        $no = 1;
+                        foreach($kegiatan as $record)
+                        {
+                    ?>
+        <div class="alert alert-warning alert-dismissible">
+          <a class="close" href="<?php echo base_url(); ?>kegiatan/uploadBukti/<?php echo $record->idKegiatanHarian?>">
+            <i class="fa fa-upload"></i>
+          </a>
+          <h4><i class="icon fa fa-warning"></i> <?php echo $record->status ?></h4>
+          Kegiatan : <?php echo $record->namaButir ?> <br>
+          Tanggal Kegiatan : <?php echo $record->tanggalMulai ?> - <?php echo $record->tanggalSelesai ?>
+        </div>
+        <?php } 
+                        }?>
+
         <div class="box box-primary">
           <div class="box-body no-padding">
             <div id="calendar"></div>
@@ -67,7 +81,7 @@
 <script>
   var dataCalendar;
   $(document).ready(function () {
-      var result = $.ajax({
+    var result = $.ajax({
       url: '<?php echo base_url(); ?>kegiatan/loadCalendar',
       type: "GET",
       dataType: "json",
@@ -85,10 +99,9 @@
         right: 'month'
       },
       events: "<?php echo base_url(); ?>kegiatan/loadCalendar",
-      eventClick:function(event)
-        {
-            console.log(events);
-        }
+      eventClick: function (event) {
+        console.log(events);
+      }
     });
   });
 </script>

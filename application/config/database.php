@@ -47,6 +47,9 @@
 
 $active_group = 'default';
 $active_record = TRUE;
+// require_once BASEPATH . 'dotenv/autoloader.php';
+// $dotenv = new Dotenv\Dotenv(FCPATH);
+// $dotenv->load();
 
 // server local
 // $db['default']['hostname'] = 'localhost';

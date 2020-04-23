@@ -23,6 +23,7 @@
       <div class="login-box-body">
         <p class="login-box-msg">Sign In</p>
         <?php $this->load->helper('form'); ?>
+        <?= $this->session->flashdata('message'); ?>
         <div class="row">
             <div class="col-md-12">
                 <?php echo validation_errors('<div class="alert alert-danger alert-dismissable">', ' <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>'); ?>
@@ -63,7 +64,7 @@
           </div>
         </form>
 
-        <a href="#">Forgot Password</a><br>
+        <a href="<?= base_url() ?>login/forgotpassword">Forgot Password</a><br>
         
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->
