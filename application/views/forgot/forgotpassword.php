@@ -22,7 +22,8 @@
       </div><!-- /.login-logo -->
       <div class="login-box-body">
         <p class="login-box-msg">Forgot Password</p>
-        <?php $this->load->helper('form'); ?>
+        <?php $this->load->helper('form'); 
+        ?>
         <?= $this->session->flashdata('message'); ?>
         <div class="row">
             <div class="col-md-12">
@@ -42,6 +43,8 @@
         <?php } ?>
         
         <form action="<?php echo base_url(); ?>login/forgotpassword" method="post">
+        <!-- CSRF Token -->
+        <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
           <div class="form-group has-feedback">
             <input type="email" class="form-control" placeholder="Email" name="email" required />
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>

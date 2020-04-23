@@ -35,8 +35,8 @@ if(!empty($unsurInfo))
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     <form role="form" action="<?php echo base_url() ?>unsur/editUnsur" method="post"
-                        id="editUnsur" role="form">
-                        <div class="box-body">
+                        id="editUnsur" role="form"><!-- CSRF Token -->
+                        <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />                        <div class="box-body">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">

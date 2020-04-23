@@ -19,6 +19,8 @@
 
                     <form role="form" id="addSubunsur" action="<?php echo base_url() ?>subunsur/addNewSubunsur" method="post"
                         role="form">
+                        <!-- CSRF Token -->
+                        <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-12">

@@ -47,8 +47,8 @@ class Login extends CI_Controller
             $this->load->view('forgot/forgotpassword');
         } else {
             $email = $this->input->post('email');
-            //$user = $this->db->get_where('tbl_users', ['email' => $email])->row_array();
-            $user = $email;
+            $user = $this->db->get_where('tbl_users', ['email' => $email])->row_array();
+            //$user = $email;
 
             if ($user) {
                 $token = base64_encode(random_bytes(32));
@@ -73,8 +73,8 @@ class Login extends CI_Controller
         $config = [
             'protocol' => 'smtp',
             'smtp_host' => 'ssl://smtp.googlemail.com',
-            'smtp_user' => 'kehilangan.info@gmail.com',
-            'smtp_pass' => 'bH7ASlwKc5fz',
+            'smtp_user' => getenv('EMAIL_ADDRESS'),
+            'smtp_pass' => getenv('EMAIL_PASSWORD'),
             'smtp_port' => 465,
             'mailtype' => 'html',
             'charset' => 'utf-8',
@@ -83,7 +83,7 @@ class Login extends CI_Controller
 
         $this->email->initialize($config);
 
-        $this->email->from('kehilangan.info@gmail.com', 'Basarnas Jogja');
+        $this->email->from(getenv('EMAIL_ADDRESS'), 'Basarnas Jogja');
         $this->email->to($this->input->post('email'));
 
         if ($type == 'verify') {

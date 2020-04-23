@@ -19,6 +19,8 @@
                         <div class="row" style="margin-top: 20px;">
                             <form role="form" id="cariDupak" action="<?php echo base_url() ?>kegiatan/cariDupak"
                                 method="post" role="form">
+                                <!-- CSRF Token -->
+                        <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Tahun</label>

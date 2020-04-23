@@ -41,13 +41,15 @@
         <?php } ?>
         
         <form action="<?php echo base_url(); ?>login/changepassword" method="post">
+        <!-- CSRF Token -->
+        <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
           <div class="form-group has-feedback">
             <input type="password" class="form-control" placeholder="New Password" name="password1" required />
-            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
             <input type="password" class="form-control" placeholder="Confirm Password" name="password2" required />
-            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
           <div class="row">
             <div class="col-xs-8">    

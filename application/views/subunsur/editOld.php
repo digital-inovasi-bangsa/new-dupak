@@ -40,6 +40,8 @@ if(!empty($subunsurInfo))
 
                     <form role="form" action="<?php echo base_url() ?>subunsur/editSubunsur" method="post"
                         id="editSubunsur" role="form">
+                        <!-- CSRF Token -->
+                        <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-12">
