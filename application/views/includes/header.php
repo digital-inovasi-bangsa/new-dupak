@@ -168,6 +168,24 @@
                   <span>Butir Kegiatan</span>
                 </a>
               </li>
+              <li>
+                <a href="<?php echo base_url(); ?>jenjang/jenjangListing">
+                  <i class="fa fa-briefcase"></i>
+                  <span>Jenjang</span>
+                </a>
+              </li>
+               <li>
+                <a href="<?php echo base_url(); ?>unsur/unsurListing">
+                  <i class="fa fa-bookmark"></i>
+                  <span>Unsur</span>
+                </a>
+              </li>
+              <li>
+                <a href="<?php echo base_url(); ?>subunsur/subunsurListing">
+                  <i class="fa  fa-flag"></i>
+                  <span>Sub Unsur</span>
+                </a>
+              </li>
             </ul>
           </li>
           <?php
