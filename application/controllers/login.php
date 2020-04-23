@@ -71,7 +71,7 @@ class Login extends CI_Controller
                                             'fotoProfil'=>$res->fotoProfil,
                                             'idJabatan'=>$res->tbl_jabatan_idJabatan,
                                             'idPangkat'=>$res->tbl_pangkat_idPangkat,
-                                            'isLoggedIn' => TRUE
+                                            'isLoggedIn' => TRUE,
                                     );
                                     
                     $this->session->set_userdata($sessionArray);
