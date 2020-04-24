@@ -2,7 +2,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Kegiatan
+            <?= $pageTitle; ?>
             <small>Tambah, Ubah, Hapus</small>
         </h1>
     </section>
@@ -17,7 +17,7 @@
                 <!-- general form elements -->
                 <div class="box box-warning">
                     <div class="box-header">
-                        <h3 class="box-title">Tambahkan Data Kegiatan</h3>
+                        <h3 class="box-title"><?= $pageTitle; ?></h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
 
@@ -132,8 +132,8 @@
                         </div><!-- /.box-body -->
 
                         <div class="box-footer">
-                            <input type="submit" class="btn btn-primary pull-right" value="Submit" />
-                            <input type="reset" class="btn btn-default pull-right" value="Reset" />
+                            <input type="submit" class="btn btn-primary pull-right" value="Simpan" />
+                            <input type="reset" class="btn btn-default" value="Reset" />
                         </div>
                     </form>
                 </div>
