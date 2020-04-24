@@ -76,7 +76,8 @@ class Kegiatan extends CI_Controller
 
     public function loadCalendar()
     {
-        $event_data = $this->kegiatan_model->fetch_all_event();
+        $id = $this->session->userdata('userId');
+        $event_data = $this->kegiatan_model->fetch_all_event($id);
         foreach ($event_data->result_array() as $row) {
             $date = $row['tanggalSelesai'];
             $date1 = str_replace('-', '/', $date);
@@ -336,7 +337,7 @@ class Kegiatan extends CI_Controller
     {
         $this->global['pageTitle'] = 'Riwayat Kegiatan Harian';
         $userId = $this->session->userdata('userId');
-        $data['kegiatan'] = $this->kegiatan_model->getRiwayatKegiatanHarian();
+        $data['kegiatan'] = $this->kegiatan_model->getRiwayatKegiatanHarian($userId);
         $this->load->view('includes/header', $this->global);
         $this->load->view('kegiatan/riwayatKegiatanHarian', $data);
         $this->load->view('includes/footer');
