@@ -136,7 +136,7 @@ class Kegiatan_model extends CI_Model
         return $query->result();
     }
 
-    public function getRiwayatKegiatanHarian()
+    public function getRiwayatKegiatanHarian($id)
     {
         $this->db->select('bt.namaButir,tkh.tanggalMulai,tkh.tanggalSelesai, tkh.tanggalSelesai, tkh.status , bt.namaButir,
         us.nip ,us.name, jj.namaJenjang , jb.namaJabatan , pk.namaPangkat,tkh.idKegiatanHarian, un.namaUnsur, sus.namaSubunsur');
@@ -148,6 +148,8 @@ class Kegiatan_model extends CI_Model
         $this->db->join('tbl_pangkat as pk', 'pk.idPangkat = jb.tbl_pangkat_idPangkat', 'left');
         $this->db->join('tbl_unsur as un', 'un.idUnsur = tkh.idUnsur', 'left');
         $this->db->join('tbl_subunsur as sus', 'sus.idSubunsur = tkh.idSubunsur', 'left');
+        $this->db->where('tkh.userId', $id);
+        $this->db->order_by('tkh.updatedAt', 'desc');
         $query = $this->db->get();
         return $query->result();
     }

@@ -337,7 +337,7 @@ class Kegiatan extends CI_Controller
     {
         $this->global['pageTitle'] = 'Riwayat Kegiatan Harian';
         $userId = $this->session->userdata('userId');
-        $data['kegiatan'] = $this->kegiatan_model->getRiwayatKegiatanHarian();
+        $data['kegiatan'] = $this->kegiatan_model->getRiwayatKegiatanHarian($userId);
         $this->load->view('includes/header', $this->global);
         $this->load->view('kegiatan/riwayatKegiatanHarian', $data);
         $this->load->view('includes/footer');
