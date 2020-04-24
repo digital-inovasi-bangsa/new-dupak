@@ -160,7 +160,6 @@ class User extends CI_Controller
             $this->form_validation->set_rules('password', 'Password', 'required|max_length[20]');
             $this->form_validation->set_rules('cpassword', 'Confirm Password', 'trim|required|matches[password]|max_length[20]');
             $this->form_validation->set_rules('role', 'Role', 'trim|required|numeric');
-            $this->form_validation->set_rules('divisi', 'Divisi', 'trim|required');
             $this->form_validation->set_rules('nip', 'NIP', 'trim|required|numeric|xss_clean|is_unique[tbl_users.nip]');
             $this->form_validation->set_rules('mobile', 'Mobile Number', 'required|numeric|xss_clean|is_unique[tbl_users.mobile]');
             $this->form_validation->set_rules('jabatan', 'Jabatan', 'trim|required');
@@ -177,7 +176,6 @@ class User extends CI_Controller
                 $email = $this->input->post('email');
                 $password = $this->input->post('password');
                 $roleId = $this->input->post('role');
-                $idDivisi = $this->input->post('divisi');
                 $nip = $this->input->post('nip');
                 $mobile = $this->input->post('mobile');
                 $idJabatan = $this->input->post('jabatan');
@@ -198,7 +196,6 @@ class User extends CI_Controller
                     'password' => md5($password),
                     'roleId' => $roleId,
                     'name' => $name,
-                    'tbl_divisi_idDivisi' => $idDivisi,
                     'nip' => $nip,
                     'mobile' => $mobile,
                     'createdBy' => $this->vendorId,
@@ -253,7 +250,6 @@ class User extends CI_Controller
             }
 
             $data['roles'] = $this->user_model->getUserRoles();
-            $data['divisi'] = $this->user_model->getUserDivisi();
             $data['jabatan'] = $this->user_model->getUserJabatanInfo();
             $data['pangkat'] = $this->user_model->getUserPangkat();
             $data['userInfo'] = $this->user_model->getUserInfo($userId);
@@ -289,7 +285,6 @@ class User extends CI_Controller
             $this->form_validation->set_rules('cpassword', 'Confirm Password', 'matches[password]|max_length[20]');
             $this->form_validation->set_rules('role', 'Role', 'trim|required|numeric');
             $this->form_validation->set_rules('mobile', 'Mobile Number', 'required|min_length[10]|xss_clean');
-            $this->form_validation->set_rules('divisi', 'Divisi', 'trim|required');
             $this->form_validation->set_rules('nip', 'NIP', 'trim|required|numeric');
             $this->form_validation->set_rules('jabatan', 'Jabatan', 'trim|required');
             $this->form_validation->set_rules('nomorSeriKartuPegawai', 'Nomor Seri Kartu Pegawai', 'trim|required');
@@ -306,7 +301,6 @@ class User extends CI_Controller
                 $email = $this->input->post('email');
                 $password = $this->input->post('password');
                 $roleId = $this->input->post('role');
-                $idDivisi = $this->input->post('divisi');
                 $nip = $this->input->post('nip');
                 $mobile = $this->input->post('mobile');
                 $idJabatan = $this->input->post('jabatan');

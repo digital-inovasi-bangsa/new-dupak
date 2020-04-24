@@ -113,12 +113,6 @@
                 </a>
               </li>
               <li>
-                <a href="<?php echo base_url(); ?>divisi/divisiListing">
-                  <i class="fa fa-plane"></i>
-                  <span>Divisi</span>
-                </a>
-              </li>
-              <li>
                 <a href="<?php echo base_url(); ?>pangkat/pangkatListing">
                   <i class="fa fa-ticket"></i>
                   <span>Jabatan</span>
