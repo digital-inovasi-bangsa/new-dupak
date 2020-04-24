@@ -139,7 +139,8 @@ class Kegiatan_model extends CI_Model
     public function getRiwayatKegiatanHarian($id)
     {
         $this->db->select('bt.namaButir,tkh.tanggalMulai,tkh.tanggalSelesai, tkh.tanggalSelesai, tkh.status , bt.namaButir,
-        us.nip ,us.name, jj.namaJenjang , jb.namaJabatan , pk.namaPangkat,tkh.idKegiatanHarian, un.namaUnsur, sus.namaSubunsur');
+        us.nip ,us.name, jj.namaJenjang , jb.namaJabatan , pk.namaPangkat,tkh.idKegiatanHarian, un.namaUnsur, sus.namaSubunsur,
+        tkh.createdAt, tkh.updatedAt');
         $this->db->from('tbl_kegiatan_harian as tkh');
         $this->db->join('tbl_butir as bt', 'tkh.idButir = bt.idButir', 'left');
         $this->db->join('tbl_users as us', 'us.userId = tkh.userId', 'left');
