@@ -317,7 +317,7 @@ class Kegiatan extends CI_Controller
 
     public function approvalKegiatan()
     {
-        $this->global['pageTitle'] = 'Approval Kegiatan';
+        $this->global['pageTitle'] = 'Persetujuan Kegiatan';
         $userId = $this->session->userdata('userId');
         $data['kegiatan'] = $this->kegiatan_model->getKegiatanDiajukan();
         $this->load->view('includes/header', $this->global);

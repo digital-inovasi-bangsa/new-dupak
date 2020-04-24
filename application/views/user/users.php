@@ -12,16 +12,16 @@
       <?php $this->load->view('includes/_flash'); ?>
     </div>
 
-    <div class="row" style="width:100%">
+    <div class="row">
       <div class="col-xs-12">
         <div class="box">
           <div class="box-header">
-            <h3 class="box-title" style="margin-left: 12px"><?= $pageTitle; ?></h3>
+            <h3 class="box-title"><?= $pageTitle; ?></h3>
           </div><!-- /.box-header -->
-          <div class="card">
-              <a class="btn btn-primary" style="margin-left: 20px;margin-bottom: -10px;" href="<?php echo base_url(); ?>user/addNew">Tambahkan Data</a>
+          <div class="box-body">
+              <a class="btn btn-primary" href="<?php echo base_url(); ?>user/addNew">Tambahkan Data</a>
             <div class="box-body table-responsive no-padding">
-              <div class="card-body" style="padding: 20px;">
+              <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                     <tr>
