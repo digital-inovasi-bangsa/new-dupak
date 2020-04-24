@@ -66,7 +66,47 @@
     </div>
   </section>
 </div>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/deleteButir.js" charset="utf-8"></script>
+<script>
+  jQuery(document).ready(function () {
+
+    jQuery(document).on("click", ".deleteButir", function () {
+      var idButir = $(this).data("idbutir"),
+        hitURL = '<?php echo base_url() ?>' + 'butir/deleteButir',
+        currentRow = $(this);
+
+      var confirmation = confirm("Are you sure to delete this butir ?");
+
+      if (confirmation) {
+        jQuery.ajax({
+          type: "POST",
+          dataType: "json",
+          url: hitURL,
+          data: {
+            idButir: idButir,
+            '<?php echo $this->security->get_csrf_token_name(); ?>': '<?php echo $this->security->get_csrf_hash(); ?>'
+          }
+        }).done(function (data) {
+          console.log(data);
+          currentRow.parents('tr').remove();
+          if (data.status = true) {
+            alert("Butir successfully deleted");
+            location.reload();
+          } else if (data.status = false) {
+            alert("Butir deletion failed");
+          } else {
+            alert("Access denied..!");
+          }
+        });
+      }
+    });
+
+
+    jQuery(document).on("click", ".searchList", function () {
+
+    });
+
+  });
+</script>
 <script>
   $(function () {
     $("#example1").DataTable({

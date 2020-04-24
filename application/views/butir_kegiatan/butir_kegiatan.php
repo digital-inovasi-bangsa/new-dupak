@@ -68,7 +68,71 @@
     </div>
   </section>
 </div>
-<script src="http://localhost/DIB/new-dupak/assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="https://adminlte.io/themes/AdminLTE/bower_components/jquery-ui/jquery-ui.min.js" type="text/javascript">
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "columns": [{
+          "width": "5%"
+        },
+        {
+          "width": "30%"
+        },
+        {
+          "width": "30%"
+        },
+        {
+          "width": "10%"
+        }
+      ],
+      "paging": true,
+      "lengthChange": false,
+      "searching": true,
+      "ordering": true,
+      "info": false,
+      "autoWidth": false,
+      "pageLength": 5
+    });
+  });
 </script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/deleteButirKegiatan.js" charset="utf-8"></script>
+<script>
+  jQuery(document).ready(function () {
+
+    jQuery(document).on("click", ".deleteButirKegiatan", function () {
+      var idButirKegiatan = $(this).data("idbutirkegiatan"),
+        hitURL = '<?php echo base_url() ?>' + 'butir_kegiatan/deleteButir',
+        currentRow = $(this);
+
+      var confirmation = confirm("Are you sure to delete this butir ?");
+
+      if (confirmation) {
+        jQuery.ajax({
+          type: "POST",
+          dataType: "json",
+          url: hitURL,
+          data: {
+            idButirKegiatan: idButirKegiatan,
+            '<?php echo $this->security->get_csrf_token_name(); ?>': '<?php echo $this->security->get_csrf_hash(); ?>'
+          }
+        }).done(function (data) {
+          console.log(data);
+          currentRow.parents('tr').remove();
+          if (data.status = true) {
+            alert("Butir successfully deleted");
+            location.reload();
+          } else if (data.status = false) {
+            alert("Butir deletion failed");
+          } else {
+            alert("Access denied..!");
+          }
+        });
+      }
+    });
+
+
+    jQuery(document).on("click", ".searchList", function () {
+
+    });
+
+  });
+</script>
+
