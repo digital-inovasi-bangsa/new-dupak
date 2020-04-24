@@ -157,7 +157,8 @@
                 url: "<?php echo base_url();?>kegiatan/getSubunsur",
                 method: "POST",
                 data: {
-                    idUnsur: idUnsur
+                    idUnsur: idUnsur,
+                    '<?php echo $this->security->get_csrf_token_name(); ?>': '<?php echo $this->security->get_csrf_hash(); ?>'
                 },
                 async: false,
                 dataType: 'json',
@@ -183,7 +184,8 @@
                 url: "<?php echo base_url();?>kegiatan/getButirKegiatan",
                 method: "POST",
                 data: {
-                    idButir: idButir
+                    idButir: idButir,
+                    '<?php echo $this->security->get_csrf_token_name(); ?>': '<?php echo $this->security->get_csrf_hash(); ?>'
                 },
                 async: false,
                 dataType: 'json',
@@ -210,7 +212,8 @@
                 url: "<?php echo base_url();?>kegiatan/getButir",
                 method: "POST",
                 data: {
-                    idSubunsur: idSubunsur
+                    idSubunsur: idSubunsur,
+                    '<?php echo $this->security->get_csrf_token_name(); ?>': '<?php echo $this->security->get_csrf_hash(); ?>'
                 },
                 async: false,
                 dataType: 'json',

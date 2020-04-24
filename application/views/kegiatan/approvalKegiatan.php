@@ -28,7 +28,11 @@
                       <th>Nama</th>
                       <th>Pangkat</th>
                       <th>Jabatan</th>
+                      <th>Unsur</th>
+                      <th>Subunsur</th>
+                      <th>Butir</th>
                       <th>Tanggal Mulai-Selesai</th>
+                      <th>Tanggal Diajukan</th>
                       <th>Surat Tugas</th>
                       <th>Dokumentasi</th>
                       <th>Laporan Kegiatan</th>
@@ -49,7 +53,11 @@
                       <td><?php echo $record->name ?></td>
                       <td><?php echo $record->namaJabatan ?></td>
                       <td><?php echo $record->namaPangkat ?></td>
+                      <td><?php echo $record->namaUnsur ?></td>
+                      <td><?php echo $record->namaSubunsur ?></td>
+                      <td><?php echo $record->namaButir ?></td>
                       <td><?php echo $record->tanggalMulai ?> - <?php echo $record->tanggalSelesai ?></td>
+                      <td><?php echo $record->createdAt ?></td>
                       <td><a href="<?php echo base_url()?>upload/dokumentasi/<?php echo $record->path_surat_kegiatan ?>"
                           download><?php echo $record->path_surat_kegiatan ?></td>
                       <td><a href="<?php echo base_url()?>upload/dokumentasi/<?php echo $record->path_dokumentasi ?>"
@@ -105,6 +113,7 @@
           </div>
           <label>Ubah status</label>
           <select class="form-control" id="status" name="status">
+            <option value="0">-Pilih Status-</option>
             <option value="Diterima">Diterima</option>
             <option value="Ditolak">Ditolak</option>
           </select>

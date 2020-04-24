@@ -118,16 +118,19 @@ class Kegiatan_model extends CI_Model
     public function getKegiatanDiajukan()
     {
         $this->db->select('bt.namaButir,tkh.tanggalMulai,tkh.tanggalSelesai, tkh.tanggalSelesai ,
-        us.nip ,us.name, jj.namaJenjang , jb.namaJabatan , pk.namaPangkat,tkh.idKegiatanHarian,
-        dk.path_dokumentasi, dk.path_surat_kegiatan, dk.path_laporan_kegiatan');
+        us.nip ,us.name, jj.namaJenjang , jb.namaJabatan , pk.namaPangkat,tkh.idKegiatanHarian, tkh.createdAt,
+        dk.path_dokumentasi, dk.path_surat_kegiatan, dk.path_laporan_kegiatan, un.namaUnsur, sus.namaSubunsur');
         $this->db->from('tbl_kegiatan_harian as tkh');
         $this->db->join('tbl_butir as bt', 'tkh.idButir = bt.idButir', 'left');
         $this->db->join('tbl_users as us', 'us.userId = tkh.userId', 'left');
+        $this->db->join('tbl_unsur as un', 'un.idUnsur = tkh.idUnsur', 'left');
+        $this->db->join('tbl_subunsur as sus', 'sus.idSubunsur = tkh.idSubunsur', 'left');
         $this->db->join('tbl_jenjang as jj', 'jj.idJenjang = tkh.idJenjang', 'left');
         $this->db->join('tbl_jabatan as jb', 'jb.idJabatan = us.tbl_jabatan_idJabatan', 'left');
         $this->db->join('tbl_pangkat as pk', 'pk.idPangkat = jb.tbl_pangkat_idPangkat', 'left');
         $this->db->join('tbl_dokumen_kegiatan as dk', 'dk.idKegiatanHarian = tkh.idKegiatanHarian', 'full');
         $this->db->where('status', 'Diajukan');
+        $this->db->order_by('tkh.updatedAt', 'desc');
         $query = $this->db->get();
         return $query->result();
     }
@@ -188,7 +191,7 @@ class Kegiatan_model extends CI_Model
     public function getSpmk($id, $tahun, $bulanAwal, $bulanAkhir)
     {
         $sql = "SELECT tkh.idKegiatanHarian ,tkh.userId , un.namaUnsur, SUM(bk.`point`) as point,
-        tkh.tanggalMulai, tkh.tanggalSelesai from
+        tkh.tanggalMulai, tkh.tanggalSelesai, un.idUnsur from
         tbl_kegiatan_harian tkh
         JOIN tbl_unsur un ON un.idUnsur = tkh.idUnsur
         JOIN tbl_butir_kegiatan bk ON
@@ -207,8 +210,53 @@ class Kegiatan_model extends CI_Model
         }
     }
 
-    public function getTabelKegiatanSpmk($userId, $tahun, $bulanAwal, $bulanAkhir)
+    public function getTabelKegiatanSpmk($userId, $tahun, $bulanAwal, $bulanAkhir, $idUnsur)
     {
+        $sql = "SELECT tkh.idKegiatanHarian ,tkh.userId , bk.point as poin, un.namaUnsur,sus.namaSubunsur ,SUM(bk.`point`) as point,
+        tkh.tanggalMulai, tkh.tanggalSelesai, tkh.idButir , bk.keterangan, COUNT(bk.idButirKegiatan) as volume from 
+        tbl_kegiatan_harian tkh 
+        JOIN tbl_unsur un ON un.idUnsur = tkh.idUnsur 
+        JOIn tbl_subunsur sus On sus.idSubunsur = un.idUnsur 
+        JOIN tbl_butir_kegiatan bk ON 
+        JSON_CONTAINS(tkh.butirKegiatan , CAST(bk.idButirKegiatan as JSON), '$')
+        WHERE tkh.userId = $userId AND tkh.tanggalSelesai BETWEEN '$tahun-$bulanAwal-01' AND '$tahun-$bulanAkhir-01' AND tkh.status ='Diterima' AND un.idUnsur = $idUnsur
+        GROUP BY bk.idButirKegiatan 
+        ORDER BY tkh.tanggalMulai";
+        //execute query
+        $query = $this->db->query($sql);
+        if ($query->num_rows() > 0) {
+            $result = $query->result_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return array();
+        }
+    }
+
+    public function getTabelKegiatanSpmkTotal($userId, $tahun, $bulanAwal, $bulanAkhir, $idUnsur)
+    {
+        $sql = "SELECT SUM(rst.jumlahVolume) as volume, SUM(rst.point) as poin from (
+            SELECT SUM(bk.`point`) as point, COUNT(bk.idButirKegiatan) as jumlahVolume from 
+            tbl_kegiatan_harian tkh
+            JOIN tbl_unsur un ON un.idUnsur = tkh.idUnsur 
+            JOIN tbl_subunsur sus On sus.idSubunsur = un.idUnsur 
+            JOIN tbl_butir_kegiatan bk ON 
+            JSON_CONTAINS(tkh.butirKegiatan , CAST(bk.idButirKegiatan as JSON), '$')
+            WHERE tkh.userId = $userId AND tkh.tanggalSelesai BETWEEN '$tahun-$bulanAwal-01' AND '$tahun-$bulanAkhir-01' AND tkh.status = 'Diterima' AND un.idUnsur = $idUnsur
+            GROUP BY tkh.idKegiatanHarian
+            ORDER BY tkh.tanggalMulai) as rst;";
+        //execute query
+        $query = $this->db->query($sql);
+        if ($query->num_rows() > 0) {
+            $result = $query->result();
+            $query->free_result();
+            return $result;
+        } else {
+            return array();
+        }
+    }
+
+    public function getTabelKegiatanDupak($userId, $tahun, $bulanAwal, $bulanAkhir){
         $sql = "SELECT tkh.idKegiatanHarian ,tkh.userId , bk.point as poin, un.namaUnsur,sus.namaSubunsur ,SUM(bk.`point`) as point,
         tkh.tanggalMulai, tkh.tanggalSelesai, tkh.idButir , bk.keterangan, COUNT(bk.idButirKegiatan) as volume from 
         tbl_kegiatan_harian tkh 
@@ -230,8 +278,7 @@ class Kegiatan_model extends CI_Model
         }
     }
 
-    public function getTabelKegiatanSpmkTotal($userId, $tahun, $bulanAwal, $bulanAkhir)
-    {
+    public function getTabelKegiatanDupakTotal($userId, $tahun, $bulanAwal, $bulanAkhir){
         $sql = "SELECT SUM(rst.jumlahVolume) as volume, SUM(rst.point) as poin from (
             SELECT SUM(bk.`point`) as point, COUNT(bk.idButirKegiatan) as jumlahVolume from 
             tbl_kegiatan_harian tkh

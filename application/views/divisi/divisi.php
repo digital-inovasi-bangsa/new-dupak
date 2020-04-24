@@ -91,6 +91,7 @@
           if (data.status == true) {
             console.log('berhasil');
             alert("Divisi successfully deleted");
+            location.reload();
           } else if (data.status == false) {
             console.log('gagal');
             alert("Divisi deletion failed");
