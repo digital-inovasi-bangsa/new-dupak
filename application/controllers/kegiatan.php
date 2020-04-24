@@ -462,7 +462,7 @@ class Kegiatan extends CI_Controller
         if ($bulan == '' && $tahun == '') {
             if ($data['bulan'] >= 01 && $data['bulan'] <= 06) {
                 $data['periode'] = "Jan-Jun " . $tahun;
-                $data['total'] = $this->kegiatan_model->getTabelKegiatanSpmkTotal($userId, $data['tahun'], 01, 06);
+                $data['total'] = $this->kegiatan_model->getTabelKegiatanDupakTotal($userId, $data['tahun'], 01, 06);
                 $subunsur = [];
                 $butir = [];
                 foreach ($array['unsur'] as $row) {
@@ -517,7 +517,7 @@ class Kegiatan extends CI_Controller
                 }
             } else {
                 $data['periode'] = "Jul-Des " . $tahun;
-                $data['total'] = $this->kegiatan_model->getTabelKegiatanSpmkTotal($userId, $data['tahun'], 07, 12);
+                $data['total'] = $this->kegiatan_model->getTabelKegiatanDupakTotal($userId, $data['tahun'], 07, 12);
                 $subunsur = [];
                 $butir = [];
                 foreach ($array['unsur'] as $row) {
@@ -574,7 +574,7 @@ class Kegiatan extends CI_Controller
         } else {
             if ($bulan >= 01 && $bulan <= 06) {
                 $data['periode'] = "Jan-Jun " . $tahun;
-                $data['total'] = $this->kegiatan_model->getTabelKegiatanSpmkTotal($userId, $data['tahun'], 01, 06);
+                $data['total'] = $this->kegiatan_model->getTabelKegiatanDupakTotal($userId, $data['tahun'], 01, 06);
                 $subunsur = [];
                 $butir = [];
                 foreach ($array['unsur'] as $row) {
@@ -629,7 +629,7 @@ class Kegiatan extends CI_Controller
                 }
             } else {
                 $data['periode'] = "Jul-Des " . $tahun;
-                $data['total'] = $this->kegiatan_model->getTabelKegiatanSpmkTotal($userId, $data['tahun'], 07, 12);
+                $data['total'] = $this->kegiatan_model->getTabelKegiatanDupakTotal($userId, $data['tahun'], 07, 12);
                 $subunsur = [];
                 $butir = [];
                 foreach ($array['unsur'] as $row) {
@@ -708,7 +708,7 @@ class Kegiatan extends CI_Controller
         if ($bulan == '' && $tahun == '') {
             if ($data['bulan'] >= 01 && $data['bulan'] <= 06) {
                 $data['periode'] = "Jan-Jun " . $tahun;
-                $data['total'] = $this->kegiatan_model->getTabelKegiatanSpmkTotal($userId, $data['tahun'], 01, 06);
+                $data['total'] = $this->kegiatan_model->getTabelKegiatanDupakTotal($userId, $data['tahun'], 01, 06);
                 $subunsur = [];
                 $butir = [];
                 foreach ($array['unsur'] as $row) {
@@ -763,7 +763,7 @@ class Kegiatan extends CI_Controller
                 }
             } else {
                 $data['periode'] = "Jul-Des " . $tahun;
-                $data['total'] = $this->kegiatan_model->getTabelKegiatanSpmkTotal($userId, $data['tahun'], 07, 12);
+                $data['total'] = $this->kegiatan_model->getTabelKegiatanDupakTotal($userId, $data['tahun'], 07, 12);
                 $subunsur = [];
                 $butir = [];
                 foreach ($array['unsur'] as $row) {
@@ -820,7 +820,7 @@ class Kegiatan extends CI_Controller
         } else {
             if ($bulan >= 01 && $bulan <= 06) {
                 $data['periode'] = "Jan-Jun " . $tahun;
-                $data['total'] = $this->kegiatan_model->getTabelKegiatanSpmkTotal($userId, $data['tahun'], 01, 06);
+                $data['total'] = $this->kegiatan_model->getTabelKegiatanDupakTotal($userId, $data['tahun'], 01, 06);
                 $subunsur = [];
                 $butir = [];
                 foreach ($array['unsur'] as $row) {
@@ -873,9 +873,10 @@ class Kegiatan extends CI_Controller
                     //$temp['subunsur'] = $rst;
                     array_push($subunsur, $temp);
                 }
+
             } else {
                 $data['periode'] = "Jul-Des " . $tahun;
-                $data['total'] = $this->kegiatan_model->getTabelKegiatanSpmkTotal($userId, $data['tahun'], 07, 12);
+                $data['total'] = $this->kegiatan_model->getTabelKegiatanDupakTotal($userId, $data['tahun'], 07, 12);
                 $subunsur = [];
                 $butir = [];
                 foreach ($array['unsur'] as $row) {
@@ -936,6 +937,8 @@ class Kegiatan extends CI_Controller
         $lamaKerja = $this->datediff($mulaiKerja, $tanggalSekarang);
         $data['lamaKerja'] = $lamaKerja;
         $data['unsur'] = $subunsur;
+        echo '<pre>',print_r($data['unsur']),'</pre>';
+        die;
         $this->load->view('includes/header', $this->global);
         $this->load->view('kegiatan/dupak', $data);
         $this->load->view('includes/footer');
@@ -955,7 +958,7 @@ class Kegiatan extends CI_Controller
         if ($bulan == '' && $tahun == '') {
             if ($data['bulan'] >= 01 && $data['bulan'] <= 06) {
                 $data['periode'] = "Jan-Jun " . $tahun;
-                $data['total'] = $this->kegiatan_model->getTabelKegiatanSpmkTotal($userId, $data['tahun'], 01, 06);
+                $data['total'] = $this->kegiatan_model->getTabelKegiatanDupakTotal($userId, $data['tahun'], 01, 06);
                 $subunsur = [];
                 $butir = [];
                 foreach ($array['unsur'] as $row) {
@@ -1010,7 +1013,7 @@ class Kegiatan extends CI_Controller
                 }
             } else {
                 $data['periode'] = "Jul-Des " . $tahun;
-                $data['total'] = $this->kegiatan_model->getTabelKegiatanSpmkTotal($userId, $data['tahun'], 07, 12);
+                $data['total'] = $this->kegiatan_model->getTabelKegiatanDupakTotal($userId, $data['tahun'], 07, 12);
                 $subunsur = [];
                 $butir = [];
                 foreach ($array['unsur'] as $row) {
@@ -1067,7 +1070,7 @@ class Kegiatan extends CI_Controller
         } else {
             if ($bulan >= 01 && $bulan <= 06) {
                 $data['periode'] = "Jan-Jun " . $tahun;
-                $data['total'] = $this->kegiatan_model->getTabelKegiatanSpmkTotal($userId, $data['tahun'], 01, 06);
+                $data['total'] = $this->kegiatan_model->getTabelKegiatanDupakTotal($userId, $data['tahun'], 01, 06);
                 $subunsur = [];
                 $butir = [];
                 foreach ($array['unsur'] as $row) {
@@ -1122,7 +1125,7 @@ class Kegiatan extends CI_Controller
                 }
             } else {
                 $data['periode'] = "Jul-Des " . $tahun;
-                $data['total'] = $this->kegiatan_model->getTabelKegiatanSpmkTotal($userId, $data['tahun'], 07, 12);
+                $data['total'] = $this->kegiatan_model->getTabelKegiatanDupakTotal($userId, $data['tahun'], 07, 12);
                 $subunsur = [];
                 $butir = [];
                 foreach ($array['unsur'] as $row) {

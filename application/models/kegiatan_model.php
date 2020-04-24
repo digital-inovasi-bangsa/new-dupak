@@ -253,6 +253,50 @@ class Kegiatan_model extends CI_Model
         }
     }
 
+    public function getTabelKegiatanDupak($userId, $tahun, $bulanAwal, $bulanAkhir){
+        $sql = "SELECT tkh.idKegiatanHarian ,tkh.userId , bk.point as poin, un.namaUnsur,sus.namaSubunsur ,SUM(bk.`point`) as point,
+        tkh.tanggalMulai, tkh.tanggalSelesai, tkh.idButir , bk.keterangan, COUNT(bk.idButirKegiatan) as volume from 
+        tbl_kegiatan_harian tkh 
+        JOIN tbl_unsur un ON un.idUnsur = tkh.idUnsur 
+        JOIn tbl_subunsur sus On sus.idSubunsur = un.idUnsur 
+        JOIN tbl_butir_kegiatan bk ON 
+        JSON_CONTAINS(tkh.butirKegiatan , CAST(bk.idButirKegiatan as JSON), '$')
+        WHERE tkh.userId = $userId AND tkh.tanggalSelesai BETWEEN '$tahun-$bulanAwal-01' AND '$tahun-$bulanAkhir-01' AND tkh.status ='Diterima'
+        GROUP BY bk.idButirKegiatan 
+        ORDER BY tkh.tanggalMulai";
+        //execute query
+        $query = $this->db->query($sql);
+        if ($query->num_rows() > 0) {
+            $result = $query->result_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return array();
+        }
+    }
+
+    public function getTabelKegiatanDupakTotal($userId, $tahun, $bulanAwal, $bulanAkhir){
+        $sql = "SELECT SUM(rst.jumlahVolume) as volume, SUM(rst.point) as poin from (
+            SELECT SUM(bk.`point`) as point, COUNT(bk.idButirKegiatan) as jumlahVolume from 
+            tbl_kegiatan_harian tkh
+            JOIN tbl_unsur un ON un.idUnsur = tkh.idUnsur 
+            JOIN tbl_subunsur sus On sus.idSubunsur = un.idUnsur 
+            JOIN tbl_butir_kegiatan bk ON 
+            JSON_CONTAINS(tkh.butirKegiatan , CAST(bk.idButirKegiatan as JSON), '$')
+            WHERE tkh.userId = $userId AND tkh.tanggalSelesai BETWEEN '$tahun-$bulanAwal-01' AND '$tahun-$bulanAkhir-01' AND tkh.status = 'Diterima'
+            GROUP BY tkh.idKegiatanHarian
+            ORDER BY tkh.tanggalMulai) as rst;";
+        //execute query
+        $query = $this->db->query($sql);
+        if ($query->num_rows() > 0) {
+            $result = $query->result();
+            $query->free_result();
+            return $result;
+        } else {
+            return array();
+        }
+    }
+
     public function getPointButir($userId, $tahun, $bulanAwal, $bulanAkhir, $idButir)
     {
         $sql = "SELECT tkh.idButir,bt.namaButir, sum(`point`) as point FROM tbl_kegiatan_harian tkh
