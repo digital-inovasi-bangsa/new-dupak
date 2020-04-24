@@ -25,7 +25,7 @@ class Butir extends CI_Controller
      */
     public function index()
     {
-        $this->global['pageTitle'] = 'Dupak : Butir';
+        $this->global['pageTitle'] = 'Butir';
         
         $this->load->view('includes/header', $this->global);
         $this->load->view('butir/butir');
@@ -82,7 +82,7 @@ class Butir extends CI_Controller
      */
     function loadThis()
     {
-        $this->global['pageTitle'] = 'Dupak : Access Denied';
+        $this->global['pageTitle'] = 'Akses Ditolak';
         
         $this->load->view('includes/header', $this->global);
         $this->load->view('access');
@@ -109,7 +109,7 @@ class Butir extends CI_Controller
         else
         {                 
             $data['butirRecords'] = $this->butir_model->butirListing();
-            $this->global['pageTitle'] = 'Dupak : Butir Listing';
+            $this->global['pageTitle'] = 'Daftar Butir';
             $this->load->view('includes/header', $this->global);
             $this->load->view('butir/butir', $data);
             $this->load->view('includes/footer');
@@ -127,7 +127,7 @@ class Butir extends CI_Controller
             $this->load->model('butir_model');
             $data['subunsur'] = $this->butir_model->getUserSubunsur();
             
-            $this->global['pageTitle'] = 'Dupak : Add New Butir';
+            $this->global['pageTitle'] = 'Tambahkan Data Butir';
             $this->load->view('includes/header', $this->global);
             $this->load->view('butir/addNew', $data);
             $this->load->view('includes/footer');
@@ -216,7 +216,7 @@ class Butir extends CI_Controller
             }
             $data['butirInfo'] = $this->butir_model->getButirInfo($userId);
             $data['subunsur'] = $this->butir_model->getUserSubunsur();
-            $this->global['pageTitle'] = 'Dupak : Edit Subunsur';
+            $this->global['pageTitle'] = 'Ubah Butir';
             $this->load->view('includes/header', $this->global);
             $this->load->view('butir/editOld', $data);
             $this->load->view('includes/footer');

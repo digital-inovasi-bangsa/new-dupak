@@ -1,7 +1,7 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            Master Unsur
+        <?= $pageTitle; ?>
             <small>Tambah, Ubah, Hapus</small>
         </h1>
     </section>
@@ -10,10 +10,10 @@
 
         <div class="row">
             <!-- left column -->
-            <div class="col-md-8">
-                <div class="box box-primary">
+            <div class="col-md-6">
+                <div class="box box-warning">
                     <div class="box-header">
-                        <h3 class="box-title">Tambahkan Data Unsur</h3>
+                        <h3 class="box-title"><?= $pageTitle; ?></h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
 
@@ -23,13 +23,6 @@
                         <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
                         <div class="box-body">
                             <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="fname">Nama Sub unsur</label>
-                                        <input type="text" class="form-control required" id="fsubunsur" name="fsubunsur"
-                                            maxlength="128">
-                                    </div>
-                                </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="role">Pilih Unsur</label>
@@ -50,11 +43,18 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="fname">Nama Sub unsur</label>
+                                        <input type="text" class="form-control required" id="fsubunsur" name="fsubunsur"
+                                            maxlength="128">
+                                    </div>
+                                </div>
                             </div>
                          </div><!-- /.box-body -->
 
                         <div class="box-footer">
-                            <input type="submit" class="btn btn-primary" value="Submit" />
+                            <input type="submit" class="btn btn-primary pull-right" value="Simpan" />
                             <input type="reset" class="btn btn-default" value="Reset" />
                         </div>
                     </form>

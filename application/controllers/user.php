@@ -30,8 +30,11 @@ class User extends CI_Controller
     public function index()
     {
         $this->global['pageTitle'] = 'Dashboard';
+        $userId = $this->session->userdata('userId');
         $data['jumlahUser'] = $this->user_model->userListingCount();
         $data['jumlahKegiatan'] = $this->kegiatan_model->getKegiatanDiajukanCount();
+        $data['kegiatanPegawaiDiterima'] = $this->user_model->getPoint($userId, 'diterima');
+        $data['kegiatanPegawaiDitolak'] = $this->user_model->getPoint($userId, 'ditolak');
         $this->load->view('includes/header', $this->global);
         $this->load->view('dashboard', $data);
         $this->load->view('includes/footer');
@@ -89,7 +92,7 @@ class User extends CI_Controller
      */
     public function loadThis()
     {
-        $this->global['pageTitle'] = 'Dupak : Access Denied';
+        $this->global['pageTitle'] = 'Akses Ditolak';
 
         $this->load->view('includes/header', $this->global);
         $this->load->view('access');
@@ -116,7 +119,7 @@ class User extends CI_Controller
         } else {
             $this->load->model('user_model');
             $data['userRecords'] = $this->user_model->userListing();
-            $this->global['pageTitle'] = 'Dupak : User Listing';
+            $this->global['pageTitle'] = 'Daftar Pegawai';
             $this->load->view('includes/header', $this->global);
             $this->load->view('user/users', $data);
             $this->load->view('includes/footer');
@@ -135,7 +138,7 @@ class User extends CI_Controller
             $data['roles'] = $this->user_model->getUserRoles();
             $data['divisi'] = $this->user_model->getUserDivisi();
             $data['pangkat'] = $this->user_model->getUserPangkat();
-            $this->global['pageTitle'] = 'Dupak : Add New User';
+            $this->global['pageTitle'] = 'Tambahkan Data Pegawai';
             $this->load->view('includes/header', $this->global);
             $this->load->view('user/addNew', $data);
             $this->load->view('includes/footer');
@@ -254,7 +257,7 @@ class User extends CI_Controller
             $data['jabatan'] = $this->user_model->getUserJabatanInfo();
             $data['pangkat'] = $this->user_model->getUserPangkat();
             $data['userInfo'] = $this->user_model->getUserInfo($userId);
-            $this->global['pageTitle'] = 'Dupak : Edit User';
+            $this->global['pageTitle'] = 'Ubah Pegawai';
             $this->load->view('includes/header', $this->global);
             $this->load->view('user/editOld', $data);
             $this->load->view('includes/footer');

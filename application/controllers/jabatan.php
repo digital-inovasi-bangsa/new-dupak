@@ -25,7 +25,7 @@ class Jabatan extends CI_Controller
      */
     public function index()
     {
-        $this->global['pageTitle'] = 'Dupak : Jabatan';
+        $this->global['pageTitle'] = 'Jabatan';
         
         $this->load->view('includes/header', $this->global);
         $this->load->view('jabatan/jabatan');
@@ -82,7 +82,7 @@ class Jabatan extends CI_Controller
      */
     function loadThis()
     {
-        $this->global['pageTitle'] = 'Dupak : Access Denied';
+        $this->global['pageTitle'] = 'Akses Ditolak';
         
         $this->load->view('includes/header', $this->global);
         $this->load->view('access');
@@ -109,7 +109,7 @@ class Jabatan extends CI_Controller
         else
         {                 
             $data['jabatanRecords'] = $this->jabatan_model->jabatanListing();
-            $this->global['pageTitle'] = 'Dupak : Jabatan Listing';
+            $this->global['pageTitle'] = 'Daftar Jabatan';
             $this->load->view('includes/header', $this->global);
             $this->load->view('jabatan/jabatan', $data);
             $this->load->view('includes/footer');
@@ -127,7 +127,7 @@ class Jabatan extends CI_Controller
             $this->load->model('jabatan_model');
             $data['pangkat'] = $this->jabatan_model->getUserPangkat();
             
-            $this->global['pageTitle'] = 'Dupak : Add New Jabatan';
+            $this->global['pageTitle'] = 'Tambahkan Data Jabatan';
             $this->load->view('includes/header', $this->global);
             $this->load->view('jabatan/addNew', $data);
             $this->load->view('includes/footer');
@@ -217,7 +217,7 @@ class Jabatan extends CI_Controller
             $data['jabatanInfo'] = $this->jabatan_model->getJabatanInfo($userId);
             $data['pangkat'] = $this->jabatan_model->getUserPangkat();
             // print_r($data);die;
-            $this->global['pageTitle'] = 'Dupak : Edit Jabatan';
+            $this->global['pageTitle'] = 'Edit Jabatan';
             $this->load->view('includes/header', $this->global);
             $this->load->view('jabatan/editOld', $data);
             $this->load->view('includes/footer');

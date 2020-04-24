@@ -19,18 +19,18 @@ if(!empty($roleInfo))
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Master Role
+        <?= $pageTitle; ?>
             <small>Tambah, Ubah, Hapus</small>
         </h1>
     </section>
     <section class="content">
         <div class="row">
             <!-- left column -->
-            <div class="col-md-8">
+            <div class="col-md-6">
                 <!-- general form elements -->
-                <div class="box box-primary">
+                <div class="box box-warning">
                     <div class="box-header">
-                        <h3 class="box-title">Ubah Data Role</h3>
+                        <h3 class="box-title"><?= $pageTitle; ?></h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     <form role="form" action="<?php echo base_url() ?>role/editRole" method="post" id="editRole"
@@ -41,7 +41,7 @@ if(!empty($roleInfo))
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="fname">Role Lengkap</label>
+                                        <label for="fname">Nama Hak Akses</label>
                                         <input type="text" class="form-control" id="frole" placeholder="Role Lengkap"
                                             name="frole" value="<?php echo $role; ?>" maxlength="128">
                                         <input type="hidden" value="<?php echo $roleId; ?>" name="roleId" />
@@ -51,7 +51,7 @@ if(!empty($roleInfo))
                         </div><!-- /.box-body -->
 
                         <div class="box-footer">
-                            <input type="submit" class="btn btn-primary" value="Submit" />
+                            <input type="submit" class="btn btn-primary pull-right" value="Perbaharui" />
                             <input type="reset" class="btn btn-default" value="Reset" />
                         </div>
                     </form>

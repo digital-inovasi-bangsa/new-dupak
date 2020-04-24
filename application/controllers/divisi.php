@@ -25,7 +25,7 @@ class Divisi extends CI_Controller
      */
     public function index()
     {
-        $this->global['pageTitle'] = 'Dupak : Divisi';
+        $this->global['pageTitle'] = 'Divisi';
         
         $this->load->view('includes/header', $this->global);
         $this->load->view('divisi/divisi');
@@ -82,7 +82,7 @@ class Divisi extends CI_Controller
      */
     function loadThis()
     {
-        $this->global['pageTitle'] = 'Dupak : Access Denied';
+        $this->global['pageTitle'] = 'Akses Ditolak';
         
         $this->load->view('includes/header', $this->global);
         $this->load->view('access');
@@ -113,7 +113,7 @@ class Divisi extends CI_Controller
             $count = $this->divisi_model->divisiListingCount();            
             $data['divisiRecords'] = $this->divisi_model->divisiListing();
             // print_r($data['userRecords']);die;            
-            $this->global['pageTitle'] = 'Lihat Divisi';
+            $this->global['pageTitle'] = 'Daftar Divisi';
             $this->load->view('includes/header', $this->global);
             $this->load->view('divisi/divisi', $data);
             $this->load->view('includes/footer');
@@ -218,7 +218,7 @@ class Divisi extends CI_Controller
                 redirect('divisi/divisiListing');
             }
             $data['divisiInfo'] = $this->divisi_model->getDivisiInfo($userId);
-            $this->global['pageTitle'] = 'Dupak : Edit Divisi';
+            $this->global['pageTitle'] = 'Ubah Divisi';
             $this->load->view('includes/header', $this->global);
             $this->load->view('divisi/editOld', $data);
             $this->load->view('includes/footer');

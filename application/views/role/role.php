@@ -2,7 +2,7 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Master Role
+      <?= $pageTitle; ?>
       <small>Tambah, Ubah, Hapus</small>
     </h1>
   </section>
@@ -16,11 +16,11 @@
       <div class="col-xs-12">
         <div class="box">
           <div class="box-header">
-            <h3 class="box-title" style="margin-left: 12px">List Role</h3>
+            <h3 class="box-title" style="margin-left: 12px"><?= $pageTitle; ?></h3>
           </div><!-- /.box-header -->
           <div class="card">
             <div class="form-group" style="margin-left: 20px;margin-bottom: -50px;">
-              <a class="btn btn-primary" href="<?php echo base_url(); ?>role/addNew">Add New</a>
+              <a class="btn btn-primary" href="<?php echo base_url(); ?>role/addNew">Tambahkan Data</a>
             </div>
             <div class="box-body table-responsive no-padding">
               <div class="card-body" style="padding: 20px;">
@@ -28,7 +28,7 @@
                   <thead>
                     <tr>
                       <th>No</th>
-                      <th>Nama Role</th>
+                      <th>Nama Hak Akses</th>
                       <th>Edit</th>
                     </tr>
                   </thead>
@@ -85,7 +85,7 @@
       "ordering": true,
       "info": false,
       "autoWidth": false,
-      "pageLength": 5
+      "pageLength": 10
     });
   });
 </script>

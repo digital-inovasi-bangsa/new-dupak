@@ -16,7 +16,7 @@
       <div class="col-xs-12">
         <div class="box">
           <div class="box-header">
-            <h3 class="box-title" style="margin-left: 12px">List Divisi</h3>
+            <h3 class="box-title" style="margin-left: 12px"><?= $pageTitle; ?></h3>
           </div><!-- /.box-header -->
           <div class="card">
             <div class="form-group" style="margin-left: 20px;margin-bottom: -50px;">

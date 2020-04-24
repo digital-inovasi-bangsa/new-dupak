@@ -15,7 +15,7 @@
             <!-- left column -->
             <div class="col-md-6">
                 <!-- general form elements -->
-                <div class="box box-primary">
+                <div class="box box-warning">
                     <div class="box-header">
                         <h3 class="box-title"><?= $pageTitle; ?></h3>
                     </div><!-- /.box-header -->
@@ -38,8 +38,8 @@
                         </div><!-- /.box-body -->
 
                         <div class="box-footer">
-                            <input type="submit" class="btn btn-primary pull-right" value="Submit" />
-                            <input type="reset" class="btn btn-default pull-right" value="Reset" />
+                            <input type="submit" class="btn btn-primary pull-right" value="Simpan" />
+                            <input type="reset" class="btn btn-default" value="Reset" />
                         </div>
                     </form>
                 </div>

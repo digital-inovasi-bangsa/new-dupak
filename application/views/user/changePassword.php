@@ -15,7 +15,7 @@
                 <!-- general form elements -->
                 <div class="box box-warning">
                     <div class="box-header">
-                        <h3 class="box-title">Masukan kata sandi</h3>
+                        <h3 class="box-title"><?= $pageTitle; ?></h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     <form role="form" action="<?php echo base_url() ?>changePassword" method="post">
@@ -50,7 +50,7 @@
                         </div><!-- /.box-body -->
 
                         <div class="box-footer">
-                            <input type="submit" class="btn btn-primary" value="Konfirmasi" />
+                            <input type="submit" class="btn btn-primary pull-right" value="Konfirmasi" />
                         </div>
                     </form>
                 </div>

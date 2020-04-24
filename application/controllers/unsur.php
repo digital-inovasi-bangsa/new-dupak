@@ -25,7 +25,7 @@ class Unsur extends CI_Controller
      */
     public function index()
     {
-        $this->global['pageTitle'] = 'Dupak : Unsur';
+        $this->global['pageTitle'] = 'Unsur';
         
         $this->load->view('includes/header', $this->global);
         $this->load->view('unsur/unsur');
@@ -82,7 +82,7 @@ class Unsur extends CI_Controller
      */
     function loadThis()
     {
-        $this->global['pageTitle'] = 'Dupak : Access Denied';
+        $this->global['pageTitle'] = 'Akses Ditolak';
         
         $this->load->view('includes/header', $this->global);
         $this->load->view('access');
@@ -112,7 +112,7 @@ class Unsur extends CI_Controller
             $data['searchText'] = $searchText;            
             $count = $this->unsur_model->unsurListingCount();            
             $data['unsurRecords'] = $this->unsur_model->unsurListing();            
-            $this->global['pageTitle'] = 'Dupak : Unsur Listing';
+            $this->global['pageTitle'] = 'Daftar Unsur';
             $this->load->view('includes/header', $this->global);
             $this->load->view('unsur/unsur', $data);
             $this->load->view('includes/footer');
@@ -127,7 +127,7 @@ class Unsur extends CI_Controller
         }
         else
         {            
-            $this->global['pageTitle'] = 'Dupak : Add New Unsur';
+            $this->global['pageTitle'] = 'Tambahkan Data Unsur';
             $this->load->view('includes/header', $this->global);
             $this->load->view('unsur/addNew');
             $this->load->view('includes/footer');
@@ -215,7 +215,7 @@ class Unsur extends CI_Controller
                 redirect('unsur/unsurListing');
             }
             $data['unsurInfo'] = $this->unsur_model->getUnsurInfo($userId);
-            $this->global['pageTitle'] = 'Dupak : Edit Unsur';
+            $this->global['pageTitle'] = 'Ubah Unsur';
             $this->load->view('includes/header', $this->global);
             $this->load->view('unsur/editOld', $data);
             $this->load->view('includes/footer');

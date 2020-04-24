@@ -10,7 +10,7 @@ jQuery(document).ready(function(){
 			hitURL = baseURL + "butir_kegiatan/deleteButir",
 			currentRow = $(this);
 		
-		var confirmation = confirm("Are you sure to delete this butir ?");
+		var confirmation = confirm("Apakah anda yakin ingin menghapus data butir ?");
 		
 		if(confirmation)
 		{
@@ -22,9 +22,9 @@ jQuery(document).ready(function(){
 			}).done(function(data){
 				console.log(data);
 				currentRow.parents('tr').remove();
-				if(data.status = true) { alert("Butir successfully deleted"); }
-				else if(data.status = false) { alert("Butir deletion failed"); }
-				else { alert("Access denied..!"); }
+				if(data.status = true) { alert("Butir Berhasil Di Hapus"); }
+				else if(data.status = false) { alert("Butir Gagal Di Hapus"); }
+				else { alert("Akses Ditolak..!"); }
 			});
 		}
 	});

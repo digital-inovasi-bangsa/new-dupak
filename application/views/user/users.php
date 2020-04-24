@@ -2,7 +2,7 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Master Pegawai
+    <?= $pageTitle; ?>
       <small>Tambah, Ubah, Hapus</small>
     </h1>
   </section>
@@ -16,10 +16,10 @@
       <div class="col-xs-12">
         <div class="box">
           <div class="box-header">
-            <h3 class="box-title" style="margin-left: 12px">List Pegawai</h3>
+            <h3 class="box-title" style="margin-left: 12px"><?= $pageTitle; ?></h3>
           </div><!-- /.box-header -->
           <div class="card">
-              <a class="btn btn-primary" style="margin-left: 20px;margin-bottom: -10px;" href="<?php echo base_url(); ?>user/addNew">Add New</a>
+              <a class="btn btn-primary" style="margin-left: 20px;margin-bottom: -10px;" href="<?php echo base_url(); ?>user/addNew">Tambahkan Data</a>
             <div class="box-body table-responsive no-padding">
               <div class="card-body" style="padding: 20px;">
                 <table id="example1" class="table table-bordered table-striped">

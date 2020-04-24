@@ -26,7 +26,7 @@ class Butir_Kegiatan extends CI_Controller
      */
     public function index()
     {
-        $this->global['pageTitle'] = 'Dupak : Butir Kegiatan';
+        $this->global['pageTitle'] = 'Butir Kegiatan';
         
         $this->load->view('includes/header', $this->global);
         $this->load->view('butir_kegiatan/butir_kegiatan');
@@ -83,7 +83,7 @@ class Butir_Kegiatan extends CI_Controller
      */
     function loadThis()
     {
-        $this->global['pageTitle'] = 'Dupak : Access Denied';
+        $this->global['pageTitle'] = 'Akses Ditolak';
         
         $this->load->view('includes/header', $this->global);
         $this->load->view('access');
@@ -110,7 +110,7 @@ class Butir_Kegiatan extends CI_Controller
         else
         {                 
             $data['butirKegiatanRecords'] = $this->butir_kegiatan_model->butirKegiatanListing();
-            $this->global['pageTitle'] = 'Dupak : Butir Kegiatan Listing';
+            $this->global['pageTitle'] = 'Daftar Butir Kegiatan';
             $this->load->view('includes/header', $this->global);
             $this->load->view('butir_kegiatan/butir_kegiatan', $data);
             $this->load->view('includes/footer');
@@ -126,7 +126,7 @@ class Butir_Kegiatan extends CI_Controller
         else
         {
             $data['butir'] = $this->butir_kegiatan_model->getUserButir();            
-            $this->global['pageTitle'] = 'Dupak : Add New Butir Kegiatan';
+            $this->global['pageTitle'] = 'Tambahkan Data Butir Kegiatan';
             $this->load->view('includes/header', $this->global);
             $this->load->view('butir_kegiatan/addNew', $data);
             $this->load->view('includes/footer');
@@ -218,7 +218,7 @@ class Butir_Kegiatan extends CI_Controller
             }
             $data['butirInfo'] = $this->butir_kegiatan_model->getButirInfo($userId);
             $data['butir'] = $this->butir_kegiatan_model->getUserButir();  
-            $this->global['pageTitle'] = 'Dupak : Edit Butir Kegiatan';
+            $this->global['pageTitle'] = 'Ubah Butir Kegiatan';
             $this->load->view('includes/header', $this->global);
             $this->load->view('butir_kegiatan/editOld', $data);
             $this->load->view('includes/footer');
