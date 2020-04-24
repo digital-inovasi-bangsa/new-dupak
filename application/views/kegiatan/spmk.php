@@ -20,7 +20,8 @@
                             <form role="form" id="cariSpmk" action="<?php echo base_url() ?>kegiatan/cariSpmk"
                                 method="post" role="form">
                                 <!-- CSRF Token -->
-                        <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
+                                <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>"
+                                    value="<?= $this->security->get_csrf_hash(); ?>" />
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Tahun</label>
@@ -55,7 +56,8 @@
                                 </div>
                                 <div class="col-md-1">
                                     <label></label>
-                                    <input style="margin-top: 23px" type="submit" class="btn btn-primary" value="Cari"> </input>
+                                    <input style="margin-top: 23px" type="submit" class="btn btn-primary" value="Cari">
+                                    </input>
                                 </div>
                             </form>
                         </div>
@@ -99,7 +101,8 @@
                                             <td><?php echo $record->tanggalMulai ?></td>
                                             <td><?php echo $record->tanggalSelesai ?></td>
                                             <td>
-                                            <a href="<?php echo base_url().'kegiatan/detailSpmk/'.$record->idKegiatanHarian.'/'.$tahun.'/'.$bulan ?>"><i
+                                                <a
+                                                    href="<?php echo base_url().'kegiatan/detailSpmk/'.$record->idKegiatanHarian.'/'.$tahun.'/'.$bulan.'/'.$record->idUnsur ?>"><i
                                                         class="fa fa-search">Lihat</i>&nbsp;&nbsp;&nbsp;</a>
                                             </td>
                                         </tr>

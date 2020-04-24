@@ -401,9 +401,11 @@ class Kegiatan extends CI_Controller
         $data['user'] = $this->kegiatan_model->getUser($userId);
         $tahun = $this->uri->segment(4);
         $bulan = $this->uri->segment(5);
+        $idUnsur = $this->uri->segment(6);
         $sessionArray = array(
             'tahunSpmk' => $tahun,
             'bulanSpmk' => $bulan,
+            'idUnsur' => $idUnsur
         );
         $this->session->set_userdata($sessionArray);
         if ($bulan >= 01 && $bulan <= 06) {
@@ -415,8 +417,8 @@ class Kegiatan extends CI_Controller
             $bulanAkhir = 12;
             $data['periode'] = "Jul-Des " . $tahun;
         }
-        $data['kegiatan'] = $this->kegiatan_model->getTabelKegiatanSpmk($userId, $tahun, $bulanAwal, $bulanAkhir);
-        $data['total'] = $this->kegiatan_model->getTabelKegiatanSpmkTotal($userId, $tahun, $bulanAwal, $bulanAkhir);
+        $data['kegiatan'] = $this->kegiatan_model->getTabelKegiatanSpmk($userId, $tahun, $bulanAwal, $bulanAkhir, $idUnsur);
+        $data['total'] = $this->kegiatan_model->getTabelKegiatanSpmkTotal($userId, $tahun, $bulanAwal, $bulanAkhir, $idUnsur);
         $this->global['pageTitle'] = 'Detail Spmk';
         $this->load->view('includes/header', $this->global);
         $this->load->view('kegiatan/detailSpmk', $data);
@@ -430,6 +432,7 @@ class Kegiatan extends CI_Controller
         $data['user'] = $this->kegiatan_model->getUser($userId);
         $tahun = $this->session->userdata('tahunSpmk');
         $bulan = $this->session->userdata('bulanSpmk');
+        $idUnsur = $this->session->userdata('idUnsur');
         if ($bulan >= 01 && $bulan <= 06) {
             $bulanAwal = 01;
             $bulanAkhir = 06;
@@ -439,8 +442,8 @@ class Kegiatan extends CI_Controller
             $bulanAkhir = 12;
             $data['periode'] = "Jul-Des " . $tahun;
         }
-        $data['kegiatan'] = $this->kegiatan_model->getTabelKegiatanSpmk($userId, $tahun, $bulanAwal, $bulanAkhir);
-        $data['total'] = $this->kegiatan_model->getTabelKegiatanSpmkTotal($userId, $tahun, $bulanAwal, $bulanAkhir);
+        $data['kegiatan'] = $this->kegiatan_model->getTabelKegiatanSpmk($userId, $tahun, $bulanAwal, $bulanAkhir, $idUnsur);
+        $data['total'] = $this->kegiatan_model->getTabelKegiatanSpmkTotal($userId, $tahun, $bulanAwal, $bulanAkhir, $idUnsur);
         $this->global['pageTitle'] = 'Detail Spmk';
         $this->load->view('kegiatan/printSpmk', $data);
     }

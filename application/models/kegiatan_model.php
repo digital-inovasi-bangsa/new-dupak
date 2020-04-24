@@ -188,7 +188,7 @@ class Kegiatan_model extends CI_Model
     public function getSpmk($id, $tahun, $bulanAwal, $bulanAkhir)
     {
         $sql = "SELECT tkh.idKegiatanHarian ,tkh.userId , un.namaUnsur, SUM(bk.`point`) as point,
-        tkh.tanggalMulai, tkh.tanggalSelesai from
+        tkh.tanggalMulai, tkh.tanggalSelesai, un.idUnsur from
         tbl_kegiatan_harian tkh
         JOIN tbl_unsur un ON un.idUnsur = tkh.idUnsur
         JOIN tbl_butir_kegiatan bk ON
@@ -207,7 +207,7 @@ class Kegiatan_model extends CI_Model
         }
     }
 
-    public function getTabelKegiatanSpmk($userId, $tahun, $bulanAwal, $bulanAkhir)
+    public function getTabelKegiatanSpmk($userId, $tahun, $bulanAwal, $bulanAkhir, $idUnsur)
     {
         $sql = "SELECT tkh.idKegiatanHarian ,tkh.userId , bk.point as poin, un.namaUnsur,sus.namaSubunsur ,SUM(bk.`point`) as point,
         tkh.tanggalMulai, tkh.tanggalSelesai, tkh.idButir , bk.keterangan, COUNT(bk.idButirKegiatan) as volume from 
@@ -216,7 +216,7 @@ class Kegiatan_model extends CI_Model
         JOIn tbl_subunsur sus On sus.idSubunsur = un.idUnsur 
         JOIN tbl_butir_kegiatan bk ON 
         JSON_CONTAINS(tkh.butirKegiatan , CAST(bk.idButirKegiatan as JSON), '$')
-        WHERE tkh.userId = $userId AND tkh.tanggalSelesai BETWEEN '$tahun-$bulanAwal-01' AND '$tahun-$bulanAkhir-01' AND tkh.status ='Diterima'
+        WHERE tkh.userId = $userId AND tkh.tanggalSelesai BETWEEN '$tahun-$bulanAwal-01' AND '$tahun-$bulanAkhir-01' AND tkh.status ='Diterima' AND un.idUnsur = $idUnsur
         GROUP BY bk.idButirKegiatan 
         ORDER BY tkh.tanggalMulai";
         //execute query
@@ -230,7 +230,7 @@ class Kegiatan_model extends CI_Model
         }
     }
 
-    public function getTabelKegiatanSpmkTotal($userId, $tahun, $bulanAwal, $bulanAkhir)
+    public function getTabelKegiatanSpmkTotal($userId, $tahun, $bulanAwal, $bulanAkhir, $idUnsur)
     {
         $sql = "SELECT SUM(rst.jumlahVolume) as volume, SUM(rst.point) as poin from (
             SELECT SUM(bk.`point`) as point, COUNT(bk.idButirKegiatan) as jumlahVolume from 
@@ -239,7 +239,7 @@ class Kegiatan_model extends CI_Model
             JOIN tbl_subunsur sus On sus.idSubunsur = un.idUnsur 
             JOIN tbl_butir_kegiatan bk ON 
             JSON_CONTAINS(tkh.butirKegiatan , CAST(bk.idButirKegiatan as JSON), '$')
-            WHERE tkh.userId = $userId AND tkh.tanggalSelesai BETWEEN '$tahun-$bulanAwal-01' AND '$tahun-$bulanAkhir-01' AND tkh.status = 'Diterima'
+            WHERE tkh.userId = $userId AND tkh.tanggalSelesai BETWEEN '$tahun-$bulanAwal-01' AND '$tahun-$bulanAkhir-01' AND tkh.status = 'Diterima' AND un.idUnsur = $idUnsur
             GROUP BY tkh.idKegiatanHarian
             ORDER BY tkh.tanggalMulai) as rst;";
         //execute query
