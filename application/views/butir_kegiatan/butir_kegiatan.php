@@ -68,7 +68,7 @@
     </div>
   </section>
 </div>
-<script src="http://localhost/DIB/new-dupak/assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="https://adminlte.io/themes/AdminLTE/bower_components/jquery-ui/jquery-ui.min.js" type="text/javascript">
 </script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/deleteButirKegiatan.js" charset="utf-8"></script>
