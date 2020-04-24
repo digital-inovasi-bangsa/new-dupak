@@ -25,7 +25,7 @@ class Pangkat extends CI_Controller
      */
     public function index()
     {
-        $this->global['pageTitle'] = 'Pangkat';
+        $this->global['pageTitle'] = 'Jabatan';
         
         $this->load->view('includes/header', $this->global);
         $this->load->view('pangkat/pangkat');
@@ -110,7 +110,7 @@ class Pangkat extends CI_Controller
         {
             $this->load->model('pangkat_model');                        
             $data['pangkatRecords'] = $this->pangkat_model->pangkatListing();
-            $this->global['pageTitle'] = 'Pangkat Listing';
+            $this->global['pageTitle'] = 'Daftar Jabatan';
             $this->load->view('includes/header', $this->global);
             $this->load->view('pangkat/pangkat', $data);
             $this->load->view('includes/footer');
@@ -131,7 +131,7 @@ class Pangkat extends CI_Controller
             $this->load->model('pangkat_model');
             $data['roles'] = $this->pangkat_model->getUserRoles();
             
-            $this->global['pageTitle'] = 'Tambahkan Data Pangkat';
+            $this->global['pageTitle'] = 'Tambahkan Data Jabatan';
             $this->load->view('includes/header', $this->global);
             $this->load->view('pangkat/addNew', $data);
             $this->load->view('includes/footer');
@@ -199,7 +199,7 @@ class Pangkat extends CI_Controller
             $this->load->model('pangkat_model');
             $data['pangkatInfo'] = $this->pangkat_model->getPangkatInfo($userId);
                    
-            $this->global['pageTitle'] = 'Ubah Pangkat';
+            $this->global['pageTitle'] = 'Ubah Jabatan';
             $this->load->view('includes/header', $this->global);
             $this->load->view('pangkat/editOld', $data);
             $this->load->view('includes/footer');

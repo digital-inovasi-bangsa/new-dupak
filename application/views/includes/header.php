@@ -116,7 +116,7 @@
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span></i>
               </a>
           </li>
-          <li class="treeview" style="height:auto;">
+          <li class="treeview active" style="height:auto;">
             <a href="#">
               <i class="fa fa-laptop"></i>
               <span>Master Data</span>
@@ -191,7 +191,7 @@
         <?php
             }
         ?>
-        <li class="treeview" style="height:auto;">
+        <li class="treeview active" style="height:auto;">
           <a href="#">
             <i class="fa fa-line-chart"></i>
             <span>Kegiatan</span>
