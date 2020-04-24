@@ -73,7 +73,7 @@
         hitURL = '<?php echo base_url() ?>' + 'unsur/deleteUnsur',
         currentRow = $(this);
 
-      var confirmation = confirm("Are you sure to delete this unsur ?");
+      var confirmation = confirm("Apakah kamu yakin menghapus data unsur ?");
 
       if (confirmation) {
         jQuery.ajax({
@@ -88,7 +88,7 @@
           console.log(data);
           currentRow.parents('tr').remove();
           if (data.status = true) {
-            alert("Unsur successfully deleted");
+            alert("Unsur Berhasil Dihapus!");
             location.reload();
           } else if (data.status = false) {
             alert("Unsur deletion failed");

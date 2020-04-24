@@ -35,9 +35,6 @@ if (!empty($data)) {
             <a href="<?php echo base_url(); ?>user/userListing" class="small-box-footer">Lebih Lanjut <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div><!-- ./col -->
-      <?php
-      }
-      ?>
       <div class="col-lg-3 col-xs-6">
         <!-- small box -->
         <div class="small-box bg-blue">
@@ -56,6 +53,9 @@ if (!empty($data)) {
               class="fa fa-arrow-circle-right"></i></a>
         </div>
       </div><!-- ./col -->
+      <?php
+      }
+      ?>
       <div class="col-lg-3 col-xs-6">
         <!-- small box -->
         <div class="small-box bg-green">

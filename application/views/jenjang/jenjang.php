@@ -73,7 +73,7 @@
         hitURL = '<?php echo base_url() ?>' + 'jenjang/deleteJenjang',
         currentRow = $(this);
 
-      var confirmation = confirm("Are you sure to delete this jenjang ?");
+      var confirmation = confirm("Apakah kamu yakin menghapus data jenjang ?");
 
       if (confirmation) {
         jQuery.ajax({
@@ -88,7 +88,7 @@
           console.log(data);
           currentRow.parents('tr').remove();
           if (data.status = true) {
-            alert("Jenjang successfully deleted");
+            alert("Jenjang Berhasil Dihapus!");
             location.reload();
           } else if (data.status = false) {
             alert("Jenjang deletion failed");

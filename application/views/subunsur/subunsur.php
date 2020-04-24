@@ -74,7 +74,7 @@
         hitURL = '<?php echo base_url() ?>' + 'subunsur/deleteSubunsur',
         currentRow = $(this);
 
-      var confirmation = confirm("Are you sure to delete this subunsur ?");
+      var confirmation = confirm("Apakah kamu yakin menghapus data subunsur ?");
 
       if (confirmation) {
         jQuery.ajax({
@@ -89,7 +89,7 @@
           console.log(data);
           currentRow.parents('tr').remove();
           if (data.status = true) {
-            alert("Subunsur successfully deleted");
+            alert("Subunsur Berhasil Dihapus!");
             location.reload();
           } else if (data.status = false) {
             alert("Subunsur deletion failed");

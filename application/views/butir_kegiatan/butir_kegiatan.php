@@ -102,7 +102,7 @@
         hitURL = '<?php echo base_url() ?>' + 'butir_kegiatan/deleteButir',
         currentRow = $(this);
 
-      var confirmation = confirm("Are you sure to delete this butir ?");
+      var confirmation = confirm("Apakah kamu yakin menghapus data butir ?");
 
       if (confirmation) {
         jQuery.ajax({
@@ -117,7 +117,7 @@
           console.log(data);
           currentRow.parents('tr').remove();
           if (data.status = true) {
-            alert("Butir successfully deleted");
+            alert("Butir Berhasil Dihapus!");
             location.reload();
           } else if (data.status = false) {
             alert("Butir deletion failed");

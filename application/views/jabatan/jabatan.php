@@ -74,7 +74,7 @@
         hitURL = '<?php echo base_url() ?>' + 'jabatan/deleteJabatan',
         currentRow = $(this);
 
-      var confirmation = confirm("Are you sure to delete this jabatan ?");
+      var confirmation = confirm("Apakah kamu yakin menghapus data jabatan ?");
 
       if (confirmation) {
         jQuery.ajax({
@@ -89,7 +89,7 @@
           console.log(data);
           currentRow.parents('tr').remove();
           if (data.status = true) {
-            alert("Jabatan successfully deleted");
+            alert("Jabatan Berhasil Dihapus!");
             location.reload();
           } else if (data.status = false) {
             alert("Jabatan deletion failed");

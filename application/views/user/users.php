@@ -89,7 +89,7 @@
         hitURL = '<?php echo base_url() ?>' + 'user/deleteUser',
         currentRow = $(this);
 
-      var confirmation = confirm("Are you sure to delete this Pegawai ?");
+      var confirmation = confirm("Apakah kamu yakin menghapus data Pegawai ?");
 
       if (confirmation) {
         jQuery.ajax({
@@ -104,7 +104,7 @@
           console.log(data);
           currentRow.parents('tr').remove();
           if (status = true) {
-            alert("User successfully deleted");
+            alert("User Berhasil Dihapus!");
             location.reload();
           } else if (status = false) {
             alert("User deletion failed");

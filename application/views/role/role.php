@@ -72,7 +72,7 @@
         hitURL = '<?php echo base_url() ?>' + 'role/deleteRole',
         currentRow = $(this);
 
-      var confirmation = confirm("Are you sure to delete this role ?");
+      var confirmation = confirm("Apakah kamu yakin menghapus data role ?");
 
       if (confirmation) {
         jQuery.ajax({
@@ -87,7 +87,7 @@
           console.log(data);
           currentRow.parents('tr').remove();
           if (data.status = true) {
-            alert("Role successfully deleted");
+            alert("Role Berhasil Dihapus!");
             location.reload();
           } else if (data.status = false) {
             alert("Role deletion failed");

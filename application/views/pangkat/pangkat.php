@@ -73,7 +73,7 @@
         hitURL = '<?php echo base_url() ?>' + 'pangkat/deletePangkat',
         currentRow = $(this);
 
-      var confirmation = confirm("Are you sure to delete this pangkat ?");
+      var confirmation = confirm("Apakah kamu yakin menghapus data pangkat ?");
 
       if (confirmation) {
         jQuery.ajax({
@@ -88,7 +88,7 @@
           console.log(data);
           currentRow.parents('tr').remove();
           if (data.status = true) {
-            alert("Pangkat successfully deleted");
+            alert("Pangkat Berhasil Dihapus!");
             location.reload();
           } else if (data.status = false) {
             alert("Pangkat deletion failed");
