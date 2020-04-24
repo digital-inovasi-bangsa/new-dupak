@@ -29,6 +29,8 @@
                       <th>Pangkat</th>
                       <th>Jabatan</th>
                       <th>Tanggal Mulai-Selesai</th>
+                      <th>Tanggal Diajukan</th>
+                      <th>Tanggal Diperbarui</th>
                       <th>Unsur</th>
                       <th>Subunsur</th>
                       <th>Butir Kegiatan</th>
@@ -50,6 +52,8 @@
                       <td><?php echo $record->namaJabatan ?></td>
                       <td><?php echo $record->namaPangkat ?></td>
                       <td><?php echo $record->tanggalMulai ?> - <?php echo $record->tanggalSelesai ?></td>
+                      <td><?php echo $record->createdAt ?></td>
+                      <td><?php echo $record->updatedAt ?></td>
                       <td><?php echo $record->namaUnsur ?></td>
                       <td><?php echo $record->namaSubunsur ?></td>
                       <td><?php echo $record->namaButir ?></td> <?php if($record->status=='Diterima') { ?>
