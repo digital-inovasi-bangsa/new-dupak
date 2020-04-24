@@ -131,7 +131,7 @@ $config['subclass_prefix'] = 'MY_';
 | DO NOT CHANGE THIS UNLESS YOU FULLY UNDERSTAND THE REPERCUSSIONS!!
 |
 */
-$config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-';
+$config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-&=?;->()';
 
 
 /*
@@ -270,7 +270,7 @@ $config['sess_time_to_update']	= 300;
 | 'cookie_secure' =  Cookies will only be set if a secure HTTPS connection exists.
 |
 */
-$config['cookie_prefix']	= "";
+$config['cookie_prefix']	= "im_";
 $config['cookie_domain']	= "";
 $config['cookie_path']		= "/";
 $config['cookie_secure']	= getenv('COOKIE_SECURE');

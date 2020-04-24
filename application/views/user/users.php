@@ -81,7 +81,47 @@
     </div>
   </section>
 </div>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/common.js" charset="utf-8"></script>
+<script>
+  jQuery(document).ready(function () {
+
+    jQuery(document).on('click', '.deleteUser', function () {
+      var userId = $(this).data('userid'),
+        hitURL = '<?php echo base_url() ?>' + 'user/deleteUser',
+        currentRow = $(this);
+
+      var confirmation = confirm("Are you sure to delete this Pegawai ?");
+
+      if (confirmation) {
+        jQuery.ajax({
+          type: "POST",
+          dataType: "json",
+          url: hitURL,
+          data: {
+            userId: userId,
+            '<?php echo $this->security->get_csrf_token_name(); ?>': '<?php echo $this->security->get_csrf_hash(); ?>'
+          }
+        }).done(function (data,status) {
+          console.log(data);
+          currentRow.parents('tr').remove();
+          if (status = true) {
+            alert("User successfully deleted");
+            location.reload();
+          } else if (status = false) {
+            alert("User deletion failed");
+          } else {
+            alert("Access denied..!");
+          }
+        });
+      }
+    });
+
+
+    jQuery(document).on("click", ".searchList", function () {
+
+    });
+
+  });
+</script>
 <script>
   $(function () {
     $("#example1").DataTable({

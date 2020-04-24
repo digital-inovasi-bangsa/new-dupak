@@ -65,7 +65,47 @@
     </div>
   </section>
 </div>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/deletePangkat.js" charset="utf-8"></script>
+<script>
+  jQuery(document).ready(function () {
+
+    jQuery(document).on("click", ".deletePangkat", function () {
+      var idPangkat = $(this).data("idpangkat"),
+        hitURL = '<?php echo base_url() ?>' + 'pangkat/deletePangkat',
+        currentRow = $(this);
+
+      var confirmation = confirm("Are you sure to delete this pangkat ?");
+
+      if (confirmation) {
+        jQuery.ajax({
+          type: "POST",
+          dataType: "json",
+          url: hitURL,
+          data: {
+            idPangkat: idPangkat,
+            '<?php echo $this->security->get_csrf_token_name(); ?>': '<?php echo $this->security->get_csrf_hash(); ?>'
+          }
+        }).done(function (data) {
+          console.log(data);
+          currentRow.parents('tr').remove();
+          if (data.status = true) {
+            alert("Pangkat successfully deleted");
+            location.reload();
+          } else if (data.status = false) {
+            alert("Pangkat deletion failed");
+          } else {
+            alert("Access denied..!");
+          }
+        });
+      }
+    });
+
+
+    jQuery(document).on("click", ".searchList", function () {
+
+    });
+
+  });
+</script>
 <script>
   $(function () {
     $("#example1").DataTable({

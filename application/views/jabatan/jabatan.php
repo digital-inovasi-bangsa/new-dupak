@@ -66,7 +66,47 @@
     </div>
   </section>
 </div>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/deleteJabatan.js" charset="utf-8"></script>
+<script>
+  jQuery(document).ready(function () {
+
+    jQuery(document).on("click", ".deleteJabatan", function () {
+      var idJabatan = $(this).data("idjabatan"),
+        hitURL = '<?php echo base_url() ?>' + 'jabatan/deleteJabatan',
+        currentRow = $(this);
+
+      var confirmation = confirm("Are you sure to delete this jabatan ?");
+
+      if (confirmation) {
+        jQuery.ajax({
+          type: "POST",
+          dataType: "json",
+          url: hitURL,
+          data: {
+            idJabatan: idJabatan,
+            '<?php echo $this->security->get_csrf_token_name(); ?>': '<?php echo $this->security->get_csrf_hash(); ?>'
+          }
+        }).done(function (data) {
+          console.log(data);
+          currentRow.parents('tr').remove();
+          if (data.status = true) {
+            alert("Jabatan successfully deleted");
+            location.reload();
+          } else if (data.status = false) {
+            alert("Jabatan deletion failed");
+          } else {
+            alert("Access denied..!");
+          }
+        });
+      }
+    });
+
+
+    jQuery(document).on("click", ".searchList", function () {
+
+    });
+
+  });
+</script>
 <script>
   $(function () {
     $("#example1").DataTable({

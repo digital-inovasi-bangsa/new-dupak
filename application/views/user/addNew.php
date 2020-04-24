@@ -273,7 +273,8 @@
                 url: "<?php echo base_url();?>user/callJabatan",
                 method: "POST",
                 data: {
-                    idPangkat: idPangkat
+                    idPangkat: idPangkat,
+                    '<?php echo $this->security->get_csrf_token_name(); ?>': '<?php echo $this->security->get_csrf_hash(); ?>'
                 },
                 async: false,
                 dataType: 'json',
