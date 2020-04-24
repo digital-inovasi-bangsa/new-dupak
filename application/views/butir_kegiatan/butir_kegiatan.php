@@ -1,7 +1,7 @@
 <div class="content-wrapper">
   <section class="content-header">
     <h1>
-      Master Butir Kegiatan
+      <?= $pageTitle; ?>
       <small>Tambah, Ubah, Hapus</small>
     </h1>
   </section>
@@ -15,11 +15,11 @@
       <div class="col-xs-12">
         <div class="box">
           <div class="box-header">
-            <h3 class="box-title" style="margin-left: 12px">List Butir</h3>
+            <h3 class="box-title" style="margin-left: 12px"><?= $pageTitle; ?></h3>
           </div><!-- /.box-header -->
           <div class="card">
             <div class="form-group" style="margin-left: 20px;">
-              <a class="btn btn-primary" href="<?php echo base_url(); ?>butir_kegiatan/addNew">Add New</a>
+              <a class="btn btn-primary" href="<?php echo base_url(); ?>butir_kegiatan/addNew">Tambahkan Data</a>
             </div>
             <div class="box-body table-responsive no-padding">
               <div class="card-body" style="padding: 20px;">

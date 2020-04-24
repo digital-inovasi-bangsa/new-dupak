@@ -10,7 +10,7 @@ jQuery(document).ready(function(){
 			hitURL = baseURL + "jabatan/deleteJabatan",
 			currentRow = $(this);
 		
-		var confirmation = confirm("Are you sure to delete this jabatan ?");
+		var confirmation = confirm("Apakah anda yakin ingin menghapus data jabatan ?");
 		
 		if(confirmation)
 		{
@@ -22,9 +22,9 @@ jQuery(document).ready(function(){
 			}).done(function(data){
 				console.log(data);
 				currentRow.parents('tr').remove();
-				if(data.status = true) { alert("Jabatan successfully deleted"); }
-				else if(data.status = false) { alert("Jabatan deletion failed"); }
-				else { alert("Access denied..!"); }
+				if(data.status = true) { alert("Jabatan Berhasil Di Hapus"); }
+				else if(data.status = false) { alert("Jabatan Gagal Di Hapus"); }
+				else { alert("Akses Ditolak..!"); }
 			});
 		}
 	});

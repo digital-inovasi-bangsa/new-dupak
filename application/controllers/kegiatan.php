@@ -17,7 +17,7 @@ class Kegiatan extends CI_Controller
 
     public function index()
     {
-        $this->global['pageTitle'] = 'Dupak : Kegiatan';
+        $this->global['pageTitle'] = 'Kegiatan';
         $userId = $this->session->userdata('userId');
         $data['kegiatan'] = $this->kegiatan_model->getTelahDiajukan($userId);
         $this->load->view('includes/header', $this->global);
@@ -60,7 +60,7 @@ class Kegiatan extends CI_Controller
 
     public function loadThis()
     {
-        $this->global['pageTitle'] = 'Dupak : Access Denied';
+        $this->global['pageTitle'] = 'Akses Ditolak';
 
         $this->load->view('includes/header', $this->global);
         $this->load->view('access');
@@ -115,7 +115,7 @@ class Kegiatan extends CI_Controller
             $data['pangkat'] = $this->user_model->getUserPangkat();
             $data['unsur'] = $this->kegiatan_model->unsurListing();
             $data['jenjang'] = $this->getJenjang($idJabatan);
-            $this->global['pageTitle'] = 'Dupak : Add New Kegiatan';
+            $this->global['pageTitle'] = 'Tambahkan Data Kegiatan';
             $this->load->view('includes/header', $this->global);
             $this->load->view('kegiatan/addNew', $data);
             $this->load->view('includes/footer');
@@ -193,9 +193,9 @@ class Kegiatan extends CI_Controller
                 $result = $this->kegiatan_model->addNewKegiatan($kegiatanInfo);
 
                 if ($result > 0) {
-                    $this->session->set_flashdata('success', 'New Kegiatan created successfully');
+                    $this->session->set_flashdata('success', 'Kegiatan Berhasil Ditambahkan');
                 } else {
-                    $this->session->set_flashdata('error', 'Kegiatan creation failed');
+                    $this->session->set_flashdata('error', 'Kegiatan Gagal Ditambahkan');
                 }
 
                 redirect('kegiatan');
@@ -205,7 +205,7 @@ class Kegiatan extends CI_Controller
 
     public function uploadBukti()
     {
-        $this->global['pageTitle'] = 'Dupak : Upload Bukti Kegiatan';
+        $this->global['pageTitle'] = 'Upload Bukti Kegiatan';
         $userId = $this->session->userdata('userId');
         $idKegiatanHarian = $this->uri->segment(3);
         $session = array(
@@ -291,9 +291,9 @@ class Kegiatan extends CI_Controller
                 'status' => 'Diajukan',
             );
             $status = $this->kegiatan_model->updateStatusKegiatan($statusInfo, $idKegiatanHarian);
-            $this->session->set_flashdata('success', 'New Dokumentasi Kegiatan created successfully');
+            $this->session->set_flashdata('success', 'Dokumen Kegiatan Berhasil Ditambahkan');
         } else {
-            $this->session->set_flashdata('error', 'Dokumentasi Kegiatan creation failed');
+            $this->session->set_flashdata('error', 'Dokumen Kegiatan Gagal Ditambahkan');
         }
 
         redirect('kegiatan');
@@ -307,7 +307,7 @@ class Kegiatan extends CI_Controller
             'status' => $status,
         );
         $status = $this->kegiatan_model->updateStatusKegiatan($statusInfo, $id);
-        //$this->session->set_flashdata('success', 'Data berhasil diupdate');
+        
         if ($status) {
             echo "true";
         } else {
@@ -317,7 +317,7 @@ class Kegiatan extends CI_Controller
 
     public function approvalKegiatan()
     {
-        $this->global['pageTitle'] = 'Dupak : Approval Kegiatan';
+        $this->global['pageTitle'] = 'Approval Kegiatan';
         $userId = $this->session->userdata('userId');
         $data['kegiatan'] = $this->kegiatan_model->getKegiatanDiajukan();
         $this->load->view('includes/header', $this->global);
@@ -327,7 +327,7 @@ class Kegiatan extends CI_Controller
 
     public function riwayatKegiatanHarian()
     {
-        $this->global['pageTitle'] = 'Dupak : Riwayat Kegiatan Harian';
+        $this->global['pageTitle'] = 'Riwayat Kegiatan Harian';
         $userId = $this->session->userdata('userId');
         $data['kegiatan'] = $this->kegiatan_model->getRiwayatKegiatanHarian();
         $this->load->view('includes/header', $this->global);
@@ -344,7 +344,7 @@ class Kegiatan extends CI_Controller
 
     public function spmk()
     {
-        $this->global['pageTitle'] = 'Dupak : Riwayat Kegiatan Harian';
+        $this->global['pageTitle'] = 'Riwayat Kegiatan Harian';
         $userId = $this->session->userdata('userId');
         $data['tahun'] = date('Y');
         $data['bulan'] = date('m');
@@ -370,7 +370,7 @@ class Kegiatan extends CI_Controller
 
     public function cariSpmk()
     {
-        $this->global['pageTitle'] = 'Dupak : Cari SPMK';
+        $this->global['pageTitle'] = 'Cari SPMK';
         $userId = $this->session->userdata('userId');
         $bulan = $this->input->post('bulan');
         $tahun = $this->input->post('tahun');
@@ -417,7 +417,7 @@ class Kegiatan extends CI_Controller
         }
         $data['kegiatan'] = $this->kegiatan_model->getTabelKegiatanSpmk($userId, $tahun, $bulanAwal, $bulanAkhir);
         $data['total'] = $this->kegiatan_model->getTabelKegiatanSpmkTotal($userId, $tahun, $bulanAwal, $bulanAkhir);
-        $this->global['pageTitle'] = 'Dupak : Detail Spmk';
+        $this->global['pageTitle'] = 'Detail Spmk';
         $this->load->view('includes/header', $this->global);
         $this->load->view('kegiatan/detailSpmk', $data);
         $this->load->view('includes/footer');
@@ -441,12 +441,12 @@ class Kegiatan extends CI_Controller
         }
         $data['kegiatan'] = $this->kegiatan_model->getTabelKegiatanSpmk($userId, $tahun, $bulanAwal, $bulanAkhir);
         $data['total'] = $this->kegiatan_model->getTabelKegiatanSpmkTotal($userId, $tahun, $bulanAwal, $bulanAkhir);
-        $this->global['pageTitle'] = 'Dupak : Detail Spmk';
+        $this->global['pageTitle'] = 'Detail Spmk';
         $this->load->view('kegiatan/printSpmk', $data);
     }
 
     public function printDupak(){
-        $this->global['pageTitle'] = 'Dupak : Dupak';
+        $this->global['pageTitle'] = 'Dupak';
         $userId = $this->session->userdata('userId');
         $data['user'] = $this->kegiatan_model->getUser($userId);
         $array['unsur'] = $this->kegiatan_model->UnsurListing();
@@ -692,7 +692,7 @@ class Kegiatan extends CI_Controller
 
     public function dupak()
     {
-        $this->global['pageTitle'] = 'Dupak : Dupak';
+        $this->global['pageTitle'] = 'Dupak';
         $userId = $this->session->userdata('userId');
         $data['user'] = $this->kegiatan_model->getUser($userId);
         $array['unsur'] = $this->kegiatan_model->UnsurListing();
@@ -939,7 +939,7 @@ class Kegiatan extends CI_Controller
     }
 
     public function cariDupak(){
-        $this->global['pageTitle'] = 'Dupak : Cari Dupak';
+        $this->global['pageTitle'] = 'Cari Dupak';
         $userId = $this->session->userdata('userId');
         $bulan = $this->input->post('bulan');
         $tahun = $this->input->post('tahun');

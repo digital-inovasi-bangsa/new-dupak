@@ -1,29 +1,32 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
-        Ubah Kata Sandi
-        <small>Masukan sandi baru</small>
-      </h1>
+        <h1>
+            <?= $pageTitle; ?>
+            <small>Masukan sandi baru</small>
+        </h1>
     </section>
     <section class="content">
         <div class="row">
-            <div class="col-md-4">
-              <!-- general form elements -->
-                <div class="box box-primary">
+            <?php $this->load->view('includes/_flash'); ?>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <!-- general form elements -->
+                <div class="box box-warning">
                     <div class="box-header">
-                        <h3 class="box-title">Masukan kata sandi</h3>
+                        <h3 class="box-title"><?= $pageTitle; ?></h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     <form role="form" action="<?php echo base_url() ?>changePassword" method="post">
-                    <!-- CSRF Token -->
-                    <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
+                        <!-- CSRF Token -->
+                        <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="inputPassword1">Kata sandi lama</label>
-                                        <input type="password" class="form-control" id="inputOldPassword" placeholder="Old password" name="oldPassword" maxlength="10" required>
+                                        <label for="inputPassword1">Kata Sandi Lama</label>
+                                        <input type="password" class="form-control" id="inputOldPassword" placeholder="Kata Sandi Lama" name="oldPassword" maxlength="10" required>
                                     </div>
                                 </div>
                             </div>
@@ -31,66 +34,25 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="inputPassword1">Kata sandi baru</label>
-                                        <input type="password" class="form-control" id="inputPassword1" placeholder="New password" name="newPassword" maxlength="10" required>
+                                        <label for="inputPassword1">Kata Sandi Baru</label>
+                                        <input type="password" class="form-control" id="inputPassword1" placeholder="Kata Sandi Baru" name="newPassword" maxlength="10" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="inputPassword2">Konfirmasi kata sandi baru</label>
-                                        <input type="password" class="form-control" id="inputPassword2" placeholder="Confirm new password" name="cNewPassword" maxlength="10" required>
+                                        <label for="inputPassword2">Konfirmasi Kata Sandi Baru</label>
+                                        <input type="password" class="form-control" id="inputPassword2" placeholder="Konfirmasi Kata Sandi Baru" name="cNewPassword" maxlength="10" required>
                                     </div>
                                 </div>
                             </div>
                         </div><!-- /.box-body -->
-    
+
                         <div class="box-footer">
-                            <input type="submit" class="btn btn-primary" value="Submit" />
-                            <input type="reset" class="btn btn-default" value="Reset" />
+                            <input type="submit" class="btn btn-primary pull-right" value="Konfirmasi" />
                         </div>
                     </form>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <?php
-                    $this->load->helper('form');
-                    $error = $this->session->flashdata('error');
-                    if($error)
-                    {
-                ?>
-                <div class="alert alert-danger alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <?php echo $this->session->flashdata('error'); ?>                    
-                </div>
-                <?php } ?>
-                <?php  
-                    $success = $this->session->flashdata('success');
-                    if($success)
-                    {
-                ?>
-                <div class="alert alert-success alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <?php echo $this->session->flashdata('success'); ?>
-                </div>
-                <?php } ?>
-                
-                <?php  
-                    $noMatch = $this->session->flashdata('nomatch');
-                    if($noMatch)
-                    {
-                ?>
-                <div class="alert alert-warning alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <?php echo $this->session->flashdata('nomatch'); ?>
-                </div>
-                <?php } ?>
-                
-                <div class="row">
-                    <div class="col-md-12">
-                        <?php echo validation_errors('<div class="alert alert-danger alert-dismissable">', ' <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>'); ?>
-                    </div>
                 </div>
             </div>
         </div>

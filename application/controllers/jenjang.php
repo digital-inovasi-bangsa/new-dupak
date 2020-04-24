@@ -25,7 +25,7 @@ class Jenjang extends CI_Controller
      */
     public function index()
     {
-        $this->global['pageTitle'] = 'Dupak : Jenjang';
+        $this->global['pageTitle'] = 'Jenjang';
         
         $this->load->view('includes/header', $this->global);
         $this->load->view('jenjang/jenjang');
@@ -82,7 +82,7 @@ class Jenjang extends CI_Controller
      */
     function loadThis()
     {
-        $this->global['pageTitle'] = 'Dupak : Access Denied';
+        $this->global['pageTitle'] = 'Akses Ditolak';
         
         $this->load->view('includes/header', $this->global);
         $this->load->view('access');
@@ -112,7 +112,7 @@ class Jenjang extends CI_Controller
             $data['searchText'] = $searchText;            
             $count = $this->jenjang_model->jenjangListingCount();            
             $data['jenjangRecords'] = $this->jenjang_model->jenjangListing();            
-            $this->global['pageTitle'] = 'Dupak : Jenjang Listing';
+            $this->global['pageTitle'] = 'Daftar Jenjang';
             $this->load->view('includes/header', $this->global);
             $this->load->view('jenjang/jenjang', $data);
             $this->load->view('includes/footer');
@@ -127,7 +127,7 @@ class Jenjang extends CI_Controller
         }
         else
         {            
-            $this->global['pageTitle'] = 'Dupak : Add New Jenjang';
+            $this->global['pageTitle'] = 'Tambahkan Data Jenjang';
             $this->load->view('includes/header', $this->global);
             $this->load->view('jenjang/addNew');
             $this->load->view('includes/footer');
@@ -163,11 +163,11 @@ class Jenjang extends CI_Controller
                 
                 if($result > 0)
                 {
-                    $this->session->set_flashdata('success', 'New Jenjang created successfully');
+                    $this->session->set_flashdata('success', 'Jenjang Berhasil Ditambahkan');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Jenjang creation failed');
+                    $this->session->set_flashdata('error', 'Jenjang Gagal Ditambahkan');
                 }
                 
                 redirect('jenjang/jenjangListing');
@@ -215,7 +215,7 @@ class Jenjang extends CI_Controller
                 redirect('jenjang/jenjangListing');
             }
             $data['jenjangInfo'] = $this->jenjang_model->getJenjangInfo($userId);
-            $this->global['pageTitle'] = 'Dupak : Edit Jenjang';
+            $this->global['pageTitle'] = 'Ubah Jenjang';
             $this->load->view('includes/header', $this->global);
             $this->load->view('jenjang/editOld', $data);
             $this->load->view('includes/footer');
@@ -254,11 +254,11 @@ class Jenjang extends CI_Controller
                 
                 if($result == true)
                 {
-                    $this->session->set_flashdata('success', 'Jenjang updated successfully');
+                    $this->session->set_flashdata('success', 'Jenjang Berhasil Diperbaharui');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Jenjang updation failed');
+                    $this->session->set_flashdata('error', 'Jenjang Gagal Diperbaharui');
                 }
                 
                 redirect('jenjang/jenjangListing');

@@ -31,7 +31,10 @@ class Login extends CI_Controller
         $isLoggedIn = $this->session->userdata('isLoggedIn');
 
         if (!isset($isLoggedIn) || $isLoggedIn != true) {
+            $data['pageTitle'] = 'Masuk Ke Sistem';
+            $this->load->view('includes/auth/header', $data);
             $this->load->view('login');
+            $this->load->view('includes/auth/footer');
         } else {
             redirect('/dashboard');
         }
@@ -43,8 +46,10 @@ class Login extends CI_Controller
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Forgot Password';
+            $data['pageTitle'] = 'Lupa Kata Sandi';
+            $this->load->view('includes/auth/header', $data);
             $this->load->view('forgot/forgotpassword');
+            $this->load->view('includes/auth/footer');
         } else {
             $email = $this->input->post('email');
             $user = $this->db->get_where('tbl_users', ['email' => $email])->row_array();
@@ -62,7 +67,7 @@ class Login extends CI_Controller
                 $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Please check your email to reset your password!</div>');
                 redirect('login/forgotpassword');
             } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Email is not registered or activated!</div>');
+                $this->session->set_flashdata('error', 'Email tidak terdaftar!');
                 redirect('login/forgotpassword');
             }
         }
@@ -176,7 +181,8 @@ class Login extends CI_Controller
 
             if (count($result) > 0) {
                 foreach ($result as $res) {
-                    $sessionArray = array('userId' => $res->userId,
+                    $sessionArray = array(
+                        'userId' => $res->userId,
                         'role' => $res->roleId,
                         'roleText' => $res->role,
                         'name' => $res->name,
@@ -187,12 +193,11 @@ class Login extends CI_Controller
                     );
 
                     $this->session->set_userdata($sessionArray);
+                    $this->session->set_flashdata('success', 'Berhasil Login Ke Sistem');
                     redirect('/dashboard');
                 }
-
             } else {
-                $this->session->set_flashdata('error', 'Email or password mismatch');
-
+                $this->session->set_flashdata('error', 'Email atau Kata Sandi Salah');
                 redirect('/login');
             }
         }

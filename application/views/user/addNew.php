@@ -2,7 +2,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Master Pegawai
+        <?= $pageTitle; ?>
             <small>Tambah, Ubah, Hapus</small>
         </h1>
     </section>
@@ -10,10 +10,10 @@
 
         <div class="row">
             <!-- left column -->
-            <div class="col-md-8">
-                <div class="box box-primary">
+            <div class="col-md-6">
+                <div class="box box-warning">
                     <div class="box-header">
-                        <h3 class="box-title">Masukan Data Pegawai</h3>
+                        <h3 class="box-title"><?= $pageTitle; ?></h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     <form role="form" id="addUser" action="<?php echo base_url() ?>addNewUser" method="post" role="form"
@@ -223,7 +223,7 @@
                         </div><!-- /.box-body -->
 
                         <div class="box-footer">
-                            <input type="submit" class="btn btn-primary" value="Submit" />
+                            <input type="submit" class="btn btn-primary pull-right" value="Simpan" />
                             <input type="reset" class="btn btn-default" value="Reset" />
                         </div>
                     </form>

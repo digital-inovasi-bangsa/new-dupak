@@ -10,7 +10,7 @@ jQuery(document).ready(function(){
 			hitURL = baseURL + "pangkat/deletePangkat",
 			currentRow = $(this);
 		
-		var confirmation = confirm("Are you sure to delete this pangkat ?");
+		var confirmation = confirm("Apakah anda yakin ingin menghapus data pangkat ?");
 		
 		if(confirmation)
 		{
@@ -22,9 +22,9 @@ jQuery(document).ready(function(){
 			}).done(function(data){
 				console.log(data);
 				currentRow.parents('tr').remove();
-				if(data.status = true) { alert("Pangkat successfully deleted"); }
-				else if(data.status = false) { alert("Pangkat deletion failed"); }
-				else { alert("Access denied..!"); }
+				if(data.status = true) { alert("Pangkat Berhasil Di Hapus"); }
+				else if(data.status = false) { alert("Pangkat Gagal Di Hapus"); }
+				else { alert("Akses Ditolak..!"); }
 			});
 		}
 	});

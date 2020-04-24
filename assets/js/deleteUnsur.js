@@ -10,7 +10,7 @@ jQuery(document).ready(function(){
 			hitURL = baseURL + "unsur/deleteUnsur",
 			currentRow = $(this);
 		
-		var confirmation = confirm("Are you sure to delete this unsur ?");
+		var confirmation = confirm("Apakah anda yakin ingin menghapus data unsur ?");
 		
 		if(confirmation)
 		{
@@ -22,9 +22,9 @@ jQuery(document).ready(function(){
 			}).done(function(data){
 				console.log(data);
 				currentRow.parents('tr').remove();
-				if(data.status = true) { alert("Unsur successfully deleted"); }
-				else if(data.status = false) { alert("Unsur deletion failed"); }
-				else { alert("Access denied..!"); }
+				if(data.status = true) { alert("Unsur Berhasil Di Hapus"); }
+				else if(data.status = false) { alert("Unsur Gagal Di Hapus"); }
+				else { alert("Akses Ditolak..!"); }
 			});
 		}
 	});

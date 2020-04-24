@@ -25,7 +25,7 @@ class Subunsur extends CI_Controller
      */
     public function index()
     {
-        $this->global['pageTitle'] = 'Dupak : Subunsur';
+        $this->global['pageTitle'] = 'Subunsur';
         
         $this->load->view('includes/header', $this->global);
         $this->load->view('subunsur/subunsur');
@@ -82,7 +82,7 @@ class Subunsur extends CI_Controller
      */
     function loadThis()
     {
-        $this->global['pageTitle'] = 'Dupak : Access Denied';
+        $this->global['pageTitle'] = 'Akses Ditolak';
         
         $this->load->view('includes/header', $this->global);
         $this->load->view('access');
@@ -111,7 +111,7 @@ class Subunsur extends CI_Controller
         else
         {                 
             $data['subunsurRecords'] = $this->subunsur_model->subunsurListing();
-            $this->global['pageTitle'] = 'Dupak : Subunsur Listing';
+            $this->global['pageTitle'] = 'Daftar Sub Unsur';
             $this->load->view('includes/header', $this->global);
             $this->load->view('subunsur/subunsur', $data);
             // echo '<pre>',print_r($data),'</pre>';die;
@@ -129,7 +129,7 @@ class Subunsur extends CI_Controller
         {
             $this->load->model('subunsur_model');
             $data['unsur'] = $this->subunsur_model->getUserUnsur();            
-            $this->global['pageTitle'] = 'Dupak : Add New Subunsur';
+            $this->global['pageTitle'] = 'Tambahkan Data Subunsur';
             $this->load->view('includes/header', $this->global);
             $this->load->view('subunsur/addNew', $data);
             $this->load->view('includes/footer');
@@ -167,11 +167,11 @@ class Subunsur extends CI_Controller
                 
                 if($result > 0)
                 {
-                    $this->session->set_flashdata('success', 'New Unsur created successfully');
+                    $this->session->set_flashdata('success', 'Sub Unsur Berhasil Ditambahkan');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Unsur creation failed');
+                    $this->session->set_flashdata('error', 'Sub Unsur Gagal Ditambahkan');
                 }
                 
                 redirect('subunsur/subunsurListing');
@@ -219,7 +219,7 @@ class Subunsur extends CI_Controller
             $data['subunsurInfo'] = $this->subunsur_model->getSubunsurInfo($userId);
             $data['unsur'] = $this->subunsur_model->getUserUnsur();
             // print_r($this->subunsur_model->getSubunsurInfo($userId));die;
-            $this->global['pageTitle'] = 'Dupak : Edit Subunsur';
+            $this->global['pageTitle'] = 'Ubah Sub Unsur';
             $this->load->view('includes/header', $this->global);
             $this->load->view('subunsur/editOld', $data);
             $this->load->view('includes/footer');
@@ -260,11 +260,11 @@ class Subunsur extends CI_Controller
                 
                 if($result == true)
                 {
-                    $this->session->set_flashdata('success', 'Unsur updated successfully');
+                    $this->session->set_flashdata('success', 'Sub Unsur Berhasil Diperbaharui');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Unsur updation failed');
+                    $this->session->set_flashdata('error', 'Sub Unsur Gagal Diperbaharui');
                 }
                 
                 redirect('subunsur/subunsurListing');

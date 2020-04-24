@@ -2,9 +2,9 @@
 
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
-          <b>Dupak</b> Admin System | Version 1.0
+          <b>SISTEM INFORMASI LAPORAN DAFTAR USULAN PENILAIAN ANGKA KREDIT (DUPAK) RESCUER BASARNAS YOGYAKARTA</b>
         </div>
-        <strong>Copyright &copy; 2020 <a href="<?php echo base_url(); ?>">Dupak</a>.</strong> All rights reserved.
+        <strong>SUZANTI INDAH SARI - 160101219</strong>
     </footer>
     
     <!-- jQuery UI 1.11.2 -->

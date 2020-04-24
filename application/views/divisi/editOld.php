@@ -18,7 +18,7 @@ if(!empty($divisiInfo))
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            Master Divisi
+        <?= $pageTitle; ?>
             <small>Tambah, Ubah, Hapus</small>
         </h1>
     </section>
@@ -29,9 +29,9 @@ if(!empty($divisiInfo))
             <!-- left column -->
             <div class="col-md-6">
                 <!-- general form elements -->
-                <div class="box box-primary">
+                <div class="box box-warning">
                     <div class="box-header">
-                        <h3 class="box-title">Edit Data Divisi</h3>
+                        <h3 class="box-title"><?= $pageTitle; ?></h3>
                     </div><!-- /.box-header -->
                     <div class="box-body">
                         <!-- form start -->
@@ -54,7 +54,7 @@ if(!empty($divisiInfo))
                             </div>
                     </div><!-- /.box-body -->
                     <div class="box-footer">
-                        <input type="submit" class="btn btn-primary pull-right" value="Submit" />
+                        <input type="submit" class="btn btn-primary pull-right" value="Perbaharui" />
                         <input type="reset" class="btn btn-default" value="Reset" />
                     </div>
                 </div>

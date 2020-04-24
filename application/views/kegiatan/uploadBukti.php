@@ -14,7 +14,7 @@
             <!-- left column -->
             <div class="col-md-6">
                 <!-- general form elements -->
-                <div class="box box-primary">
+                <div class="box box-warning">
                     <div class="box-header">
                         <h3 class="box-title">Upload Bukti Kegiatan</h3>
                     </div><!-- /.box-header -->

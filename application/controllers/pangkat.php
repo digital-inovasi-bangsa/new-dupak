@@ -25,7 +25,7 @@ class Pangkat extends CI_Controller
      */
     public function index()
     {
-        $this->global['pageTitle'] = 'Dupak : Pangkat';
+        $this->global['pageTitle'] = 'Jabatan';
         
         $this->load->view('includes/header', $this->global);
         $this->load->view('pangkat/pangkat');
@@ -82,7 +82,7 @@ class Pangkat extends CI_Controller
      */
     function loadThis()
     {
-        $this->global['pageTitle'] = 'Dupak : Access Denied';
+        $this->global['pageTitle'] = 'Akses Ditolak';
         
         $this->load->view('includes/header', $this->global);
         $this->load->view('access');
@@ -110,7 +110,7 @@ class Pangkat extends CI_Controller
         {
             $this->load->model('pangkat_model');                        
             $data['pangkatRecords'] = $this->pangkat_model->pangkatListing();
-            $this->global['pageTitle'] = 'Dupak : Pangkat Listing';
+            $this->global['pageTitle'] = 'Daftar Jabatan';
             $this->load->view('includes/header', $this->global);
             $this->load->view('pangkat/pangkat', $data);
             $this->load->view('includes/footer');
@@ -131,7 +131,7 @@ class Pangkat extends CI_Controller
             $this->load->model('pangkat_model');
             $data['roles'] = $this->pangkat_model->getUserRoles();
             
-            $this->global['pageTitle'] = 'Dupak : Add New Pangkat';
+            $this->global['pageTitle'] = 'Tambahkan Data Jabatan';
             $this->load->view('includes/header', $this->global);
             $this->load->view('pangkat/addNew', $data);
             $this->load->view('includes/footer');
@@ -168,11 +168,11 @@ class Pangkat extends CI_Controller
                 
                 if($result > 0)
                 {
-                    $this->session->set_flashdata('success', 'New Jabatan created successfully');
+                    $this->session->set_flashdata('success', 'Jabatan Berhasil Ditambahkan');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Jabatan creation failed');
+                    $this->session->set_flashdata('error', 'Jabatan Gagal Ditambahkan');
                 }
                 
                 redirect('pangkat/pangkatListing');
@@ -199,7 +199,7 @@ class Pangkat extends CI_Controller
             $this->load->model('pangkat_model');
             $data['pangkatInfo'] = $this->pangkat_model->getPangkatInfo($userId);
                    
-            $this->global['pageTitle'] = 'Dupak : Edit Pangkat';
+            $this->global['pageTitle'] = 'Ubah Jabatan';
             $this->load->view('includes/header', $this->global);
             $this->load->view('pangkat/editOld', $data);
             $this->load->view('includes/footer');
@@ -239,11 +239,11 @@ class Pangkat extends CI_Controller
                 
                 if($result == true)
                 {
-                    $this->session->set_flashdata('success', 'Jabatan updated successfully');
+                    $this->session->set_flashdata('success', 'Jabatan Berhasil Diperbaharui');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Jabatan updation failed');
+                    $this->session->set_flashdata('error', 'Jabatan Gagal Diperbaharui');
                 }
                 
                 redirect('pangkat/pangkatListing');

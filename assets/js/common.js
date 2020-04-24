@@ -10,7 +10,7 @@ jQuery(document).ready(function(){
 			hitURL = baseURL + "deleteUser",
 			currentRow = $(this);
 		
-		var confirmation = confirm("Are you sure to delete this user ?");
+		var confirmation = confirm("Apakah anda yakin ingin menghapus data user ?");
 		
 		if(confirmation)
 		{
@@ -22,9 +22,9 @@ jQuery(document).ready(function(){
 			}).done(function(data){
 				console.log(data);
 				currentRow.parents('tr').remove();
-				if(data.status = true) { alert("User successfully deleted"); }
-				else if(data.status = false) { alert("User deletion failed"); }
-				else { alert("Access denied..!"); }
+				if(data.status = true) { alert("User Berhasil Di Hapus"); }
+				else if(data.status = false) { alert("User Gagal Di Hapus"); }
+				else { alert("Akses Ditolak..!"); }
 			});
 		}
 	});

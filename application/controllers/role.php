@@ -25,7 +25,7 @@ class Role extends CI_Controller
      */
     public function index()
     {
-        $this->global['pageTitle'] = 'Dupak : Role';
+        $this->global['pageTitle'] = 'Hak Akses';
         
         $this->load->view('includes/header', $this->global);
         $this->load->view('role/role');
@@ -82,7 +82,7 @@ class Role extends CI_Controller
      */
     function loadThis()
     {
-        $this->global['pageTitle'] = 'Dupak : Access Denied';
+        $this->global['pageTitle'] = 'Hak Akses';
         
         $this->load->view('includes/header', $this->global);
         $this->load->view('access');
@@ -109,7 +109,7 @@ class Role extends CI_Controller
         else
         {                  
             $data['roleRecords'] = $this->role_model->roleListing();
-            $this->global['pageTitle'] = 'Dupak : Role Listing';
+            $this->global['pageTitle'] = 'Daftar Hak Akses';
             $this->load->view('includes/header', $this->global);
             $this->load->view('role/role', $data);
             $this->load->view('includes/footer');
@@ -126,7 +126,7 @@ class Role extends CI_Controller
         {
             $this->load->model('role_model');
             
-            $this->global['pageTitle'] = 'Dupak : Add New Role';
+            $this->global['pageTitle'] = 'Tambahkan Hak Akses';
             $this->load->view('includes/header', $this->global);
             $this->load->view('role/addNew');
             $this->load->view('includes/footer');
@@ -161,11 +161,11 @@ class Role extends CI_Controller
                 
                 if($result > 0)
                 {
-                    $this->session->set_flashdata('success', 'New Jabatan created successfully');
+                    $this->session->set_flashdata('success', 'Hak Akses Berhasil Ditambahkan');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Jabatan creation failed');
+                    $this->session->set_flashdata('error', 'Hak Akses Gagal Ditambahkan');
                 }
                 
                 redirect('role/roleListing');
@@ -212,7 +212,7 @@ class Role extends CI_Controller
             }
             $data['roleInfo'] = $this->role_model->getRoleInfo($userId);
             
-            $this->global['pageTitle'] = 'Dupak : Edit Role';
+            $this->global['pageTitle'] = 'Ubah Hak Akses';
             $this->load->view('includes/header', $this->global);
             $this->load->view('role/editOld', $data);
             $this->load->view('includes/footer');
@@ -252,11 +252,11 @@ class Role extends CI_Controller
                 
                 if($result == true)
                 {
-                    $this->session->set_flashdata('success', 'Role updated successfully');
+                    $this->session->set_flashdata('success', 'Hak Akses Berhasil Diperbaharui');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Role updation failed');
+                    $this->session->set_flashdata('error', 'Hak Akses Gagal Diperbaharui');
                 }
                 
                 redirect('role/roleListing');

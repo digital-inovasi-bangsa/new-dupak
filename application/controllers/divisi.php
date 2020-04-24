@@ -25,7 +25,7 @@ class Divisi extends CI_Controller
      */
     public function index()
     {
-        $this->global['pageTitle'] = 'Dupak : Divisi';
+        $this->global['pageTitle'] = 'Divisi';
         
         $this->load->view('includes/header', $this->global);
         $this->load->view('divisi/divisi');
@@ -82,7 +82,7 @@ class Divisi extends CI_Controller
      */
     function loadThis()
     {
-        $this->global['pageTitle'] = 'Dupak : Access Denied';
+        $this->global['pageTitle'] = 'Akses Ditolak';
         
         $this->load->view('includes/header', $this->global);
         $this->load->view('access');
@@ -113,7 +113,7 @@ class Divisi extends CI_Controller
             $count = $this->divisi_model->divisiListingCount();            
             $data['divisiRecords'] = $this->divisi_model->divisiListing();
             // print_r($data['userRecords']);die;            
-            $this->global['pageTitle'] = 'Dupak : Divisi Listing';
+            $this->global['pageTitle'] = 'Daftar Divisi';
             $this->load->view('includes/header', $this->global);
             $this->load->view('divisi/divisi', $data);
             $this->load->view('includes/footer');
@@ -128,7 +128,7 @@ class Divisi extends CI_Controller
         }
         else
         {            
-            $this->global['pageTitle'] = 'Dupak : Add New Divisi';
+            $this->global['pageTitle'] = 'Tambahkan Divisi';
             $this->load->view('includes/header', $this->global);
             $this->load->view('divisi/addNew');
             $this->load->view('includes/footer');
@@ -163,11 +163,11 @@ class Divisi extends CI_Controller
                 
                 if($result > 0)
                 {
-                    $this->session->set_flashdata('success', 'New Divisi created successfully');
+                    $this->session->set_flashdata('success', 'Divisi Berhasil Ditambahkan');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Divisi creation failed');
+                    $this->session->set_flashdata('error', 'Divisi Gagal Ditambahkan');
                 }
                 
                 redirect('divisi/divisiListing');
@@ -190,12 +190,12 @@ class Divisi extends CI_Controller
             $result = $this->divisi_model->deleteDivisi($data, $divisiInfo);
             
             if ($result) { 
-                $this->session->set_flashdata('success', 'Divisi deleted successfully');
+                $this->session->set_flashdata('success', 'Divisi Berhasil Dihapus');
                 echo(json_encode(array('status'=>TRUE))); 
             }
             else 
             { 
-                $this->session->set_flashdata('error', 'Divisi deleted failed');
+                $this->session->set_flashdata('error', 'Divisi Gagal Dihapus');
                 echo(json_encode(array('status'=>FALSE))); 
             }
         }
@@ -218,7 +218,7 @@ class Divisi extends CI_Controller
                 redirect('divisi/divisiListing');
             }
             $data['divisiInfo'] = $this->divisi_model->getDivisiInfo($userId);
-            $this->global['pageTitle'] = 'Dupak : Edit Divisi';
+            $this->global['pageTitle'] = 'Ubah Divisi';
             $this->load->view('includes/header', $this->global);
             $this->load->view('divisi/editOld', $data);
             $this->load->view('includes/footer');
@@ -257,11 +257,11 @@ class Divisi extends CI_Controller
                 
                 if($result == true)
                 {
-                    $this->session->set_flashdata('success', 'Divisi updated successfully');
+                    $this->session->set_flashdata('success', 'Divisi Berhasil Diperbaharui');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Divisi updation failed');
+                    $this->session->set_flashdata('error', 'Divisi Gagal Diperbaharui');
                 }
                 
                 redirect('divisi/divisiListing');

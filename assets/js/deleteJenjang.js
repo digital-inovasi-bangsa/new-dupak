@@ -10,7 +10,7 @@ jQuery(document).ready(function(){
 			hitURL = baseURL + "jenjang/deleteJenjang",
 			currentRow = $(this);
 		
-		var confirmation = confirm("Are you sure to delete this jenjang ?");
+		var confirmation = confirm("Apakah anda yakin ingin menghapus data jenjang ?");
 		
 		if(confirmation)
 		{
@@ -22,9 +22,9 @@ jQuery(document).ready(function(){
 			}).done(function(data){
 				console.log(data);
 				currentRow.parents('tr').remove();
-				if(data.status = true) { alert("Jenjang successfully deleted"); }
-				else if(data.status = false) { alert("Jenjang deletion failed"); }
-				else { alert("Access denied..!"); }
+				if(data.status = true) { alert("Jenjang Berhasil Di Hapus"); }
+				else if(data.status = false) { alert("Jenjang Gagal Di Hapus"); }
+				else { alert("Akses Ditolak..!"); }
 			});
 		}
 	});
