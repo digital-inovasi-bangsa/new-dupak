@@ -32,6 +32,7 @@
                       <th>Subunsur</th>
                       <th>Butir</th>
                       <th>Tanggal Mulai-Selesai</th>
+                      <th>Tanggal Diajukan</th>
                       <th>Surat Tugas</th>
                       <th>Dokumentasi</th>
                       <th>Laporan Kegiatan</th>
@@ -52,10 +53,11 @@
                       <td><?php echo $record->name ?></td>
                       <td><?php echo $record->namaJabatan ?></td>
                       <td><?php echo $record->namaPangkat ?></td>
-                      <th><?php echo $record->namaUnsur ?></th>
-                      <th><?php echo $record->namaSubunsur ?></th>
-                      <th><?php echo $record->namaButir ?></th>
+                      <td><?php echo $record->namaUnsur ?></td>
+                      <td><?php echo $record->namaSubunsur ?></td>
+                      <td><?php echo $record->namaButir ?></td>
                       <td><?php echo $record->tanggalMulai ?> - <?php echo $record->tanggalSelesai ?></td>
+                      <td><?php echo $record->createdAt ?></td>
                       <td><a href="<?php echo base_url()?>upload/dokumentasi/<?php echo $record->path_surat_kegiatan ?>"
                           download><?php echo $record->path_surat_kegiatan ?></td>
                       <td><a href="<?php echo base_url()?>upload/dokumentasi/<?php echo $record->path_dokumentasi ?>"

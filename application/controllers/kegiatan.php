@@ -177,6 +177,8 @@ class Kegiatan extends CI_Controller
                 $userId = $this->session->userdata('userId');
                 $status = 'Belum Upload Bukti';
                 $rstButirKegiatan = str_replace('"', '', json_encode($butirKegiatan));
+                date_default_timezone_set('Asia/Jakarta');
+                $now = date('Y-m-d H:i:s');
 
                 $kegiatanInfo = array(
                     'userId' => $userId,
@@ -188,6 +190,8 @@ class Kegiatan extends CI_Controller
                     'tanggalMulai' => $NewTanggalMulai,
                     'tanggalSelesai' => $NewTanggalSelesai,
                     'status' => $status,
+                    'createdAt' => $now,
+                    'updatedAt' => $now
                 );
 
                 $result = $this->kegiatan_model->addNewKegiatan($kegiatanInfo);
@@ -287,8 +291,11 @@ class Kegiatan extends CI_Controller
         $result = $this->kegiatan_model->addNewBuktiKegiatan($buktiInfo);
 
         if ($result > 0) {
+            date_default_timezone_set('Asia/Jakarta');
+            $now = date('Y-m-d H:i:s');
             $statusInfo = array(
                 'status' => 'Diajukan',
+                'updatedAt' => $now
             );
             $status = $this->kegiatan_model->updateStatusKegiatan($statusInfo, $idKegiatanHarian);
             $this->session->set_flashdata('success', 'Dokumen Kegiatan Berhasil Ditambahkan');

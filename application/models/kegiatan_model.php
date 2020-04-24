@@ -118,7 +118,7 @@ class Kegiatan_model extends CI_Model
     public function getKegiatanDiajukan()
     {
         $this->db->select('bt.namaButir,tkh.tanggalMulai,tkh.tanggalSelesai, tkh.tanggalSelesai ,
-        us.nip ,us.name, jj.namaJenjang , jb.namaJabatan , pk.namaPangkat,tkh.idKegiatanHarian,
+        us.nip ,us.name, jj.namaJenjang , jb.namaJabatan , pk.namaPangkat,tkh.idKegiatanHarian, tkh.createdAt,
         dk.path_dokumentasi, dk.path_surat_kegiatan, dk.path_laporan_kegiatan, un.namaUnsur, sus.namaSubunsur');
         $this->db->from('tbl_kegiatan_harian as tkh');
         $this->db->join('tbl_butir as bt', 'tkh.idButir = bt.idButir', 'left');
@@ -130,6 +130,7 @@ class Kegiatan_model extends CI_Model
         $this->db->join('tbl_pangkat as pk', 'pk.idPangkat = jb.tbl_pangkat_idPangkat', 'left');
         $this->db->join('tbl_dokumen_kegiatan as dk', 'dk.idKegiatanHarian = tkh.idKegiatanHarian', 'full');
         $this->db->where('status', 'Diajukan');
+        $this->db->order_by('tkh.updatedAt', 'desc');
         $query = $this->db->get();
         return $query->result();
     }
