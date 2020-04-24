@@ -76,7 +76,8 @@ class Kegiatan extends CI_Controller
 
     public function loadCalendar()
     {
-        $event_data = $this->kegiatan_model->fetch_all_event();
+        $id = $this->session->userdata('userId');
+        $event_data = $this->kegiatan_model->fetch_all_event($id);
         foreach ($event_data->result_array() as $row) {
             $date = $row['tanggalSelesai'];
             $date1 = str_replace('-', '/', $date);

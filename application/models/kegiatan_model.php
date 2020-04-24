@@ -71,10 +71,11 @@ class Kegiatan_model extends CI_Model
         return $insert_id;
     }
 
-    public function fetch_all_event()
+    public function fetch_all_event($id)
     {
         $this->db->order_by('idKegiatanHarian');
         $this->db->join('tbl_butir as butir', 'harian.idButir = butir.idButir', 'left');
+        $this->db->where('harian.userId', $id);
         return $this->db->get('tbl_kegiatan_harian as harian');
     }
 
