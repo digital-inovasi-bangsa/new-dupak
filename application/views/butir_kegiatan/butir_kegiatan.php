@@ -11,18 +11,17 @@
       <?php $this->load->view('includes/_flash'); ?>
     </div>
 
-    <div class="row" style="width:70%">
-      <div class="col-xs-12">
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
         <div class="box">
           <div class="box-header">
-            <h3 class="box-title" style="margin-left: 12px"><?= $pageTitle; ?></h3>
+            <h3 class="box-title"><?= $pageTitle; ?></h3>
           </div><!-- /.box-header -->
-          <div class="card">
-            <div class="form-group" style="margin-left: 20px;">
+          <div class="box-body">
+            <div class="form-group">
               <a class="btn btn-primary" href="<?php echo base_url(); ?>butir_kegiatan/addNew">Tambahkan Data</a>
             </div>
-            <div class="box-body table-responsive no-padding">
-              <div class="card-body" style="padding: 20px;">
+            <div class="box-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                     <tr>
@@ -59,7 +58,6 @@
                     ?>
                   </tbody>
                 </table>
-              </div>
               <!-- /.card-body -->
             </div><!-- /.box-body -->
           </div>
@@ -68,32 +66,7 @@
     </div>
   </section>
 </div>
-<script>
-  $(function () {
-    $("#example1").DataTable({
-      "columns": [{
-          "width": "5%"
-        },
-        {
-          "width": "30%"
-        },
-        {
-          "width": "30%"
-        },
-        {
-          "width": "10%"
-        }
-      ],
-      "paging": true,
-      "lengthChange": false,
-      "searching": true,
-      "ordering": true,
-      "info": false,
-      "autoWidth": false,
-      "pageLength": 5
-    });
-  });
-</script>
+
 <script>
   jQuery(document).ready(function () {
 
@@ -120,7 +93,7 @@
             alert("Butir Berhasil Dihapus!");
             location.reload();
           } else if (data.status = false) {
-            alert("Butir deletion failed");
+            alert("Butir Gagal Dihapus");
           } else {
             alert("Access denied..!");
           }
@@ -135,4 +108,15 @@
 
   });
 </script>
-
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": true,
+    });
+  });
+</script>

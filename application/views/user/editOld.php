@@ -5,8 +5,6 @@ $name = '';
 $email = '';
 $mobile = '';
 $roleId = '';
-$idDivisi = '';
-$namaDivisi = '';
 $nip = '';
 $idJabatan = '';
 $nomorSeriKartuPegawai = '';
@@ -24,7 +22,6 @@ if(!empty($userInfo))
         $email = $uf->email;
         $mobile = $uf->mobile;
         $roleId = $uf->roleId;
-        $idDivisi = $uf->tbl_divisi_idDivisi;
         $fotoProfil = $uf->fotoProfil;
         $nip = $uf->nip;
         $idJabatan = $uf->idJabatan;
@@ -156,7 +153,7 @@ if(!empty($userInfo))
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="divisi">Jabatan</label>
+                                        <label for="jabatan">Jabatan</label>
                                         <select class="form-control required" id="pangkat" name="pangkat">
                                             <option value="0">Pilih Jabatan</option>
                                             <?php

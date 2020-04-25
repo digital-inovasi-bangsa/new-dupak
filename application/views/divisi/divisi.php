@@ -94,7 +94,7 @@
             location.reload();
           } else if (data.status == false) {
             console.log('gagal');
-            alert("Divisi deletion failed");
+            alert("Divisi Gagal Dihapus");
           } else {
             alert("Access denied..!");
           }
