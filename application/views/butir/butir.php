@@ -28,6 +28,7 @@
                     <tr>
                       <th>No</th>
                       <th>Nama Butir</th>
+                      <th>Nama Unsur</th>
                       <th>Nama Subunsur</th>
                       <th>Edit</th>
                     </tr>
@@ -43,6 +44,7 @@
                     <tr>
                       <td><?php echo $no++ ?></td>
                       <td><?php echo $record->namaButir ?></td>
+                      <td><?php echo $record->namaUnsur ?></td>
                       <td><?php echo $record->namaSubunsur ?></td>
                       <td>
                         <a href="<?php echo base_url().'butir/editOld/'.$record->idButir; ?>"><i
@@ -117,7 +119,10 @@
           "width": "30%"
         },
         {
-          "width": "30%"
+          "width": "10%"
+        },
+        {
+          "width": "20%"
         },
         {
           "width": "10%"

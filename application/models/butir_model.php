@@ -17,6 +17,7 @@ class Butir_model extends CI_Model
         $this->db->select('*');
         $this->db->from('tbl_butir as a');
         $this->db->join('tbl_subunsur as b', 'a.idSubunsur = b.idSubunsur','left');
+        $this->db->join('tbl_unsur as c', 'b.idUnsur = c.idUnsur','left');
         $query = $this->db->get();
         
         return $query->result();
@@ -49,6 +50,7 @@ class Butir_model extends CI_Model
         $this->db->select('*');
         $this->db->from('tbl_butir as a');
         $this->db->join('tbl_subunsur as b', 'a.idSubunsur = b.idSubunsur','left');
+        $this->db->join('tbl_unsur as c', 'b.idUnsur = c.idUnsur','left');
         $this->db->where('idButir', $userId);
         $query = $this->db->get();
         
@@ -88,6 +90,15 @@ class Butir_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('tbl_subunsur');
+        $query = $this->db->get();
+        
+        return $query->result();
+    }
+    
+    function getUserUnsur()
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_unsur');
         $query = $this->db->get();
         
         return $query->result();
