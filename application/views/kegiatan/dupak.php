@@ -304,9 +304,9 @@
                                                 <p>4. dan seterusnya</p>
                                             </td>
                                             <td class="text-center">
-                                                <p><?php echo $user->namaPangkat ?></p><br><br><br>
+                                                <p><?php echo $atasan->namaPangkat ?></p><br><br><br>
                                                 <p><?php echo $atasan->name ?></p>
-                                                <p><?php echo $user->nip ?></p>
+                                                <p><?php echo $atasan->nip ?></p>
                                             </td>
                                         </tr>
                                         <tr>
