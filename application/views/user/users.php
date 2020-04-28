@@ -12,16 +12,15 @@
       <?php $this->load->view('includes/_flash'); ?>
     </div>
 
-    <div class="row" style="width:100%">
+    <div class="row">
       <div class="col-xs-12">
         <div class="box">
           <div class="box-header">
-            <h3 class="box-title" style="margin-left: 12px"><?= $pageTitle; ?></h3>
+            <h3 class="box-title"><?= $pageTitle; ?></h3>
           </div><!-- /.box-header -->
-          <div class="card">
-              <a class="btn btn-primary" style="margin-left: 20px;margin-bottom: -10px;" href="<?php echo base_url(); ?>user/addNew">Tambahkan Data</a>
-            <div class="box-body table-responsive no-padding">
-              <div class="card-body" style="padding: 20px;">
+          <div class="box-body">
+              <a class="btn btn-primary" href="<?php echo base_url(); ?>user/addNew">Tambahkan Data</a>
+            <div class="box-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                     <tr>
@@ -34,8 +33,7 @@
                       <th>Pangkat</th>
                       <th>Jabatan</th>
                       <th>Foto Profile</th>
-                      <th>Divisi</th>
-                      <th>Actions</th>
+                      <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -58,7 +56,6 @@
                       <td>
                         <img src="<?php echo base_url('upload/images/'.$record->fotoProfil);?>" width="32" />
                       </td>
-                      <td><?php echo $record->namaDivisi ?></td>
                       <td>
                         <a href="<?php echo base_url().'editOld/'.$record->userId; ?>"><i
                             class="fa fa-pencil"></i>&nbsp;&nbsp;&nbsp;</a>
@@ -72,7 +69,6 @@
                     ?>
                   </tbody>
                 </table>
-              </div>
               <!-- /.card-body -->
             </div><!-- /.box-body -->
           </div>
@@ -89,7 +85,7 @@
         hitURL = '<?php echo base_url() ?>' + 'user/deleteUser',
         currentRow = $(this);
 
-      var confirmation = confirm("Are you sure to delete this Pegawai ?");
+      var confirmation = confirm("Apakah kamu yakin menghapus data Pegawai ?");
 
       if (confirmation) {
         jQuery.ajax({
@@ -104,10 +100,10 @@
           console.log(data);
           currentRow.parents('tr').remove();
           if (status = true) {
-            alert("User successfully deleted");
+            alert("User Berhasil Dihapus!");
             location.reload();
           } else if (status = false) {
-            alert("User deletion failed");
+            alert("User Gagal Dihapus");
           } else {
             alert("Access denied..!");
           }
@@ -125,47 +121,12 @@
 <script>
   $(function () {
     $("#example1").DataTable({
-      "columns": [{
-          "width": "3%"
-        },
-        {
-          "width": "10%"
-        },
-        {
-          "width": "10%"
-        },
-        {
-          "width": "10%"
-        },
-        {
-          "width": "10%"
-        },
-        {
-          "width": "10%"
-        },
-        {
-          "width": "10%"
-        },
-        {
-          "width": "10%"
-        },
-        {
-          "width": "10%"
-        },
-        {
-          "width": "10%"
-        },
-        {
-          "width": "10%"
-        }
-      ],
       "paging": true,
-      "lengthChange": false,
+      "lengthChange": true,
       "searching": true,
       "ordering": true,
-      "info": false,
-      "autoWidth": false,
-      "pageLength": 5
+      "info": true,
+      "autoWidth": true,
     });
   });
 </script>

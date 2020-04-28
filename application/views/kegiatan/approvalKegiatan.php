@@ -2,7 +2,7 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Approval Kegiatan
+      <?= $pageTitle; ?>
     </h1>
   </section>
 
@@ -11,15 +11,15 @@
       <?php $this->load->view('includes/_flash'); ?>
     </div>
 
-    <div class="row" style="width:100%">
+    <div class="row">
       <div class="col-xs-12">
         <div class="box">
           <div class="box-header">
-            <h3 class="box-title" style="margin-left: 12px">List Kegiatan</h3>
+            <h3 class="box-title"><?= $pageTitle; ?></h3>
           </div><!-- /.box-header -->
-          <div class="card">
+          <div class="box-body">
             <div class="box-body table-responsive no-padding">
-              <div class="card-body" style="padding: 20px;">
+              <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                     <tr>
@@ -88,12 +88,12 @@
 </div>
 
 <div class="modal fade" id="modal-default">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Approve Kegiatan</h4>
+        <h4 class="modal-title"><?= $pageTitle; ?></h4>
       </div>
       <div class="modal-body">
         <div class="form-group" id="surat_kegiatan">
@@ -123,8 +123,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-        <button type="button" id="btnSubmit" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Tutup</button>
+        <button type="button" id="btnSubmit" class="btn btn-primary">Simpan Perubahan</button>
       </div>
     </div>
     <!-- /.modal-content -->

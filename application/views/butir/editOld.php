@@ -123,7 +123,6 @@ if (!empty($butirInfo)) {
                         }
                     }
                     $('#idSubunsur').html(html);
-
                 }
             });
         $('#unsur').change(function () {

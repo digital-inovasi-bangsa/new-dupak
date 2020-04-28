@@ -5,8 +5,6 @@ $name = '';
 $email = '';
 $mobile = '';
 $roleId = '';
-$idDivisi = '';
-$namaDivisi = '';
 $nip = '';
 $idJabatan = '';
 $nomorSeriKartuPegawai = '';
@@ -24,7 +22,6 @@ if(!empty($userInfo))
         $email = $uf->email;
         $mobile = $uf->mobile;
         $roleId = $uf->roleId;
-        $idDivisi = $uf->tbl_divisi_idDivisi;
         $fotoProfil = $uf->fotoProfil;
         $nip = $uf->nip;
         $idJabatan = $uf->idJabatan;
@@ -141,22 +138,14 @@ if(!empty($userInfo))
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="divisi">Divisi</label>
-                                        <select class="form-control required" id="divisi" name="divisi">
-                                            <option value="0">Pilih Divisi</option>
-                                            <?php
-                                            if(!empty($divisi))
-                                            {
-                                                foreach ($divisi as $rl)
-                                                {
-                                                    ?>
-                                            <option value="<?php echo $rl->idDivisi; ?>"
-                                                <?php if($rl->idDivisi == $idDivisi) {echo "selected=selected";} ?>>
-                                                <?php echo $rl->namaDivisi ?></option>
-                                            <?php
-                                                }
-                                            }
-                                            ?>
+                                        <label>Jenis Kelamin</label>
+                                        <select class="form-control required" id="jenisKelamin" name="jenisKelamin">
+                                            <option>Pilih Jenis Kelamin</option>
+                                            <option
+                                                <?php if ($jenisKelamin=="laki-laki"){echo "selected=selected";} ?>value="laki-laki">
+                                                Laki-laki</option>
+                                            <option <?php if($jenisKelamin=="perempuan"){echo "selected=selected";} ?>
+                                                value="perempuan">Perempuan</option>
                                         </select>
                                     </div>
                                 </div>
@@ -164,7 +153,7 @@ if(!empty($userInfo))
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="divisi">Jabatan</label>
+                                        <label for="jabatan">Jabatan</label>
                                         <select class="form-control required" id="pangkat" name="pangkat">
                                             <option value="0">Pilih Jabatan</option>
                                             <?php
@@ -250,17 +239,18 @@ if(!empty($userInfo))
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                            <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Jenis Kelamin</label>
-                                        <select class="form-control required" id="jenisKelamin" name="jenisKelamin">
-                                            <option>Pilih Jenis Kelamin</option>
-                                            <option
-                                                <?php if ($jenisKelamin=="laki-laki"){echo "selected=selected";} ?>value="laki-laki">
-                                                Laki-laki</option>
-                                            <option <?php if($jenisKelamin=="perempuan"){echo "selected=selected";} ?>
-                                                value="perempuan">Perempuan</option>
-                                        </select>
+                                        <div><?php if($fotoProfil!=null){ ?>
+                                            <img width="100px"
+                                                src="<?php echo base_url()."/upload/images/".$fotoProfil?>"></img>
+                                            <input type="file" id="image" name="user_img_upload"
+                                                style="margin-top: 8px">
+                                        </div><?php  } ?>
+                                        <div><?php if($fotoProfil==null){ ?>
+                                            <label for="text">Foto Profil</label>
+                                            <input type="file" id="image" name="user_img_upload">
+                                        </div><?php  } ?>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -279,22 +269,6 @@ if(!empty($userInfo))
                                     </select>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <div><?php if($fotoProfil!=null){ ?>
-                                            <img width="100px"
-                                                src="<?php echo base_url()."/upload/images/".$fotoProfil?>"></img>
-                                            <input type="file" id="image" name="user_img_upload"
-                                                style="margin-top: 8px">
-                                        </div><?php  } ?>
-                                        <div><?php if($fotoProfil==null){ ?>
-                                            <label for="text">Foto Profil</label>
-                                            <input type="file" id="image" name="user_img_upload">
-                                        </div><?php  } ?>
-                                    </div>
-                                </div>
-                            </div>
                         </div><!-- /.box-body -->
 
                         <div class="box-footer">
@@ -302,35 +276,6 @@ if(!empty($userInfo))
                             <input type="reset" class="btn btn-default" value="Reset" />
                         </div>
                     </form>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <?php
-                    $this->load->helper('form');
-                    $error = $this->session->flashdata('error');
-                    if($error)
-                    {
-                ?>
-                <div class="alert alert-danger alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <?php echo $this->session->flashdata('error'); ?>
-                </div>
-                <?php } ?>
-                <?php  
-                    $success = $this->session->flashdata('success');
-                    if($success)
-                    {
-                ?>
-                <div class="alert alert-success alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <?php echo $this->session->flashdata('success'); ?>
-                </div>
-                <?php } ?>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <?php echo validation_errors('<div class="alert alert-danger alert-dismissable">', ' <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>'); ?>
-                    </div>
                 </div>
             </div>
         </div>

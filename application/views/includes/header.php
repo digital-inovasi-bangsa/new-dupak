@@ -89,13 +89,13 @@
         <ul class="sidebar-menu">
           <li class="header">Sidebar Menu</li>
           <li class="treeview">
-            <?php
-            if ($role == ROLE_ADMIN || $role == ROLE_MANAGER) {
-            ?>
               <a href="<?php echo base_url(); ?>">
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span></i>
               </a>
           </li>
+          <?php
+            if ($role == ROLE_ADMIN || $role == ROLE_MANAGER) {
+            ?>
           <li class="treeview active" style="height:auto;">
             <a href="#">
               <i class="fa fa-laptop"></i>
@@ -110,12 +110,6 @@
                 <a href="<?php echo base_url(); ?>role/roleListing">
                   <i class="fa fa-thumb-tack"></i>
                   <span>Hak Akses</span>
-                </a>
-              </li>
-              <li>
-                <a href="<?php echo base_url(); ?>divisi/divisiListing">
-                  <i class="fa fa-plane"></i>
-                  <span>Divisi</span>
                 </a>
               </li>
               <li>
@@ -187,18 +181,6 @@
                 <span>Kegiatan Harian</span>
               </a>
             </li>
-            <?php
-            if ($role == ROLE_ADMIN || $role == ROLE_MANAGER) {
-            ?>
-              <li>
-                <a href="<?php echo base_url(); ?>kegiatan/approvalKegiatan">
-                  <i class="fa fa-check"></i>
-                  <span>Approval Kegiatan Harian</span>
-                </a>
-              </li>
-            <?php
-            }
-            ?>
             <li>
               <a href="<?php echo base_url(); ?>kegiatan/riwayatKegiatanHarian">
                 <i class="fa fa-history"></i>
@@ -211,13 +193,24 @@
                 <span>SPMK</span>
               </a>
             </li>
-
             <li>
               <a href="<?php echo base_url(); ?>kegiatan/dupak">
                 <i class="fa fa-calendar"></i>
                 <span>Dupak</span>
               </a>
             </li>
+            <?php
+            if ($role == ROLE_ADMIN || $role == ROLE_MANAGER) {
+            ?>
+              <li>
+                <a href="<?php echo base_url(); ?>kegiatan/approvalKegiatan">
+                  <i class="fa fa-check"></i>
+                  <span>Persetujuan Kegiatan Harian</span>
+                </a>
+              </li>
+            <?php
+            }
+            ?>
           </ul>
         </li>
         </ul>

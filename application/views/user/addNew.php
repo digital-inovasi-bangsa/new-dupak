@@ -92,21 +92,11 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="divisi">Divisi</label>
-                                        <select class="form-control required" id="divisi" name="divisi">
-                                            <option value="0">Pilih Divisi</option>
-                                            <?php
-                                            if(!empty($divisi))
-                                            {
-                                                foreach ($divisi as $rl)
-                                                {
-                                                    ?>
-                                            <option value="<?php echo $rl->idDivisi ?>"><?php echo $rl->namaDivisi ?>
-                                            </option>
-                                            <?php
-                                                }
-                                            }
-                                            ?>
+                                        <label>Jenis Kelamin</label>
+                                        <select class="form-control required" id="jenisKelamin" name="jenisKelamin">
+                                            <option value="0">Pilih Jenis Kelamin</option>
+                                            <option value="laki-laki">Laki-laki</option>
+                                            <option value="perempuan">Perempuan</option>
                                         </select>
                                     </div>
                                 </div>
@@ -187,16 +177,6 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Jenis Kelamin</label>
-                                        <select class="form-control required" id="jenisKelamin" name="jenisKelamin">
-                                            <option value="0">Pilih Jenis Kelamin</option>
-                                            <option value="laki-laki">Laki-laki</option>
-                                            <option value="perempuan">Perempuan</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
                                     <label>Pendidikan Terakhir</label>
                                     <select class="form-control required" id="pendidikan" name="pendidikan">
                                         <option value="0">Pilih Pendidikan Terakhir</option>
@@ -211,14 +191,15 @@
                                         <option value="S3">S3</option>
                                     </select>
                                 </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="image">Foto Profil</label>
                                         <input type="file" id="image" name="user_img_upload">
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row">
+                                
                             </div>
                         </div><!-- /.box-body -->
 

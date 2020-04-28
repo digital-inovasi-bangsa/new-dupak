@@ -19,24 +19,22 @@ if (!empty($data)) {
 
   <section class="content">
     <div class="row">
-      <div class="col-lg-3 col-xs-6">
-        <!-- small box -->
-        <div class="small-box bg-yellow">
-          <div class="inner">
-            <h3><?php if($jumlahUser > 0){
-              echo $jumlahUser;
-            } else {
-              echo 0;
-            }?></h3>
-            <p>Total Pegawai</p>
+      <?php
+      if ($role == ROLE_ADMIN || $role == ROLE_MANAGER) {
+      ?>
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3><?php echo $jumlahUser ?></h3>
+              <p>Total Pegawai</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person-add"></i>
+            </div>
+            <a href="<?php echo base_url(); ?>user/userListing" class="small-box-footer">Lebih Lanjut <i class="fa fa-arrow-circle-right"></i></a>
           </div>
-          <div class="icon">
-            <i class="ion ion-person-add"></i>
-          </div>
-          <a href="<?php echo base_url(); ?>user/userListing" class="small-box-footer">Lebih Lanjut <i
-              class="fa fa-arrow-circle-right"></i></a>
-        </div>
-      </div><!-- ./col -->
+        </div><!-- ./col -->
       <div class="col-lg-3 col-xs-6">
         <!-- small box -->
         <div class="small-box bg-blue">
@@ -55,6 +53,9 @@ if (!empty($data)) {
               class="fa fa-arrow-circle-right"></i></a>
         </div>
       </div><!-- ./col -->
+      <?php
+      }
+      ?>
       <div class="col-lg-3 col-xs-6">
         <!-- small box -->
         <div class="small-box bg-green">

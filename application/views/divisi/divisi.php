@@ -74,7 +74,7 @@
         hitURL = '<?php echo base_url() ?>' + 'divisi/deleteDivisi',
         currentRow = $(this);
 
-      var confirmation = confirm("Are you sure to delete this divisi ?");
+      var confirmation = confirm("Apakah kamu yakin menghapus data divisi ?");
 
       if (confirmation) {
         jQuery.ajax({
@@ -90,11 +90,11 @@
           currentRow.parents('tr').remove();
           if (data.status == true) {
             console.log('berhasil');
-            alert("Divisi successfully deleted");
+            alert("Divisi Berhasil Dihapus!");
             location.reload();
           } else if (data.status == false) {
             console.log('gagal');
-            alert("Divisi deletion failed");
+            alert("Divisi Gagal Dihapus");
           } else {
             alert("Access denied..!");
           }
