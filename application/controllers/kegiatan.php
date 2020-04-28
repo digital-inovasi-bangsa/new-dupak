@@ -945,6 +945,7 @@ class Kegiatan extends CI_Controller
         $lamaKerja = $this->datediff($mulaiKerja, $tanggalSekarang);
         $data['lamaKerja'] = $lamaKerja;
         $data['unsur'] = $subunsur;
+        // echo '<pre>',print_r($data),'</pre>';die;
         $this->load->view('includes/header', $this->global);
         $this->load->view('kegiatan/dupak', $data);
         $this->load->view('includes/footer');
