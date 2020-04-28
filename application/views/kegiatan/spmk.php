@@ -100,7 +100,7 @@
                                                     <td><?php echo $record->tanggalMulai ?></td>
                                                     <td><?php echo $record->tanggalSelesai ?></td>
                                                     <td>
-                                                        <a href="<?php echo base_url() . 'kegiatan/detailSpmk/' . $record->idKegiatanHarian . '/' . $tahun . '/' . $bulan ?>"><i class="fa fa-search"> Lihat Data</i></a>
+                                                        <a href="<?php echo base_url() . 'kegiatan/detailSpmk/' . $record->idKegiatanHarian . '/' . $tahun . '/' . $bulan . '/' . $record->idUnsur ?>"><i class="fa fa-search"> Lihat Data</i></a>
                                                     </td>
                                                 </tr>
                                         <?php

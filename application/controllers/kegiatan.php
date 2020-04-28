@@ -107,20 +107,16 @@ class Kegiatan extends CI_Controller
 
     public function addNew()
     {
-        if ($this->isAdmin() == true) {
-            $this->loadThis();
-        } else {
-            $this->load->model('pangkat_model');
-            $idJabatan = $this->global['idJabatan'];
-            $data['roles'] = $this->pangkat_model->getUserRoles();
-            $data['pangkat'] = $this->user_model->getUserPangkat();
-            $data['unsur'] = $this->kegiatan_model->unsurListing();
-            $data['jenjang'] = $this->getJenjang($idJabatan);
-            $this->global['pageTitle'] = 'Tambahkan Data Kegiatan';
-            $this->load->view('includes/header', $this->global);
-            $this->load->view('kegiatan/addNew', $data);
-            $this->load->view('includes/footer');
-        }
+        $this->load->model('pangkat_model');
+        $idJabatan = $this->global['idJabatan'];
+        $data['roles'] = $this->pangkat_model->getUserRoles();
+        $data['pangkat'] = $this->user_model->getUserPangkat();
+        $data['unsur'] = $this->kegiatan_model->unsurListing();
+        $data['jenjang'] = $this->getJenjang($idJabatan);
+        $this->global['pageTitle'] = 'Tambahkan Data Kegiatan';
+        $this->load->view('includes/header', $this->global);
+        $this->load->view('kegiatan/addNew', $data);
+        $this->load->view('includes/footer');
     }
 
     public function getSubunsur()
@@ -153,58 +149,53 @@ class Kegiatan extends CI_Controller
 
     public function addNewKegiatan()
     {
-        if ($this->isAdmin() == true) {
-            $this->loadThis();
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('jenjang', 'Jenjang', 'trim|required');
+        $this->form_validation->set_rules('unsur', 'Unsur', 'trim|required');
+        $this->form_validation->set_rules('subunsur', 'Subunsur', 'trim|required');
+        $this->form_validation->set_rules('butir', 'Butir', 'trim|required');
+
+        if ($this->form_validation->run() == false) {
+            $this->addNew();
         } else {
-            $this->load->library('form_validation');
+            $idJenjang = $this->input->post('jenjang');
+            $idUnsur = $this->input->post('unsur');
+            $idSubUnsur = $this->input->post('subunsur');
+            $idButir = $this->input->post('butir');
+            $butirKegiatan = $this->input->post('businessType');
+            $tanggalMulai = $this->input->post('tanggalMulai');
+            $tanggalSelesai = $this->input->post('tanggalSelesai');
+            $NewTanggalMulai = date("Y-m-d", strtotime($tanggalMulai));
+            $NewTanggalSelesai = date("Y-m-d", strtotime($tanggalSelesai));
+            $userId = $this->session->userdata('userId');
+            $status = 'Belum Upload Bukti';
+            $rstButirKegiatan = str_replace('"', '', json_encode($butirKegiatan));
+            date_default_timezone_set('Asia/Jakarta');
+            $now = date('Y-m-d H:i:s');
 
-            $this->form_validation->set_rules('jenjang', 'Jenjang', 'trim|required');
-            $this->form_validation->set_rules('unsur', 'Unsur', 'trim|required');
-            $this->form_validation->set_rules('subunsur', 'Subunsur', 'trim|required');
-            $this->form_validation->set_rules('butir', 'Butir', 'trim|required');
+            $kegiatanInfo = array(
+                'userId' => $userId,
+                'idJenjang' => $idJenjang,
+                'idUnsur' => $idUnsur,
+                'idSubUnsur' => $idSubUnsur,
+                'idButir' => $idButir,
+                'butirKegiatan' => $rstButirKegiatan,
+                'tanggalMulai' => $NewTanggalMulai,
+                'tanggalSelesai' => $NewTanggalSelesai,
+                'status' => $status,
+                'createdAt' => $now,
+                'updatedAt' => $now,
+            );
 
-            if ($this->form_validation->run() == false) {
-                $this->addNew();
+            $result = $this->kegiatan_model->addNewKegiatan($kegiatanInfo);
+
+            if ($result > 0) {
+                $this->session->set_flashdata('success', 'Kegiatan Berhasil Ditambahkan');
             } else {
-                $idJenjang = $this->input->post('jenjang');
-                $idUnsur = $this->input->post('unsur');
-                $idSubUnsur = $this->input->post('subunsur');
-                $idButir = $this->input->post('butir');
-                $butirKegiatan = $this->input->post('businessType');
-                $tanggalMulai = $this->input->post('tanggalMulai');
-                $tanggalSelesai = $this->input->post('tanggalSelesai');
-                $NewTanggalMulai = date("Y-m-d", strtotime($tanggalMulai));
-                $NewTanggalSelesai = date("Y-m-d", strtotime($tanggalSelesai));
-                $userId = $this->session->userdata('userId');
-                $status = 'Belum Upload Bukti';
-                $rstButirKegiatan = str_replace('"', '', json_encode($butirKegiatan));
-                date_default_timezone_set('Asia/Jakarta');
-                $now = date('Y-m-d H:i:s');
-
-                $kegiatanInfo = array(
-                    'userId' => $userId,
-                    'idJenjang' => $idJenjang,
-                    'idUnsur' => $idUnsur,
-                    'idSubUnsur' => $idSubUnsur,
-                    'idButir' => $idButir,
-                    'butirKegiatan' => $rstButirKegiatan,
-                    'tanggalMulai' => $NewTanggalMulai,
-                    'tanggalSelesai' => $NewTanggalSelesai,
-                    'status' => $status,
-                    'createdAt' => $now,
-                    'updatedAt' => $now
-                );
-
-                $result = $this->kegiatan_model->addNewKegiatan($kegiatanInfo);
-
-                if ($result > 0) {
-                    $this->session->set_flashdata('success', 'Kegiatan Berhasil Ditambahkan');
-                } else {
-                    $this->session->set_flashdata('error', 'Kegiatan Gagal Ditambahkan');
-                }
-
-                redirect('kegiatan');
+                $this->session->set_flashdata('error', 'Kegiatan Gagal Ditambahkan');
             }
+
+            redirect('kegiatan');
         }
     }
 
@@ -296,7 +287,7 @@ class Kegiatan extends CI_Controller
             $now = date('Y-m-d H:i:s');
             $statusInfo = array(
                 'status' => 'Diajukan',
-                'updatedAt' => $now
+                'updatedAt' => $now,
             );
             $status = $this->kegiatan_model->updateStatusKegiatan($statusInfo, $idKegiatanHarian);
             $this->session->set_flashdata('success', 'Dokumen Kegiatan Berhasil Ditambahkan');
@@ -315,7 +306,7 @@ class Kegiatan extends CI_Controller
             'status' => $status,
         );
         $status = $this->kegiatan_model->updateStatusKegiatan($statusInfo, $id);
-        
+
         if ($status) {
             echo "true";
         } else {
@@ -413,7 +404,7 @@ class Kegiatan extends CI_Controller
         $sessionArray = array(
             'tahunSpmk' => $tahun,
             'bulanSpmk' => $bulan,
-            'idUnsur' => $idUnsur
+            'idUnsur' => $idUnsur,
         );
         $this->session->set_userdata($sessionArray);
         if ($bulan >= 01 && $bulan <= 06) {
@@ -456,7 +447,8 @@ class Kegiatan extends CI_Controller
         $this->load->view('kegiatan/printSpmk', $data);
     }
 
-    public function printDupak(){
+    public function printDupak()
+    {
         $this->global['pageTitle'] = 'Dupak';
         $userId = $this->session->userdata('userId');
         $data['user'] = $this->kegiatan_model->getUser($userId);
@@ -951,7 +943,8 @@ class Kegiatan extends CI_Controller
         $this->load->view('includes/footer');
     }
 
-    public function cariDupak(){
+    public function cariDupak()
+    {
         $this->global['pageTitle'] = 'Cari Dupak';
         $userId = $this->session->userdata('userId');
         $bulan = $this->input->post('bulan');
