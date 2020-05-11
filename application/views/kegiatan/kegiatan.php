@@ -41,11 +41,10 @@
                         foreach($kegiatan as $record)
                         {
                     ?>
-        <div class="alert alert-warning alert-dismissible">
-          <a class="close" href="<?php echo base_url(); ?>kegiatan/uploadBukti/<?php echo $record->idKegiatanHarian?>">
-            <i class="fa fa-upload"></i>
+        <div class="alert" style="background-color: gray;color: white">
+          <a class="icon fa fa-upload fa-2x text-white pull-right" href="<?php echo base_url(); ?>kegiatan/uploadBukti/<?php echo $record->idKegiatanHarian?>">
           </a>
-          <h4><i class="icon fa fa-warning"></i> <?php echo $record->status ?></h4>
+          <h4><i class="icon fa fa-warning fa-sm"></i> <?php echo $record->status ?></h4>
           Kegiatan : <?php echo $record->namaButir ?> <br>
           Tanggal Kegiatan : <?php echo $record->tanggalMulai ?> - <?php echo $record->tanggalSelesai ?>
         </div>

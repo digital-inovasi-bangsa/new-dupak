@@ -18,44 +18,8 @@ if (!empty($data)) {
   </section>
 
   <section class="content">
+
     <div class="row">
-      <?php
-      if ($role == ROLE_ADMIN || $role == ROLE_MANAGER) {
-      ?>
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-yellow">
-            <div class="inner">
-              <h3><?php echo $jumlahUser ?></h3>
-              <p>Total Pegawai</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
-            <a href="<?php echo base_url(); ?>user/userListing" class="small-box-footer">Lebih Lanjut <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div><!-- ./col -->
-      <div class="col-lg-3 col-xs-6">
-        <!-- small box -->
-        <div class="small-box bg-blue">
-          <div class="inner">
-            <h3><?php if($jumlahKegiatan > 0){
-              echo $jumlahKegiatan;
-            } else {
-              echo 0;
-            }?></h3>
-            <p>Total Kegiatan yang belum Approve</p>
-          </div>
-          <div class="icon">
-            <i class="ion ion-stats-bars"></i>
-          </div>
-          <a href="<?php echo base_url(); ?>kegiatan/approvalKegiatan" class="small-box-footer">Lebih Lanjut <i
-              class="fa fa-arrow-circle-right"></i></a>
-        </div>
-      </div><!-- ./col -->
-      <?php
-      }
-      ?>
       <div class="col-lg-3 col-xs-6">
         <!-- small box -->
         <div class="small-box bg-green">
@@ -92,8 +56,6 @@ if (!empty($data)) {
               class="fa fa-arrow-circle-right"></i></a>
         </div>
       </div><!-- ./col -->
-    </div>
-    <div class="row">
       <div class="col-lg-3 col-xs-6">
         <!-- small box -->
         <div class="small-box bg-orange">
@@ -135,8 +97,51 @@ if (!empty($data)) {
         </div>
       </div><!-- ./col -->
     </div>
-</div>
-</div><!-- ./col -->
-</div>
-</section>
+    <div class="row">
+      <?php
+      if ($role == 1 || $role == 18) {
+      ?>
+      <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-blue">
+          <div class="inner">
+            <h3><?php if($jumlahKegiatan > 0){
+              echo $jumlahKegiatan;
+            } else {
+              echo 0;
+            }?></h3>
+            <p>Total Kegiatan yang belum Approve</p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-stats-bars"></i>
+          </div>
+          <a href="<?php echo base_url(); ?>kegiatan/approvalKegiatan" class="small-box-footer">Lebih Lanjut <i
+              class="fa fa-arrow-circle-right"></i></a>
+        </div>
+      </div><!-- ./col -->
+      <?php
+      }
+      ?>
+      <?php
+      if ($role == 1) {
+      ?>
+      <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-yellow">
+          <div class="inner">
+            <h3><?php echo $jumlahUser ?></h3>
+            <p>Total Pegawai</p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-person-add"></i>
+          </div>
+          <a href="<?php echo base_url(); ?>user/userListing" class="small-box-footer">Lebih Lanjut <i
+              class="fa fa-arrow-circle-right"></i></a>
+        </div>
+      </div><!-- ./col -->
+      <?php
+      }
+      ?>
+    </div>
+  </section>
 </div>

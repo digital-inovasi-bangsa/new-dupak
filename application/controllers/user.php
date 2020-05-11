@@ -304,6 +304,7 @@ class User extends CI_Controller
                 $nip = $this->input->post('nip');
                 $mobile = $this->input->post('mobile');
                 $idJabatan = $this->input->post('jabatan');
+                $idDivisi = 16;
                 $nomorSeriKartuPegawai = $this->input->post('nomorSeriKartuPegawai');
                 $tanggalLahir = $this->input->post('tanggalLahir');
                 $tempatLahir = $this->input->post('tempatLahir');

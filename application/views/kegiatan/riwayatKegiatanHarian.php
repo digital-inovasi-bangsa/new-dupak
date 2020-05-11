@@ -118,6 +118,12 @@
         {
           "width": "10%"
         },
+        {
+          "width": "10%"
+        },
+        {
+          "width": "10%"
+        }
       ],
       "paging": true,
       "lengthChange": false,

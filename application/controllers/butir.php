@@ -17,6 +17,7 @@ class Butir extends CI_Controller
     {
         parent::__construct();
         $this->load->model('butir_model');
+        $this->load->model('kegiatan_model');
         $this->isLoggedIn();   
     }
     
@@ -126,6 +127,7 @@ class Butir extends CI_Controller
         {
             $this->load->model('butir_model');
             $data['subunsur'] = $this->butir_model->getUserSubunsur();
+            $data['unsur'] = $this->butir_model->getUserUnsur();
             
             $this->global['pageTitle'] = 'Tambahkan Data Butir';
             $this->load->view('includes/header', $this->global);
@@ -134,6 +136,14 @@ class Butir extends CI_Controller
         }
     }
     
+    public function getSubunsur()
+    {
+        $id = $this->input->post('idUnsur');
+        $data = $this->kegiatan_model->getSubunsur($id);
+        echo json_encode($data);
+
+    }
+
     function addNewButir()
     {
         if($this->isAdmin() == TRUE)
@@ -216,6 +226,7 @@ class Butir extends CI_Controller
             }
             $data['butirInfo'] = $this->butir_model->getButirInfo($userId);
             $data['subunsur'] = $this->butir_model->getUserSubunsur();
+            $data['unsur'] = $this->butir_model->getUserUnsur();
             $this->global['pageTitle'] = 'Ubah Butir';
             $this->load->view('includes/header', $this->global);
             $this->load->view('butir/editOld', $data);

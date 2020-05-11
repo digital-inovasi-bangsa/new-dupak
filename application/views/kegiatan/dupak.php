@@ -19,9 +19,11 @@
                     </div><!-- /.box-header -->
                     <div class="box-body">
                         <div class="row">
-                            <form role="form" id="cariDupak" action="<?php echo base_url() ?>kegiatan/cariDupak" method="post" role="form">
+                            <form role="form" id="cariDupak" action="<?php echo base_url() ?>kegiatan/cariDupak"
+                                method="post" role="form">
                                 <!-- CSRF Token -->
-                                <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
+                                <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>"
+                                    value="<?= $this->security->get_csrf_hash(); ?>" />
                                 <div class="col-md-5">
                                     <div class="form-group">
                                         <label>Tahun</label>
@@ -43,13 +45,13 @@
                                         <label>Periode</label>
                                         <select class="form-control" id="bulan" name="bulan">
                                             <?php if ($bulan >= 01 && $bulan <= 06) { ?>
-                                                <option value="0">Pilih Periode</option>
-                                                <option selected value="01">Jan-Jun</option>
-                                                <option value="07">Jul-Des</option>
+                                            <option value="0">Pilih Periode</option>
+                                            <option selected value="01">Jan-Jun</option>
+                                            <option value="07">Jul-Des</option>
                                             <?php } else { ?>
-                                                <option value="0">Pilih Periode</option>
-                                                <option value="01">Jan-Jun</option>
-                                                <option selected value="07">Jul-Des</option>
+                                            <option value="0">Pilih Periode</option>
+                                            <option value="01">Jan-Jun</option>
+                                            <option selected value="07">Jul-Des</option>
                                             <?php } ?>
                                         </select>
                                     </div>
@@ -77,7 +79,7 @@
                             <!-- /.col -->
                             <div class="col-sm-6">
                                 <h4 class="text-center"><strong>DAFTAR USUL PENETAPAN ANGKA KREDIT<br>JABATAN FUNGSIONAL
-                                    <br><br><br><br></strong></h4>
+                                        <br><br><br><br></strong></h4>
                             </div>
                             <!-- /.col -->
                             <div class="col-sm-3">
@@ -169,96 +171,91 @@
                                             $abjad = 'a';
                                             foreach ($unsur as $record) {
                                         ?>
-                                                <tr>
+                                        <tr>
 
-                                                    <td></td>
-                                                    <td class="text-center"><?php echo $no++ ?></td>
-                                                    <td colspan='4'><?php echo $record['namaUnsur'] ?>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                <tr>
-                                                    <?php
-                                                    if (!empty($unsur)) {
+                                            <td></td>
+                                            <td class="text-center"><?php echo $no++ ?></td>
+                                            <td colspan='4'><?php echo $record['namaUnsur'] ?>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        <tr>
+                                            <?php
                                                         $abjad = 'a';
                                                         $index = 0;
                                                         foreach ($record['subunsur'] as $record2) {
                                                     ?>
-                                                <tr>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td class="text-center"><?php echo $abjad++ ?></td>
-                                                    <td colspan='3'><?php echo $record2['namaSubunsur'] ?></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                </tr>
-                                        <?php }
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td class="text-center"><?php echo $abjad++ ?></td>
+                                            <td colspan='3'><?php echo $record2['namaSubunsur'] ?></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <?php
+                                        $index1 = 0;
+                                        $noButir = 1;
+                                        foreach ($record2['butir'] as $record3) { 
+                                        ?>
+
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td><?php echo $noButir++ ?></td>
+                                            <td colspan='2'><?php echo $record3['namaButir'] ?></td>
+                                            <td class="text-center"><?php echo $record3['nilaiInstansiLama'] ?></td>
+                                            <td class="text-center"><?php echo $record3['nilaiInstansiBaru'] ?></td>
+                                            <td class="text-center"><?php echo $record3['nilaiInstansiJumlah'] ?></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center"></td>
+                                        </tr>
+                                        <?php 
                                                     } ?>
-                                        <?php
-                                                if (!empty($unsur)) {
-                                                    $abjad = 'a';
-                                                    $no2 = 1;
-                                                    foreach ($record2['butir'] as $record3) {
+
+                                        <?php }}
+                                        }
                                         ?>
-                                                <tr>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td class="text-center"><?php echo $no2++ ?></td>
-                                                    <td colspan='2'><?php echo $record3['namaButir'] ?></td>
-                                                    <td class="text-center"><?php echo $record3['nilaiInstansiLama'] ?></td>
-                                                    <td class="text-center"><?php echo $record3['nilaiInstansiBaru'] ?></td>
-                                                    <td class="text-center"><?php echo $record3['nilaiInstansiJumlah'] ?></td>
-                                                    <td class="text-center"><?php echo $record3['nilaiPenilaiLama'] ?></td>
-                                                    <td class="text-center"><?php echo $record3['nilaiPenilaiBaru'] ?></td>
-                                                    <td class="text-center"><?php echo $record3['nilaiPenilaiJumlah'] ?></td>
-                                                </tr>
-                                        <?php }
-                                                } ?>
-                                        </td>
-                                <?php }
-                                        } ?>
-                                <tr>
-                                    <td class="text-center" colspan="12"><label>Mengambil Kegiatan Kebawah atau
-                                            Keatas</label></td>
-                                <tr>
-                                <tr>
-                                    <td class="text-center" colspan="6"><label>JUMLAH UNSUR UTAMA DAN UNSUR
-                                            PENUNJANG</label></td>
-                                    <td class="text-center">0</td>
-                                    <td class="text-center">
-                                        <?php
+                                        <tr>
+                                            <td class="text-center" colspan="12"><label>Mengambil Kegiatan Kebawah atau
+                                                    Keatas</label></td>
+                                        <tr>
+                                        <tr>
+                                            <td class="text-center" colspan="6"><label>JUMLAH UNSUR UTAMA DAN UNSUR
+                                                    PENUNJANG</label></td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">
+                                                <?php
                                         if ($total[0]->poin) {
                                             echo $total[0]->poin;
                                         } else {
                                             echo '0';
                                         }
                                         ?>
-                                    </td>
-                                    <td class="text-center">
-                                        <?php
+                                            </td>
+                                            <td class="text-center">
+                                                <?php
                                         if ($total[0]->poin) {
                                             echo $total[0]->poin;
                                         } else {
                                             echo '0';
                                         }
                                         ?>
-                                    </td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                <tr>
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        <tr>
                                     </tbody>
-                                </table>
-                                <tbody>
-                                </tbody>
                                 </table>
                             </div>
                             <!-- /.col -->
@@ -307,9 +304,9 @@
                                                 <p>4. dan seterusnya</p>
                                             </td>
                                             <td class="text-center">
-                                                <p><?php echo $user->namaPangkat ?></p><br><br><br>
+                                                <p><?php echo $atasan->namaPangkat ?></p><br><br><br>
                                                 <p><?php echo $atasan->name ?></p>
-                                                <p><?php echo $user->nip ?></p>
+                                                <p><?php echo $atasan->nip ?></p>
                                             </td>
                                         </tr>
                                         <tr>
@@ -361,7 +358,9 @@
                         </div>
                         <div class="row no-print">
                             <div class="col-xs-12">
-                                <a href="<?php echo base_url() . 'kegiatan/printDupak/' . $user->userId . '/' . $bulan . '/' . $tahun; ?>" target="_blank" class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-print"></i> Cetak</a>
+                                <a href="<?php echo base_url() . 'kegiatan/printDupak/' . $user->userId . '/' . $bulan . '/' . $tahun; ?>"
+                                    target="_blank" class="btn btn-primary pull-right" style="margin-right: 5px;"><i
+                                        class="fa fa-print"></i> Cetak</a>
                             </div>
                         </div>
                     </div><!-- /.box-header -->
@@ -373,7 +372,7 @@
 </div>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/deleteDivisi.js" charset="utf-8"></script>
 <script>
-    $(function() {
+    $(function () {
         $(".table_bawah").DataTable({
             "columns": [{
                     "width": "5%"

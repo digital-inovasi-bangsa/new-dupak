@@ -39,8 +39,8 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 /**** USER DEFINED CONSTANTS **********/
 
 define('ROLE_ADMIN',                            '1');
-define('ROLE_MANAGER',                         	'2');
-define('ROLE_EMPLOYEE',                         '3');
+define('ROLE_MANAGER',                         	'7');
+define('ROLE_EMPLOYEE',                         '18');
 
 
 /* End of file constants.php */

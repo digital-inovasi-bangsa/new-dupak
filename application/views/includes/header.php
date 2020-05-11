@@ -94,7 +94,7 @@
               </a>
           </li>
           <?php
-            if ($role == ROLE_ADMIN || $role == ROLE_MANAGER) {
+            if ($role == 1) {
             ?>
           <li class="treeview active" style="height:auto;">
             <a href="#">
@@ -200,7 +200,7 @@
               </a>
             </li>
             <?php
-            if ($role == ROLE_ADMIN || $role == ROLE_MANAGER) {
+            if ($role == 1 || $role == 18) {
             ?>
               <li>
                 <a href="<?php echo base_url(); ?>kegiatan/approvalKegiatan">
