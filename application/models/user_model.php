@@ -167,8 +167,7 @@ class User_model extends CI_Model
         LEFT JOIN tbl_butir bt ON bt.idButir = tkh.idButir 
         LEFT JOIN tbl_butir_kegiatan bk ON 
         JSON_CONTAINS(tkh.butirKegiatan , CAST(bk.idButirKegiatan as JSON), '$')
-        WHERE tkh.userId = $userId AND tkh.status = '$status'
-        GROUP BY tkh.idButir;";
+        WHERE tkh.userId = $userId AND tkh.status = '$status';";
         //execute query
         $query = $this->db->query($sql);
         if ($query->num_rows() > 0) {
