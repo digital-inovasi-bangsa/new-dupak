@@ -212,7 +212,6 @@
                 url: "<?php echo base_url();?>kegiatan/getButir",
                 method: "POST",
                 data: {
-                    idSubunsur: idSubunsur,
                     '<?php echo $this->security->get_csrf_token_name(); ?>': '<?php echo $this->security->get_csrf_hash(); ?>'
                 },
                 async: false,

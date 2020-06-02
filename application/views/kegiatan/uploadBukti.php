@@ -49,6 +49,38 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="image">Daftar Hadir (.pdf)</label>
+                                        <input type="file" accept="application/pdf" id="daftar_hadir" name="daftar_hadir">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="image">Jurnal (.pdf)</label>
+                                        <input type="file" accept="application/pdf" id="jurnal" name="jurnal">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="image">Checklist Peralatan (.pdf)</label>
+                                        <input type="file" accept="application/pdf" id="checklist_peralatan" name="checklist_peralatan">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="image">Sprint Siaga (.pdf)</label>
+                                        <input type="file" accept="application/pdf" id="sprint_siaga" name="sprint_siaga">
+                                    </div>
+                                </div>
+                            </div>
                         </div><!-- /.box-body -->
 
                         <div class="box-footer">

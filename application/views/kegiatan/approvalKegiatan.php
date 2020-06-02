@@ -35,6 +35,10 @@
                       <th>Tanggal Diajukan</th>
                       <th>Surat Tugas</th>
                       <th>Dokumentasi</th>
+                      <th>Daftar Hadir</th>
+                      <th>Jurnal</th>
+                      <th>Sprint Siaga</th>
+                      <th>Checklist Peralatan</th>
                       <th>Laporan Kegiatan</th>
                       <th>Aksi</th>
                     </tr>
@@ -65,8 +69,16 @@
                       <td><a
                           href="<?php echo base_url()?>upload/dokumentasi/<?php echo $record->path_laporan_kegiatan ?>"
                           download><?php echo $record->path_laporan_kegiatan ?></td>
-                      <td>
-                        <a><i class="edit fa fa-pencil" id="edit" name="edit" data-toggle="modal" href="#"
+                      <td><a href="<?php echo base_url()?>upload/dokumentasi/<?php echo $record->path_daftar_hadir ?>"
+                          download><?php echo $record->path_daftar_hadir ?></td>
+                      <td><a href="<?php echo base_url()?>upload/dokumentasi/<?php echo $record->path_jurnal ?>"
+                          download><?php echo $record->path_jurnal ?></td>
+                      <td><a href="<?php echo base_url()?>upload/dokumentasi/<?php echo $record->path_sprint_siaga ?>"
+                          download><?php echo $record->path_sprint_siaga ?></td>
+                      <td><a
+                          href="<?php echo base_url()?>upload/dokumentasi/<?php echo $record->path_check_peralatan ?>"
+                          download><?php echo $record->path_check_peralatan ?></td>
+                      <td><a><i class="edit fa fa-pencil" id="edit" name="edit" data-toggle="modal" href="#"
                             data-id="<?php echo $record->idKegiatanHarian; ?>"
                             data-target="#modal-default"></i>&nbsp;&nbsp;&nbsp;</a>
                       </td>
@@ -98,28 +110,38 @@
       <div class="modal-body">
         <div class="form-group" id="surat_kegiatan">
         </div>
-        <div class="form-group">
-          <label id="label_surat">Surat Kegiatan</label>
-          <div class="overlay" id="loading_surat_kegiatan">
-            <i class="fa fa-refresh fa-spin"></i>
-          </div>
-          <label id="label_laporan_kegiatan">Laporan Kegiatan</label>
-          <div class="overlay" id="loading_laporan_kegiatan">
-            <i class="fa fa-refresh fa-spin"></i>
-          </div>
-          <label id="label_dokumentasi">Dokumentasi</label>
-          <div class="overlay" id="loading_dokumentasi">
-            <i class="fa fa-refresh fa-spin"></i>
-          </div>
-          <label>Ubah status</label>
-          <select class="form-control" id="status" name="status">
-            <option value="0">-Pilih Status-</option>
-            <option value="Diterima">Diterima</option>
-            <option value="Ditolak">Ditolak</option>
-          </select>
-          <div class="overlay" id="loading_select">
-            <i class="fa fa-refresh fa-spin"></i>
-          </div>
+        <label id="label_laporan_kegiatan">Laporan Kegiatan</label>
+        <div class="overlay" id="loading_laporan_kegiatan">
+          <i class="fa fa-refresh fa-spin"></i>
+        </div>
+        <label id="label_dokumentasi">Dokumentasi</label>
+        <div class="overlay" id="loading_dokumentasi">
+          <i class="fa fa-refresh fa-spin"></i>
+        </div>
+        <label id="label_daftar_hadir">Daftar Hadir</label>
+        <div class="overlay" id="loading_hadir">
+          <i class="fa fa-refresh fa-spin"></i>
+        </div>
+        <label id="label_jurnal">Jurnal</label>
+        <div class="overlay" id="loading_jurnal">
+          <i class="fa fa-refresh fa-spin"></i>
+        </div>
+        <label id="label_sprint">Sprint Siaga</label>
+        <div class="overlay" id="loading_sprint">
+          <i class="fa fa-refresh fa-spin"></i>
+        </div>
+        <label id="label_checklist">Checklist Peralatan</label>
+        <div class="overlay" id="loading_checklist">
+          <i class="fa fa-refresh fa-spin"></i>
+        </div>
+        <label>Ubah status</label>
+        <select class="form-control" id="status" name="status">
+          <option value="0">-Pilih Status-</option>
+          <option value="Diterima">Diterima</option>
+          <option value="Ditolak">Ditolak</option>
+        </select>
+        <div class="overlay" id="loading_select">
+          <i class="fa fa-refresh fa-spin"></i>
         </div>
       </div>
       <div class="modal-footer">
@@ -191,71 +213,94 @@
 
 <script>
   jQuery(document).ready(function () {
-  jQuery(document).on("click", ".edit", function () {
-    var id = $(this).data("id");
-    $("#status").hide();
-    $.ajax({
+    jQuery(document).on("click", ".edit", function () {
+      var id = $(this).data("id");
+      $("#status").hide();
+      $.ajax({
         url: "<?php echo base_url()?>kegiatan/getDokumenKegiatan",
         type: "post",
         data: {
           idDokumenKegiatan: id,
           '<?php echo $this->security->get_csrf_token_name(); ?>': '<?php echo $this->security->get_csrf_hash(); ?>'
-      },
-      success: function (response) {
-        if (response) {
-          $("#status").show();
-          $("#loading_surat_kegiatan").hide();
-          $("#loading_laporan_kegiatan").hide();
-          $("#loading_dokumentasi").hide();
-          $("#loading_select").hide();
-          $("#label_surat").hide();
-          $("#label_laporan_kegiatan").hide();
-          $("#label_dokumentasi").hide();
-          $('<label>Surat Kegiatan</label>').appendTo('#surat_kegiatan');
-          $('<iframe src="<?php echo base_url() ?>upload/dokumentasi/' + JSON.parse(response)
-            .path_surat_kegiatan + '" width="100%" height="100%"></iframe>').appendTo(
-            '#surat_kegiatan');
-          $('<label>Laporan Kegiatan</label>').appendTo('#surat_kegiatan');
-          $('<iframe src="<?php echo base_url() ?>upload/dokumentasi/' + JSON.parse(response)
-            .path_laporan_kegiatan + '" width="100%" height="100%"></iframe>').appendTo(
-            '#surat_kegiatan');
-          $('<label>Dokumentasi</label>').appendTo('#surat_kegiatan');
-          $('<iframe src="<?php echo base_url() ?>upload/dokumentasi/' + JSON.parse(response)
-            .path_dokumentasi + '" width="100%" height="100%"></iframe>').appendTo('#surat_kegiatan');
+        },
+        success: function (response) {
+          if (response) {
+            console.log(response);
+            $("#status").show();
+            $("#loading_surat_kegiatan").hide();
+            $("#loading_laporan_kegiatan").hide();
+            $("#loading_dokumentasi").hide();
+            $("#loading_select").hide();
+            $("#loading_hadir").hide();
+            $("#loading_jurnal").hide();
+            $("#loading_sprint").hide();
+            $("#loading_checklist").hide();
+            $("#label_surat").hide();
+            $("#label_daftar_hadir").hide();
+            $("#label_laporan_kegiatan").hide();
+            $("#label_dokumentasi").hide();
+            $("#label_sprint").hide();
+            $("#label_checklist").hide();
+            $("#label_jurnal").hide();
+            $('<label>Surat Kegiatan</label>').appendTo('#surat_kegiatan');
+            $('<iframe src="<?php echo base_url() ?>upload/dokumentasi/' + JSON.parse(response)
+              .path_surat_kegiatan + '" width="100%" height="100%"></iframe>').appendTo(
+              '#surat_kegiatan');;
+            $('<label>Laporan Kegiatan</label>').appendTo('#surat_kegiatan');
+            $('<iframe src="<?php echo base_url() ?>upload/dokumentasi/' + JSON.parse(response)
+              .path_laporan_kegiatan + '" width="100%" height="100%"></iframe>').appendTo(
+              '#surat_kegiatan');;
+            $('<label>Dokumentasi</label>').appendTo('#surat_kegiatan');
+            $('<iframe src="<?php echo base_url() ?>upload/dokumentasi/' + JSON.parse(response)
+              .path_dokumentasi + '" width="100%" height="100%"></iframe>').appendTo('#surat_kegiatan');
+            $('<label>Daftar Hadir</label>').appendTo('#surat_kegiatan');
+            $('<iframe src="<?php echo base_url() ?>upload/dokumentasi/' + JSON.parse(response)
+              .path_daftar_hadir + '" width="100%" height="100%"></iframe>').appendTo('#surat_kegiatan');
+            $('<label>Jurnal</label>').appendTo('#surat_kegiatan');
+            $('<iframe src="<?php echo base_url() ?>upload/dokumentasi/' + JSON.parse(response)
+              .path_jurnal + '" width="100%" height="100%"></iframe>').appendTo('#surat_kegiatan');
+            $('<label>Sprint Siaga</label>').appendTo('#surat_kegiatan');
+            $('<iframe src="<?php echo base_url() ?>upload/dokumentasi/' + JSON.parse(response)
+              .path_sprint_siaga + '" width="100%" height="100%"></iframe>').appendTo('#surat_kegiatan');
+            $('<label>Checklist Peralatan</label>').appendTo('#surat_kegiatan');
+            $('<iframe src="<?php echo base_url() ?>upload/dokumentasi/' + JSON.parse(response)
+              .path_check_peralatan + '" width="100%" height="100%"></iframe>').appendTo(
+              '#surat_kegiatan');
+          }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          console.log(textStatus, errorThrown);
         }
-      },
-      error: function (jqXHR, textStatus, errorThrown) {
-        console.log(textStatus, errorThrown);
-      }
-    }); $("#btnSubmit").button().click(function () {
-      var value = $("#status").val();
-      $.ajax({
+      });
+      $("#btnSubmit").button().click(function () {
+        var value = $("#status").val();
+        $.ajax({
           url: "<?php echo base_url()?>kegiatan/updateStatusKegiatan",
           type: "post",
           data: {
             status: value,
             id: id,
             '<?php echo $this->security->get_csrf_token_name(); ?>': '<?php echo $this->security->get_csrf_hash(); ?>',
-        },
-        success: function (response) {
-          if (response === "true") {
-            $('.edit').modal('hide'); //or  $('#IDModal').modal('hide');
-            swal("Sukses!", "Data Berhasil diUpdate!", "success").then(function () {
-              location.reload();
-            })
-          } else {
-            swal("Gagal!", "Data Gagal diUpdate!", "danger").then(function () {
-              location.reload();
-            })
+          },
+          success: function (response) {
+            if (response === "true") {
+              $('.edit').modal('hide'); //or  $('#IDModal').modal('hide');
+              swal("Sukses!", "Data Berhasil diUpdate!", "success").then(function () {
+                location.reload();
+              })
+            } else {
+              swal("Gagal!", "Data Gagal diUpdate!", "danger").then(function () {
+                location.reload();
+              })
+            }
+            //location.reload();
+          },
+          error: function (jqXHR, textStatus, errorThrown) {
+            console.log(textStatus, errorThrown);
           }
-          //location.reload();
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-          console.log(textStatus, errorThrown);
-        }
+        });
       });
-  });
 
-  });
+    });
   });
 </script>
