@@ -265,6 +265,74 @@ class Kegiatan extends CI_Controller
         }
     }
 
+    public function uploadDaftarHadir($user_id, $file_id)
+    {
+        $config['max_size'] = 10024;
+        $config['upload_path'] = './upload/dokumentasi/';
+        $config['allowed_types'] = 'gif|jpg|jpeg|png|pdf|doc|docx|xls|xlsx';
+        $config['file_name'] = 'DH' . $user_id . '_' . date('Ymdhis');
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload($file_id)) {
+            $error = array('error' => $this->upload->display_errors());
+        } else {
+            $data = array('upload_data' => $this->upload->data());
+            return $data['upload_data']['file_name'];
+        }
+    }
+
+    public function uploadJurnal($user_id, $file_id)
+    {
+        $config['max_size'] = 10024;
+        $config['upload_path'] = './upload/dokumentasi/';
+        $config['allowed_types'] = 'gif|jpg|jpeg|png|pdf|doc|docx|xls|xlsx';
+        $config['file_name'] = 'JN' . $user_id . '_' . date('Ymdhis');
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload($file_id)) {
+            $error = array('error' => $this->upload->display_errors());
+        } else {
+            $data = array('upload_data' => $this->upload->data());
+            return $data['upload_data']['file_name'];
+        }
+    }
+
+    public function uploadChecklist($user_id, $file_id)
+    {
+        $config['max_size'] = 10024;
+        $config['upload_path'] = './upload/dokumentasi/';
+        $config['allowed_types'] = 'gif|jpg|jpeg|png|pdf|doc|docx|xls|xlsx';
+        $config['file_name'] = 'CP' . $user_id . '_' . date('Ymdhis');
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload($file_id)) {
+            $error = array('error' => $this->upload->display_errors());
+        } else {
+            $data = array('upload_data' => $this->upload->data());
+            return $data['upload_data']['file_name'];
+        }
+    }
+
+    public function uploadSprintSiaga($user_id, $file_id)
+    {
+        $config['max_size'] = 10024;
+        $config['upload_path'] = './upload/dokumentasi/';
+        $config['allowed_types'] = 'gif|jpg|jpeg|png|pdf|doc|docx|xls|xlsx';
+        $config['file_name'] = 'SS' . $user_id . '_' . date('Ymdhis');
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload($file_id)) {
+            $error = array('error' => $this->upload->display_errors());
+        } else {
+            $data = array('upload_data' => $this->upload->data());
+            return $data['upload_data']['file_name'];
+        }
+    }
+
     public function addNewBuktiKegiatan()
     {
         $userId = $this->session->userdata('userId');
@@ -274,11 +342,19 @@ class Kegiatan extends CI_Controller
         $suratPerintah = $this->uploadSuratPerintah($nip, 'surat_perintah');
         $dokumentasi = $this->uploadDokumentasi($nip, 'dokumentasi');
         $laporanKegiatan = $this->uploadLaporan($nip, 'laporan_data');
+        $daftarHadir = $this->uploadDaftarHadir($nip, 'daftar_hadir');
+        $jurnal = $this->uploadJurnal($nip, 'jurnal');
+        $sprintSiaga = $this->uploadSprintSiaga($nip, 'sprint_siaga');
+        $checklistPeralatan = $this->uploadSprintSiaga($nip, 'checklist_peralatan');
         $buktiInfo = array(
             'idKegiatanHarian' => $idKegiatanHarian,
             'path_surat_kegiatan' => $suratPerintah,
             'path_laporan_kegiatan' => $laporanKegiatan,
             'path_dokumentasi' => $dokumentasi,
+            'path_daftar_hadir' => $daftarHadir,
+            'path_jurnal' => $jurnal,
+            'path_sprint_siaga' => $sprintSiaga,
+            'path_check_peralatan' => $checklistPeralatan,
         );
         $result = $this->kegiatan_model->addNewBuktiKegiatan($buktiInfo);
 
@@ -319,6 +395,7 @@ class Kegiatan extends CI_Controller
         $this->global['pageTitle'] = 'Persetujuan Kegiatan';
         $userId = $this->session->userdata('userId');
         $data['kegiatan'] = $this->kegiatan_model->getKegiatanDiajukan();
+        // print_r($data);die;
         $this->load->view('includes/header', $this->global);
         $this->load->view('kegiatan/approvalKegiatan', $data);
         $this->load->view('includes/footer');

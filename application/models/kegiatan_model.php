@@ -120,7 +120,9 @@ class Kegiatan_model extends CI_Model
     {
         $this->db->select('bt.namaButir,tkh.tanggalMulai,tkh.tanggalSelesai, tkh.tanggalSelesai ,
         us.nip ,us.name, jj.namaJenjang , jb.namaJabatan , pk.namaPangkat,tkh.idKegiatanHarian, tkh.createdAt,
-        dk.path_dokumentasi, dk.path_surat_kegiatan, dk.path_laporan_kegiatan, un.namaUnsur, sus.namaSubunsur');
+        dk.path_dokumentasi, dk.path_surat_kegiatan, dk.path_laporan_kegiatan, 
+        dk.path_jurnal, dk.path_daftar_hadir, dk.path_check_peralatan, dk.path_sprint_siaga,
+        un.namaUnsur, sus.namaSubunsur');
         $this->db->from('tbl_kegiatan_harian as tkh');
         $this->db->join('tbl_butir as bt', 'tkh.idButir = bt.idButir', 'left');
         $this->db->join('tbl_users as us', 'us.userId = tkh.userId', 'left');

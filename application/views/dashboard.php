@@ -25,7 +25,7 @@ if (!empty($data)) {
         <div class="small-box bg-green">
           <div class="inner">
             <h3><?php if($kegiatanPegawaiDiterima){
-              echo $kegiatanPegawaiDiterima[0]->jmlPoint;
+              echo round($kegiatanPegawaiDiterima[0]->jmlPoint);
             } else {
               echo 0;
             }?></h3>
@@ -43,7 +43,7 @@ if (!empty($data)) {
         <div class="small-box bg-red">
           <div class="inner">
             <h3><?php if($kegiatanPegawaiDitolak){
-              echo $kegiatanPegawaiDitolak[0]->jmlPoint;
+              echo round($kegiatanPegawaiDitolak[0]->jmlPoint);
             } else {
               echo 0;
             }?></h3>
@@ -62,7 +62,7 @@ if (!empty($data)) {
           <div class="inner">
             <h3>
               <?php if($kegiatanPegawaiDiterima){
-              echo $kegiatanPegawaiDiterima[0]->jmlKegiatan;
+              echo round($kegiatanPegawaiDiterima[0]->jmlKegiatan);
             } else {
               echo 0;
             }?>
@@ -82,7 +82,7 @@ if (!empty($data)) {
           <div class="inner">
             <h3>
               <?php if($kegiatanPegawaiDitolak){
-              echo $kegiatanPegawaiDitolak[0]->jmlKegiatan;
+              echo round($kegiatanPegawaiDitolak[0]->jmlKegiatan);
             } else {
               echo 0;
             }?>
@@ -106,7 +106,7 @@ if (!empty($data)) {
         <div class="small-box bg-blue">
           <div class="inner">
             <h3><?php if($jumlahKegiatan > 0){
-              echo $jumlahKegiatan;
+              echo round($jumlahKegiatan);
             } else {
               echo 0;
             }?></h3>
@@ -129,7 +129,7 @@ if (!empty($data)) {
         <!-- small box -->
         <div class="small-box bg-yellow">
           <div class="inner">
-            <h3><?php echo $jumlahUser ?></h3>
+            <h3><?php echo round($jumlahUser) ?></h3>
             <p>Total Pegawai</p>
           </div>
           <div class="icon">
