@@ -179,7 +179,6 @@
     $(document).ready(function () {
         $('#butir').change(function () {
             var idButir = $(this).val();
-            console.log(idButir);
             $.ajax({
                 url: "<?php echo base_url();?>kegiatan/getButirKegiatan",
                 method: "POST",
@@ -190,7 +189,6 @@
                 async: false,
                 dataType: 'json',
                 success: function (data) {
-                    console.log(data);
                     var html = '';
                     var i;
                     for (i = 0; i < data.length; i++) {
@@ -207,17 +205,16 @@
     $(document).ready(function () {
         $('#subunsur').change(function () {
             var idSubunsur = $(this).val();
-            console.log(idSubunsur);
             $.ajax({
                 url: "<?php echo base_url();?>kegiatan/getButir",
                 method: "POST",
                 data: {
+                    'idSubunsur': idSubunsur,
                     '<?php echo $this->security->get_csrf_token_name(); ?>': '<?php echo $this->security->get_csrf_hash(); ?>'
                 },
                 async: false,
                 dataType: 'json',
                 success: function (data) {
-                    console.log(data);
                     var html = '';
                     var i;
                     html += '<option value="' + "0" + '">' + "Pilih butir" + '</option>';
