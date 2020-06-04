@@ -64,7 +64,7 @@ class Login extends CI_Controller
                 $this->db->insert('tbl_tokens', $user_token);
                 $this->_sendEmail($token, 'forgot');
 
-                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Please check your email to reset your password!</div>');
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Cek email anda untuk melakukan reset password</div>');
                 redirect('login/forgotpassword');
             } else {
                 $this->session->set_flashdata('error', 'Email tidak terdaftar!');
@@ -141,7 +141,9 @@ class Login extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Change Password';
+            $this->load->view('includes/auth/header', $data);
             $this->load->view('forgot/changepassword');
+            $this->load->view('includes/auth/footer');
         } else {
             $password = md5($this->input->post('password1'));
             $email = $this->session->userdata('reset_email');
