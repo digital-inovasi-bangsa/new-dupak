@@ -109,6 +109,21 @@ class User_model extends CI_Model
         return $query->result();
     }
 
+    public function getUserByUserId($userId)
+    {
+        $this->db->select('BaseTbl.*,Divisi.*, Jabatan.*, Pangkat.*, Role.*');
+        $this->db->from('tbl_users as BaseTbl');
+        $this->db->join('tbl_roles as Role', 'Role.roleId = BaseTbl.roleId', 'left');
+        $this->db->join('tbl_divisi as Divisi', 'Divisi.idDivisi = BaseTbl.tbl_divisi_idDivisi', 'left');
+        $this->db->join('tbl_jabatan as Jabatan', 'Jabatan.idJabatan = BaseTbl.tbl_jabatan_idJabatan', 'left');
+        $this->db->join('tbl_pangkat as Pangkat', 'Pangkat.idPangkat = Jabatan.tbl_pangkat_idPangkat', 'left');
+        $this->db->where('isDeleted', 0);
+        $this->db->where('BaseTbl.userId', $userId);
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
     public function editUser($userInfo, $userId)
     {
         $this->db->where('userId', $userId);

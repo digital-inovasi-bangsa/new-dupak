@@ -34,6 +34,7 @@
                       <th>Unsur</th>
                       <th>Subunsur</th>
                       <th>Butir Kegiatan</th>
+                      <th>Catatan</th>
                       <th>Status</th>
                     </tr>
                   </thead>
@@ -56,7 +57,9 @@
                       <td><?php echo $record->updatedAt ?></td>
                       <td><?php echo $record->namaUnsur ?></td>
                       <td><?php echo $record->namaSubunsur ?></td>
-                      <td><?php echo $record->namaButir ?></td> <?php if($record->status=='Diterima') { ?>
+                      <td><?php echo $record->namaButir ?></td>
+                      <td><?php echo $record->catatan ?></td> 
+                      <?php if($record->status=='Diterima') { ?>
                       <td><span class="label" style="background-color:green"><?php echo $record->status ?></span></td>
                       <?php } else if($record->status=='Ditolak') {?> 
                         <td><span class="label" style="background-color:red"><?php echo $record->status ?></span></td>
@@ -90,6 +93,9 @@
     $("#example1").DataTable({
       "columns": [{
           "width": "3%"
+        },
+        {
+          "width": "10%"
         },
         {
           "width": "10%"

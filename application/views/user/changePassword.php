@@ -22,6 +22,14 @@
                         <!-- CSRF Token -->
                         <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
                         <div class="box-body">
+                            <!-- <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="name">Nama</label>
+                                        <input type="name" class="form-control" id="name" placeholder="Nama Lengkap" value="<?php $userInfo[0]->name ?>" name="name" maxlength="10" required></input>
+                                    </div>
+                                </div>
+                            </div> -->
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">

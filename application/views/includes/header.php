@@ -88,11 +88,17 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
           <li class="header">Sidebar Menu</li>
+          <?php
+            if ($role != 18 && $role !=19) {
+            ?>
           <li class="treeview">
               <a href="<?php echo base_url(); ?>">
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span></i>
               </a>
           </li>
+          <?php
+          }
+          ?>
           <?php
             if ($role == 1) {
             ?>
@@ -165,6 +171,7 @@
         <?php
             }
         ?>
+        
         <li class="treeview active" style="height:auto;">
           <a href="#">
             <i class="fa fa-line-chart"></i>
@@ -175,6 +182,9 @@
           </a>
           <ul class="treeview-menu">
             <!-- Child -->
+            <?php
+            if ($role != 18 && $role !=19) {
+            ?>
             <li>
               <a href="<?php echo base_url(); ?>kegiatan">
                 <i class="fa fa-book"></i>
@@ -200,7 +210,10 @@
               </a>
             </li>
             <?php
-            if ($role == 1 || $role == 18) {
+            }
+            ?>
+            <?php
+            if ($role == 1 || $role == 18 || $role ==19) {
             ?>
               <li>
                 <a href="<?php echo base_url(); ?>kegiatan/approvalKegiatan">

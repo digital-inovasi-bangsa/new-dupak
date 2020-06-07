@@ -378,8 +378,10 @@ class Kegiatan extends CI_Controller
     {
         $status = $this->input->post("status");
         $id = $this->input->post("id");
+        $catatan = $this->input->post("catatan");
         $statusInfo = array(
             'status' => $status,
+            'catatan' => $catatan,
         );
         $status = $this->kegiatan_model->updateStatusKegiatan($statusInfo, $id);
 
