@@ -395,12 +395,12 @@ class User extends CI_Controller
      */
     public function loadChangePass()
     {
-        $this->global['pageTitle'] = 'Ubah Kata Sandi';
+        $this->global['pageTitle'] = 'Ubah Profil';
         $userId = $this->session->userdata('userId');   
         $data['roles'] = $this->user_model->getUserRoles();
         $data['jabatan'] = $this->user_model->getUserJabatanInfo();
         $data['pangkat'] = $this->user_model->getUserPangkat();
-        $data['userInfo'] = $this->user_model->getUserInfo($userId);
+        $data['userInfo'] = $this->user_model->getUserInfoAll($userId);
         $this->load->view('includes/header', $this->global);
         $this->load->view('user/changePassword', $data);
         $this->load->view('includes/footer');
