@@ -397,9 +397,10 @@ class User extends CI_Controller
     {
         $this->global['pageTitle'] = 'Ubah Kata Sandi';
         $userId = $this->session->userdata('userId');   
-        $data['userInfo'] = $this->user_model->getUserByUserId($userId);
-        // print_r($data);die;
-
+        $data['roles'] = $this->user_model->getUserRoles();
+        $data['jabatan'] = $this->user_model->getUserJabatanInfo();
+        $data['pangkat'] = $this->user_model->getUserPangkat();
+        $data['userInfo'] = $this->user_model->getUserInfo($userId);
         $this->load->view('includes/header', $this->global);
         $this->load->view('user/changePassword', $data);
         $this->load->view('includes/footer');
@@ -412,34 +413,117 @@ class User extends CI_Controller
     {
         $this->load->library('form_validation');
 
-        $this->form_validation->set_rules('oldPassword', 'Old password', 'required|max_length[20]');
-        $this->form_validation->set_rules('newPassword', 'New password', 'required|max_length[20]');
-        $this->form_validation->set_rules('cNewPassword', 'Confirm new password', 'required|matches[newPassword]|max_length[20]');
+            $userId = $this->input->post('userId');
 
-        if ($this->form_validation->run() == false) {
-            $this->loadChangePass();
-        } else {
-            $oldPassword = $this->input->post('oldPassword');
-            $newPassword = $this->input->post('newPassword');
+            $this->form_validation->set_rules('fname', 'Full Name', 'trim|required|max_length[128]|xss_clean');
+            $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|xss_clean|max_length[128]');
+            $this->form_validation->set_rules('password', 'Password', 'matches[cpassword]|max_length[20]');
+            $this->form_validation->set_rules('cpassword', 'Confirm Password', 'matches[password]|max_length[20]');
+            //$this->form_validation->set_rules('role', 'Role', 'trim|required|numeric');
+            $this->form_validation->set_rules('mobile', 'Mobile Number', 'required|min_length[10]|xss_clean');
+            $this->form_validation->set_rules('nip', 'NIP', 'trim|required|numeric');
+            //$this->form_validation->set_rules('jabatan', 'Jabatan', 'trim|required');
+            $this->form_validation->set_rules('nomorSeriKartuPegawai', 'Nomor Seri Kartu Pegawai', 'trim|required');
+            $this->form_validation->set_rules('tanggalLahir', 'Tanggal Lahir', 'trim|required');
+            $this->form_validation->set_rules('tempatLahir', 'Tempat Lahir', 'trim|required');
+            $this->form_validation->set_rules('pendidikan', 'Pendidikan', 'trim|required');
+            $this->form_validation->set_rules('mulaiKerja', 'Mulai Kerja', 'trim|required');
 
-            $resultPas = $this->user_model->matchOldPassword($this->vendorId, md5($oldPassword));
-
-            if (empty($resultPas)) {
-                $this->session->set_flashdata('error', 'Password lama tidak sesuai');
-                redirect('loadChangePass');
+            if ($this->form_validation->run() == false) {
+                $this->editOld($userId);
             } else {
-                $usersData = array('password' => md5($newPassword), 'updatedBy' => $this->vendorId, 'updatedDtm' => date('Y-m-d H:i:sa'));
-
-                $result = $this->user_model->changePassword($this->vendorId, $usersData);
-
-                if ($result > 0) {
-                    $this->session->set_flashdata('success', 'Password berhasil diperbaharui');
+                $userId = $this->input->post('userId');
+                $name = ucwords(strtolower($this->input->post('fname')));
+                $email = $this->input->post('email');
+                $password = $this->input->post('password');
+                //$roleId = $this->input->post('role');
+                $nip = $this->input->post('nip');
+                $mobile = $this->input->post('mobile');
+                //$idJabatan = $this->input->post('jabatan');
+                $idDivisi = 16;
+                $nomorSeriKartuPegawai = $this->input->post('nomorSeriKartuPegawai');
+                $tanggalLahir = $this->input->post('tanggalLahir');
+                $tempatLahir = $this->input->post('tempatLahir');
+                $jenisKelamin = $this->input->post('jenisKelamin');
+                $pendidikan = $this->input->post('pendidikan');
+                $mulaiKerja = $this->input->post('mulaiKerja');
+                if (!empty($_FILES['user_img_upload']['tmp_name'])) {
+                    $fotoProfile = $this->_upload_foto($nip);
                 } else {
-                    $this->session->set_flashdata('error', 'Password gagal diperbaharui');
+                    $data = $this->user_model->getUserInfo($userId);
+                    $fotoProfile = $data[0]->fotoProfil;
                 }
 
-                redirect('logout');
+                $userInfo = array();
+
+                if (empty($password)) {
+                    $userInfo = array(
+                        'email' => $email, 
+                        //'roleId' => $roleId, 
+                        'name' => $name, 
+                        //'tbl_divisi_idDivisi' => $idDivisi, 
+                        'nip' => $nip,
+                        'mobile' => $mobile, 
+                        'updatedBy' => $this->vendorId, 
+                        'updatedDtm' => date('Y-m-d H:i:sa'),
+                        'fotoProfil' => $fotoProfile, 
+                        // 'tbl_jabatan_idJabatan' => $idJabatan, 
+                        'nomorSeriKartuPegawai' => $nomorSeriKartuPegawai,
+                        'tanggalLahir' => $tanggalLahir,
+                        'tempatLahir' => $tempatLahir,
+                        'jenisKelamin' => $jenisKelamin,
+                        'pendidikan' => $pendidikan,
+                        'mulaiKerja' => $mulaiKerja
+                    );
+                } else if (empty($password) && empty($_FILES['user_img_upload']['tmp_name'])) {
+                    $userInfo = array(
+                        'email' => $email, 'password' => md5($password), 
+                        'roleId' => $roleId, 
+                        'name' => $name, 
+                        //'tbl_divisi_idDivisi' => $idDivisi, 
+                        'nip' => $nip,
+                        'mobile' => $mobile, 
+                        'updatedBy' => $this->vendorId, 
+                        'updatedDtm' => date('Y-m-d H:i:sa'),
+                        //'tbl_jabatan_idJabatan' => $idJabatan, 
+                        'nomorSeriKartuPegawai' => $nomorSeriKartuPegawai,
+                        'tanggalLahir' => $tanggalLahir,
+                        'tempatLahir' => $tempatLahir,
+                        'jenisKelamin' => $jenisKelamin,
+                        'pendidikan' => $pendidikan,
+                        'mulaiKerja' => $mulaiKerja
+                    );
+                } else {
+                    $userInfo = array(
+                        'email' => $email, 
+                        'password' => md5($password), 
+                        // 'roleId' => $roleId, 
+                        'name' => $name, 
+                        'tbl_divisi_idDivisi' => $idDivisi, 
+                        'nip' => $nip,
+                        'mobile' => $mobile, 
+                        'updatedBy' => $this->vendorId, 
+                        'updatedDtm' => date('Y-m-d H:i:sa'),
+                        'fotoProfil' => $fotoProfile, 
+                        // 'tbl_jabatan_idJabatan' => $idJabatan, 
+                        'nomorSeriKartuPegawai' => $nomorSeriKartuPegawai,
+                        'tanggalLahir' => $tanggalLahir,
+                        'tempatLahir' => $tempatLahir,
+                        'jenisKelamin' => $jenisKelamin,
+                        'pendidikan' => $pendidikan,
+                        'mulaiKerja' => $mulaiKerja
+                    );
+                }
+
+                $result = $this->user_model->editUser($userInfo, $userId);
+
+                if ($result) {
+                    $this->session->set_flashdata('success', 'User berhasil diperbaharui');
+                } else {
+                    $this->session->set_flashdata('error', 'User gagal diperbaharui');
+                }
+
+                redirect('dashboard');
             }
-        }
     }
 }
