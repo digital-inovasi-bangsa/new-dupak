@@ -171,6 +171,21 @@
             }
         ?>
         
+        <?php
+            if ($role == 19) {
+            ?>
+          <li class="treeview active" style="height:auto;">
+            <a href="#">
+                <a href="<?php echo base_url(); ?>rescuer/rescuerListing">
+                  <i class="fa fa-book"></i>
+                  <span>Data Rescuer</span>
+                </a>
+            </a>
+          </li>
+        <?php
+            }
+        ?>
+
         <li class="treeview active" style="height:auto;">
           <a href="#">
             <i class="fa fa-line-chart"></i>
