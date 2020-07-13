@@ -40,3 +40,18 @@ $ git push
 ```
 4. Once, i've done fixes for issue I create pull request and in the pull request body write "fixes #23"
 5. This automatically closes "issue #23"
+
+# Docker 
+
+1. Build Docker
+```bash
+$ docker build -t dupak-basarnas:v1.0.0-dev .
+```
+2. Running Docker
+```bash
+$ docker run --name dupak-basarnas --rm -v "$(pwd)":/var/www/dupak-basarnas dupak-basarnas:v1.0.0-dev
+```
+3. Running Mysql On Docker
+```bash
+$ 
+```

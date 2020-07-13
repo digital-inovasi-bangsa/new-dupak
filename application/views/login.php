@@ -1,4 +1,5 @@
       <div class="login-box-body">
+
         <p class="login-box-msg">Silahkan Login Terlebih Dahulu</p>
         <div class="row">
           <?php $this->load->view('includes/_flash'); ?>

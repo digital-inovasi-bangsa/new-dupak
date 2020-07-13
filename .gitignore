@@ -468,3 +468,6 @@ composer.lock
 
 ##### Dockerfile
 Dockerfile
+
+##### conf
+*.conf
