@@ -1,9 +1,6 @@
 
     <footer class="main-footer">
-        <div class="pull-right hidden-xs">
-          <b>SISTEM INFORMASI LAPORAN DAFTAR USULAN PENILAIAN ANGKA KREDIT (DUPAK) RESCUER BASARNAS YOGYAKARTA</b>
-        </div>
-        <strong>SUZANTI INDAH SARI - 160101219</strong>
+       <strong>SUZANTI INDAH SARI - 160101219</strong>
     </footer>
 
     <!-- jQuery 2.1.4 -->

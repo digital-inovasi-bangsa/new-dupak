@@ -1,7 +1,7 @@
 </div><!-- /.login-box -->
 
     <footer class="text-center">
-      <small>SISTEM INFORMASI LAPORAN DAFTAR USULAN PENILAIAN ANGKA KREDIT (DUPAK) RESCUER <br/> BASARNAS YOGYAKARTA </small>
+      <small style="color: white;">SISTEM INFORMASI LAPORAN DAFTAR USULAN PENILAIAN ANGKA KREDIT (DUPAK) RESCUER <br/> BASARNAS YOGYAKARTA </small>
     </footer>
 
     <script src="<?php echo base_url(); ?>assets/js/jQuery-2.1.4.min.js"></script>
