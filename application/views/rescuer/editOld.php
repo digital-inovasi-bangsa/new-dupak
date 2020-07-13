@@ -58,7 +58,7 @@ if(!empty($userInfo))
                         <h3 class="box-title"><?= $pageTitle; ?></h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" action="<?php echo base_url() ?>changePassword" method="post" id="editUser" role="form"
+                    <form role="form" action="<?php echo base_url() ?>rescuer/editUser" method="post" id="editUser" role="form"
                         enctype="multipart/form-data">
                         <!-- CSRF Token -->
                         <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
@@ -107,14 +107,29 @@ if(!empty($userInfo))
                                     </div>
                                 </div>
                                 <div class="col-md-6">
+                                    <label>Pendidikan Terakhir</label>
+                                    <select class="form-control required" id="pendidikan" name="pendidikan">
+                                        <option value="0">Pilih Pendidikan Terakhir</option>
+                                        <option <?php if ($pendidikan=="SD"){echo "selected=selected";}?> value="SD">SD</option>
+                                        <option <?php if ($pendidikan=="SMP"){echo "selected=selected";}?> value="SMP">SMP</option>
+                                        <option <?php if ($pendidikan=="SMA"){echo "selected=selected";}?> value="SMA">SMK/SMA</option>
+                                        <option <?php if ($pendidikan=="D1"){echo "selected=selected";}?> value="D1">D1</option>
+                                        <option <?php if ($pendidikan=="D2"){echo "selected=selected";}?> value="D2">D2</option>
+                                        <option <?php if ($pendidikan=="D3"){echo "selected=selected";}?> value="D3">D3</option>
+                                        <option <?php if ($pendidikan=="S1"){echo "selected=selected";}?> value="S1">S1/D4</option>
+                                        <option <?php if ($pendidikan=="S2"){echo "selected=selected";}?> value="S2">S2</option>
+                                        <option <?php if ($pendidikan=="S3"){echo "selected=selected";}?>  value="S3">S3</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="nip">NIP</label>
                                         <input type="text" class="form-control required digits" id="nip" name="nip"
                                             value="<?php echo $nip; ?>">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Jenis Kelamin</label>
@@ -128,11 +143,36 @@ if(!empty($userInfo))
                                         </select>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="nomorSeri">Nomor Seri Kartu Pegawai</label>
-                                        <input type="text" class="form-control required" id="nomorSeriKartuPegawai"
-                                            name="nomorSeriKartuPegawai" value="<?php echo $nomorSeriKartuPegawai; ?>">
+                                        <label for="jabatan">Jabatan</label>
+                                        <select class="form-control required" id="pangkat" name="pangkat">
+                                            <option value="0">Pilih Jabatan</option>
+                                            <option value="17" selected>Rescuer</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="jabatan">Pangkat</label>
+                                        <select class="form-control required" id="jabatan" name="jabatan">
+                                            <option value="0">Pilih Pangkat</option>
+                                            <?php
+                                            if(!empty($jabatan))
+                                            {
+                                                foreach ($jabatan as $rl)
+                                                {
+                                                    ?>
+                                            <option value="<?php echo $rl->idJabatan; ?>"
+                                                <?php if($rl->idJabatan == $idJabatan) {echo "selected=selected";} ?>>
+                                                <?php echo $rl->namaJabatan ?></option>
+                                            <?php
+                                                }
+                                            }
+                                            ?>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -152,9 +192,9 @@ if(!empty($userInfo))
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="tempatLahir">Tempat Lahir</label>
-                                        <input type="text" class="form-control required" id="tempatLahir"
-                                            name="tempatLahir" value="<?php echo $tempatLahir; ?>">
+                                        <label for="nomorSeri">Nomor Seri Kartu Pegawai</label>
+                                        <input type="text" class="form-control required" id="nomorSeriKartuPegawai"
+                                            name="nomorSeriKartuPegawai" value="<?php echo $nomorSeriKartuPegawai; ?>">
                                     </div>
                                 </div>
                             </div>
@@ -173,19 +213,11 @@ if(!empty($userInfo))
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <label>Pendidikan Terakhir</label>
-                                    <select class="form-control required" id="pendidikan" name="pendidikan">
-                                        <option value="0">Pilih Pendidikan Terakhir</option>
-                                        <option <?php if ($pendidikan=="SD"){echo "selected=selected";}?> value="SD">SD</option>
-                                        <option <?php if ($pendidikan=="SMP"){echo "selected=selected";}?> value="SMP">SMP</option>
-                                        <option <?php if ($pendidikan=="SMA"){echo "selected=selected";}?> value="SMA">SMK/SMA</option>
-                                        <option <?php if ($pendidikan=="D1"){echo "selected=selected";}?> value="D1">D1</option>
-                                        <option <?php if ($pendidikan=="D2"){echo "selected=selected";}?> value="D2">D2</option>
-                                        <option <?php if ($pendidikan=="D3"){echo "selected=selected";}?> value="D3">D3</option>
-                                        <option <?php if ($pendidikan=="S1"){echo "selected=selected";}?> value="S1">S1/D4</option>
-                                        <option <?php if ($pendidikan=="S2"){echo "selected=selected";}?> value="S2">S2</option>
-                                        <option <?php if ($pendidikan=="S3"){echo "selected=selected";}?>  value="S3">S3</option>
-                                    </select>
+                                    <div class="form-group">
+                                        <label for="tempatLahir">Tempat Lahir</label>
+                                        <input type="text" class="form-control required" id="tempatLahir"
+                                            name="tempatLahir" value="<?php echo $tempatLahir; ?>">
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -219,4 +251,30 @@ if(!empty($userInfo))
 
 <script src="<?php echo base_url(); ?>assets/js/editUser.js" type="text/javascript"></script>
 <script src="https://adminlte.io/themes/AdminLTE/bower_components/jquery-ui/jquery-ui.min.js" type="text/javascript">
+</script>
+<script>
+    $(document).ready(function () {
+        $('#pangkat').change(function () {
+            var idPangkat = $(this).val();
+            $.ajax({
+                url: "<?php echo base_url();?>user/callJabatan",
+                method: "POST",
+                data: {
+                    idPangkat: idPangkat
+                },
+                async: false,
+                dataType: 'json',
+                success: function (data) {
+                    var html = '';
+                    var i;
+                    for (i = 0; i < data.length; i++) {
+                        html += '<option value="' + data[i].idJabatan + '">' + data[i]
+                            .namaJabatan + '</option>';
+                    }
+                    $('#jabatan').html(html);
+
+                }
+            });
+        });
+    });
 </script>

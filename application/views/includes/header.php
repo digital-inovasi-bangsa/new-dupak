@@ -72,8 +72,7 @@
                 <!-- Menu Footer-->
                 <li class="user-footer">
                   <div class="pull-left">
-                    <a href="<?php echo base_url(); ?>loadChangePass" class="btn btn-default btn-flat">Ganti Kata
-                      Sandi</a>
+                    <a href="<?php echo base_url(); ?>loadChangePass" class="btn btn-default btn-flat">Ubah Profil</a>
                   </div>
                   <div class="pull-right">
                     <a href="<?php echo base_url(); ?>logout" class="btn btn-default btn-flat">Sign out</a>
@@ -92,11 +91,17 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
           <li class="header">Sidebar Menu</li>
+          <?php
+            if ($role != 18 && $role !=19) {
+            ?>
           <li class="treeview">
               <a href="<?php echo base_url(); ?>">
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span></i>
               </a>
           </li>
+          <?php
+          }
+          ?>
           <?php
             if ($role == 1) {
             ?>
@@ -169,6 +174,22 @@
         <?php
             }
         ?>
+        
+        <?php
+            if ($role == 19) {
+            ?>
+          <li class="treeview active" style="height:auto;">
+            <a href="#">
+                <a href="<?php echo base_url(); ?>rescuer/rescuerListing">
+                  <i class="fa fa-book"></i>
+                  <span>Data Rescuer</span>
+                </a>
+            </a>
+          </li>
+        <?php
+            }
+        ?>
+
         <li class="treeview active" style="height:auto;">
           <a href="#">
             <i class="fa fa-line-chart"></i>
@@ -179,6 +200,9 @@
           </a>
           <ul class="treeview-menu">
             <!-- Child -->
+            <?php
+            if ($role != 18 && $role !=19) {
+            ?>
             <li>
               <a href="<?php echo base_url(); ?>kegiatan">
                 <i class="fa fa-book"></i>
@@ -204,7 +228,10 @@
               </a>
             </li>
             <?php
-            if ($role == 1 || $role == 18) {
+            }
+            ?>
+            <?php
+            if ($role == 1 || $role == 18 || $role ==19) {
             ?>
               <li>
                 <a href="<?php echo base_url(); ?>kegiatan/approvalKegiatan">

@@ -134,6 +134,10 @@
         <div class="overlay" id="loading_checklist">
           <i class="fa fa-refresh fa-spin"></i>
         </div>
+        <div class="form-group">
+          <label for="catatan">Catatan</label>
+          <input type="text" class="form-control required" id="catatan" name="catatan" maxlength="128">
+        </div>
         <label>Ubah status</label>
         <select class="form-control" id="status" name="status">
           <option value="0">-Pilih Status-</option>
@@ -216,6 +220,7 @@
     jQuery(document).on("click", ".edit", function () {
       var id = $(this).data("id");
       $("#status").hide();
+      $("#catatan").hide();
       $.ajax({
         url: "<?php echo base_url()?>kegiatan/getDokumenKegiatan",
         type: "post",
@@ -225,8 +230,8 @@
         },
         success: function (response) {
           if (response) {
-            console.log(response);
             $("#status").show();
+            $("#catatan").show();
             $("#loading_surat_kegiatan").hide();
             $("#loading_laporan_kegiatan").hide();
             $("#loading_dokumentasi").hide();
@@ -274,12 +279,14 @@
       });
       $("#btnSubmit").button().click(function () {
         var value = $("#status").val();
+        var catatan = $("#catatan").val();
         $.ajax({
           url: "<?php echo base_url()?>kegiatan/updateStatusKegiatan",
           type: "post",
           data: {
             status: value,
             id: id,
+            catatan: catatan,
             '<?php echo $this->security->get_csrf_token_name(); ?>': '<?php echo $this->security->get_csrf_hash(); ?>',
           },
           success: function (response) {

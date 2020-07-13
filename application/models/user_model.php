@@ -18,7 +18,41 @@ class User_model extends CI_Model
         return count($query->result());
     }
 
+    public function rescuerListingCount()
+    {
+        $this->db->select('BaseTbl.userId, BaseTbl.email, BaseTbl.name, BaseTbl.mobile, Role.role');
+        $this->db->from('tbl_users as BaseTbl');
+        $this->db->join('tbl_roles as Role', 'Role.roleId = BaseTbl.roleId', 'left');
+        $this->db->join('tbl_divisi as Divisi', 'Divisi.idDivisi = BaseTbl.tbl_divisi_idDivisi', 'full');
+        $this->db->join('tbl_jabatan as Jabatan', 'Jabatan.idJabatan = BaseTbl.tbl_jabatan_idJabatan', 'left');
+        $this->db->join('tbl_pangkat as Pangkat', 'Pangkat.idPangkat = Jabatan.tbl_pangkat_idPangkat', 'left');
+        $this->db->where('BaseTbl.isDeleted', 0);
+        $this->db->where('BaseTbl.roleId !=', 1);
+        $this->db->where('Pangkat.idPangkat', 17);
+        $this->db->order_by('createdDtm', 'ASC');
+        $query = $this->db->get();
+
+        return count($query->result());
+    }
+
     public function userListing()
+    {
+        $this->db->select('BaseTbl.*,Divisi.*, Jabatan.*, Pangkat.*, Role.*');
+        $this->db->from('tbl_users as BaseTbl');
+        $this->db->join('tbl_roles as Role', 'Role.roleId = BaseTbl.roleId', 'left');
+        $this->db->join('tbl_divisi as Divisi', 'Divisi.idDivisi = BaseTbl.tbl_divisi_idDivisi', 'left');
+        $this->db->join('tbl_jabatan as Jabatan', 'Jabatan.idJabatan = BaseTbl.tbl_jabatan_idJabatan', 'left');
+        $this->db->join('tbl_pangkat as Pangkat', 'Pangkat.idPangkat = Jabatan.tbl_pangkat_idPangkat', 'left');
+        $this->db->where('BaseTbl.isDeleted', 0);
+        $this->db->where('BaseTbl.roleId !=', 1);
+        $this->db->where('Pangkat.idPangkat', 17);
+        $this->db->order_by('createdDtm', 'ASC');
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
+    public function rescuerListing()
     {
         $this->db->select('BaseTbl.*,Divisi.*, Jabatan.*, Pangkat.*, Role.*');
         $this->db->from('tbl_users as BaseTbl');
@@ -103,6 +137,36 @@ class User_model extends CI_Model
         $this->db->join('tbl_pangkat as Pangkat', 'Pangkat.idPangkat = Jabatan.tbl_pangkat_idPangkat', 'left');
         $this->db->where('isDeleted', 0);
         $this->db->where('BaseTbl.roleId !=', 1);
+        $this->db->where('BaseTbl.userId', $userId);
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
+    public function getUserInfoAll($userId)
+    {
+        $this->db->select('BaseTbl.*,Divisi.*, Jabatan.*, Pangkat.*, Role.*');
+        $this->db->from('tbl_users as BaseTbl');
+        $this->db->join('tbl_roles as Role', 'Role.roleId = BaseTbl.roleId', 'left');
+        $this->db->join('tbl_divisi as Divisi', 'Divisi.idDivisi = BaseTbl.tbl_divisi_idDivisi', 'left');
+        $this->db->join('tbl_jabatan as Jabatan', 'Jabatan.idJabatan = BaseTbl.tbl_jabatan_idJabatan', 'left');
+        $this->db->join('tbl_pangkat as Pangkat', 'Pangkat.idPangkat = Jabatan.tbl_pangkat_idPangkat', 'left');
+        $this->db->where('isDeleted', 0);
+        $this->db->where('BaseTbl.userId', $userId);
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
+    public function getUserByUserId($userId)
+    {
+        $this->db->select('BaseTbl.*,Divisi.*, Jabatan.*, Pangkat.*, Role.*');
+        $this->db->from('tbl_users as BaseTbl');
+        $this->db->join('tbl_roles as Role', 'Role.roleId = BaseTbl.roleId', 'left');
+        $this->db->join('tbl_divisi as Divisi', 'Divisi.idDivisi = BaseTbl.tbl_divisi_idDivisi', 'left');
+        $this->db->join('tbl_jabatan as Jabatan', 'Jabatan.idJabatan = BaseTbl.tbl_jabatan_idJabatan', 'left');
+        $this->db->join('tbl_pangkat as Pangkat', 'Pangkat.idPangkat = Jabatan.tbl_pangkat_idPangkat', 'left');
+        $this->db->where('isDeleted', 0);
         $this->db->where('BaseTbl.userId', $userId);
         $query = $this->db->get();
 

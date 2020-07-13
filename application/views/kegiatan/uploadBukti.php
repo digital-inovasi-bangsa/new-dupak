@@ -28,56 +28,56 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="image">Surat Perintah (.pdf)</label>
-                                        <input type="file" accept="application/pdf" id="surat_perintah" name="surat_perintah">
+                                        <label for="image">Surat Perintah (.pdf) *</label>
+                                        <input type="file" required accept="application/pdf" id="surat_perintah" name="surat_perintah">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="image">Dokumentasi (.jpg/.png)</label>
-                                        <input type="file" accept="image/*" id="dokumentasi" name="dokumentasi">
+                                        <label for="image">Dokumentasi (.jpg/.png) *</label>
+                                        <input type="file" required accept="image/*" id="dokumentasi" name="dokumentasi">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="image">Laporan Data (.pdf)</label>
-                                        <input type="file" accept="application/pdf" id="laporan_data" name="laporan_data">
+                                        <label for="image">Laporan Data (.pdf) *</label>
+                                        <input type="file" required accept="application/pdf" id="laporan_data" name="laporan_data">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="image">Daftar Hadir (.pdf)</label>
-                                        <input type="file" accept="application/pdf" id="daftar_hadir" name="daftar_hadir">
+                                        <label for="image">Daftar Hadir (.pdf) *</label>
+                                        <input type="file" required accept="application/pdf" id="daftar_hadir" name="daftar_hadir">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="image">Jurnal (.pdf)</label>
-                                        <input type="file" accept="application/pdf" id="jurnal" name="jurnal">
+                                        <label for="image">Jurnal (.pdf) *</label>
+                                        <input type="file" required accept="application/pdf" id="jurnal" name="jurnal">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="image">Checklist Peralatan (.pdf)</label>
-                                        <input type="file" accept="application/pdf" id="checklist_peralatan" name="checklist_peralatan">
+                                        <label for="image">Checklist Peralatan (.pdf) *</label>
+                                        <input type="file" required accept="application/pdf" id="checklist_peralatan" name="checklist_peralatan">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="image">Sprint Siaga (.pdf)</label>
-                                        <input type="file" accept="application/pdf" id="sprint_siaga" name="sprint_siaga">
+                                        <label for="image">Sprint Siaga (.pdf) *</label>
+                                        <input type="file" required accept="application/pdf" id="sprint_siaga" name="sprint_siaga">
                                     </div>
                                 </div>
                             </div>
