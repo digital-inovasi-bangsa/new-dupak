@@ -2,7 +2,7 @@
     <section class="content-header">
         <h1>
             <?= $pageTitle; ?>
-            <small>Tambah, Ubah, Hapus</small>
+            <small></small>
         </h1>
     </section>
 
