@@ -50,7 +50,11 @@
         </a>
         <div class="navbar-custom-menu">
           <ul class="nav navbar-nav">
-            <!-- User Account: style can be found in dropdown.less -->
+       <li style="color: white; padding: 15px 0;">
+                   <b>SISTEM INFORMASI LAPORAN DAFTAR USULAN PENILAIAN ANGKA KREDIT (DUPAK) RESCUER BASARNAS YOGYAKARTA</b>
+                    
+                </li>
+   <!-- User Account: style can be found in dropdown.less -->
             <li class="dropdown user user-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <img src="<?php echo base_url(); ?>upload/images/<?php echo $fotoProfil ?>" class="user-image" alt="User Image" />
@@ -58,7 +62,7 @@
               </a>
               <ul class="dropdown-menu">
                 <!-- User image -->
-                <li class="user-header">
+               <li class="user-header">
                   <img src="<?php echo base_url(); ?>upload/images/<?php echo $fotoProfil ?>" class="img-circle" alt="User Image" />
                   <p>
                     <?php echo $name; ?>
