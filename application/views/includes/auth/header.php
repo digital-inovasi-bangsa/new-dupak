@@ -21,7 +21,7 @@
         <a href="/"><img src="<?=base_url();?>assets/images/logo.png" alt="Dupak Basarnas Yogyakarta" width="150"></a>
       </div><!-- /.login-logo -->
     <div class="text-center">
-      <small style="color: white;">SISTEM INFORMASI LAPORAN DAFTAR USULAN PENILAIAN ANGKA KREDIT (DUPAK) RESCUER <br/> BASARNAS YOGYAKARTA </small>
+      <small>SISTEM INFORMASI LAPORAN DAFTAR USULAN PENILAIAN ANGKA KREDIT (DUPAK) RESCUER BASARNAS YOGYAKARTA </small>
     </div>
     <br/>
 
