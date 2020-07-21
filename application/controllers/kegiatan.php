@@ -84,23 +84,65 @@ class Kegiatan extends CI_Controller
             $tomorrow = date('Y-m-d', strtotime($date1 . "+1 days"));
             if ($row['status'] == 'Belum Upload Bukti') {
                 $warna = 'gray';
+                $link = base_url('kegiatan/uploadBukti/'.$row['idKegiatanHarian']);
+                $data[] = array(
+                    'id' => $row['idKegiatanHarian'],
+                    'title' => $row['namaButir'],
+                    'start' => $row['tanggalMulai'],
+                    'end' => $tomorrow,
+                    'color' => $warna,
+                    'status' => $row['status'],
+                    'description' => 'Belum upload bukti',
+                    'url' => $link
+                );
             } else if ($row['status'] == 'Diajukan') {
                 $warna = 'purple';
+                $data[] = array(
+                    'id' => $row['idKegiatanHarian'],
+                    'title' => $row['namaButir'],
+                    'start' => $row['tanggalMulai'],
+                    'end' => $tomorrow,
+                    'color' => $warna,
+                    'status' => $row['status'],
+                    'description' => 'Sedang proses pengajuan',
+                );
             } else if ($row['status'] == 'Diterima') {
                 $warna = 'green';
+                $catatan = 'Diterima dengan catatan '.$row['catatan'];
+                $data[] = array(
+                    'id' => $row['idKegiatanHarian'],
+                    'title' => $row['namaButir'],
+                    'start' => $row['tanggalMulai'],
+                    'end' => $tomorrow,
+                    'color' => $warna,
+                    'status' => $row['status'],
+                    'description' => $catatan,
+                );
             } else if ($row['status'] == 'Ditolak') {
                 $warna = 'red';
+                $catatan = 'Ditolak dengan catatan '.$row['catatan'];
+                $data[] = array(
+                    'id' => $row['idKegiatanHarian'],
+                    'title' => $row['namaButir'],
+                    'start' => $row['tanggalMulai'],
+                    'end' => $tomorrow,
+                    'color' => $warna,
+                    'status' => $row['status'],
+                    'description' => $catatan,
+                );
             } else {
                 $warna = 'black';
+                $data[] = array(
+                    'id' => $row['idKegiatanHarian'],
+                    'title' => $row['namaButir'],
+                    'start' => $row['tanggalMulai'],
+                    'end' => $tomorrow,
+                    'color' => $warna,
+                    'status' => $row['status'],
+                    'description' => 'Pengajuan kadaluarsa',
+                );
             }
-            $data[] = array(
-                'id' => $row['idKegiatanHarian'],
-                'title' => $row['namaButir'],
-                'start' => $row['tanggalMulai'],
-                'end' => $tomorrow,
-                'color' => $warna,
-                'status' => $row['status'],
-            );
+            
         }
         echo json_encode($data);
     }
@@ -201,6 +243,7 @@ class Kegiatan extends CI_Controller
 
     public function uploadBukti()
     {
+
         $this->global['pageTitle'] = 'Upload Bukti Kegiatan';
         $userId = $this->session->userdata('userId');
         $idKegiatanHarian = $this->uri->segment(3);
