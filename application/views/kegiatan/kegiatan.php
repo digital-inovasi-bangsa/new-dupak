@@ -81,17 +81,35 @@
       }
     });
     var calendar = $('#calendar').fullCalendar({
-      editable: true,
+      contentHeight: 600,
+      eventClick: function(info) {
+        var eventObj = info.event;
+
+        if (eventObj.url) {
+          alert(
+            'Clicked ' + eventObj.title + '.\n' +
+            'Will open ' + eventObj.url + ' in a new tab'
+          );
+
+          window.open(eventObj.url);
+
+          info.jsEvent.preventDefault(); // prevents browser from following link in current tab.
+        } else {
+          alert('Clicked ' + eventObj.title);
+        }
+      },
+      editable: false,
       header: {
         left: 'prev,next today',
         center: 'title',
         right: 'month'
       },
       events: "<?php echo base_url(); ?>kegiatan/loadCalendar",
-      eventClick: function (event) {
-        console.log(events);
-      }
+      eventRender: function(event, element) {
+      $(element).tooltip({title: event.description});             
+     }
     });
+    calendar.render();
   });
 </script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/deletePangkat.js" charset="utf-8"></script>
