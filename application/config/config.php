@@ -274,6 +274,7 @@ $config['cookie_prefix']	= "im_";
 $config['cookie_domain']	= "";
 $config['cookie_path']		= "/";
 $config['cookie_secure']	= getenv('COOKIE_SECURE');
+//$config['cookie_secure']	= FALSE;
 
 /*
 |--------------------------------------------------------------------------
@@ -299,7 +300,7 @@ $config['global_xss_filtering'] = TRUE;
 | 'csrf_expire' = The number in seconds the token should expire.
 */
 $config['csrf_regenerate'] = TRUE;
-$config['csrf_protection'] = TRUE;
+$config['csrf_protection'] = FALSE;
 $config['csrf_token_name'] = 'csrf_token_name';
 $config['csrf_cookie_name'] = 'csrf_hash_name';
 $config['csrf_expire'] = 720000000;
