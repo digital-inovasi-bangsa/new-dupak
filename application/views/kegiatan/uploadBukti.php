@@ -29,7 +29,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="image">Surat Perintah (.pdf) *</label>
-                                        <input onchange="ValidateSize(this)" type="file" required accept="application/pdf" id="surat_perintah" name="surat_perintah">
+                                        <input onchange="ValidateSizeSuratPerintah(this)" type="file" required accept="application/pdf" id="surat_perintah" name="surat_perintah">
                                     </div>
                                 </div>
                             </div>
@@ -37,7 +37,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="image">Dokumentasi (.jpg/.png) *</label>
-                                        <input onchange="ValidateSize(this)" type="file" required accept="image/*" id="dokumentasi" name="dokumentasi">
+                                        <input onchange="ValidateSizeDokumentasi(this)" type="file" required accept="image/*" id="dokumentasi" name="dokumentasi">
                                     </div>
                                 </div>
                             </div>
@@ -45,7 +45,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="image">Laporan Data (.pdf) *</label>
-                                        <input onchange="ValidateSize(this)" type="file" required accept="application/pdf" id="laporan_data" name="laporan_data">
+                                        <input onchange="ValidateSizeLaporanData(this)" type="file" required accept="application/pdf" id="laporan_data" name="laporan_data">
                                     </div>
                                 </div>
                             </div>
@@ -53,7 +53,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="image">Daftar Hadir (.pdf) *</label>
-                                        <input onchange="ValidateSize(this)" type="file" required accept="application/pdf" id="daftar_hadir" name="daftar_hadir">
+                                        <input onchange="ValidateSizeDaftarHadir(this)" type="file" required accept="application/pdf" id="daftar_hadir" name="daftar_hadir">
                                     </div>
                                 </div>
                             </div>
@@ -61,7 +61,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="image">Jurnal (.pdf) *</label>
-                                        <input onchange="ValidateSize(this)" type="file" required accept="application/pdf" id="jurnal" name="jurnal">
+                                        <input onchange="ValidateSizeJurnal(this)" type="file" required accept="application/pdf" id="jurnal" name="jurnal">
                                     </div>
                                 </div>
                             </div>
@@ -69,7 +69,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="image">Checklist Peralatan (.pdf) *</label>
-                                        <input onchange="ValidateSize(this)" type="file" required accept="application/pdf" id="checklist_peralatan" name="checklist_peralatan">
+                                        <input onchange="ValidateSizeChecklist(this)" type="file" required accept="application/pdf" id="checklist_peralatan" name="checklist_peralatan">
                                     </div>
                                 </div>
                             </div>
@@ -77,7 +77,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="image">Sprint Siaga (.pdf) *</label>
-                                        <input onchange="ValidateSize(this)" type="file" required accept="application/pdf" id="sprint_siaga" name="sprint_siaga">
+                                        <input onchange="ValidateSizeSprint(this)" type="file" required accept="application/pdf" id="sprint_siaga" name="sprint_siaga">
                                     </div>
                                 </div>
                             </div>
@@ -96,11 +96,59 @@
 </div>
 <script src="<?php echo base_url(); ?>assets/js/addUser.js" type="text/javascript"></script>
 <script>
-    function ValidateSize(file) {
+    function ValidateSizeDokumentasi(file) {
         var FileSize = file.files[0].size / 1024 / 1024; // in MB
-        if (FileSize > 2) {
-            alert('File size exceeds 2 MB');
-           // $(file).val(''); //for clearing with Jquery
+        if (FileSize > 10) {
+            alert('File maksimal 10 MB');
+            $(file).val(''); //for clearing with Jquery
+        } else {
+
+        }
+        function ValidateSizeSprint(file) {
+        var FileSize = file.files[0].size / 1024 / 1024; // in MB
+        if (FileSize > 10) {
+            alert('File maksimal 10 MB');
+            $(file).val(''); //for clearing with Jquery
+        } else {
+
+        }
+        function ValidateSizeChecklist(file) {
+        var FileSize = file.files[0].size / 1024 / 1024; // in MB
+        if (FileSize > 10) {
+            alert('File maksimal 10 MB');
+            $(file).val(''); //for clearing with Jquery
+        } else {
+
+        }
+        function ValidateSizeJurnal(file) {
+        var FileSize = file.files[0].size / 1024 / 1024; // in MB
+        if (FileSize > 10) {
+            alert('File maksimal 10 MB');
+            $(file).val(''); //for clearing with Jquery
+        } else {
+
+        }
+        function ValidateSizeDaftarHadir(file) {
+        var FileSize = file.files[0].size / 1024 / 1024; // in MB
+        if (FileSize > 10) {
+            alert('File maksimal 10 MB');
+            $(file).val(''); //for clearing with Jquery
+        } else {
+
+        }
+        function ValidateSizeLaporanData(file) {
+        var FileSize = file.files[0].size / 1024 / 1024; // in MB
+        if (FileSize > 10) {
+            alert('File maksimal 10 MB');
+            $(file).val(''); //for clearing with Jquery
+        } else {
+
+        }
+        function ValidateSizeSuratPerintah(file) {
+        var FileSize = file.files[0].size / 1024 / 1024; // in MB
+        if (FileSize > 10) {
+            alert('File maksimal 10 MB');
+            $(file).val(''); //for clearing with Jquery
         } else {
 
         }
