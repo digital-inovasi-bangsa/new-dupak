@@ -96,5 +96,68 @@
 </div>
 <script src="<?php echo base_url(); ?>assets/js/addUser.js" type="text/javascript"></script>
 <script>
+    function ValidateSizeDokumentasi(file) {
+        var FileSize = file.files[0].size / 1024 / 1024; // in MB
+        if (FileSize > 1) {
+            alert('File maksimal 1 MB');
+            $(file).val(''); //for clearing with Jquery
+        } else {
 
+        }
+    }
+    function ValidateSizeSprint(file) {
+        var FileSize = file.files[0].size / 1024 / 1024; // in MB
+        if (FileSize > 1) {
+            alert('File maksimal 1 MB');
+            $(file).val(''); //for clearing with Jquery
+        } else {
+
+        }
+    }
+        function ValidateSizeChecklist(file) {
+        var FileSize = file.files[0].size / 1024 / 1024; // in MB
+        if (FileSize > 1) {
+            alert('File maksimal 1 MB');
+            $(file).val(''); //for clearing with Jquery
+        } else {
+
+        }
+        }
+        function ValidateSizeJurnal(file) {
+        var FileSize = file.files[0].size / 1024 / 1024; // in MB
+        if (FileSize > 1) {
+            alert('File maksimal 1 MB');
+            $(file).val(''); //for clearing with Jquery
+        } else {
+
+        }
+        }
+        function ValidateSizeDaftarHadir(file) {
+        var FileSize = file.files[0].size / 1024 / 1024; // in MB
+        if (FileSize > 1) {
+            alert('File maksimal 1 MB');
+            $(file).val(''); //for clearing with Jquery
+        } else {
+
+        }
+        }
+        function ValidateSizeLaporanData(file) {
+        var FileSize = file.files[0].size / 1024 / 1024; // in MB
+        if (FileSize > 1) {
+            alert('File maksimal 1 MB');
+            $(file).val(''); //for clearing with Jquery
+        } else {
+
+        }
+        }
+        function ValidateSizeSuratPerintah(file) {
+        var FileSize = file.files[0].size / 1024 / 1024; // in MB
+        if (FileSize > 1) {
+            alert('File maksimal 1 MB');
+            $(file).val(''); //for clearing with Jquery
+        } else {
+
+        }
+    }
+        
 </script>
