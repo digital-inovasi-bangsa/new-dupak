@@ -379,42 +379,42 @@ class Kegiatan extends CI_Controller
     public function addNewBuktiKegiatan()
     {
         $userId = $this->session->userdata('userId');
-        $data['kegiatan'] = $this->kegiatan_model->getTelahDiajukan($userId);
-        $idKegiatanHarian = $this->session->userdata('idKegiatanHarian');
-        $nip = $this->session->userdata('nip');
-        $suratPerintah = $this->uploadSuratPerintah($nip, 'surat_perintah');
-        $dokumentasi = $this->uploadDokumentasi($nip, 'dokumentasi');
-        $laporanKegiatan = $this->uploadLaporan($nip, 'laporan_data');
-        $daftarHadir = $this->uploadDaftarHadir($nip, 'daftar_hadir');
-        $jurnal = $this->uploadJurnal($nip, 'jurnal');
-        $sprintSiaga = $this->uploadSprintSiaga($nip, 'sprint_siaga');
-        $checklistPeralatan = $this->uploadSprintSiaga($nip, 'checklist_peralatan');
-        $buktiInfo = array(
-            'idKegiatanHarian' => $idKegiatanHarian,
-            'path_surat_kegiatan' => $suratPerintah,
-            'path_laporan_kegiatan' => $laporanKegiatan,
-            'path_dokumentasi' => $dokumentasi,
-            'path_daftar_hadir' => $daftarHadir,
-            'path_jurnal' => $jurnal,
-            'path_sprint_siaga' => $sprintSiaga,
-            'path_check_peralatan' => $checklistPeralatan,
-        );
-        $result = $this->kegiatan_model->addNewBuktiKegiatan($buktiInfo);
-
-        if ($result > 0) {
-            date_default_timezone_set('Asia/Jakarta');
-            $now = date('Y-m-d H:i:s');
-            $statusInfo = array(
-                'status' => 'Diajukan',
-                'updatedAt' => $now,
+            $data['kegiatan'] = $this->kegiatan_model->getTelahDiajukan($userId);
+            $idKegiatanHarian = $this->session->userdata('idKegiatanHarian');
+            $nip = $this->session->userdata('nip');
+            $suratPerintah = $this->uploadSuratPerintah($nip, 'surat_perintah');
+            $dokumentasi = $this->uploadDokumentasi($nip, 'dokumentasi');
+            $laporanKegiatan = $this->uploadLaporan($nip, 'laporan_data');
+            $daftarHadir = $this->uploadDaftarHadir($nip, 'daftar_hadir');
+            $jurnal = $this->uploadJurnal($nip, 'jurnal');
+            $sprintSiaga = $this->uploadSprintSiaga($nip, 'sprint_siaga');
+            $checklistPeralatan = $this->uploadSprintSiaga($nip, 'checklist_peralatan');
+            $buktiInfo = array(
+                'idKegiatanHarian' => $idKegiatanHarian,
+                'path_surat_kegiatan' => $suratPerintah,
+                'path_laporan_kegiatan' => $laporanKegiatan,
+                'path_dokumentasi' => $dokumentasi,
+                'path_daftar_hadir' => $daftarHadir,
+                'path_jurnal' => $jurnal,
+                'path_sprint_siaga' => $sprintSiaga,
+                'path_check_peralatan' => $checklistPeralatan,
             );
-            $status = $this->kegiatan_model->updateStatusKegiatan($statusInfo, $idKegiatanHarian);
-            $this->session->set_flashdata('success', 'Dokumen Kegiatan Berhasil Ditambahkan');
-        } else {
-            $this->session->set_flashdata('error', 'Dokumen Kegiatan Gagal Ditambahkan');
-        }
+            $result = $this->kegiatan_model->addNewBuktiKegiatan($buktiInfo);
 
-        redirect('kegiatan');
+            if ($result > 0) {
+                date_default_timezone_set('Asia/Jakarta');
+                $now = date('Y-m-d H:i:s');
+                $statusInfo = array(
+                    'status' => 'Diajukan',
+                    'updatedAt' => $now,
+                );
+                $status = $this->kegiatan_model->updateStatusKegiatan($statusInfo, $idKegiatanHarian);
+                $this->session->set_flashdata('success', 'Dokumen Kegiatan Berhasil Ditambahkan');
+            } else {
+                $this->session->set_flashdata('error', 'Dokumen Kegiatan Gagal Ditambahkan');
+            }
+
+            redirect('kegiatan');
     }
 
     public function updateStatusKegiatan()
