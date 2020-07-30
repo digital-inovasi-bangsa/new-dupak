@@ -37,7 +37,11 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="image">Dokumentasi (.jpg/.png) *</label>
+<<<<<<< HEAD
                                         <input onchange="ValidateSizeDokumentasi(this)" type="file" required accept="image/*" id="dokumentasi" name="dokumentasi">
+=======
+                                        <input type="file" required accept="image/*" id="dokumentasi" name="dokumentasi">
+>>>>>>> parent of f02c1ce... fix some bugs
                                     </div>
                                 </div>
                             </div>
@@ -96,61 +100,5 @@
 </div>
 <script src="<?php echo base_url(); ?>assets/js/addUser.js" type="text/javascript"></script>
 <script>
-    function ValidateSizeDokumentasi(file) {
-        var FileSize = file.files[0].size / 1024 / 1024; // in MB
-        if (FileSize > 10) {
-            alert('File maksimal 10 MB');
-            $(file).val(''); //for clearing with Jquery
-        } else {
 
-        }
-        function ValidateSizeSprint(file) {
-        var FileSize = file.files[0].size / 1024 / 1024; // in MB
-        if (FileSize > 10) {
-            alert('File maksimal 10 MB');
-            $(file).val(''); //for clearing with Jquery
-        } else {
-
-        }
-        function ValidateSizeChecklist(file) {
-        var FileSize = file.files[0].size / 1024 / 1024; // in MB
-        if (FileSize > 10) {
-            alert('File maksimal 10 MB');
-            $(file).val(''); //for clearing with Jquery
-        } else {
-
-        }
-        function ValidateSizeJurnal(file) {
-        var FileSize = file.files[0].size / 1024 / 1024; // in MB
-        if (FileSize > 10) {
-            alert('File maksimal 10 MB');
-            $(file).val(''); //for clearing with Jquery
-        } else {
-
-        }
-        function ValidateSizeDaftarHadir(file) {
-        var FileSize = file.files[0].size / 1024 / 1024; // in MB
-        if (FileSize > 10) {
-            alert('File maksimal 10 MB');
-            $(file).val(''); //for clearing with Jquery
-        } else {
-
-        }
-        function ValidateSizeLaporanData(file) {
-        var FileSize = file.files[0].size / 1024 / 1024; // in MB
-        if (FileSize > 10) {
-            alert('File maksimal 10 MB');
-            $(file).val(''); //for clearing with Jquery
-        } else {
-
-        }
-        function ValidateSizeSuratPerintah(file) {
-        var FileSize = file.files[0].size / 1024 / 1024; // in MB
-        if (FileSize > 10) {
-            alert('File maksimal 10 MB');
-            $(file).val(''); //for clearing with Jquery
-        } else {
-
-        }
-    }
 </script>
