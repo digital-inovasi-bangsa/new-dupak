@@ -302,7 +302,7 @@ $config['csrf_regenerate'] = TRUE;
 $config['csrf_protection'] = TRUE;
 $config['csrf_token_name'] = 'csrf_token_name';
 $config['csrf_cookie_name'] = 'csrf_hash_name';
-$config['csrf_expire'] = 7200;
+$config['csrf_expire'] = 720000000;
 
 /*
 |--------------------------------------------------------------------------
