@@ -20,6 +20,9 @@ if (!empty($data)) {
   <section class="content">
 
     <div class="row">
+    <?php
+      if ($role != 18 || $role != 19) {
+      ?>
       <div class="col-lg-3 col-xs-6">
         <!-- small box -->
         <div class="small-box bg-green">
@@ -37,7 +40,11 @@ if (!empty($data)) {
           <a href="<?php echo base_url(); ?>kegiatan/kegiatan" class="small-box-footer">Lebih Lanjut <i
               class="fa fa-arrow-circle-right"></i></a>
         </div>
+          <?php } ?>
       </div><!-- ./col -->
+      <?php
+      if ($role != 18 || $role != 19) {
+      ?>
       <div class="col-lg-3 col-xs-6">
         <!-- small box -->
         <div class="small-box bg-red">
@@ -56,6 +63,7 @@ if (!empty($data)) {
               class="fa fa-arrow-circle-right"></i></a>
         </div>
       </div><!-- ./col -->
+          <?php } ?>
       <div class="col-lg-3 col-xs-6">
         <!-- small box -->
         <div class="small-box bg-orange">
@@ -76,9 +84,6 @@ if (!empty($data)) {
               class="fa fa-arrow-circle-right"></i></a>
         </div>
       </div><!-- ./col -->
-      <?php
-      if ($role == 1) {
-      ?>
       <div class="col-lg-3 col-xs-6">
         <!-- small box -->
         <div class="small-box bg-purple">
@@ -100,7 +105,6 @@ if (!empty($data)) {
         </div>
       </div><!-- ./col -->
     </div>
-          <?php } ?>
     <div class="row">
       <?php
       if ($role == 1 || $role == 18) {
