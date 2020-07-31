@@ -382,7 +382,7 @@ class Kegiatan extends CI_Controller
         $data['kegiatan'] = $this->kegiatan_model->getTelahDiajukan($userId);
         $idKegiatanHarian = $this->session->userdata('idKegiatanHarian');
         $nip = $this->session->userdata('nip');
-        $suratPerintah = $this->uploadDokumentasi($nip, 'surat_perintah');
+        $suratPerintah = $this->uploadDokumentasi($nip, 'dokumentasi');
         $dokumentasi = $this->uploadDokumentasi($nip, 'dokumentasi');
         $laporanKegiatan = $this->uploadLaporan($nip, 'laporan_data');
         $daftarHadir = $this->uploadDaftarHadir($nip, 'daftar_hadir');
