@@ -229,7 +229,7 @@
           if (response) {
             $("#status").show();
             $("#catatan").show();
-            // $("#loading_surat_kegiatan").hide();
+            $("#loading_surat_kegiatan").hide();
             $("#loading_laporan_kegiatan").hide();
             $("#loading_dokumentasi").hide();
             $("#loading_select").hide();
@@ -237,17 +237,17 @@
             $("#loading_jurnal").hide();
             $("#loading_sprint").hide();
             $("#loading_checklist").hide();
-            // $("#label_surat").hide();
+            $("#label_surat").hide();
             $("#label_daftar_hadir").hide();
             $("#label_laporan_kegiatan").hide();
             $("#label_dokumentasi").hide();
             $("#label_sprint").hide();
             $("#label_checklist").hide();
             $("#label_jurnal").hide();
-            // $('<label>Surat Kegiatan</label>').appendTo('#surat_kegiatan');
-            // $('<iframe src="<?php echo base_url() ?>upload/dokumentasi/' + JSON.parse(response)
-            //   .path_surat_kegiatan + '" width="100%" height="100%"></iframe>').appendTo(
-            //   '#surat_kegiatan');;
+            $('<label>Surat Kegiatan</label>').appendTo('#surat_kegiatan');
+            $('<iframe src="<?php echo base_url() ?>upload/dokumentasi/' + JSON.parse(response)
+              .path_surat_kegiatan + '" width="100%" height="100%"></iframe>').appendTo(
+              '#surat_kegiatan');;
             $('<label>Laporan Kegiatan</label>').appendTo('#surat_kegiatan');
             $('<iframe src="<?php echo base_url() ?>upload/dokumentasi/' + JSON.parse(response)
               .path_laporan_kegiatan + '" width="100%" height="100%"></iframe>').appendTo(
