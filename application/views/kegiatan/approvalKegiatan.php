@@ -105,8 +105,8 @@
         <h4 class="modal-title"><?= $pageTitle; ?></h4>
       </div>
       <div class="modal-body">
-        <!-- <div class="form-group" id="surat_kegiatan">
-        </div> -->
+        <div class="form-group" id="surat_kegiatan">
+        </div>
         <label id="label_laporan_kegiatan">Laporan Kegiatan</label>
         <div class="overlay" id="loading_laporan_kegiatan">
           <i class="fa fa-refresh fa-spin"></i>
