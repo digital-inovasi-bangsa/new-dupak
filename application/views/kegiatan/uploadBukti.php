@@ -25,14 +25,14 @@
                         <!-- CSRF Token -->
                         <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
                         <div class="box-body">
-                            <div class="row">
+                            <!-- <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="image">Surat Perintah (.pdf) *</label>
                                         <input onchange="ValidateSizeSuratPerintah(this)" type="file" required accept="application/pdf" id="surat_perintah" name="surat_perintah">
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
