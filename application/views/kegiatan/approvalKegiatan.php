@@ -244,10 +244,10 @@
             $("#label_sprint").hide();
             $("#label_checklist").hide();
             $("#label_jurnal").hide();
-            $('<label>Surat Kegiatan</label>').appendTo('#surat_kegiatan');
-            $('<iframe src="<?php echo base_url() ?>upload/dokumentasi/' + JSON.parse(response)
-              .path_surat_kegiatan + '" width="100%" height="100%"></iframe>').appendTo(
-              '#surat_kegiatan');;
+            // $('<label>Surat Kegiatan</label>').appendTo('#surat_kegiatan');
+            // $('<iframe src="<?php echo base_url() ?>upload/dokumentasi/' + JSON.parse(response)
+            //   .path_surat_kegiatan + '" width="100%" height="100%"></iframe>').appendTo(
+            //   '#surat_kegiatan');;
             $('<label>Laporan Kegiatan</label>').appendTo('#surat_kegiatan');
             $('<iframe src="<?php echo base_url() ?>upload/dokumentasi/' + JSON.parse(response)
               .path_laporan_kegiatan + '" width="100%" height="100%"></iframe>').appendTo(
