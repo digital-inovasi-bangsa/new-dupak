@@ -260,7 +260,7 @@ class Kegiatan extends CI_Controller
 
     public function uploadSuratPerintah($user_id, $file_id)
     {
-        $config['max_size'] = 10024;
+        $config['max_size'] = 1024;
         $config['upload_path'] = './upload/dokumentasi/';
         $config['allowed_types'] = 'gif|jpg|jpeg|png|pdf|doc|docx|xls|xlsx';
         $config['file_name'] = 'SP' . $user_id . '_' . date('Ymdhis');
@@ -276,7 +276,7 @@ class Kegiatan extends CI_Controller
     }
     public function uploadDokumentasi($user_id, $file_id)
     {
-        $config['max_size'] = 10024;
+        $config['max_size'] = 1024;
         $config['upload_path'] = './upload/dokumentasi/';
         $config['allowed_types'] = 'gif|jpg|jpeg|png|pdf|doc|docx|xls|xlsx';
         $config['file_name'] = 'DK' . $user_id . '_' . date('Ymdhis');
@@ -293,7 +293,7 @@ class Kegiatan extends CI_Controller
 
     public function uploadLaporan($user_id, $file_id)
     {
-        $config['max_size'] = 10024;
+        $config['max_size'] = 1024;
         $config['upload_path'] = './upload/dokumentasi/';
         $config['allowed_types'] = 'gif|jpg|jpeg|png|pdf|doc|docx|xls|xlsx';
         $config['file_name'] = 'LP' . $user_id . '_' . date('Ymdhis');
@@ -310,7 +310,7 @@ class Kegiatan extends CI_Controller
 
     public function uploadDaftarHadir($user_id, $file_id)
     {
-        $config['max_size'] = 10024;
+        $config['max_size'] = 1024;
         $config['upload_path'] = './upload/dokumentasi/';
         $config['allowed_types'] = 'gif|jpg|jpeg|png|pdf|doc|docx|xls|xlsx';
         $config['file_name'] = 'DH' . $user_id . '_' . date('Ymdhis');
@@ -327,7 +327,7 @@ class Kegiatan extends CI_Controller
 
     public function uploadJurnal($user_id, $file_id)
     {
-        $config['max_size'] = 10024;
+        $config['max_size'] = 1024;
         $config['upload_path'] = './upload/dokumentasi/';
         $config['allowed_types'] = 'gif|jpg|jpeg|png|pdf|doc|docx|xls|xlsx';
         $config['file_name'] = 'JN' . $user_id . '_' . date('Ymdhis');
@@ -344,7 +344,7 @@ class Kegiatan extends CI_Controller
 
     public function uploadChecklist($user_id, $file_id)
     {
-        $config['max_size'] = 10024;
+        $config['max_size'] = 1024;
         $config['upload_path'] = './upload/dokumentasi/';
         $config['allowed_types'] = 'gif|jpg|jpeg|png|pdf|doc|docx|xls|xlsx';
         $config['file_name'] = 'CP' . $user_id . '_' . date('Ymdhis');
@@ -361,7 +361,7 @@ class Kegiatan extends CI_Controller
 
     public function uploadSprintSiaga($user_id, $file_id)
     {
-        $config['max_size'] = 10024;
+        $config['max_size'] = 1024;
         $config['upload_path'] = './upload/dokumentasi/';
         $config['allowed_types'] = 'gif|jpg|jpeg|png|pdf|doc|docx|xls|xlsx';
         $config['file_name'] = 'SS' . $user_id . '_' . date('Ymdhis');
