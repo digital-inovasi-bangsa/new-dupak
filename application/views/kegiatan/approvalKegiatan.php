@@ -33,7 +33,6 @@
                       <th>Butir</th>
                       <th>Tanggal Mulai-Selesai</th>
                       <th>Tanggal Diajukan</th>
-                      <th>Surat Tugas</th>
                       <th>Dokumentasi</th>
                       <th>Daftar Hadir</th>
                       <th>Jurnal</th>
@@ -62,8 +61,6 @@
                       <td><?php echo $record->namaButir ?></td>
                       <td><?php echo $record->tanggalMulai ?> - <?php echo $record->tanggalSelesai ?></td>
                       <td><?php echo $record->createdAt ?></td>
-                      <td><a href="<?php echo base_url()?>upload/dokumentasi/<?php echo $record->path_surat_kegiatan ?>"
-                          download><?php echo $record->path_surat_kegiatan ?></td>
                       <td><a href="<?php echo base_url()?>upload/dokumentasi/<?php echo $record->path_dokumentasi ?>"
                           download><?php echo $record->path_dokumentasi ?></td>
                       <td><a
@@ -108,8 +105,8 @@
         <h4 class="modal-title"><?= $pageTitle; ?></h4>
       </div>
       <div class="modal-body">
-        <div class="form-group" id="surat_kegiatan">
-        </div>
+        <!-- <div class="form-group" id="surat_kegiatan">
+        </div> -->
         <label id="label_laporan_kegiatan">Laporan Kegiatan</label>
         <div class="overlay" id="loading_laporan_kegiatan">
           <i class="fa fa-refresh fa-spin"></i>
@@ -232,7 +229,7 @@
           if (response) {
             $("#status").show();
             $("#catatan").show();
-            $("#loading_surat_kegiatan").hide();
+            // $("#loading_surat_kegiatan").hide();
             $("#loading_laporan_kegiatan").hide();
             $("#loading_dokumentasi").hide();
             $("#loading_select").hide();
@@ -240,17 +237,17 @@
             $("#loading_jurnal").hide();
             $("#loading_sprint").hide();
             $("#loading_checklist").hide();
-            $("#label_surat").hide();
+            // $("#label_surat").hide();
             $("#label_daftar_hadir").hide();
             $("#label_laporan_kegiatan").hide();
             $("#label_dokumentasi").hide();
             $("#label_sprint").hide();
             $("#label_checklist").hide();
             $("#label_jurnal").hide();
-            $('<label>Surat Kegiatan</label>').appendTo('#surat_kegiatan');
-            $('<iframe src="<?php echo base_url() ?>upload/dokumentasi/' + JSON.parse(response)
-              .path_surat_kegiatan + '" width="100%" height="100%"></iframe>').appendTo(
-              '#surat_kegiatan');;
+            // $('<label>Surat Kegiatan</label>').appendTo('#surat_kegiatan');
+            // $('<iframe src="<?php echo base_url() ?>upload/dokumentasi/' + JSON.parse(response)
+            //   .path_surat_kegiatan + '" width="100%" height="100%"></iframe>').appendTo(
+            //   '#surat_kegiatan');;
             $('<label>Laporan Kegiatan</label>').appendTo('#surat_kegiatan');
             $('<iframe src="<?php echo base_url() ?>upload/dokumentasi/' + JSON.parse(response)
               .path_laporan_kegiatan + '" width="100%" height="100%"></iframe>').appendTo(
