@@ -21,7 +21,7 @@ if (!empty($data)) {
 
     <div class="row">
     <?php
-      if ($role != 18 && $role != 19) {
+      if ($role == 18) {
       ?>
       <div class="col-lg-3 col-xs-6">
         <!-- small box -->
@@ -43,7 +43,7 @@ if (!empty($data)) {
           <?php } ?>
       </div><!-- ./col -->
       <?php
-      if ($role != 18 || $role != 19) {
+      if ($role == 18) {
       ?>
       <div class="col-lg-3 col-xs-6">
         <!-- small box -->
