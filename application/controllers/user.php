@@ -35,9 +35,13 @@ class User extends CI_Controller
         $data['role'] = $role;
         $data['jumlahUser'] = $this->user_model->userListingCount();
         $data['jumlahKegiatan'] = $this->kegiatan_model->getKegiatanDiajukanCount();
-        $data['kegiatanPegawaiDiterima'] = $this->user_model->getPoint($userId, 'diterima');
-        $data['kegiatanPegawaiDitolak'] = $this->user_model->getPoint($userId, 'ditolak');
-        print_r($data);die;
+        if($role == 18 || $role == 19){
+            $data['kegiatanPegawaiDiterima'] = $this->user_model->getPointAll('diterima');
+            $data['kegiatanPegawaiDitolak'] = $this->user_model->getPointAll('ditolak');
+        } else {
+            $data['kegiatanPegawaiDiterima'] = $this->user_model->getPoint($userId, 'diterima');
+            $data['kegiatanPegawaiDitolak'] = $this->user_model->getPoint($userId, 'ditolak');
+        }
         $this->load->view('includes/header', $this->global);
         $this->load->view('dashboard', $data);
         $this->load->view('includes/footer');
