@@ -32,7 +32,7 @@ if (!empty($data)) {
             } else {
               echo 0;
             }?></h3>
-            <p>Jumlah Point Diterima</p>
+            <p><?php $role?></p>
           </div>
           <div class="icon">
             <i class="ion ion-bag"></i>
