@@ -229,9 +229,10 @@ class Kegiatan extends CI_Controller
             $NewTanggalMulai = date("Y-m-d", strtotime($tanggalMulai));
             $NewTanggalSelesai = date("Y-m-d", strtotime($tanggalSelesai));
             $tanggalKadaluarsa = date('Y-m-d', strtotime($tanggalSelesai . "+30 days"));
+            $now = date('Y-m-d');
             $userId = $this->session->userdata('userId');
-            print_r($tanggalKadaluarsa.$NewTanggalSelesai);die;
-            if($NewTanggalSelesai >= $tanggalKadaluarsa){
+            print_r($now.$tanggalKadaluarsa);die;
+            if($now >= $tanggalKadaluarsa){
                 $status = 'Kadaluarsa';
             } else {
                 $status = 'Belum Upload Bukti';
