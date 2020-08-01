@@ -104,6 +104,30 @@ if (!empty($data)) {
               class="fa fa-arrow-circle-right"></i></a>
         </div>
       </div><!-- ./col -->
+      <?php
+      if ($role == 18 || $role == 19) {
+      ?>
+      <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-blue">
+          <div class="inner">
+            <h3><?php if($jumlahKegiatan > 0){
+              echo round($jumlahKegiatan);
+            } else {
+              echo 0;
+            }?></h3>
+            <p>Total Kegiatan yang belum Approve</p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-stats-bars"></i>
+          </div>
+          <a href="<?php echo base_url(); ?>kegiatan/approvalKegiatan" class="small-box-footer">Lebih Lanjut <i
+              class="fa fa-arrow-circle-right"></i></a>
+        </div>
+      </div><!-- ./col -->
+      <?php
+      }
+      ?>
     </div>
     <div class="row">
       <?php
