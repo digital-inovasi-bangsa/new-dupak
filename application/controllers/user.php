@@ -23,7 +23,7 @@ class User extends CI_Controller
         $this->load->library('tupload');
         $this->isLoggedIn();
     }
-
+    
     /**
      * This function used to load the first screen of the user
      */

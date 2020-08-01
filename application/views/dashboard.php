@@ -32,7 +32,7 @@ if (!empty($data)) {
             } else {
               echo 0;
             }?></h3>
-            <p><?php $role?></p>
+            <p><?php echo $role ?></p>
           </div>
           <div class="icon">
             <i class="ion ion-bag"></i>
