@@ -485,7 +485,7 @@ class User extends CI_Controller
                 } else if (empty($password) && empty($_FILES['user_img_upload']['tmp_name'])) {
                     $userInfo = array(
                         'email' => $email, 'password' => md5($password), 
-                        'roleId' => $roleId, 
+                        // 'roleId' => $roleId, 
                         'name' => $name, 
                         //'tbl_divisi_idDivisi' => $idDivisi, 
                         'nip' => $nip,

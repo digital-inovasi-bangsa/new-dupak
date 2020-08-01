@@ -82,7 +82,8 @@ class Kegiatan extends CI_Controller
             $date = $row['tanggalSelesai'];
             $date1 = str_replace('-', '/', $date);
             $tomorrow = date('Y-m-d', strtotime($date1 . "+1 days"));
-            if ($row['status'] == 'Belum Upload Bukti') {
+            $tanggalKadaluarsa = date('Y-m-d', strtotime($date1 . "+30 days"));
+            if ($row['status'] == 'Belum Upload Bukti' && $date >= $tanggalKadaluarsa) {
                 $warna = 'gray';
                 $link = base_url('kegiatan/uploadBukti/'.$row['idKegiatanHarian']);
                 $data[] = array(
@@ -95,7 +96,7 @@ class Kegiatan extends CI_Controller
                     'description' => 'Belum upload bukti',
                     'url' => $link
                 );
-            } else if ($row['status'] == 'Diajukan') {
+            } else if ($row['status'] == 'Diajukan' && $date >= $tanggalKadaluarsa) {
                 $warna = 'purple';
                 $data[] = array(
                     'id' => $row['idKegiatanHarian'],
