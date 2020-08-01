@@ -21,7 +21,7 @@ if (!empty($data)) {
 
     <div class="row">
     <?php
-      if ($role != 18 || $role != 19) {
+      if ($role != 18 && $role != 19) {
       ?>
       <div class="col-lg-3 col-xs-6">
         <!-- small box -->
@@ -32,7 +32,7 @@ if (!empty($data)) {
             } else {
               echo 0;
             }?></h3>
-            <p><?php echo $role ?></p>
+            <p>Jumlah Point Diterima</p>
           </div>
           <div class="icon">
             <i class="ion ion-bag"></i>
