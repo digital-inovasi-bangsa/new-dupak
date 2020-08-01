@@ -131,7 +131,7 @@ class Kegiatan extends CI_Controller
                     'status' => $row['status'],
                     'description' => $catatan,
                 );
-            } else {
+            } else if($row['status'] == 'Diajukan' ||$row['status'] == 'Belum Upload Bukti'  && $date >= $tanggalKadaluarsa) {
                 $warna = 'black';
                 $data[] = array(
                     'id' => $row['idKegiatanHarian'],
