@@ -84,7 +84,15 @@ class Kegiatan extends CI_Controller
             $idKegiatanHarian = $row['idKegiatanHarian'];
             $tomorrow = date('Y-m-d', strtotime($date1 . "+1 days"));
             $tanggalKadaluarsa = date('Y-m-d', strtotime($date1 . "+30 days"));
-            if($row['status'] == 'Diajukan' ||$row['status'] == 'Belum Upload Bukti'  && $date >= $tanggalKadaluarsa){
+            if($row['status'] == 'Diajukan' && $date >= $tanggalKadaluarsa){
+                date_default_timezone_set('Asia/Jakarta');
+                $now = date('Y-m-d H:i:s');
+                $statusInfo = array(
+                    'status' => 'Kadaluarsa',
+                    'updatedAt' => $now,
+                );
+                $status = $this->kegiatan_model->updateStatusKegiatan($statusInfo, $idKegiatanHarian);
+            } else if($row['status'] == 'Belum Upload Bukti'  && $date >= $tanggalKadaluarsa){
                 date_default_timezone_set('Asia/Jakarta');
                 $now = date('Y-m-d H:i:s');
                 $statusInfo = array(
