@@ -31,11 +31,13 @@ class User extends CI_Controller
     {
         $this->global['pageTitle'] = 'Dashboard';
         $userId = $this->session->userdata('userId');
+        $role = $this->session->userdata('role');
+        $data['role'] = $role;
         $data['jumlahUser'] = $this->user_model->userListingCount();
         $data['jumlahKegiatan'] = $this->kegiatan_model->getKegiatanDiajukanCount();
         $data['kegiatanPegawaiDiterima'] = $this->user_model->getPoint($userId, 'diterima');
         $data['kegiatanPegawaiDitolak'] = $this->user_model->getPoint($userId, 'ditolak');
-        print_r($this->session->userdata('role'));die;
+        print_r($data);die;
         $this->load->view('includes/header', $this->global);
         $this->load->view('dashboard', $data);
         $this->load->view('includes/footer');
