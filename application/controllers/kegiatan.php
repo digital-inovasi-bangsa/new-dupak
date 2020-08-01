@@ -231,12 +231,12 @@ class Kegiatan extends CI_Controller
             $tanggalKadaluarsa = date('Y-m-d', strtotime($tanggalSelesai . "+30 days"));
             $now = date('Y-m-d');
             $userId = $this->session->userdata('userId');
-            print_r($now.$tanggalKadaluarsa);die;
             if($now >= $tanggalKadaluarsa){
                 $status = 'Kadaluarsa';
             } else {
                 $status = 'Belum Upload Bukti';
             }
+            print_r($status);die;
             $rstButirKegiatan = str_replace('"', '', json_encode($butirKegiatan));
             date_default_timezone_set('Asia/Jakarta');
             $now = date('Y-m-d H:i:s');
