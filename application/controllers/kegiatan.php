@@ -81,8 +81,18 @@ class Kegiatan extends CI_Controller
         foreach ($event_data->result_array() as $row) {
             $date = $row['tanggalSelesai'];
             $date1 = str_replace('-', '/', $date);
+            $idKegiatanHarian = $row['idKegiatanHarian'];
             $tomorrow = date('Y-m-d', strtotime($date1 . "+1 days"));
             $tanggalKadaluarsa = date('Y-m-d', strtotime($date1 . "+30 days"));
+            if($date >= $tanggalKadaluarsa){
+                date_default_timezone_set('Asia/Jakarta');
+                $now = date('Y-m-d H:i:s');
+                $statusInfo = array(
+                    'status' => 'Diajukan',
+                    'updatedAt' => $now,
+                );
+                $status = $this->kegiatan_model->updateStatusKegiatan($statusInfo, $idKegiatanHarian);
+            }
             if ($row['status'] == 'Belum Upload Bukti' && $date <= $tanggalKadaluarsa) {
                 $warna = 'gray';
                 $link = base_url('kegiatan/uploadBukti/'.$row['idKegiatanHarian']);
