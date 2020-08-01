@@ -21,7 +21,7 @@ if (!empty($data)) {
 
     <div class="row">
     <?php
-      if ($role == 18) {
+      if ($role == 7 || $role == 1 || $role == 20) {
       ?>
       <div class="col-lg-3 col-xs-6">
         <!-- small box -->
@@ -43,7 +43,7 @@ if (!empty($data)) {
           <?php } ?>
       </div><!-- ./col -->
       <?php
-      if ($role == 18) {
+      if ($role == 7 || $role == 1 || $role == 20) {
       ?>
       <div class="col-lg-3 col-xs-6">
         <!-- small box -->
@@ -107,7 +107,7 @@ if (!empty($data)) {
     </div>
     <div class="row">
       <?php
-      if ($role == 18) {
+      if ($role != 18 && $role != 19) {
       ?>
       <div class="col-lg-3 col-xs-6">
         <!-- small box -->
@@ -131,7 +131,7 @@ if (!empty($data)) {
       }
       ?>
       <?php
-      if ($role == 18) {
+      if ($role == 1) {
       ?>
       <div class="col-lg-3 col-xs-6">
         <!-- small box -->
