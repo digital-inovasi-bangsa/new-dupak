@@ -230,7 +230,7 @@ class Kegiatan extends CI_Controller
             $NewTanggalSelesai = date("Y-m-d", strtotime($tanggalSelesai));
             $tanggalKadaluarsa = date('Y-m-d', strtotime($tanggalSelesai . "+30 days"));
             $userId = $this->session->userdata('userId');
-            print_r($tanggalSelesai);die;
+            print_r($tanggalKadaluarsa);die;
             if($NewTanggalSelesai >= $tanggalKadaluarsa){
                 $status = 'Kadaluarsa';
             } else {
