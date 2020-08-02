@@ -90,7 +90,7 @@ class Login extends CI_Controller
 
         $this->email->initialize($config);
 
-        $this->email->from(getenv('EMAIL_ADDRESS'), 'Basarnas Jogja');
+        $this->email->from('yogi.yulianto@students.amikom.ac.id', 'Basarnas Jogja');
         $this->email->to($this->input->post('email'));
 
         if ($type == 'verify') {
