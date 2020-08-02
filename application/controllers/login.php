@@ -76,7 +76,7 @@ class Login extends CI_Controller
     public function _sendEmail($token, $type)
     {
         $config = [
-            'protocol' => 'smtp',
+            'protocol' => 'sendmail',
             'smtp_host' => 'ssl://smtp.zoho.com',
             'smtp_user' => getenv('EMAIL_ADDRESS'),
             'smtp_pass' => getenv('EMAIL_PASSWORD'),
