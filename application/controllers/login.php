@@ -104,6 +104,7 @@ class Login extends CI_Controller
 
         if ($this->email->send()) {
             return true;
+            print_r('ok');die;
         } else {
             echo $this->email->print_debugger();
             die;
