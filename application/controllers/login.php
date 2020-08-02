@@ -77,11 +77,10 @@ class Login extends CI_Controller
     {
         $config = [
             'protocol' => 'smtp',
-            // 'smtp_host' => 'ssl://smtp.googlemail.com',
-            'smtp_host' => 'ssl://smtp.zoho.com',
+            'smtp_host' => 'tls://smtp.googlemail.com',
             'smtp_user' => getenv('EMAIL_ADDRESS'),
             'smtp_pass' => getenv('EMAIL_PASSWORD'),
-            'smtp_port' => 587,
+            'smtp_port' => 465,
             'mailtype' => 'html',
             'charset' => 'utf-8',
             'newline' => "\r\n",
