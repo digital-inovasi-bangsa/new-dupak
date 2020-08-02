@@ -83,12 +83,15 @@ class Login extends CI_Controller
             'smtp_port' => 465,
             'mailtype' => 'html',
             'charset' => 'utf-8',
-            'newline' => "\r\n",
+            'smtp_timeout'=> '30',
+            'mailpath' => '/usr/sbin/sendmail'
+            // 'newline' => "\r\n",
         ];
 
         $this->email->initialize($config);
 
         $this->email->from(getenv('EMAIL_ADDRESS'), 'Basarnas Jogja');
+        $this->email->set_newline("\r\n");
         $this->email->to($this->input->post('email'));
 
         if ($type == 'verify') {
