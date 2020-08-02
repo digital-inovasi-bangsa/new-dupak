@@ -103,7 +103,6 @@ class Login extends CI_Controller
             return true;
         } else {
             echo $this->email->print_debugger();
-            die;
         }
     }
 
