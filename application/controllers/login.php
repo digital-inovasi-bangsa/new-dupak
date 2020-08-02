@@ -123,6 +123,7 @@ class Login extends CI_Controller
             if ($user_token) {
                 $this->session->set_userdata('reset_email', $email);
                 $this->changePassword();
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Reset password success! Please check your email.</div>');
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Reset password failed! Wrong token.</div>');
                 redirect('login');
