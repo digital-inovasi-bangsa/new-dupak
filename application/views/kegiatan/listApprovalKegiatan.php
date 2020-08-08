@@ -15,8 +15,7 @@
       <div class="col-xs-12">
         <div class="box">
           <div class="box-header">
-            <h3 class="box-title"><?= $pageTitle; $kegiatan[0]->name ?></h3>
-            <a class="btn btn-primary pull-right" href="<?php echo base_url(); ?>kegiatan/listApproval">Kembali</a>
+            <h3 class="box-title"><?= $pageTitle; ?></h3>
           </div><!-- /.box-header -->
           <div class="box-body">
             <div class="box-body table-responsive no-padding">
@@ -24,17 +23,11 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                     <tr>
-                      <th>Unsur</th>
-                      <th>Subunsur</th>
-                      <th>Butir</th>
-                      <th>Tanggal Mulai-Selesai</th>
-                      <th>Tanggal Diajukan</th>
-                      <th>Dokumentasi</th>
-                      <th>Daftar Hadir</th>
-                      <th>Jurnal</th>
-                      <th>Sprint Siaga</th>
-                      <th>Checklist Peralatan</th>
-                      <th>Laporan Kegiatan</th>
+                      <th>No</th>
+                      <th>NIP</th>
+                      <th>Nama</th>
+                      <th>Pangkat</th>
+                      <th>Jabatan</th>
                       <th>Aksi</th>
                     </tr>
                   </thead>
@@ -47,28 +40,13 @@
                         {
                     ?>
                     <tr>
-                      <td><?php echo $record->namaUnsur ?></td>
-                      <td><?php echo $record->namaSubunsur ?></td>
-                      <td><?php echo $record->namaButir ?></td>
-                      <td><?php echo $record->tanggalMulai ?> - <?php echo $record->tanggalSelesai ?></td>
-                      <td><?php echo $record->createdAt ?></td>
-                      <td><a href="<?php echo base_url()?>upload/dokumentasi/<?php echo $record->path_dokumentasi ?>"
-                          download><?php echo $record->path_dokumentasi ?></td>
-                      <td><a
-                          href="<?php echo base_url()?>upload/dokumentasi/<?php echo $record->path_laporan_kegiatan ?>"
-                          download><?php echo $record->path_laporan_kegiatan ?></td>
-                      <td><a href="<?php echo base_url()?>upload/dokumentasi/<?php echo $record->path_daftar_hadir ?>"
-                          download><?php echo $record->path_daftar_hadir ?></td>
-                      <td><a href="<?php echo base_url()?>upload/dokumentasi/<?php echo $record->path_jurnal ?>"
-                          download><?php echo $record->path_jurnal ?></td>
-                      <td><a href="<?php echo base_url()?>upload/dokumentasi/<?php echo $record->path_sprint_siaga ?>"
-                          download><?php echo $record->path_sprint_siaga ?></td>
-                      <td><a
-                          href="<?php echo base_url()?>upload/dokumentasi/<?php echo $record->path_check_peralatan ?>"
-                          download><?php echo $record->path_check_peralatan ?></td>
-                      <td><a><i class="edit fa fa-pencil" id="edit" name="edit" data-toggle="modal" href="#"
-                            data-id="<?php echo $record->idKegiatanHarian; ?>"
-                            data-target="#modal-default"></i>&nbsp;&nbsp;&nbsp;</a>
+                      <td><?php echo $no++ ?></td>
+                      <td><?php echo $record->nip ?></td>
+                      <td><?php echo $record->name ?></td>
+                      <td><?php echo $record->namaJabatan ?></td>
+                      <td><?php echo $record->namaPangkat ?></td>
+                      <td><a href="<?php echo base_url().'kegiatan/approvalKegiatan/'.$record->userId; ?>"><i
+                            class="fa fa-pencil"></i>&nbsp;&nbsp;&nbsp;</a>
                       </td>
                     </tr>
                     <?php

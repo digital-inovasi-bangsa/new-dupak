@@ -234,7 +234,7 @@
             if ($role == 1 || $role == 18 || $role ==19) {
             ?>
               <li>
-                <a href="<?php echo base_url(); ?>kegiatan/approvalKegiatan">
+                <a href="<?php echo base_url(); ?>kegiatan/listApproval">
                   <i class="fa fa-check"></i>
                   <span>Persetujuan Kegiatan Harian</span>
                 </a>

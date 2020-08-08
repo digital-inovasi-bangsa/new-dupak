@@ -443,14 +443,22 @@ class Kegiatan extends CI_Controller
         }
     }
 
-    public function approvalKegiatan()
-    {
-        $this->global['pageTitle'] = 'Persetujuan Kegiatan';
+    public function listApproval(){
+        $this->global['pageTitle'] = 'List Persetujuan Kegiatan';
         $userId = $this->session->userdata('userId');
-        $data['kegiatan'] = $this->kegiatan_model->getKegiatanDiajukan();
-        // print_r($data);die;
+        $data['kegiatan'] = $this->kegiatan_model->getListKegiatanDiajukan();
         $this->load->view('includes/header', $this->global);
-        $this->load->view('kegiatan/approvalKegiatan', $data);
+        $this->load->view('kegiatan/listApprovalKegiatan', $data);
+        $this->load->view('includes/footer');
+    }
+
+    public function approvalKegiatan($id)
+    {
+        $userId = $this->session->userdata('userId');
+        $data['kegiatan'] = $this->kegiatan_model->getKegiatanDiajukan($id);
+        $this->global['pageTitle'] = 'Detail Persetujuan Kegiatan '.$data['kegiatan'][0]->name;
+        $this->load->view('includes/header', $this->global);
+        $this->load->view('kegiatan/ApprovalKegiatan', $data);
         $this->load->view('includes/footer');
     }
 

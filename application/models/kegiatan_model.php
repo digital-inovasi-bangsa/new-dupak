@@ -116,7 +116,7 @@ class Kegiatan_model extends CI_Model
         return true;
     }
 
-    public function getKegiatanDiajukan()
+    public function getKegiatanDiajukan($userId)
     {
         $this->db->select('bt.namaButir,tkh.tanggalMulai,tkh.tanggalSelesai, tkh.tanggalSelesai ,
         us.nip ,us.name, jj.namaJenjang , jb.namaJabatan , pk.namaPangkat,tkh.idKegiatanHarian, tkh.createdAt,
@@ -133,6 +133,30 @@ class Kegiatan_model extends CI_Model
         $this->db->join('tbl_pangkat as pk', 'pk.idPangkat = jb.tbl_pangkat_idPangkat', 'left');
         $this->db->join('tbl_dokumen_kegiatan as dk', 'dk.idKegiatanHarian = tkh.idKegiatanHarian', 'full');
         $this->db->where('status', 'Diajukan');
+        $this->db->where('us.userId', $userId);
+        $this->db->order_by('tkh.updatedAt', 'desc');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function getListKegiatanDiajukan()
+    {
+        $this->db->select('bt.namaButir,tkh.tanggalMulai,tkh.tanggalSelesai, tkh.tanggalSelesai ,
+        us.nip ,us.name, jj.namaJenjang , jb.namaJabatan , pk.namaPangkat,tkh.idKegiatanHarian, tkh.createdAt,
+        dk.path_dokumentasi, dk.path_surat_kegiatan, dk.path_laporan_kegiatan, 
+        dk.path_jurnal, dk.path_daftar_hadir, dk.path_check_peralatan, dk.path_sprint_siaga,
+        un.namaUnsur, sus.namaSubunsur, us.userId');
+        $this->db->from('tbl_kegiatan_harian as tkh');
+        $this->db->join('tbl_butir as bt', 'tkh.idButir = bt.idButir', 'left');
+        $this->db->join('tbl_users as us', 'us.userId = tkh.userId', 'left');
+        $this->db->join('tbl_unsur as un', 'un.idUnsur = tkh.idUnsur', 'left');
+        $this->db->join('tbl_subunsur as sus', 'sus.idSubunsur = tkh.idSubunsur', 'left');
+        $this->db->join('tbl_jenjang as jj', 'jj.idJenjang = tkh.idJenjang', 'left');
+        $this->db->join('tbl_jabatan as jb', 'jb.idJabatan = us.tbl_jabatan_idJabatan', 'left');
+        $this->db->join('tbl_pangkat as pk', 'pk.idPangkat = jb.tbl_pangkat_idPangkat', 'left');
+        $this->db->join('tbl_dokumen_kegiatan as dk', 'dk.idKegiatanHarian = tkh.idKegiatanHarian', 'full');
+        $this->db->where('status', 'Diajukan');
+        $this->db->group_by('us.userId'); 
         $this->db->order_by('tkh.updatedAt', 'desc');
         $query = $this->db->get();
         return $query->result();
