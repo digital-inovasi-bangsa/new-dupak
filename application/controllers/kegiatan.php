@@ -418,6 +418,7 @@ class Kegiatan extends CI_Controller
             );
             $status = $this->kegiatan_model->updateStatusKegiatan($statusInfo, $idKegiatanHarian);
             $this->session->set_flashdata('success', 'Dokumen Kegiatan Berhasil Ditambahkan');
+            redirect('kegiatan/listApproval');
         } else {
             $this->session->set_flashdata('error', 'Dokumen Kegiatan Gagal Ditambahkan');
         }
