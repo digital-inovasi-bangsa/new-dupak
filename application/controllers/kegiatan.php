@@ -458,7 +458,7 @@ class Kegiatan extends CI_Controller
         $data['kegiatan'] = $this->kegiatan_model->getKegiatanDiajukan($id);
         $this->global['pageTitle'] = 'Detail Persetujuan Kegiatan '.$data['kegiatan'][0]->name;
         $this->load->view('includes/header', $this->global);
-        $this->load->view('kegiatan/ApprovalKegiatan', $data);
+        $this->load->view('kegiatan/approvalKegiatan', $data);
         $this->load->view('includes/footer');
     }
 
