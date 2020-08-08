@@ -281,7 +281,7 @@
             if (response === "true") {
               $('.edit').modal('hide'); //or  $('#IDModal').modal('hide');
               swal("Sukses!", "Data Berhasil diUpdate!", "success").then(function () {
-                location.reload();
+                window.location.replace("<?php echo base_url()?>kegiatan/listApproval");
               })
             } else {
               swal("Gagal!", "Data Gagal diUpdate!", "danger").then(function () {

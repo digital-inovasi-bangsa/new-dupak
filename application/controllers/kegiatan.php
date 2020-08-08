@@ -441,7 +441,6 @@ class Kegiatan extends CI_Controller
         } else {
             echo "false";
         }
-        redirect('kegiatan/listApproval');
     }
 
     public function listApproval(){
